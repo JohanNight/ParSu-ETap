@@ -1,0 +1,66 @@
+.ExL-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 200;
+}
+.ExL-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 200;
+    font-style: italic;
+}
+.Light-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 300;
+}
+.Light-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+.Reg-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
+}
+.Reg-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+.Med-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+}
+.Med-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+.SemiB-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+}
+.SemiB-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+.Bold-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+}
+.Bold-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+.ExBold-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 800;
+}
+.ExBold-I-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}.Black-font{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 900;
+}
