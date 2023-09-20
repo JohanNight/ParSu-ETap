@@ -44,7 +44,7 @@
             </div>
         </form>
         {{-- Survey Form --}}
-        <form action="" method="POST">
+        <form action="/home/clientSurvey/StoreData" method="POST">
             @csrf
             {{-- Client Info --}}
             <div class="block p-5 flex flex-wrap mt-2  border-b-2 border-b-gray-700 ">

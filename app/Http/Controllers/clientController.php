@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\clientCategory;
+use App\Models\clientInfo;
 use App\Models\offices;
 use App\Models\studentInformation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use Illuminate\Validation\Rule;
 
 class clientController extends Controller
 {
@@ -63,5 +66,39 @@ class clientController extends Controller
         } else {
             return response()->json(['error' => 'Client not found'], 404);
         }
+    }
+    //store the survey data
+    public function storeSurveyData(Request $request)
+    {
+        $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
+        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+
+
+        $validateData = $request->validate([
+            'name_of_client' => 'required',
+            'gender_of_client' => ['required', Rule::in(['male', 'female'])],
+            'age_of_client' => 'required',
+            'client_type' => ['required', Rule::in($validateClientType)],
+            'date_of_transaction' => 'required|date',
+            'offices' => ['required', Rule::in($validateOffices)],
+            'service_availed' => 'required',
+            'email_of_client' => ''
+
+        ]);
+
+        //store the data in the database
+        $UserData = [
+            // 'idClientInformation' => '1',
+            'name' => $validateData['name_of_client'],
+            'sex' => $validateData['gender_of_client'],
+            'age' => $validateData['age_of_client'],
+            'idCategoryFk' => $validateData['client_type'],
+            'dateOfTransaction' => $validateData['date_of_transaction'],
+            'idOfficeOrigin' => $validateData['offices'],
+            'purpose' => $validateData['service_availed'],
+            'emailAdd' => $validateData['email_of_client'],
+        ];
+        clientInfo::create($UserData);
+        return redirect('/home/clientSurvey');
     }
 }
