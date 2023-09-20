@@ -52,7 +52,7 @@ class adminController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/indexAdmin')->with('message', 'Log Out Successfull');
+        return redirect('/login')->with('message', 'Log Out Successfully');
     }
 
     public function register()

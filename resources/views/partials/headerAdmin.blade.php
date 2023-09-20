@@ -27,3 +27,4 @@
 </head>
 
 <body class="min-h-screen">
+    <x-messages />
