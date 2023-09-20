@@ -29,9 +29,8 @@ class clientController extends Controller
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
-            $clientTypes = clientCategory::all();
-            $officeTypes = offices::all();
-            return view('ClientSide.citizenCharter', compact('clientTypes', 'officeTypes'));
+
+            return view('ClientSide.citizenCharter');
         } else {
             return abort(404);
         }
@@ -40,7 +39,9 @@ class clientController extends Controller
     {
 
         if (View::exists('ClientSide.clientSurvey')) {
-            return view('ClientSide.clientSurvey');
+            $clientTypes = clientCategory::all();
+            $officeTypes = offices::all();
+            return view('ClientSide.clientSurvey', compact('clientTypes', 'officeTypes'));
         } else {
             return abort(404);
         }
