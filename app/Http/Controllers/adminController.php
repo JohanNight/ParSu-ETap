@@ -17,4 +17,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function showLogin()
+    {
+        if (View::exists('AdminSide.login')) {
+            return view('AdminSide.login');
+        } else {
+            return abort(404);
+        }
+    }
 }
