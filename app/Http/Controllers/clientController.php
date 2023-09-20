@@ -24,4 +24,12 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    public function showCitizenCharter()
+    {
+        if (View::exists('ClientSide.citizenCharter')) {
+            return view('ClientSide.citizenCharter');
+        } else {
+            return abort(404);
+        }
+    }
 }

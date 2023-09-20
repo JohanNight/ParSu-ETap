@@ -20,9 +20,9 @@
                 <img src="{{ asset('images/PARSU IMAGES/admin_building.jpg') }}" alt="" srcset=""
                     class="w-full h-96">
             </div>
-            {{-- <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pt-3 pointer">
-                <a href="{{ route('citizens') }}" class="hover:underline"> Citizens Charter</a>
-            </div> --}}
+            <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pt-3 pointer">
+                <a href="{{ route('CitizenCharter') }}" class="hover:underline"> Citizens Charter</a>
+            </div>
 
         </div>
         <div class="bg-gray-600 bg-opacity-70 rounded-md w-96 h-full shadow-lg floating-container">
