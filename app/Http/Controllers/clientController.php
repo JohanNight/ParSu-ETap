@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clientCategory;
+use App\Models\offices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -27,7 +29,9 @@ class clientController extends Controller
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
-            return view('ClientSide.citizenCharter');
+            $clientTypes = clientCategory::all();
+            $officeTypes = offices::all();
+            return view('ClientSide.citizenCharter', compact('clientTypes', 'officeTypes'));
         } else {
             return abort(404);
         }
