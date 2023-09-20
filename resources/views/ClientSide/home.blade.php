@@ -29,9 +29,9 @@
             <div class=" block bg-gray p-2 mt-2 w-full h-full ">
                 <img src="{{ asset('images/CssImages.jpg') }}" alt="" srcset="" class="w-full h-96">
             </div>
-            {{-- <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pointer">
+            <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pointer">
                 <a href="{{ route('ClientSurvey') }}" class="hover:underline"> Client Satisfaction Survey</a>
-            </div> --}}
+            </div>
 
         </div>
 

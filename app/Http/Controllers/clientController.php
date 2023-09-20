@@ -32,4 +32,13 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    public function showClientSurvey()
+    {
+
+        if (View::exists('ClientSide.clientSurvey')) {
+            return view('ClientSide.clientSurvey');
+        } else {
+            return abort(404);
+        }
+    }
 }
