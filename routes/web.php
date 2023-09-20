@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\clientController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::get('/home/citizenCharter', [clientController::class, 'showCitizenCharter
 Route::get('/home/clientSurvey', [clientController::class, 'showClientSurvey'])->name('ClientSurvey');
 Route::post('/home/clientSurvey/Search', [clientController::class, 'fetchData']); //associate to fetch the data
 Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurveyData']);
+
+Route::get('/indexAdmin', [adminController::class, 'index']);
