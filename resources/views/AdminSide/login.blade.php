@@ -1,5 +1,5 @@
 @include('partials.headerAdmin')
-<div class="bg-blue-800 max-h-lg shadow-lg w-full px-2 py-2.5 text-white">
+<div class="bg-blue-800 max-h-lg shadow-lg w-full px-2 py-2.5">
     <div class="flex flex-wrap justify-between items-center ">
         <x-logo />
         <div>
@@ -7,39 +7,39 @@
                 ParSU Electronic Transaction and Processes
             </h1>
         </div>
-        <div class="mx-2 hover:bg-yellow-400 rounded-md py-2 pr-4 pl-3">
-            <a href="#" class="SemiB-font text-[20px]">Sign
+        <div class="mx-2 hover:bg-yellow-400 rounded-md py-2 pr-4 pl-3 text-white hover:text-blue-700 ">
+            <a href="/register" class="SemiB-font text-[20px] ">Sign
                 Up</a>
 
         </div>
     </div>
 </div>
-<section class="flex justify-around items-center mt-5">
+<section class="flex justify-around items-center mt-4">
     <header class="m-5 p-2.5 flex items-center">
         <h1 class="text-6xl font-bold text-blue-500">
             ParSU e-Tap Admin
         </h1>
     </header>
-    <div class="bg-gray-100 max-w-full mx-auto my-10 p-10 rounded-lg shadow-2xl border-2 ">
+    <div class="bg-gray-100 max-w-full mx-auto my-5 p-10 rounded-lg shadow-2xl border-2 ">
         <div class="bg-gray-100">
             <h3 class="font-bold text-2xl">Welcome to ParSU e-TAP Systems</h3>
             <p class="text-gray-600 pt-2">Sign in to your Account</p>
         </div>
         <div class="mt-2 bg-blue-700 w-full p-2"></div>{{-- separation line --}}
-        <div class="mt-10">
+        <div class="mt-5">
             <form action="/login/authenticate" method="POST" class="flex flex-col">
                 @csrf
                 <div class="mb-6 pt-3rounded bg-gray-200 rounded-md">
                     <label for="email" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Email</label>
                     <input type="text" name="email" id="email"
-                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400  px-3"
+                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-b-gray-600 border-gray-400  px-3"
                         autocomplete="off">
                 </div>
 
                 <div class="mb-6 pt-3 rounded bg-gray-200 rounded-md">
                     <label for="password" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Password</label>
                     <input type="password" name="password"
-                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400 borderr-50 px-3">
+                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4  border-b-gray-600 border-gray-400 px-3">
                 </div>
 
                 <button type="submit"

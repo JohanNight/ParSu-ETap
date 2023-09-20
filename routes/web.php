@@ -23,4 +23,5 @@ Route::post('/home/clientSurvey/Search', [clientController::class, 'fetchData'])
 Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurveyData']);
 
 Route::get('/indexAdmin', [adminController::class, 'index']);
-Route::get('/login', [adminController::class, 'createLogin']);
+Route::get('/register', [adminController::class, 'register']);
+Route::get('/login', [adminController::class, 'login'])->name('login');
