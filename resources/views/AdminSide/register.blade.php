@@ -18,8 +18,8 @@
                 <form action="/register/storeData" method="POST" class="flex flex-col">
                     @csrf
                     <div class="mb-6 pt-3 rounded bg-gray-200">
-                        <label for="name_admin" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Name</label>
-                        <input type="text" name="name_admin"
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Name</label>
+                        <input type="text" name="name"
                             class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400  px-3">
                     </div>
                     <div class="mb-6 pt-3rounded bg-gray-200 rounded-md">
@@ -29,9 +29,9 @@
                             autocomplete="off">
                     </div>
                     <div class="mb-4">
-                        <label for="offices_admin" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Office:
+                        <label for="offices" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Office:
                         </label>
-                        <select name="offices_admin" id="offices_admin"
+                        <select name="offices" id="offices"
                             class="  bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-b-gray-600 border-gray-400  px-3">
                             <option value=""></option>
                             @foreach ($officeTypes as $officeType)

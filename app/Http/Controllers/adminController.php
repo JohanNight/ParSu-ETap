@@ -48,15 +48,15 @@ class adminController extends Controller
             [
                 'name' => ['required', 'min:4'],
                 'email' => ['required', 'email', Rule::unique('users', 'email')],
-                'offices_admin' => ['required', Rule::in($validateOffices)],
+                'offices' => ['required', Rule::in($validateOffices)],
                 'password' => 'required|confirmed|min:6'
             ]
         );
         $Admindata = [
-            'name' => $validated['name_of_admin'],
-            'idOfficeOriginFK' => $validated['offices_admin'],
-            'email' => $validated['email_of_admin'],
-            'password' => $validated['password'] = Hash::make($validated['password'])
+            'name' => $validated['name'],
+            'idOfficeOriginFK' => $validated['offices'],
+            'email' => $validated['email'],
+            'password' => $validated['password'] = Hash::make($validated['password']),
         ];
         $user = User::create($Admindata);
         Auth::login($user);
