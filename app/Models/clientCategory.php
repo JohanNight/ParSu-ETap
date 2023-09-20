@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class studentInformation extends Model
+class clientCategory extends Model
 {
     use HasFactory;
-    protected $table = 'table_client_infos_final';
+    protected $table = "tbl_css_category";
 }
