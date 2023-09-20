@@ -16,4 +16,12 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    public function showHomePage()
+    {
+        if (View::exists('ClientSide.home')) {
+            return view('ClientSide.home');
+        } else {
+            return abort(404);
+        }
+    }
 }

@@ -45,11 +45,11 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
-        {{-- <div class="mt-5">
-            <a href="{{ route('landing') }}"
+        <div class="mt-5">
+            <a href="{{ route('HomePage') }}"
                 class="block w-full text-2xl SemiB-font text-black bg-green-500 p-3 rounded-lg  border-4 border-green-600 active:bg-green-600 capitalize">Tap
                 to Start</a>
-        </div> --}}
+        </div>
     </div>
 </div>
 <script>
