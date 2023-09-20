@@ -25,6 +25,6 @@ Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurv
 Route::get('/indexAdmin', [adminController::class, 'index'])->middleware('auth');
 Route::get('/register', [adminController::class, 'register']);
 Route::post('/register/storeData', [adminController::class, 'storeUserData']);
-Route::get('/login', [adminController::class, 'login'])->name('login');
+Route::get('/login', [adminController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login/process', [adminController::class, 'process']);
 Route::post('/logout', [adminController::class, 'logout']);

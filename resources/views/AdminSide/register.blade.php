@@ -20,13 +20,25 @@
                     <div class="mb-6 pt-3 rounded bg-gray-200">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Name</label>
                         <input type="text" name="name"
-                            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400  px-3">
+                            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400  px-3"autocomplete="off"
+                            value="{{ old('name') }}">
+
+                        @error('name')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-6 pt-3rounded bg-gray-200 rounded-md">
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Email</label>
                         <input type="text" name="email" id="email"
                             class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-b-gray-600 border-gray-400  px-3"
-                            autocomplete="off">
+                            autocomplete="off" value="{{ old('email') }}">
+                        @error('email')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-4">
                         <label for="offices" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Office:
@@ -39,19 +51,34 @@
                                     {{ $officeType->officeAcronym }}</option>
                             @endforeach
                         </select>
+                        @error('offices')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <div class="mb-6 pt-3 rounded bg-gray-200 rounded-md">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Password</label>
                         <input type="password" name="password"
-                            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4  border-b-gray-600 border-gray-400 px-3">
+                            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4  border-b-gray-600 border-gray-400 px-3"autocomplete="off">
+                        @error('password')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-6 pt-3 rounded bg-gray-200">
                         <label for="password_confirmation"
                             class="block text-gray-700 text-sm font-bold mb-2 ml-3">Confirm
                             Password</label>
                         <input type="password" name="password_confirmation"
-                            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400 borderr-50 px-3">
+                            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400 borderr-50 px-3"autocomplete="off">
+                        @error('password_confirmation')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
 
                     </div>
 

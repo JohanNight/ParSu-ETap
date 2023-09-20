@@ -29,6 +29,11 @@
         <div class="mt-5">
             <form action="/login/process" method="POST" class="flex flex-col">
                 @csrf
+                @error('email')
+                    <p class="text-red-400 text-sm m-1">
+                        {{ $message }}
+                    </p>
+                @enderror
                 <div class="mb-6 pt-3rounded bg-gray-200 rounded-md">
                     <label for="email" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Email</label>
                     <input type="text" name="email" id="email"

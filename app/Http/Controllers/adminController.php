@@ -42,6 +42,8 @@ class adminController extends Controller
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
             return redirect('/indexAdmin')->with('message', 'Welcome Admin');
+        } else {
+            return back()->withErrors(['email' => 'Login Failed'])->onlyInput('email');
         }
     }
     public function logout(Request $request)
