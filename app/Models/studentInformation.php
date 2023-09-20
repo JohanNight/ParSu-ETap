@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class studentInformation extends Model
 {
     use HasFactory;
-    protected $table = 'table_client_infos_final';
+    protected $table = 'table_clientinfos_final_copy';
 }

@@ -63,51 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
 
-        //to retrive the data and the populate them in each fields
-        $(document).ready(function() {
-            var categoryMapping = {
-                'Student': 1,
-                'Faculty': 2,
-                'Personnel': 3,
-                'Others': 4
-            };
-            $('#searchButton').on('click', function() {
-                const csrfToken = $('meta[name="csrf-token"]').attr('content'); // Get the CSRF token from the meta tag
-                const searchTerm =$('#search-id').val();
-                // Send AJAX request to the server to fetch client data
-                $.ajax({
-                    url:'http://127.0.0.1:8000/clientSurvey/Search',
-                    method: 'POST',
-                    data: {'_token':csrfToken,'searchId': searchTerm },
-                    dataType: 'json',
-                    success: function(data) {
-                        // Populate client info fields with retrieved data 
-                        setTimeout(() => {
-                            $('#name_of_client').val(data.name);
-                            $('#gender_of_client').val(data.gender);
-                            $('#age_of_client').val(data.age);
-                            // Map the category string to its numeric value using categoryMapping
-                            var numericCategory = categoryMapping[data.category];
-                               // Set the selected option in the client_type select element based on the numeric value
-                            $('#client_type').val(numericCategory);
-                            
-                            // Populate other fields as needed
-                        }, 0);
-                    },
-                    error: function(xhr,status,error) {
-                        console.error(error);
-                        console.log("Status:", status);
-                        console.error("XHR Error:", xhr);
-                    }
-                });
-            });
-        });
-
-        // date_autofill.js
-    // Get the current date in the format "YYYY-MM-DD"
-    var today = new Date().toISOString().split('T')[0];
-
-    // Set the input field's value to today's date
-    document.getElementById("date_of_transaction").value = today;
+        
         
 });

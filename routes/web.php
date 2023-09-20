@@ -18,4 +18,4 @@ Route::get('/', [clientController::class, 'showWelcomePage'])->name('welcome');
 Route::get('/home', [clientController::class, 'showHomePage'])->name('HomePage');
 Route::get('/home/citizenCharter', [clientController::class, 'showCitizenCharter'])->name('CitizenCharter');
 Route::get('/home/clientSurvey', [clientController::class, 'showClientSurvey'])->name('ClientSurvey');
-Route::post('/clientSurvey/Search', [clientController::class, 'fetchData']);//associate to fetch the data
+Route::post('/home/clientSurvey/Search', [clientController::class, 'fetchData']);//associate to fetch the data
