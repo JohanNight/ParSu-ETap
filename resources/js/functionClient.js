@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const searchTerm =$('#search-id').val();
                 // Send AJAX request to the server to fetch client data
                 $.ajax({
-                    url:'http://127.0.0.1:8000/Search',
+                    url:'http://127.0.0.1:8000/clientSurvey/Search',
                     method: 'POST',
                     data: {'_token':csrfToken,'searchId': searchTerm },
                     dataType: 'json',

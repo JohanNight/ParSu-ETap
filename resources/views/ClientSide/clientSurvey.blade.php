@@ -33,7 +33,7 @@
         </div>
 
         {{-- Search Engine --}}
-        <form action="">
+        <form action="" method="POST">
             @csrf
             <div class="flex justify-center items-center p-5 mb-4 gap-2">
                 <input type="search" name="search-id" id="search-id"
@@ -46,6 +46,7 @@
         {{-- Survey Form --}}
         <form action="" method="POST">
             @csrf
+            {{-- Client Info --}}
             <div class="block p-5 flex flex-wrap mt-2  border-b-2 border-b-gray-700 ">
                 <div class="block ml-3 ">
                     <label for="name_of_client" class="text-[20px] Reg-font mr-2 text-black">Name: </label>
