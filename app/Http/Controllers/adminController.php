@@ -40,7 +40,8 @@ class adminController extends Controller
             ]
         );
         if (Auth::attempt($validated)) {
-            dd($validated);
+            $request->session()->regenerate();
+            return redirect('/indexAdmin')->with('message', 'Welcome Admin');
         }
     }
     public function logout(Request $request)

@@ -22,7 +22,7 @@ Route::get('/home/clientSurvey', [clientController::class, 'showClientSurvey'])-
 Route::post('/home/clientSurvey/Search', [clientController::class, 'fetchData']); //associate to fetch the data
 Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurveyData']);
 
-Route::get('/indexAdmin', [adminController::class, 'index']);
+Route::get('/indexAdmin', [adminController::class, 'index'])->middleware('auth');
 Route::get('/register', [adminController::class, 'register']);
 Route::post('/register/storeData', [adminController::class, 'storeUserData']);
 Route::get('/login', [adminController::class, 'login'])->name('login');
