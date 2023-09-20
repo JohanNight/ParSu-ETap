@@ -24,4 +24,5 @@ Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurv
 
 Route::get('/indexAdmin', [adminController::class, 'index']);
 Route::get('/register', [adminController::class, 'register']);
+Route::post('/register/storeData', [adminController::class, 'storeUserData']);
 Route::get('/login', [adminController::class, 'login'])->name('login');

@@ -15,7 +15,7 @@
             </div>
             <div class="mt-2 bg-blue-700 w-full p-2"></div>{{-- separation line --}}
             <div class="mt-5">
-                <form action="/login/authenticate" method="POST" class="flex flex-col">
+                <form action="/register/storeData" method="POST" class="flex flex-col">
                     @csrf
                     <div class="mb-6 pt-3 rounded bg-gray-200">
                         <label for="name_admin" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Name</label>
@@ -29,9 +29,10 @@
                             autocomplete="off">
                     </div>
                     <div class="mb-4">
-                        <label for="offices_admin" class="block mb-2 text-sm font-bold text-gray-700">Office: </label>
+                        <label for="offices_admin" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Office:
+                        </label>
                         <select name="offices_admin" id="offices_admin"
-                            class="  w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                            class="  bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-b-gray-600 border-gray-400  px-3">
                             <option value=""></option>
                             @foreach ($officeTypes as $officeType)
                                 <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
