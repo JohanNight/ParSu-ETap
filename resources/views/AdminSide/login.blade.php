@@ -27,7 +27,7 @@
         </div>
         <div class="mt-2 bg-blue-700 w-full p-2"></div>{{-- separation line --}}
         <div class="mt-5">
-            <form action="/login/authenticate" method="POST" class="flex flex-col">
+            <form action="/login/process" method="POST" class="flex flex-col">
                 @csrf
                 <div class="mb-6 pt-3rounded bg-gray-200 rounded-md">
                     <label for="email" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Email</label>

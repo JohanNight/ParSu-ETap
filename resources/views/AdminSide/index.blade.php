@@ -1,10 +1,7 @@
 @include('partials.headerAdmin')
-
-
 <!-- component -->
-
 <div class="flex flex-col min-h-screen bg-gray-100">
-
+    <x-messages />
     <!-- Top navigation bar -->
     <x-NavigationTop />
 

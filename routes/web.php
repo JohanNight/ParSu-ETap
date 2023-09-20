@@ -26,3 +26,5 @@ Route::get('/indexAdmin', [adminController::class, 'index']);
 Route::get('/register', [adminController::class, 'register']);
 Route::post('/register/storeData', [adminController::class, 'storeUserData']);
 Route::get('/login', [adminController::class, 'login'])->name('login');
+Route::post('/login/process', [adminController::class, 'process']);
+Route::post('/logout', [adminController::class, 'logout']);

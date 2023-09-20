@@ -31,6 +31,26 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function process(Request $request)
+    {
+        $validated = $request->validate(
+            [
+                'email' => ['required', 'email'],
+                'password' => 'required'
+            ]
+        );
+        if (Auth::attempt($validated)) {
+            dd($validated);
+        }
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/indexAdmin')->with('message', 'Log Out Successfull');
+    }
 
     public function register()
     {
