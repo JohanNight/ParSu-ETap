@@ -1,77 +1,77 @@
 @include('partials.headerAdmin')
 
 
-<div class="flex flex-col h-screen bg-gray-100">
-    <x-messages />
+<!-- component -->
+
+<div class="flex flex-col min-h-screen bg-gray-100">
 
     <!-- Top navigation bar -->
     <x-NavigationTop />
 
-    <!-- Main content-->
+    <!-- Main Content -->
     <div class="flex-1 flex flex-wrap">
         <!-- Navigation sidebar (hidden on small devices) -->
         <x-NavigationLeft />
 
-        <!--Main content area -->
-        <div class="flex-1 p-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
-            <!-- Search field -->
+        <!-- Área de contenido principal -->
+        <div class="flex-1 p-4 w-full md:w-1/2">
+            <!-- Campo de búsqueda -->
             <div class="relative max-w-md w-full">
                 <div class="absolute top-1 left-2 inline-flex items-center p-2">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
                 <input
                     class="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
-                    type="search" placeholder="Search...">
+                    type="search" placeholder="Buscar...">
             </div>
 
-            <!-- Graphics Container -->
+            <!-- Contenedor de Gráficas -->
             <div class="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
-                <!-- First container -->
-                <!-- Section 1 - User Chart -->
+                <!-- Primer contenedor -->
+                <!-- Sección 1 - Gráfica de Usuarios -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Viewed of User</h2>
-                    <div class="my-1"></div> <!-- Separation space -->
+                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Usuarios</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                    <!--Line with gradient-->
-                    <div class="chart-container" style="position: relative; height:300px; width:100%">
-                        <!-- The canvas for the graph -->
+                    <!-- Línea con gradiente -->
+                    <div class="chart-container" style="position: relative; height:150px; width:100%">
+                        <!-- El canvas para la gráfica -->
                         <canvas id="usersChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Second container -->
-                <!-- Section 2 - Trade Chart -->
+                <!-- Segundo contenedor -->
+                <!-- Sección 2 - Gráfica de Comercios -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Answered Survey </h2>
-                    <div class="my-1"></div> <!-- Separation space -->
+                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Comercios</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                    <!-- Line with gradient -->
-                    <div class="chart-container" style="position: relative; height:300px; width:100%">
-                        <!-- The canvas for the graph -->
+                    <!-- Línea con gradiente -->
+                    <div class="chart-container" style="position: relative; height:150px; width:100%">
+                        <!-- El canvas para la gráfica -->
                         <canvas id="commercesChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Third container below the previous two -->
-            <!-- Section 3 - Table of Pending Authorizations -->
+            <!-- Tercer contenedor debajo de los dos anteriores -->
+            <!-- Sección 3 - Tabla de Autorizaciones Pendientes -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-lg SemiB-font pb-4 capitalize">Pending Authorizations</h2>
-                <div class="my-1"></div> <!-- Separation space -->
-                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                <!-- Line with gradient -->
+                <h2 class="text-gray-500 text-lg font-semibold pb-4">Autorizaciones Pendientes</h2>
+                <div class="my-1"></div> <!-- Espacio de separación -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
                 <table class="w-full table-auto text-sm">
                     <thead>
                         <tr class="text-sm leading-normal">
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Photo</th>
+                                Foto</th>
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Name</th>
+                                Nombre</th>
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Role</th>
+                                Rol</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +81,7 @@
                             <td class="py-2 px-4 border-b border-grey-light">Juan Pérez</td>
                             <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
                         </tr>
-                        <!-- Add more rows here like the one above for each pending authorization -->
+                        <!-- Añade más filas aquí como la anterior para cada autorización pendiente -->
                         <tr class="hover:bg-grey-lighter">
                             <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
                                     alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
@@ -109,34 +109,34 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- "See more" button for the Pending Authorizations table -->
+                <!-- Botón "Ver más" para la tabla de Autorizaciones Pendientes -->
                 <div class="text-right mt-4">
                     <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
-                        See more
+                        Ver más
                     </button>
                 </div>
             </div>
 
-            <!-- Fourth container -->
-            <!-- Section 4 - Table of Transactions-->
+            <!-- Cuarto contenedor -->
+            <!-- Sección 4 - Tabla de Transacciones -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <div class="bg-white p-4 rounded-md mt-4">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Transactions</h2>
-                    <div class="my-1"></div> <!-- Separation space -->
+                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Transacciones</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                    <!-- Line with gradient -->
+                    <!-- Línea con gradiente -->
                     <table class="w-full table-auto text-sm">
                         <thead>
                             <tr class="text-sm leading-normal">
                                 <th
                                     class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                    Name</th>
+                                    Nombre</th>
                                 <th
                                     class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                    Date</th>
+                                    Fecha</th>
                                 <th
                                     class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">
-                                    Amount</th>
+                                    Monto</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,48 +162,48 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- "See more" button for the Transactions table -->
+                    <!-- Botón "Ver más" para la tabla de Transacciones -->
                     <div class="text-right mt-4">
                         <button class="text-right mt-4">
                             <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
-                                See more
+                                Ver más
                             </button>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 
-<!-- Script for graphics-->
+<!-- Script para las gráficas -->
 <script>
-    // User Chart
+    // Gráfica de Usuarios
     var usersChart = new Chart(document.getElementById('usersChart'), {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['New', 'Registered'],
+            labels: ['Nuevos', 'Registrados'],
             datasets: [{
-                data: [60, 40, ],
-                backgroundColor: ['#FEC500', '#8B8B8D'],
+                data: [30, 65],
+                backgroundColor: ['#00F0FF', '#8B8B8D'],
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             legend: {
-                position: 'bottom' //Place the legend below the circle
+                position: 'bottom' // Ubicar la leyenda debajo del círculo
             }
         }
     });
 
-    // Business Chart
+    // Gráfica de Comercios
     var commercesChart = new Chart(document.getElementById('commercesChart'), {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['New', 'Registered'],
+            labels: ['Nuevos', 'Registrados'],
             datasets: [{
-                data: [60, 40, ],
+                data: [60, 40],
                 backgroundColor: ['#FEC500', '#8B8B8D'],
             }]
         },
@@ -211,9 +211,20 @@
             responsive: true,
             maintainAspectRatio: false,
             legend: {
-                position: 'bottom' //Place the legend below the circle
+                position: 'bottom' // Ubicar la leyenda debajo del círculo
             }
         }
+    });
+
+    // Agregar lógica para mostrar/ocultar la navegación lateral al hacer clic en el ícono de menú
+    const menuBtn = document.getElementById('menuBtn');
+    const sideNav = document.getElementById('sideNav');
+
+    menuBtn.addEventListener('click', () => {
+        sideNav.classList.toggle(
+            'hidden'); // Agrega o quita la clase 'hidden' para mostrar u ocultar la navegación lateral
     });
 </script>
+
+
 @include('partials.footerAdmin')
