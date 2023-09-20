@@ -14,11 +14,17 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('idOfficeOriginFK')->default(0); // You can change the default value as needed.
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('user_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+
+            // Creating an index on 'idOfficeOriginFK'
+            $table->index('idOfficeOriginFK', 'officeOrigin1'); // This creates a BTREE index named 'officeOrigin1'.
         });
     }
 

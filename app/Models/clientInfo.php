@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class clientInfo extends Model
 {
+    //for storing the client information
     use HasFactory;
     protected $table = 'table_clientinfos_final';
     protected $fillable = [

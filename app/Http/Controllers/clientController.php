@@ -88,7 +88,6 @@ class clientController extends Controller
 
         //store the data in the database
         $UserData = [
-            // 'idClientInformation' => '1',
             'name' => $validateData['name_of_client'],
             'sex' => $validateData['gender_of_client'],
             'age' => $validateData['age_of_client'],
