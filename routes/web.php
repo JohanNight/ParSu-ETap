@@ -30,3 +30,4 @@ Route::post('/login/process', [adminController::class, 'process']);
 Route::post('/logout', [adminController::class, 'logout']);
 Route::get('/indexAdmin/addService', [adminController::class, 'addService'])->name('AddService')->middleware('auth');
 Route::get('/indexAdmin/account', [adminController::class, 'accountPage'])->name('Account')->middleware('auth');
+Route::get('/indexAdmin/storageService', [adminController::class, 'storagePage'])->name('Storage')->middleware('auth');

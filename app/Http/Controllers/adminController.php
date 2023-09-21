@@ -100,4 +100,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function storagePage()
+    {
+        if (View::exists('AdminSide.storageServiceFunction')) {
+            return view('AdminSide.storageServiceFunction');
+        } else {
+            return abort(404);
+        }
+    }
 }

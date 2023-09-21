@@ -1,15 +1,15 @@
-function previewImage(input) {
-    const preview = document.getElementById('previewImage');
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
+// function previewImage(input) {
+//     const preview = document.getElementById('previewImage');
+//     if (input.files && input.files[0]) {
+//         const reader = new FileReader();
 
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-        };
+//         reader.onload = function(e) {
+//             preview.src = e.target.result;
+//         };
 
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+//         reader.readAsDataURL(input.files[0]);
+//     }
+// }
 
   // Gráfica de Usuarios
   var usersChart = new Chart(document.getElementById('usersChart'), {

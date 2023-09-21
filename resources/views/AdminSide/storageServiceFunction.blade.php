@@ -1,6 +1,6 @@
 @include('partials.headerAdmin')
 
-<div class="flex flex-col h-screen bg-gray-100">
+<div class="flex flex-col min-h-screen bg-gray-100">
     <!-- Top navigation bar -->
     <x-NavigationTop />
     <!-- Main content-->
@@ -122,8 +122,5 @@
         </div>
     </div>
 </div>
-
-
-
 
 @include('partials.footerAdmin')
