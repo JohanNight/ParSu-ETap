@@ -24,8 +24,9 @@
                             </h2>
                         </header>
                         <div class="mt-5 ">
-                            {{-- {{ route('Addservice') }} --}}
-                            <a href="#" class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add
+                            {{--  --}}
+                            <a href="{{ route('AddService') }}"
+                                class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add
                                 New
                                 Service</a>
                         </div>

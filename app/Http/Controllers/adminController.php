@@ -84,4 +84,12 @@ class adminController extends Controller
         $user = User::create($Admindata);
         Auth::login($user);
     }
+    public function addService()
+    {
+        if (View::exists('AdminSide.addServiceFunction')) {
+            return view('AdminSide.addServiceFunction');
+        } else {
+            return abort(404);
+        }
+    }
 }

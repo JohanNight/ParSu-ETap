@@ -28,3 +28,5 @@ Route::post('/register/storeData', [adminController::class, 'storeUserData']);
 Route::get('/login', [adminController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login/process', [adminController::class, 'process']);
 Route::post('/logout', [adminController::class, 'logout']);
+Route::get('/indexAdmin/addService', [adminController::class, 'addService'])->name('AddService')->middleware('auth');
+Route::get('/indexAdmin/account', [adminController::class], 'account')->name('account')->middleware('auth');
