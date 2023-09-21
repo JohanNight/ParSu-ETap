@@ -70,8 +70,8 @@
 
         </a>
         <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "
-            href="#">
-            {{-- {{ route('Report') }} --}}
+            href="{{ route('Report') }}">
+            {{-- Report Route --}}
             <div class=" mr-0 flex gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
                     <path

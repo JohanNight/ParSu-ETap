@@ -84,7 +84,7 @@ class adminController extends Controller
         $user = User::create($Admindata);
         Auth::login($user);
     }
-    public function addService()
+    public function addServicePagreport()
     {
         if (View::exists('AdminSide.addServiceFunction')) {
             return view('AdminSide.addServiceFunction');
@@ -120,6 +120,14 @@ class adminController extends Controller
     {
         if (View::exists('AdminSide.generateCodeFunction')) {
             return view('AdminSide.generateCodeFunction');
+        } else {
+            return abort(404);
+        }
+    }
+    public function reportPage()
+    {
+        if (View::exists('AdminSide.reportFunction')) {
+            return view('AdminSide.reportFunction');
         } else {
             return abort(404);
         }
