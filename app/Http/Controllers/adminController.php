@@ -116,4 +116,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function codeGeneratorPage()
+    {
+        if (View::exists('AdminSide.generateCodeFunction')) {
+            return view('AdminSide.generateCodeFunction');
+        } else {
+            return abort(404);
+        }
+    }
 }

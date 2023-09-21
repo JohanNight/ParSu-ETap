@@ -32,3 +32,4 @@ Route::get('/indexAdmin/addService', [adminController::class, 'addService'])->na
 Route::get('/indexAdmin/account', [adminController::class, 'accountPage'])->name('Account')->middleware('auth');
 Route::get('/indexAdmin/storageService', [adminController::class, 'storagePage'])->name('Storage')->middleware('auth');
 Route::get('/indexAdmin/draftService', [adminController::class, 'draftPage'])->name('Draft')->middleware('auth');
+Route::get('/indexAdmin/generateCode', [adminController::class, 'codeGeneratorPage'])->name('Generator')->middleware('auth');

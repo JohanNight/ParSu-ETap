@@ -1,5 +1,5 @@
 @if (session()->has('message'))
-    <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)"
+    <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
         class="bg-teal-100 border-t-4 m-2 fixed bottom-20 right-0 z-20 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg"
         role="alert">
         <div class="flex">
