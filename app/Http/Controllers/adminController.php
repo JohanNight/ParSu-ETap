@@ -132,4 +132,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function report()
+    {
+        if (View::exists('Report.serviceReport')) {
+            return view('Report.serviceReport');
+        } else {
+            return abort(404);
+        }
+    }
 }

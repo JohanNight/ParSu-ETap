@@ -34,3 +34,6 @@ Route::get('/indexAdmin/storageService', [adminController::class, 'storagePage']
 Route::get('/indexAdmin/draftService', [adminController::class, 'draftPage'])->name('Draft')->middleware('auth');
 Route::get('/indexAdmin/generateCode', [adminController::class, 'codeGeneratorPage'])->name('Generator')->middleware('auth');
 Route::get('/indexAdmin/report', [adminController::class, 'reportPage'])->name('Report')->middleware('auth');
+
+
+Route::get('/reportService', [adminController::class, 'report']);
