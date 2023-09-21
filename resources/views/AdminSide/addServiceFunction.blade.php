@@ -50,15 +50,7 @@
 
 
         </div>
-
-
-
-
-
     </div>
-
 </div>
-
-
 
 @include('partials.footerAdmin')
