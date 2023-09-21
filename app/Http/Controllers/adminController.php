@@ -108,4 +108,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function draftPage()
+    {
+        if (View::exists('AdminSide.draftServiceFunction')) {
+            return view('AdminSide.draftServiceFunction');
+        } else {
+            return abort(404);
+        }
+    }
 }

@@ -37,8 +37,9 @@
                                 Service Storage</a>
                         </div>
                         <div class="mt-5 ">
-                            {{-- {{ route('ServiceDraft') }} --}}
-                            <a href="#" class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Drafted
+                            {{-- Draft Route --}}
+                            <a href="{{ route('Draft') }}"
+                                class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Drafted
                                 Service</a>
                         </div>
                         <div class="mt-5 ">

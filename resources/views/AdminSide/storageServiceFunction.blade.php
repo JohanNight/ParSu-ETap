@@ -12,7 +12,7 @@
             <!-- component -->
             <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">Service Storage</div>
             <div
-                class="editor mx-auto w-10/12 min-h-screen overflow-y-scroll flex flex-col text-gray-800 border border-gray-300 bg-white p-4 shadow-xl max-w-2xl">
+                class="editor mx-auto w-10/12 min-h-screen overflow-y-scroll flex flex-col text-gray-800 border border-gray-300 bg-white p-4 shadow-xl max-w-2xl  mb-6">
                 <div class="flex gap-1 shadow-md p-2 min-w-max">
                     <div class="flex flex-wrap justify-evenly gap-2 ">
                         <div class="bg-yellow-400 p-[10px] flex justify-start items-center rounded-lg w-44 ">
