@@ -47,8 +47,8 @@
                     </div>
                     <div class="account-dropdown_body py-[12px] px-0 border-b-2 border-solid border-gray-400">
                         <div class="account-dropdown_item">
-                            {{-- {{ route('Manage-Account') }} --}}
-                            <a href="#"
+                            {{-- Account Route  --}}
+                            <a href="{{ route('Account') }}"
                                 class="block text-gray-600 py-[15px] px-[25px] text-[16px] hover:bg-blue-600 hover:text-gray-800 Reg-font">Account</a>
                         </div>
                         <div class="account-dropdown_item"><a href="#"

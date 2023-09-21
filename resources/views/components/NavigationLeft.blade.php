@@ -1,8 +1,8 @@
 <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
     <nav>
         <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
-            href="#">
-            {{-- {{ route('adminIndex') }} --}}
+            href="{{ route('index') }}">
+            {{--  --}}
             <i class="fas fa-home mr-2"></i>Home
         </a>
         <div class="relative" x-data="{ open: false }"> <a

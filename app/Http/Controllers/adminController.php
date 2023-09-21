@@ -92,4 +92,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function accountPage()
+    {
+        if (View::exists('AdminSide.accountFunction')) {
+            return view('AdminSide.accountFunction');
+        } else {
+            return abort(404);
+        }
+    }
 }
