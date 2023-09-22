@@ -22,18 +22,27 @@ Route::get('/home/clientSurvey', [clientController::class, 'showClientSurvey'])-
 Route::post('/home/clientSurvey/Search', [clientController::class, 'fetchData']); //associate to fetch the data
 Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurveyData']);
 
-Route::get('/indexAdmin', [adminController::class, 'index'])->middleware('auth')->name('index');
-Route::get('/register', [adminController::class, 'register']);
-Route::post('/register/storeData', [adminController::class, 'storeUserData']);
-Route::get('/login', [adminController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/login/process', [adminController::class, 'process']);
-Route::post('/logout', [adminController::class, 'logout']);
-Route::get('/indexAdmin/addService', [adminController::class, 'addServicePage'])->name('AddService')->middleware('auth');
-Route::get('/indexAdmin/account', [adminController::class, 'accountPage'])->name('Account')->middleware('auth');
-Route::get('/indexAdmin/storageService', [adminController::class, 'storagePage'])->name('Storage')->middleware('auth');
-Route::get('/indexAdmin/draftService', [adminController::class, 'draftPage'])->name('Draft')->middleware('auth');
-Route::get('/indexAdmin/generateCode', [adminController::class, 'codeGeneratorPage'])->name('Generator')->middleware('auth');
-Route::get('/indexAdmin/report', [adminController::class, 'reportPage'])->name('Report')->middleware('auth');
+
+Route::controller(adminController::class)->group(function () {
+
+    Route::get('/login', 'login')->name('login')->middleware('guest');
+    Route::post('/login/process', 'process');
+    Route::get('/register', 'register');
+    Route::post('/register/storeData', 'storeUserData');
+    Route::post('/logout', 'logout');
+
+    Route::middleware(['auth'])->group(function () {
+
+        Route::get('/indexAdmin',  'index')->name('index');
+        Route::get('/indexAdmin/addService', 'addServicePage')->name('AddService');
+        Route::get('/indexAdmin/account',  'accountPage')->name('Account');
+        Route::get('/indexAdmin/storageService', 'storagePage')->name('Storage');
+        Route::get('/indexAdmin/draftService',  'draftPage')->name('Draft');
+        Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
+        Route::get('/indexAdmin/report',  'reportPage')->name('Report');
+    });
+});
+
 
 
 Route::get('/reportService', [adminController::class, 'report']);

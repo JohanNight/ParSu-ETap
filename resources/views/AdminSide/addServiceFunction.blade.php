@@ -14,7 +14,7 @@
             <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">New Service</div>
             <form action="">
                 <div
-                    class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl max-w-2xl">
+                    class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl max-w-2xl bg-white rounded-md">
 
                     <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
                         spellcheck="false" placeholder="Title" type="text">
