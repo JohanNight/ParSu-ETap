@@ -25,7 +25,7 @@ Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurv
 
 Route::controller(adminController::class)->group(function () {
 
-    Route::get('/login', 'login')->name('login')->middleware('guest');
+    Route::get('/login', 'login')->name('login');
     Route::post('/login/process', 'process');
     Route::get('/register', 'register');
     Route::post('/register/storeData', 'storeUserData');
@@ -41,6 +41,7 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
         Route::get('/indexAdmin/report',  'reportPage')->name('Report');
     });
+    Route::get('/edit/questionnaire', 'editQuestion');
 });
 
 

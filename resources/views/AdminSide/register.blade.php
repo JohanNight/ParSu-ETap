@@ -26,7 +26,7 @@
                         <option value=""></option>
                         @foreach ($officeTypes as $officeType)
                             <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
-                                {{ $officeType->officeAcronym }}</option>
+                                {{ $officeType->officeDescription }}</option>
                         @endforeach
                     </select>
                     @error('offices')

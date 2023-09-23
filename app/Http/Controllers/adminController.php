@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clientCategory;
 use App\Models\offices;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -137,6 +138,16 @@ class adminController extends Controller
     {
         if (View::exists('Report.serviceReport')) {
             return view('Report.serviceReport');
+        } else {
+            return abort(404);
+        }
+    }
+    public function editQuestion()
+    {
+        if (View::exists('AdminSide.editQuestion')) {
+            $clientTypes = clientCategory::all();
+            $officeTypes = offices::all();
+            return view('AdminSide.editQuestion', compact('clientTypes', 'officeTypes'));
         } else {
             return abort(404);
         }
