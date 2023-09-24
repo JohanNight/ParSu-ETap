@@ -20,28 +20,28 @@
             <div class="account_items" type="button" @click="open = !open" data-dropdown-toggle="account_dropdown">
                 {{-- image below --}}
                 <div class="image  w-[50px] h-[50px] float-left overflow-hidden rounded-[3px]"><img
-                        src="{{ asset('images/PARSU IMAGES/RandomGirl.jpg') }}" alt="Your Image" class="w-full h-auto">
+                        src="https://res.cloudinary.com/dboafhu31/image/upload/v1625318266/imagen_2021-07-03_091743_vtbkf8.png"
+                        alt="Your Image" class="w-full h-auto">
                 </div>
                 {{-- name of User or User name below --}}
                 <div class="content ml-[45px] py-[9px] pl-[12px]"><a href="#"
-                        class="text-yellow-500 uppercase SemiB-font text-[15px] inline-block ">Evelyn
-                        Kim</a>
+                        class="text-yellow-500 uppercase SemiB-font text-[15px] inline-block ">Admin</a>
                 </div>
                 {{-- Dropdown column contains acc. management, settings, and logout --}}
                 <div class=" drop-down min-w-[305px] absolute top-[58px] right-0 bg-gray-300 pointer shadow-lg origin-[right top] z-10 rounded-lg"
                     x-show="open" @click.away="open = false" id="account_dropdown" x-cloak>
                     <div class="account-dropodown_head info p-[25px] border-b-2 border-solid border-gray-400">
                         <div class="image  float-left h-[65px] w-[65px] overflow-hidden rounded-[3px]">
-                            <img src="{{ asset('images/PARSU IMAGES/RandomGirl.jpg') }}" alt="Your Image"
-                                class="w-full h-auto">
+                            <img src="https://res.cloudinary.com/dboafhu31/image/upload/v1625318266/imagen_2021-07-03_091743_vtbkf8.png"
+                                alt="Your Image" class="w-full h-auto">
                         </div>
                         <div class="content ml-[65px] py-[11] pl-[12px]">
                             <h5 class="name text-gray-700 font-bold m-2" style="line-height: calc(20/16)">
                                 <a href="#" class="text-gray-700 text-[18px] capitalize inline-block SemiB-font ">
-                                    Evelyn Kim</a>
+                                    Admin</a>
                             </h5>
                             <span
-                                class="email text-[14px] text-gray-500 leading-[calc(20/13)] Reg-font">evelynKim@gmail.com</span>
+                                class="email text-[14px] text-gray-500 leading-[calc(20/13)] Reg-font">admin@gmail.com</span>
                         </div>
 
                     </div>

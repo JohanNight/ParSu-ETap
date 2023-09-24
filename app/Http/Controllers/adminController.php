@@ -102,6 +102,23 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function updateAccount(Request $request, User $user)
+    {
+        dd($request);
+        $validated = $request->validate(
+            [
+                'name' => ['required', 'min:4'],
+                'email' => ['required', 'email'],
+            ]
+        );
+        $Admindata = [
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ];
+        $user->update($Admindata);
+        Auth::login($user);
+        return redirect('/indexAdmin')->with('message', 'Saved Successfully');
+    }
     public function storagePage()
     {
         if (View::exists('AdminSide.storageServiceFunction')) {
