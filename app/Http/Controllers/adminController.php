@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 
 class adminController extends Controller
 {
@@ -104,17 +105,25 @@ class adminController extends Controller
     }
     public function updateAccount(Request $request, User $user)
     {
-        dd($request);
         $validated = $request->validate(
             [
                 'name' => ['required', 'min:4'],
                 'email' => ['required', 'email'],
             ]
         );
+        if ($request->hasFile('user_image')) {
+            $validated = $request->validate(
+                [
+                    'user_image' => 'mines:jpeg,png,webp,bmp,tiff|max:4096'
+                ]
+            );
+        }
         $Admindata = [
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'user_image' => $validated['user_image']
         ];
+
         $user->update($Admindata);
         Auth::login($user);
         return redirect('/indexAdmin')->with('message', 'Saved Successfully');
