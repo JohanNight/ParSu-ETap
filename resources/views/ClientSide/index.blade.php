@@ -1,5 +1,5 @@
 @include('partials.headerClient')
-<div class="relative min-h-screen bg-gradient from-gray-400"
+{{-- <div class=" min-h-screen"
     style=" 
     background-image:url('images/PARSU IMAGES/parsuEntrance.jpg');
     background-repeat: no-repeat;
@@ -51,6 +51,11 @@
                 to Start</a>
         </div>
     </div>
+</div> --}}
+
+<div
+    class="h-[100dvh] flex justify-center items-center bg-slate-900 bg-[url('/images/Entrance.jpg')] bg-no-repeat bg-cover absolute top-0 bottom-0 left-0 right-0 opacity-50">
+
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
