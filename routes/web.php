@@ -35,8 +35,8 @@ Route::controller(adminController::class)->group(function () {
 
         Route::get('/indexAdmin',  'index')->name('index');
         Route::get('/indexAdmin/addService', 'addServicePage')->name('AddService');
-        Route::get('/indexAdmin/account',  'accountPage')->name('Account');
-        Route::put('/indexAdmin/update', 'updateAccount');
+        Route::get('/indexAdmin/account/{id}',  'showAccountPage')->name('Account');
+        Route::put('/indexAdmin/account', 'update');
         Route::get('/indexAdmin/storageService', 'storagePage')->name('Storage');
         Route::get('/indexAdmin/draftService',  'draftPage')->name('Draft');
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');

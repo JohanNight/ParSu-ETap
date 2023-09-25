@@ -4,7 +4,6 @@
 
     <!-- Top navigation bar -->
     <x-NavigationTop />
-
     <!-- Main Content -->
     <div class="flex-1 flex flex-wrap">
         <!-- Navigation sidebar (hidden on small devices) -->
@@ -173,7 +172,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @include('partials.footerAdmin')

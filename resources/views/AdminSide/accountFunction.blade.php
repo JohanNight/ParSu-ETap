@@ -11,9 +11,9 @@
         <!--Main Content Area-->
         <div class=" flex-1 w-full md:w-1/2 bg-gray-200 min-h-screen px-2 pt-3">
             <!-- component -->
-            <form action="/indexAdmin/update" method="POST" enctype="multipart/form-data">
-                @method('PUT')
+            <form action="/indexAdmin/account" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class=" md:grid grid-cols-4 grid-rows-2  bg-white gap-2 p-4 rounded-xl">
                     <div class="md:col-span-1 h-60 shadow-xl ">
                         <div class="flex w-full h-full relative">
@@ -24,15 +24,15 @@
                     </div>
                     <div class="md:col-span-3 shadow-xl p-4 space-y-2 p-3 w-full">
                         <div class="flex ">
-                            <span
-                                class="text-sm border bg-blue-50 font-bold uppercase border-2 rounded-l px-4 py-2 bg-gray-50 whitespace-no-wrap w-2/6">Name:</span>
+                            <label name="name"
+                                class="text-sm border bg-blue-50 font-bold uppercase border-2 rounded-l px-4 py-2 bg-gray-50 whitespace-no-wrap w-2/6">Name:</label>
                             <input name="name"
                                 class="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none  rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
                                 type="text" value="{{ $user->name }}" autocomplete="off" />
                         </div>
                         <div class="flex ">
-                            <span
-                                class="text-sm border bg-blue-50 font-bold uppercase border-2 rounded-l px-4 py-2 bg-gray-50 whitespace-no-wrap w-2/6">Email:</span>
+                            <label name="email"
+                                class="text-sm border bg-blue-50 font-bold uppercase border-2 rounded-l px-4 py-2 bg-gray-50 whitespace-no-wrap w-2/6">Email:</label>
                             <input name="email"
                                 class="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none  rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
                                 type="text" value="{{ $user->email }}" autocomplete="off" />

@@ -94,7 +94,8 @@ class adminController extends Controller
             return abort(404);
         }
     }
-    public function accountPage()
+
+    public function showAccountPage()
     {
         $user = Auth::user();
         if (View::exists('AdminSide.accountFunction')) {
@@ -103,31 +104,32 @@ class adminController extends Controller
             return abort(404);
         }
     }
-    public function updateAccount(Request $request, User $user)
+    public function update(Request $request)
     {
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'min:4'],
-                'email' => ['required', 'email'],
-            ]
-        );
-        if ($request->hasFile('user_image')) {
-            $validated = $request->validate(
-                [
-                    'user_image' => 'mines:jpeg,png,webp,bmp,tiff|max:4096'
-                ]
-            );
-        }
-        $Admindata = [
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+        $validated = $request->validate([
+            'name' => ['required', 'min:4'],
+            'email' => ['required', 'email'],
+            // 'user_image' => ['image', 'mimes:jpeg,png,webp,bmp,tiff', 'max:4096'],
+        ]);
+
+        $user->fill([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'user_image' => $validated['user_image']
-        ];
+        ]);
+        $user->save();
 
-        $user->update($Admindata);
-        Auth::login($user);
-        return redirect('/indexAdmin')->with('message', 'Saved Successfully');
+
+        // if ($request->hasFile('user_image')) {
+        //     // Handle user image upload
+        //     $imagePath = $request->file('user_image')->store('avatars', 'public');
+        //     $userData['user_image'] = $imagePath;
+        // }
+
+        return back()->with('message', 'Saved Successfully');
     }
+
     public function storagePage()
     {
         if (View::exists('AdminSide.storageServiceFunction')) {
