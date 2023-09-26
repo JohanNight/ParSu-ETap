@@ -17,7 +17,7 @@
                 <div class=" md:grid grid-cols-4 grid-rows-2  bg-white gap-2 p-4 rounded-xl">
                     <div class="md:col-span-1 h-60 shadow-xl ">
                         <div class="flex w-full h-full relative">
-                            <img src="{{ $user->getImageURL() }}" class="w-44 h-44 m-auto" alt="">
+                            <img src="{{ $user->getImageURL() }}" class="w-44 h-44 m-auto rounded-lg" alt="">
 
                         </div>
                     </div>

@@ -120,14 +120,19 @@ class adminController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
+            'user_image' => 'image',
             'bio' => ['nullable', 'min:1', 'max:255'],
-            'user_image' => 'image'
+
         ]);
+
         if ($request->has('user_image')) {
             $imagePath = $request->file('user_image')->store('profile', 'public');
             $validated['user_image'] = $imagePath;
 
-            Storage::disk('public')->delete($user->user_image);
+            // Optionally, you can delete the old user image here if it exists
+            if ($user->user_image) {
+                Storage::disk('public')->delete($user->user_image);
+            }
         }
 
 
