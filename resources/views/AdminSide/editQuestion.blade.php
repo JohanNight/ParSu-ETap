@@ -1,19 +1,27 @@
 @include('partials.headerClient')
 <div class="bg-gray-50 min-h-screen">
 
-    <x-navBarClient />{{-- Main Header --}}
+    {{-- <x-navBarClient /> Main Header --}}
     <div class="p-2">
         <form action="" method="">
             @csrf
             <div class="p-4 w-full flex justify-between">
-                <button type="button" class="bg-green-500 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px]"
+                <a href="#" class="bg-blue-700 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white"
                     id="">
-                    Edit
-                </button>
+                    Return
+                </a>
                 <button type="button" class="bg-blue-700 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white"
                     id="">
                     Publish
                 </button>
+
+            </div>
+            <div class="flex justify-center items-center mb-4 mt-3">
+                <header class="bg-blue-800 p-4 rounded-md">
+                    <h1 class="text-[30px] SemiB-font text-yellow-400 ">
+                        Edit Survey Question
+                    </h1>
+                </header>
             </div>
             <div class="p-2 border-2 border-black w-full">
                 {{-- Survey Number 1 --}}
@@ -168,6 +176,11 @@
                         <span class=" SemiB-font text-sm">
                             (Sample Question)
                         </span>
+                    </div>
+                    <div class="mt-2 mb-3 gap-2 flex flex-col border-2 border-black p-1 rounded-md">
+                        <label for="instruction_SQstn" class="text-[15px] Reg-font">Instruction: </label>
+                        <textarea name="instruction_SQstn" id="instruction_SQstn" cols="30" rows="3"
+                            class="w-full bg-gray-100 border-2 px-1 py-1 focus:outline-none text-sm" autocomplete="off"></textarea>
                     </div>
                     <div class="survey_question flex flex-col p-3 w-full gap-4 mt-4 ">
                         <div class="flex gap-2 w-full ">

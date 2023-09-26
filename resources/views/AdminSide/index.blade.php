@@ -9,7 +9,7 @@
         <!-- Navigation sidebar (hidden on small devices) -->
         <x-NavigationLeft />
 
-        <!-- Área de contenido principal -->
+
         <!--Main content area -->
         <div class="flex-1 p-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
             <!-- Search field -->
@@ -33,7 +33,7 @@
                     <!--Line with gradient-->
                     <div class="chart-container" style="position: relative; height:300px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="usersChart"></canvas>
+                        <canvas id="usersChart[1]"></canvas>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                     <!-- Line with gradient -->
                     <div class="chart-container" style="position: relative; height:300px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="commercesChart"></canvas>
+                        <canvas id="commercesChart[2]"></canvas>
                     </div>
                 </div>
             </div>

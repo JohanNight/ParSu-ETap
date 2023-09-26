@@ -91,6 +91,7 @@
                 <span class="Reg-font text-[15px]">Generate Survey</span>
             </div>
         </a>
+
     </nav>
 
     <!-- Logout Item-->

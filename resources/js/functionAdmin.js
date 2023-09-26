@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // }
 
   // Gráfica de Usuarios
-    var usersChart = new Chart(document.getElementById('usersChart'), {
+    var usersChart = new Chart(document.getElementById('usersChart[1]'), {
         type: 'pie',
         data: {
             labels: ['New', 'Registered'],
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 // Gráfica de Comercios
-    var commercesChart = new Chart(document.getElementById('commercesChart'), {
-        type: 'doughnut',
+    var commercesChart = new Chart(document.getElementById('commercesChart[2]'), {
+        type: 'pie',
         data: {
-            labels: ['Nuevos', 'Registrados'],
+            labels: ['New', 'Registered'],
             datasets: [{
                 data: [60, 40],
                 backgroundColor: ['#FEC500', '#8B8B8D'],
