@@ -119,24 +119,39 @@ class adminController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
-            'user_image' => ['image', 'mimes:jpeg,png,webp,bmp,tiff', 'max:4096'],
         ]);
         if ($request->hasFile('user_image')) {
-            // Handle user image upload
-            $imagePath = $request->file('user_image')->store('avatars', 'public');
-            $userData['user_image'] = $imagePath;
+            $request->validate([
+                'user_image' => ['image', 'mimes:jpeg,jpg,png,webp,bmp,tiff', 'max:6000']
+            ]);
+            $filenameWithExtention = $request->file('user_image');
+
+            //Making the image unique
+            $filename = pathinfo($filenameWithExtention, PATHINFO_FILENAME); //removing the extension,get the filename
+
+            $extension = $request->file('user_image')->getClientOriginalExtension(); //getting the extension
+
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+
+            $smallThumbnail = $filename . '_' . time() . '.' . $extension;
+
+            $request->file('user_image')->storeAs('public/UserImage', $filenameToStore);
+
+
+
+            $request->file('user_image')->storeAs('public/UserImage/Thumbnail', $filenameToStore);
         }
 
 
-        $user->fill([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-        ]);
-        $user->save();
+        // $user->fill([
+        //     'name' => $validated['name'],
+        //     'email' => $validated['email'],
+        // ]);
+        // $user->save();
 
 
 
-        return back()->with('message', 'Saved Successfully');
+        // return back()->with('message', 'Saved Successfully');
     }
 
 
