@@ -2,7 +2,7 @@
 <div class="relative">
     <!-- background Image -->
     <div class=" absolute w-full ">
-        <img src="{{ asset('images/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-50" alt="">
+        <img src="{{ asset('images/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-80" alt="">
     </div>
     <!-- background Image -->
     <div class=" min-h-screen w-full absolute">

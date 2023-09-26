@@ -104,15 +104,29 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function createThumbnail($path, $width, $height)
+    {
+        $img = Image::make($path)->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save($path);
+    }
     public function update(Request $request)
     {
+        // dd($request);
         $userId = Auth::id();
         $user = User::findOrFail($userId);
         $validated = $request->validate([
             'name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
-            // 'user_image' => ['image', 'mimes:jpeg,png,webp,bmp,tiff', 'max:4096'],
+            'user_image' => ['image', 'mimes:jpeg,png,webp,bmp,tiff', 'max:4096'],
         ]);
+        if ($request->hasFile('user_image')) {
+            // Handle user image upload
+            $imagePath = $request->file('user_image')->store('avatars', 'public');
+            $userData['user_image'] = $imagePath;
+        }
+
 
         $user->fill([
             'name' => $validated['name'],
@@ -121,14 +135,10 @@ class adminController extends Controller
         $user->save();
 
 
-        // if ($request->hasFile('user_image')) {
-        //     // Handle user image upload
-        //     $imagePath = $request->file('user_image')->store('avatars', 'public');
-        //     $userData['user_image'] = $imagePath;
-        // }
 
         return back()->with('message', 'Saved Successfully');
     }
+
 
     public function storagePage()
     {
