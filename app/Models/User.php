@@ -25,7 +25,8 @@ class User extends Authenticatable
         'idOfficeOriginFK',
         'email',
         'password',
-        'user_image'
+        'user_image',
+        'bio'
     ];
 
     /**
@@ -47,4 +48,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getImageURL()
+    {
+        if ($this->user_image) {
+            return url('storage/' . $this->user_image); //the user_image is a column in the database
+        }
+
+        return "https://api.dicebear.com/7.x/fun-emoji/svg?{{$this->name}"; // Generate avatar based on the user's name
+    }
+    // "https://api.dicebear.com/7.x/fun-emoji/{$this->name}.svg incase it might not work
 }

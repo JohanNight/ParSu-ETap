@@ -17,8 +17,7 @@
                 <div class=" md:grid grid-cols-4 grid-rows-2  bg-white gap-2 p-4 rounded-xl">
                     <div class="md:col-span-1 h-60 shadow-xl ">
                         <div class="flex w-full h-full relative">
-                            <img src="https://res.cloudinary.com/dboafhu31/image/upload/v1625318266/imagen_2021-07-03_091743_vtbkf8.png"
-                                class="w-44 h-44 m-auto" alt="">
+                            <img src="{{ $user->getImageURL() }}" class="w-44 h-44 m-auto" alt="">
 
                         </div>
                     </div>
@@ -56,14 +55,12 @@
                                 value="{{ $user->user_image }}" />
                         </div>
                     </div>
-                    <div class="md:col-span-3 h-48 shadow-xl p-4 space-y-2 hidden md:block ">
-                        <h3 class="font-bold uppercase"> Office Description</h3>
-                        <p class="">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget laoreet diam, id luctus
-                            lectus. Ut consectetur nisl ipsum, et faucibus sem finibus vitae. Maecenas aliquam dolor at
-                            dignissim commodo. Etiam a aliquam tellus, et suscipit dolor. Proin auctor nisi velit, quis
-                            aliquet sapien viverra a.
-                        </p>
+                    <div class="md:col-span-3 h-48 shadow-xl p-4 space-y-2 hidden md:block border-2 ">
+                        <label name="bio"class="font-bold uppercase"> Office Description</label>
+                        <textarea name="bio" rows="5"
+                            class=" px-4 border-l-0 cursor-default border-gray-300 focus:outline-none  rounded-md rounded-l-none shadow-md -ml-1 w-full h-46 text-justify text-sm Reg-font tracking-tight align-baseline leading-6">{{ $user->bio }}
+                            
+                        </textarea>
                     </div>
                     <div class="h-48 shadow-xl w-full p-4 space-y-2 md:block">
                         <div class="mt-2 ">

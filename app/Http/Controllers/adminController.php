@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
 {
@@ -119,39 +120,28 @@ class adminController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
+            'bio' => ['nullable', 'min:1', 'max:255'],
+            'user_image' => 'image'
         ]);
-        if ($request->hasFile('user_image')) {
-            $request->validate([
-                'user_image' => ['image', 'mimes:jpeg,jpg,png,webp,bmp,tiff', 'max:6000']
-            ]);
-            $filenameWithExtention = $request->file('user_image');
+        if ($request->has('user_image')) {
+            $imagePath = $request->file('user_image')->store('profile', 'public');
+            $validated['user_image'] = $imagePath;
 
-            //Making the image unique
-            $filename = pathinfo($filenameWithExtention, PATHINFO_FILENAME); //removing the extension,get the filename
-
-            $extension = $request->file('user_image')->getClientOriginalExtension(); //getting the extension
-
-            $filenameToStore = $filename . '_' . time() . '.' . $extension;
-
-            $smallThumbnail = $filename . '_' . time() . '.' . $extension;
-
-            $request->file('user_image')->storeAs('public/UserImage', $filenameToStore);
-
-
-
-            $request->file('user_image')->storeAs('public/UserImage/Thumbnail', $filenameToStore);
+            Storage::disk('public')->delete($user->user_image);
         }
 
 
-        // $user->fill([
-        //     'name' => $validated['name'],
-        //     'email' => $validated['email'],
-        // ]);
-        // $user->save();
+        $user->fill([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'user_image' => $validated['user_image'],
+            'bio' => $validated['bio']
+        ]);
+        $user->save();
 
 
 
-        // return back()->with('message', 'Saved Successfully');
+        return back()->with('message', 'Saved Successfully');
     }
 
 
