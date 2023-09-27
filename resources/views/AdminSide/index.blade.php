@@ -27,7 +27,7 @@
                 <!-- First container -->
                 <!-- Section 1 - User Chart -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Viewed of User</h2>
+                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Service Answered</h2>
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                     <!--Line with gradient-->
@@ -40,7 +40,7 @@
                 <!-- Second container -->
                 <!-- Section 2 - Trade Chart -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Answered Survey </h2>
+                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Feedback </h2>
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                     <!-- Line with gradient -->

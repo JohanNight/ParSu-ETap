@@ -40,10 +40,10 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/storageService', 'storagePage')->name('Storage');
         Route::get('/indexAdmin/draftService',  'draftPage')->name('Draft');
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
-        Route::get('/indexAdmin/report',  'reportPage')->name('Report');
+        // Route::get('/indexAdmin/report',  'reportPage');
+        Route::get('/indexAdmin/report2', 'report2')->name('Report');
     });
     Route::get('/edit/questionnaire', 'editQuestion');
-    Route::get('/indexAdmin/report2', 'report2');
 });
 
 
