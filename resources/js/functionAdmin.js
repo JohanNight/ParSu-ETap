@@ -1,19 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // function previewImage(input) {
-    //     const preview = document.getElementById('previewImage');
-    //     if (input.files && input.files[0]) {
-    //         const reader = new FileReader();
-
-    //         reader.onload = function(e) {
-    //             preview.src = e.target.result;
-    //         };
-
-    //         reader.readAsDataURL(input.files[0]);
-    //     }
-    // }
-
- 
+  //over all service
     ServiceBarChart();
 
     function ServiceBarChart() {
@@ -56,14 +43,14 @@ document.addEventListener("DOMContentLoaded", function() {
         new Chart(ctx, config);
     }
 
-// Gráfica de Comercios
+ //overall Feedback
     var commercesChart = new Chart(document.getElementById('commercesChart[2]'), {
         type: 'doughnut',
         data: {
-            labels: ['Happy', 'Not Happy'],
+            labels: ['Very Satisfied', 'Satisfied','Neutral','Dissatisfied','Very Dissastisfied','Not Applicable'],
             datasets: [{
-                data: [60, 40],
-                backgroundColor: ['#FEC500', '#8B8B8D'],
+                data: [60, 40,25,15,5,0 ],
+                backgroundColor: ['#FEC500', '#F2A359','#8B8B8D','#FC2F00','#ED1C24','#020100'],
             }]
         },
         options: {

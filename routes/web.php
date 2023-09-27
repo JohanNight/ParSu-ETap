@@ -15,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [clientController::class, 'showWelcomePage'])->name('welcome');
-Route::get('/home', [clientController::class, 'showHomePage'])->name('HomePage');
-Route::get('/home/citizenCharter', [clientController::class, 'showCitizenCharter'])->name('CitizenCharter');
-Route::get('/home/clientSurvey', [clientController::class, 'showClientSurvey'])->name('ClientSurvey');
-Route::post('/home/clientSurvey/Search', [clientController::class, 'fetchData']); //associate to fetch the data
-Route::post('/home/clientSurvey/StoreData', [clientController::class, 'storeSurveyData']);
+
+Route::controller(clientController::class)->group(function () {
+    Route::get('/', 'showWelcomePage')->name('welcome');
+    Route::get('/home',  'showHomePage')->name('HomePage');
+    Route::get('/home/citizenCharter', 'showCitizenCharter')->name('CitizenCharter');
+    Route::get('/home/clientSurvey',  'showClientSurvey')->name('ClientSurvey');
+    Route::post('/home/clientSurvey/Search',  'fetchData'); //associate to fetch the data
+    Route::post('/home/clientSurvey/StoreData',  'storeSurveyData');
+});
 
 
 Route::controller(adminController::class)->group(function () {
@@ -44,6 +47,7 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/report2', 'report2')->name('Report');
     });
     Route::get('/edit/questionnaire', 'editQuestion');
+    Route::get('/superAdmin', 'indexAdmin')->name('Admin');
 });
 
 

@@ -114,7 +114,6 @@ class adminController extends Controller
     }
     public function update(Request $request)
     {
-        // dd($request);
         $userId = Auth::id();
         $user = User::findOrFail($userId);
         $validated = $request->validate([
@@ -205,6 +204,23 @@ class adminController extends Controller
     {
         if (View::exists('AdminSide.reportFunction2')) {
             return view('AdminSide.reportFunction2');
+        } else {
+            return abort(404);
+        }
+    }
+
+
+
+
+
+
+
+    //Super Administrator
+
+    public function indexAdmin()
+    {
+        if (View::exists('SuperAdmin.index')) {
+            return view('SuperAdmin.index');
         } else {
             return abort(404);
         }
