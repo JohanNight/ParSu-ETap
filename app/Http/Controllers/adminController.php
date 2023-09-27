@@ -200,4 +200,13 @@ class adminController extends Controller
             return abort(404);
         }
     }
+
+    public function report2()
+    {
+        if (View::exists('AdminSide.reportFunction2')) {
+            return view('AdminSide.reportFunction2');
+        } else {
+            return abort(404);
+        }
+    }
 }

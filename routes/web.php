@@ -43,6 +43,7 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/report',  'reportPage')->name('Report');
     });
     Route::get('/edit/questionnaire', 'editQuestion');
+    Route::get('/indexAdmin/report2', 'report2');
 });
 
 
