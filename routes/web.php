@@ -48,6 +48,7 @@ Route::controller(adminController::class)->group(function () {
     });
     Route::get('/edit/questionnaire', 'editQuestion');
     Route::get('/superAdmin', 'indexAdmin')->name('Admin');
+    Route::get('/superAdmin/report', 'reportAdmin')->name('Admin');
 });
 
 

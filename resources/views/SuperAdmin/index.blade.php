@@ -29,17 +29,17 @@
                     <div>
                         <header class="p-1 ">
                             <h1 class="Bold-font text-[18px] text-white capitalize">
-                                Total Number of Survey Taken
+                                Overall Total of Survey taken
                             </h1>
                         </header>
                         <div class="p-1 ml-2">
                             <span class="text-white SemiB-font text-[18px]">
-                                60
+                                Total: 60
                             </span>
                         </div>
                     </div>
 
-                    <div class="flex gap-2">
+                    <div class="flex justify-evenly">
                         <!-- Student-->
                         <div class="p-1 ml-2 flex justify-center items-center">
                             <div>
@@ -140,7 +140,7 @@
                 <!-- Card 2-->
                 <div class="bg-yellow-400 rounded-md p-2">
                     <header class="p-1 ">
-                        <h1 class="Bold-font text-[20px] text-white capitalize">
+                        <h1 class="Bold-font text-[18px] text-white capitalize">
                             Total No. Access of Citizen's Charter
                         </h1>
                     </header>
@@ -205,7 +205,8 @@
                 <!-- First container -->
                 <!-- Section 1 - User Chart -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Service Answered</h2>
+                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Service Answered:Office: OVPAD
+                    </h2>
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                     <!--Line with gradient-->
@@ -216,9 +217,9 @@
                 </div>
 
                 <!-- Second container -->
-                <!-- Section 2 - Trade Chart -->
+                <!-- Section 2 - FeedBack -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Over All Feedback </h2>
+                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Over All Feedback of Clients </h2>
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                     <!-- Line with gradient -->
@@ -229,10 +230,451 @@
                 </div>
             </div>
 
+            <div class="mt-8 bg-white p-4 shadow rounded-lg">
+                <h2 class="text-gray-500 text-4xl SemiB-font pb-4 capitalize">Total Service Available per Office/Campus
+                </h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!-- Line with gradient -->
+                {{-- <table class="w-full table-auto text-sm">
+                    <thead class="text-left">
+                        <tr class="text-sm leading-normal">
+
+                            <th
+                                class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-grey-light border-b border-grey-light">
+                                Office/Colleges</th>
+                            <th
+                                class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-grey-light border-b border-grey-light">
+                                Number Of Services</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-left">
+                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
+
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Offices of the
+                                Presidents</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">1</td>
+                        </tr>
+                        <!-- Add more rows here like the one above for each pending authorization -->
+                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
+
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">OVPAA</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">2</td>
+                        </tr>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
+
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">OVPAD</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">3</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
+
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">OVPREA</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">4</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
+
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">COED</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">5</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
+                            <td class="py-2 px-4 border-b border-grey-light Bold-font text-[25px]">ToTal</td>
+                            <td class="py-2 px-4 border-b border-grey-light SemiB-font text-[20px]">100</td>
+                        </tr>
+                    </tbody>
+                </table> --}}
+
+                <div class="flex gap-2 justify-evenly">
+                    <table class=" border-r-2 border-r-black">
+                        <tbody class="leading-tight">
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OP
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAD
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    3
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPREA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    4
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    COED
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    5
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    6
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    7
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CBM
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    8
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OSAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    9
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    URO
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    10
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CASHIER
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    11
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    BUDGET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    12
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class=" border-r-2 border-r-black">
+                        <tbody class="leading-tight">
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OP
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAD
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    3
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPREA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    4
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    COED
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    5
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    6
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    7
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CBM
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    8
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OSAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    9
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    URO
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    10
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CASHIER
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    11
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    BUDGET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    12
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class=" border-r-2 border-r-black">
+                        <tbody class="leading-tight">
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OP
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAD
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    3
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPREA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    4
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    COED
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    5
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    6
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    7
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CBM
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    8
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OSAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    9
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    URO
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    10
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CASHIER
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    11
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    BUDGET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    12
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class=" border-r-2 border-r-black">
+                        <tbody class="leading-tight">
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OP
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPAD
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    3
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    OVPREA
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    4
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    COED
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    5
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    6
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CET
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    7
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font ">
+                                    CBM
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500 ">
+                                    8
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-[15px] SemiB-font">
+                                    OSAS
+                                </td>
+                                <td class="py-2 px-4 text-[15px] SemiB-font text-sky-500">
+                                    9
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="p-2 border-2 border-black rounded-lg h-full">
+                        <span class="text-[20px] SemiB-font">
+                            Total: 100
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
             <!-- Third container below the previous two -->
             <!-- Section 3 - Table of Pending Authorizations -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-lg SemiB-font pb-4 capitalize">Pending Authorizations</h2>
+                <h2 class="text-gray-500 text-4xl SemiB-font pb-4 capitalize">Pending Authorizations</h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!-- Line with gradient -->

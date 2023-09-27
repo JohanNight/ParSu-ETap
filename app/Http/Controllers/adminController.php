@@ -133,8 +133,6 @@ class adminController extends Controller
                 Storage::disk('public')->delete($user->user_image);
             }
         }
-
-
         $user->fill([
             'name' => $validated['name'],
             'email' => $validated['email'],
@@ -221,6 +219,14 @@ class adminController extends Controller
     {
         if (View::exists('SuperAdmin.index')) {
             return view('SuperAdmin.index');
+        } else {
+            return abort(404);
+        }
+    }
+    public function reportAdmin()
+    {
+        if (View::exists('SuperAdmin.reportAdmin')) {
+            return view('SuperAdmin.reportAdmin');
         } else {
             return abort(404);
         }
