@@ -4,17 +4,17 @@
     @endphp
     <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
         <nav>
+            {{-- Route for SuperAdmin --}}
             @if ($user->idOfficeOriginFK === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
                     href="{{ route('Admin') }}">
-                    {{-- Route for SuperAdmin --}}
                     <i class="fas fa-home mr-2"></i>Home
                 </a>
             @endif
+            {{--  Route for SubAdmin --}}
             @unless ($user->idOfficeOriginFK === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
                     href="{{ route('index') }}">
-                    {{--  Route for SubAdmin --}}
                     <i class="fas fa-home mr-2"></i>Home
                 </a>
             @endunless
@@ -110,7 +110,7 @@
                 </a>
             @endunless
 
-            <!-- Generate A Survey-->
+            <!-- Generate A Survey for SuperAdmin-->
             @if ($user->idOfficeOriginFK === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "
                     href="#">

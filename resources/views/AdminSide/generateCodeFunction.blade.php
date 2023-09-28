@@ -16,7 +16,7 @@
                 <!--Generate code-->
                 <form action="">
                     @csrf
-                    <div class="">
+                    <div class="flex flex-col gap-4">
                         <div class="block mt-4 mb-3">
                             <label for="id_num"class="text-lg Reg-font p-2 capitalize">ID Num: </label>
                             <input type="text" name="id_num" id="id_num"
@@ -28,13 +28,13 @@
                                 class="w-full text-lg Reg-font p-4 focus:outline-none bg-white" autocomplete="off">
                         </div>
                         <div class="block mt-2 mb-3 flex justify-between  p-2">
-                            <button type="button"
+                            <button type="button" id="regenerate_code"
                                 class="text-lg SemiB-font bg-yellow-400 rounded p-2 text-blue-600">Reset</button>
-                            <button type="button"
+                            <button type="button" id="genrate_code"
                                 class="text-lg SemiB-font bg-blue-600 rounded p-2 text-yellow-400">Generate</button>
                         </div>
                         <div class="block mt-2 mb-3 border border-gray-200">
-                            <input type="text" name="code_generate" id="code_generate"
+                            <input type="text" name="code_generated" id="code_generated"
                                 class="w-full text-lg Reg-font p-5 focus:outline-none bg-white" autocomplete="off">
                         </div>
                     </div>
@@ -42,15 +42,15 @@
                     <div class="block mt-10 mb-3 flex flex-col items-center ">
                         <div class="mt-2 flex flex-col items-center">
                             <div class="text-lg Reg-font">
-                                <label for="">Send by: </label>
-                                <select name="" id="" class="w-96 p-2">
+                                <label for="msg_type">Send by: </label>
+                                <select name="msg_type" id="msg_type" class="w-96 p-2">
                                     <option value=""></option>
                                     <option value="Sms">Sms</option>
                                     <option value="Email">Email</option>
                                 </select>
                             </div>
                             <div class="mt-5 text-lg Reg-font">
-                                <input type="text" name="code_generate" id="code_generate"
+                                <input type="text" name="sendTo_client" id="sendTo_client"
                                     class="w-80  p-2 focus:outline-none bg-white" autocomplete="off">
                             </div>
                         </div>

@@ -210,7 +210,7 @@
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                     <!--Line with gradient-->
-                    <div class="chart-container" style="position: relative; height:300px; width:100%">
+                    <div class="chart-container" style="position: relative; height:200px; width:100%">
                         <!-- The canvas for the graph -->
                         <canvas id="usersChart[1]"></canvas>
                     </div>
@@ -223,7 +223,7 @@
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                     <!-- Line with gradient -->
-                    <div class="chart-container" style="position: relative; height:300px; width:100%">
+                    <div class="chart-container" style="position: relative; height:200px; width:100%">
                         <!-- The canvas for the graph -->
                         <canvas id="commercesChart[2]"></canvas>
                     </div>
@@ -231,7 +231,7 @@
             </div>
 
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-4xl SemiB-font pb-4 capitalize">Total Service Available per Office/Campus
+                <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">Total Service Available per Office/Campus
                 </h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
@@ -674,7 +674,7 @@
             <!-- Third container below the previous two -->
             <!-- Section 3 - Table of Pending Authorizations -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-4xl SemiB-font pb-4 capitalize">Pending Authorizations</h2>
+                <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">Pending Authorizations</h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!-- Line with gradient -->
