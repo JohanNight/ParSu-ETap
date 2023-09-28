@@ -50,7 +50,7 @@
                         <div class="flex ">
                             <label name="user_image"
                                 class="text-sm border bg-blue-50 font-bold uppercase border-2 rounded-l px-4 py-2 bg-gray-50 whitespace-no-wrap w-2/6">Image:</label>
-                            <input name="user_image" type="file"
+                            <input type="file" name="user_image"
                                 class="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none  rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
                                 value="{{ $user->user_image }}" />
                         </div>
