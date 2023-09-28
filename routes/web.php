@@ -20,9 +20,11 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/', 'showWelcomePage')->name('welcome');
     Route::get('/home',  'showHomePage')->name('HomePage');
     Route::get('/home/citizenCharter', 'showCitizenCharter')->name('CitizenCharter');
-    Route::get('/home/clientSurvey',  'showClientSurvey')->name('ClientSurvey');
-    Route::post('/home/clientSurvey/Search',  'fetchData'); //associate to fetch the data
-    Route::post('/home/clientSurvey/StoreData',  'storeSurveyData');
+    Route::get('/home/clientSurvey', 'showClientSurvey')->name('ClientSurvey');
+    Route::post('/home/clientSurvey/Search', 'fetchData'); //associate to fetch the data
+    Route::post('/home/clientSurvey/StoreData', 'storeSurveyData');
+
+    Route::get('/home/clientSecurity', 'surveySecurity');
 });
 
 
@@ -35,7 +37,6 @@ Route::controller(adminController::class)->group(function () {
     Route::post('/logout', 'logout');
 
     Route::middleware(['auth'])->group(function () {
-
         Route::get('/indexAdmin',  'index')->name('index');
         Route::get('/indexAdmin/addService', 'addServicePage')->name('AddService');
         Route::get('/indexAdmin/account',  'showAccountPage')->name('Account');

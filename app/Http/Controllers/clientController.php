@@ -100,4 +100,14 @@ class clientController extends Controller
         clientInfo::create($UserData);
         return redirect('/home/clientSurvey');
     }
+
+    public function surveySecurity()
+    {
+        if (View::exists('ClientSide.clientSurveySecurity')) {
+
+            return view('ClientSide.clientSurveySecurity',);
+        } else {
+            return abort(404);
+        }
+    }
 }
