@@ -45,10 +45,11 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
         // Route::get('/indexAdmin/report',  'reportPage');
         Route::get('/indexAdmin/report2', 'report2')->name('Report');
+
+        Route::get('/superAdmin', 'indexAdmin')->name('Admin');
+        Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');
     });
     Route::get('/edit/questionnaire', 'editQuestion');
-    Route::get('/superAdmin', 'indexAdmin')->name('Admin');
-    Route::get('/superAdmin/report', 'reportAdmin')->name('Admin');
 });
 
 

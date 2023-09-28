@@ -3,7 +3,7 @@
 <div class="flex flex-col min-h-screen bg-gray-100">
 
     <!-- Top navigation bar -->
-    <x-NavigationTop2 />
+    <x-NavigationTop />
     <!-- Main Content -->
     <div class="flex-1 flex flex-wrap">
         <!-- Navigation sidebar (hidden on small devices) -->
