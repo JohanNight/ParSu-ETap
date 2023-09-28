@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="mt-2 flex justify-center items-center">
-                <form action="">
+                <form action="" method="POST">
                     <div class="w-full mt-2 mb-3">
                         <input type="text" name="srvy_keycode" id="srvy_keycode"
                             class="w-96 bg-gray-300 text-lg p-2 rounded-lg focus:outline-none border-2"autocomplete="off"

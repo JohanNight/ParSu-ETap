@@ -110,4 +110,8 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    //to analyze the code
+    public function analyzeCode()
+    {
+    }
 }

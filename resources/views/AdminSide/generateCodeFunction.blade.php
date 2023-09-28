@@ -14,14 +14,14 @@
             <div
                 class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 bg-gray-100 p-4 shadow-xl max-w-2xl mb-6 rounded-lg">
                 <!--Generate code-->
-                <form action="">
+                <form action="/indexAdmin/generateCode" method="POST">
                     @csrf
                     <div class="flex flex-col gap-4">
-                        <div class="block mt-4 mb-3">
+                        {{-- <div class="block mt-4 mb-3">
                             <label for="id_num"class="text-lg Reg-font p-2 capitalize">ID Num: </label>
                             <input type="text" name="id_num" id="id_num"
                                 class="w-full text-lg Reg-font p-4 focus:outline-none" autocomplete="off">
-                        </div>
+                        </div> --}}
                         <div class="block mt-2 mb-3">
                             <label for="client_name"class="text-lg Reg-font p-2 capitalize">Name: </label>
                             <input type="text" name="client_name" id="client_name"
@@ -30,7 +30,7 @@
                         <div class="block mt-2 mb-3 flex justify-between  p-2">
                             <button type="button" id="regenerate_code"
                                 class="text-lg SemiB-font bg-yellow-400 rounded p-2 text-blue-600">Reset</button>
-                            <button type="button" id="genrate_code"
+                            <button type="submit" id="generate_code"
                                 class="text-lg SemiB-font bg-blue-600 rounded p-2 text-yellow-400">Generate</button>
                         </div>
                         <div class="block mt-2 mb-3 border border-gray-200">
@@ -38,7 +38,8 @@
                                 class="w-full text-lg Reg-font p-5 focus:outline-none bg-white" autocomplete="off">
                         </div>
                     </div>
-
+                </form>
+                <form action="" method="post">
                     <div class="block mt-10 mb-3 flex flex-col items-center ">
                         <div class="mt-2 flex flex-col items-center">
                             <div class="text-lg Reg-font">
@@ -59,10 +60,15 @@
                                 class="text-lg SemiB-font bg-blue-600 rounded p-2 text-white">Send</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $.post('/indexAdmin/generateCode', data, function(response) {
+        $('#code_generated').val(response.code);
+    });
+</script>
 @include('partials.footerAdmin')

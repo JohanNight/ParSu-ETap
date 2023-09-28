@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\clientCategory;
+use App\Models\clientCode;
 use App\Models\offices;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class adminController extends Controller
 {
@@ -151,8 +153,6 @@ class adminController extends Controller
         return back()->with('message', 'Saved Successfully');
     }
 
-
-
     public function storagePage()
     {
         if (View::exists('AdminSide.storageServiceFunction')) {
@@ -176,6 +176,18 @@ class adminController extends Controller
         } else {
             return abort(404);
         }
+    }
+    public function createCode(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
+        $code = Str::random(6);
+        clientCode::create([
+            'name' => $validated['name'],
+            'code' => $code
+        ]);
+        return response()->json(['code' => $code]);;
     }
     // public function reportPage()
     // {
