@@ -33,7 +33,7 @@
                     <!--Line with gradient-->
                     <div class="chart-container" style="position: relative; height:300px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="usersChart[1]"></canvas>
+                        <canvas id="usersChart1"></canvas>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                     <!-- Line with gradient -->
                     <div class="chart-container" style="position: relative; height:300px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="commercesChart[2]"></canvas>
+                        <canvas id="totalFeedBackChart[2]"></canvas>
                     </div>
                 </div>
             </div>

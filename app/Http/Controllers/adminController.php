@@ -180,11 +180,11 @@ class adminController extends Controller
     public function createCode(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required'
+            'client_name' => 'required'
         ]);
         $code = Str::random(6);
         clientCode::create([
-            'name' => $validated['name'],
+            'name' => $validated['client_name'],
             'code' => $code
         ]);
         return response()->json(['code' => $code]);;

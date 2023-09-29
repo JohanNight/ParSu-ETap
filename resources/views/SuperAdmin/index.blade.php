@@ -212,7 +212,7 @@
                     <!--Line with gradient-->
                     <div class="chart-container" style="position: relative; height:200px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="usersChart[1]"></canvas>
+                        <canvas id="totalUserChart"></canvas>
                     </div>
                 </div>
 
@@ -225,7 +225,7 @@
                     <!-- Line with gradient -->
                     <div class="chart-container" style="position: relative; height:200px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="commercesChart[2]"></canvas>
+                        <canvas id="totalUserFeedBackChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -738,5 +738,60 @@
         </div>
     </div>
 </div>
+<script>
+    //over all service
+    var serviceBarChart = new Chart(document.getElementById('totalUserChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Service1', 'Service2', 'Service3', 'Service4'],
+            datasets: [{
+                label: 'Total Survey Answered per Service',
+                data: [65, 59, 80, 81], // Update this data with your specific values
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                ],
+                borderWidth: 1,
+            }],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+    });
 
+    //overall Feedback
+    var commercesChart = new Chart(document.getElementById('totalUserFeedBackChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
+                'Not Applicable'
+            ],
+            datasets: [{
+                data: [60, 40, 25, 15, 5, 0],
+                backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom' // Ubicar la leyenda debajo del círculo
+            }
+        }
+    });
+</script>
 @include('partials.footerAdmin')
