@@ -24,6 +24,13 @@ return [
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
+    'recaptcha' => [
+        'sitekey' => env('RECAPTCHA_KEY'),
+        'secret' => env('RECAPTCHA_SECRET'),
+        'options' => [
+            'timeout' => 5,
+        ],
+    ],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
+use App\Models\clientCode;
 
 class clientController extends Controller
 {
@@ -38,6 +39,45 @@ class clientController extends Controller
         } else {
             return abort(404);
         }
+    }
+    // public function checkSecurity(Request $request)
+    // {
+
+    //     $validatedData = $request->validate([
+    //         'srvy_keycode' => 'required'
+    //     ]);
+
+    //     // Access the validated data
+    //     $code = $validatedData['srvy_keycode'];
+
+    //     // Check if the code exists in the database
+    //     $temporaryCode = ClientCode::where('code', $code)->first();
+
+    //     // Additional checks, if needed
+    //     if ($temporaryCode) {
+    //         return redirect()->route('ClientSurvey');
+    //     }
+
+    //     return back()->with('message', 'Error');
+    // }
+    public function checkSecurity(Request $request)
+    {
+        if ($request->has('srvy_keycode') && $this->isValidCode($request->input('srvy_keycode'))) {
+            return redirect()->route('ClientSurvey');
+        }
+
+        return back()->with('message', 'Error');
+    }
+    public function isValidCode($code)
+    {
+
+        // Check if the code exists in the database
+        $temporaryCode = ClientCode::where('code', $code)->first();
+        // Additional checks, if needed
+        if ($temporaryCode) {
+            return true;
+        }
+        return false; // Code is invalid
     }
     public function showClientSurvey()
     {

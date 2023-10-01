@@ -6,8 +6,13 @@
     </div>
     <!-- background Image -->
     <div class=" min-h-screen w-full absolute">
+        <x-messages />
         <div class="flex flex-col  gap-10">
-            <div class="p-2 rounded-lg  flex justify-end items-center ">
+            <div class="p-2 rounded-lg  flex justify-between items-center ">
+                <a href="{{ route('HomePage') }}"
+                    class=" border-2 border-blue-800 rounded-lg text-xl SemiB-font uppercase p-2 text-white border-2 border-black mr-[50px]">
+                    Return
+                </a>
                 <a href="#"
                     class=" bg-gray-400 rounded-lg text-xl SemiB-font uppercase p-2 text-white border-2 border-black mr-[50px]">
                     Skip
@@ -21,7 +26,8 @@
                 </div>
             </div>
             <div class="mt-2 flex justify-center items-center">
-                <form action="" method="POST">
+                <form action="/clientSecurity" method="POST">
+                    @csrf
                     <div class="w-full mt-2 mb-3">
                         <input type="text" name="srvy_keycode" id="srvy_keycode"
                             class="w-96 bg-gray-300 text-lg p-2 rounded-lg focus:outline-none border-2"autocomplete="off"
@@ -33,7 +39,6 @@
                             Enter
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
