@@ -150,8 +150,14 @@ class clientController extends Controller
             return abort(404);
         }
     }
-    //to analyze the code
-    public function analyzeCode()
+
+    public function word()
     {
+        if (View::exists('example.example1')) {
+
+            return view('example.example1',);
+        } else {
+            return abort(404);
+        }
     }
 }
