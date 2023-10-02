@@ -1,45 +1,41 @@
-@include('partials.headerClient')
-<div class="bg-white min-h-screen flex flex-col items-center">
 
-</div>
-<style>
-    /* Define custom CSS styles for the table */
-    .custom-table {
-        border-collapse: collapse;
-        width: 100%;
-        resize: both;
-        overflow: auto;
-    }
+    function createTable() {
+        // Create a new table element
+        const newTable = document.createElement('table[1]');
+        newTable.classList.add('custom-table', 'mt-4');
 
-    .custom-table th,
-    .custom-table td {
-        border: 1px solid #000;
-        padding: 2px;
-    }
+        // Create table header (thead)
+        const thead = newTable.createTHead();
+        const headerRow = thead.insertRow(0);
+        for (let j = 0; j < 2; j++) {
+            const cell = document.createElement('th');
+            cell.textContent = 'Header ' + (j + 1);
+            cell.setAttribute('contenteditable', 'true'); // Allow header cell to be edited
+            headerRow.appendChild(cell);
+        }
 
-    .custom-table th {
-        background: #f7efef;
-        width: 30%;
-        height: 30px;
-        padding: 2px;
-    }
+        // Create table body (tbody)
+        const tbody = newTable.createTBody();
+        for (let i = 0; i < 2; i++) {
+            const row = tbody.insertRow(i);
+            for (let j = 0; j < 2; j++) {
+                const cell = row.insertCell(j);
+                cell.setAttribute('contenteditable', 'true'); // Allow data cell to be edited
+            }
+        }
 
-    .custom-table td {
-        width: 50px;
-        height: 50px;
+        // Append the new table to the container
+        const tableContainer = document.getElementById('table-container');
+        tableContainer.appendChild(newTable);
     }
-</style>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script>
     let currentTable = null;
 
     document.getElementById('create-table').addEventListener('click', createTable);
     document.getElementById('delete-table').addEventListener('click', deleteTable);
-    document.getElementById('add-row').addEventListener('click', addRow);
-    document.getElementById('delete-row').addEventListener('click', deleteRow);
-    document.getElementById('add-column').addEventListener('click', addColumn);
-    document.getElementById('delete-column').addEventListener('click', deleteColumn);
+    document.getElementById('add-row[1]').addEventListener('click', addRow);
+    document.getElementById('delete-row[1]').addEventListener('click', deleteRow);
+    document.getElementById('add-column[1]').addEventListener('click', addColumn);
+    document.getElementById('delete-column[1]').addEventListener('click', deleteColumn);
 
     function createTable() {
         currentTable = document.createElement('table');
@@ -65,8 +61,8 @@
             }
         }
 
-        document.getElementById('table-container').innerHTML = '';
-        document.getElementById('table-container').appendChild(currentTable);
+        document.getElementById('table-container[1]').innerHTML = '';
+        document.getElementById('table-container[1]').appendChild(currentTable);
     }
 
     function deleteTable() {
@@ -141,6 +137,3 @@
             }
         }
     }
-</script>
-
-@include('partials.footerClient')

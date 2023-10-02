@@ -94,7 +94,8 @@ class adminController extends Controller
     public function addServicePage()
     {
         if (View::exists('AdminSide.addServiceFunction')) {
-            return view('AdminSide.addServiceFunction');
+            $officeTypes = offices::all();
+            return view('AdminSide.addServiceFunction', compact('officeTypes'));
         } else {
             return abort(404);
         }

@@ -7,8 +7,10 @@
                 ParSU Electronic Transaction and Processes
             </h1>
         </div>
-        <div class="mx-2 hover:bg-yellow-400 rounded-md py-2 pr-4 pl-3 text-white hover:text-blue-700 ">
-            <a href="/register" class="SemiB-font text-[20px] ">Sign
+        <div class="mx-2  py-2 pr-4 pl-3  flex gap-2 ">
+            <a href="/home" class="SemiB-font text-[20px] text-white hover:text-yellow-400 ">Return </a>
+            <a href="/register"
+                class="SemiB-font text-[20px] hover:bg-yellow-400 rounded-md text-white hover:text-blue-700 ">Sign
                 Up</a>
 
         </div>

@@ -5,11 +5,13 @@
         </h1>
     </header>
 
-    <div class="ml-[50px] mb-[50px]">
+    <div class="ml-[50px] mr-[50px] mb-[50px] flex justify-between">
 
         <a href="{{ route('welcome') }}"
             class="SemiB-font text-2xl text-white bg-gray-600 rounded-lg p-2 shadow-md hover:bg-yellow-500 active:bg-yellow-600 ">Return
             to Opening</a>
+        <a href="{{ route('login') }}"
+            class="SemiB-font text-2xl text-white border-2 border-green-500 rounded-lg p-2 shadow-md  active:bg-green-600 ">Login</a>
 
     </div>
 
