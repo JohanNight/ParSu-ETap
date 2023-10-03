@@ -87,7 +87,7 @@
                         value="">
                 </div>
                 <div class="block ml-3 mt-2 ">
-                    <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office: </label>
+                    <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office/Campus Visited: </label>
                     <select name="offices" id="offices"
                         class=" w-48 bg-gray-300 py-2 px-2 mb-3 sm:ml-10 md:ml-0  rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
@@ -137,25 +137,25 @@
                         </div>
                         <div class="flex flex-col space-y-2 ml-[50px] mt-5">
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1[]" value="1" id="cc1-answer1"
+                                <input type="radio" name="question1" value="1" id="cc1-answer1"
                                     class="cc1-answer1">
                                 <span class="ml-3">1. I know
                                     what a CC is and I saw
                                     this office’s CC.</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1[]" value="2"id="cc1-answer1"
+                                <input type="radio" name="question1" value="2"id="cc1-answer1"
                                     class="cc1-answer1"> <span class="ml-3">2. I know
                                     what a CC is but I did NOT see this office’s CC</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1[]" value="3" id="cc1-answer1"
+                                <input type="radio" name="question1" value="3" id="cc1-answer1"
                                     class="cc1-answer1">
                                 <span class="ml-3">3. I
                                     learned of the CC only when I saw this office’s CC.</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1[]" value="4" id="cc1-answer1"
+                                <input type="radio" name="question1" value="4" id="cc1-answer1"
                                     class="cc1-answer1">
                                 <span class="ml-3">4. I do
                                     not know what a CC is and I did not see one in this office. (Answer ‘N/A’ on CC2
@@ -177,31 +177,31 @@
                         </div>
                         <div class="flex flex-col space-y-2 ml-[50px] mt-5">
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2[]" value="1" id="cc2-answer2"
+                                <input type="radio" name="question2" value="1" id="cc2-answer2"
                                     class="cc2-answer2">
                                 <span class="ml-3">1. Easy
                                     to see</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2[]" value="2" id="cc2-answer2"
+                                <input type="radio" name="question2" value="2" id="cc2-answer2"
                                     class="cc2-answer2">
                                 <span class="ml-3">2.
                                     Somewhat easy to see</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2[]" value="3" id="cc2-answer2"
+                                <input type="radio" name="question2" value="3" id="cc2-answer2"
                                     class="cc2-answer2">
                                 <span class="ml-3">3.
                                     Difficult to see</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2[]" value="4" id="cc2-answer2"
+                                <input type="radio" name="question2" value="4" id="cc2-answer2"
                                     class="cc2-answer2">
                                 <span class="ml-3">4. Not
                                     visible at all</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2[]" value="5" id="cc2-answer2"
+                                <input type="radio" name="question2" value="5" id="cc2-answer2"
                                     class="cc2-answer2">
                                 <span class="ml-3">5.
                                     N/A</span>
@@ -220,25 +220,25 @@
                         </div>
                         <div class="flex flex-col space-y-2 ml-[50px] mt-5">
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3[]" value="1" id="cc3-answer3"
+                                <input type="radio" name="question3" value="1" id="cc3-answer3"
                                     class="cc3-answer3">
                                 <span class="ml-3">1.
                                     Helped very much </span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3[]" value="2" id="cc3-answer3"
+                                <input type="radio" name="question3" value="2" id="cc3-answer3"
                                     class="cc3-answer3">
                                 <span class="ml-3">2.
                                     Somewhat helped</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3[]" value="3" id="cc3-answer3"
+                                <input type="radio" name="question3" value="3" id="cc3-answer3"
                                     class="cc3-answer3">
                                 <span class="ml-3">3. Did
                                     not help</span>
                             </label>
                             <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3[]" value="4" id="cc3-answer3"
+                                <input type="radio" name="question3" value="4" id="cc3-answer3"
                                     class="cc3-answer3">
                                 <span class="ml-3">4.
                                     N/A</span>
@@ -344,32 +344,32 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD0.
                                     </span>
-                                    <label for="question-S2-Q0[]" id="question-S2-Q0[]"
+                                    <label for="question-S2-Q0" id="question-S2-Q0"
                                         class="text-[18px] Reg-font text-justify">I am satisfied with the service that
                                         I availed.</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q0" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q0" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q0" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q0" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q0" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q0" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -378,32 +378,32 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD1.
                                     </span>
-                                    <label for="question-S2-Q1[]" id="question-S2-Q1[]"
+                                    <label for="question-S2-Q1" id="question-S2-Q1"
                                         class="text-[18px] Reg-font text-justify">I spent a reasonable amount of time
                                         for my transaction</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q1[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q1" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q1[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q1" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q1[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q1" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q1[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q1" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q1[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q1" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q1[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q1" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -412,34 +412,34 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD2.
                                     </span>
-                                    <label for="question-S2-Q2[]" id="question-S2-Q2[]"
+                                    <label for="question-S2-Q2" id="question-S2-Q2"
                                         class="text-[18px] Reg-font text-justify">The office followed the transaction’s
                                         requirements and steps based on
                                         the
                                         information provided.</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q2[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q2" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q2[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q2" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q2[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q2" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q2[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q2" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q2[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q2" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q2[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q2" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -448,7 +448,7 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD3.
                                     </span>
-                                    <label for="question-S2-Q3[]" id="question-S2-Q3[]"
+                                    <label for="question-S2-Q3" id="question-S2-Q3"
                                         class="text-[18px] Reg-font text-justify">The steps (including payment) I
                                         needed to do for my transaction were
                                         easy
@@ -456,27 +456,27 @@
                                         simple</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q3[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q3" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q3[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q3" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q3[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q3" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q3[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q3" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q3[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q3" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q3[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q3" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -485,33 +485,33 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD4.
                                     </span>
-                                    <label for="question-S2-Q4[]" id="question-S2-Q4[]"
+                                    <label for="question-S2-Q4" id="question-S2-Q4"
                                         class="text-[18px] Reg-font text-justify">I easily found information about my
                                         transaction from the office or its
                                         website.</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q4[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q4" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q4[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q4" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q4[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q4" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q4[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q4" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q4[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q4" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q4[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q4" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -520,34 +520,34 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD5.
                                     </span>
-                                    <label for="question-S2-Q5[]" id="question-S2-Q5[]"
+                                    <label for="question-S2-Q5" id="question-S2-Q5"
                                         class="text-[18px] Reg-font text-justify">I paid a reasonable amount of fees
                                         for my transaction. (If service was
                                         free,
                                         mark the ‘N/A’ column)</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q5[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q5" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q5[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q5" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q5[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q5" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q5[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q5" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q5[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q5" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q5[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q5" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -556,34 +556,34 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD6.
                                     </span>
-                                    <label for="question-S2-Q6[]" id="question-S2-Q6[]"
+                                    <label for="question-S2-Q6" id="question-S2-Q6"
                                         class="text-[18px] Reg-font text-justify">I feel the office was fair to
                                         everyone, or “walang palakasan”, during
                                         my
                                         transaction.</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q6[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q6" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q6[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q6" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q6[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q6" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q6[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q6" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q6[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q6" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q6[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q6" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -592,7 +592,7 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD7.
                                     </span>
-                                    <label for="question-S2-Q7[]" id="question-S2-Q7[]"
+                                    <label for="question-S2-Q7" id="question-S2-Q7"
                                         class="text-[18px] Reg-font text-justify">I was treated courteously by the
                                         staff, and (if asked for help) the
                                         staff
@@ -600,27 +600,27 @@
                                         helpful.</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q7[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q7" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q7[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q7" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q7[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q7" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q7[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q7" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q7[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q7" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q7[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q7" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>
@@ -629,34 +629,34 @@
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD8.
                                     </span>
-                                    <label for="question-S2-Q8[]" id="question-S2-Q8[]"
+                                    <label for="question-S2-Q8" id="question-S2-Q8"
                                         class="text-[18px] Reg-font text-justify">I got what I needed from the
                                         government office, or (if denied) denial
                                         of
                                         request was sufficiently explained to me.</label>
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q8[]" id="" value="5"
+                                    <input type="radio" name="question-S2-Q8" id="" value="5"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q8[]" id="" value="4"
+                                    <input type="radio" name="question-S2-Q8" id="" value="4"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q8[]" id="" value="3"
+                                    <input type="radio" name="question-S2-Q8" id="" value="3"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q8[]" id="" value="2"
+                                    <input type="radio" name="question-S2-Q8" id="" value="2"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q8[]" id="" value="1"
+                                    <input type="radio" name="question-S2-Q8" id="" value="1"
                                         class="w-full">
                                 </td>
                                 <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q8[]" id="" value="0"
+                                    <input type="radio" name="question-S2-Q8" id="" value="0"
                                         class="w-full">
                                 </td>
                             </tr>

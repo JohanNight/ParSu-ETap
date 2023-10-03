@@ -16,7 +16,7 @@
     </div>
 
     <div class="p-1 m-3 flex justify-center justify-around sm:gap-2 ">
-
+        <x-messages />
         <div class="bg-gray-600 bg-opacity-70  rounded-md w-96 h-full shadow-lg floating-container">
             <div class=" block bg-gray  p-2 mt-2 w-full h-96 ">
                 <img src="{{ asset('images/PARSU IMAGES/admin_building.jpg') }}" alt="" srcset=""

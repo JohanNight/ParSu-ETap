@@ -92,45 +92,72 @@
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gray-300 h-px mb-6"></div>
                     <!-- Line with gradient -->
-                    <div class="block p-1">
-                        <div class="flex justify-between mt-2 mb-2">
-                            <button id="create-table" type="button"
-                                class="bg-blue-500 text-white px-2 py-1 rounded">Create
-                                Table</button>
-
-                        </div>
-                        <!-- tables -->
-                        <div class="p-1" id="tbl_set[1]">
-                            <div class="flex justify-between">
-                                <div class="p-4 flex gap-3">
-                                    <button id="add-row[1]" type="button"
-                                        class="bg-green-500 text-white px-2 py-1 rounded">Add
-                                        Row</button>
-                                    <button id="delete-row[1]" type="button"
-                                        class="bg-red-500 text-white px-2 py-1 rounded">Delete
-                                        Row</button>
-                                    <button id="add-column[1]" type="button"
-                                        class="bg-green-500 text-white px-2 py-1 rounded">Add
-                                        Column</button>
-                                    <button id="delete-column[1]" type="button"
-                                        class="bg-red-500 text-white px-2 py-1 rounded">Delete
-                                        Column</button>
-                                </div>
-                                <div class="p-4">
-                                    <button id="delete-table" type="button"
-                                        class="bg-red-500 text-white px-2 py-1 rounded">Delete
-                                        Table</button>
-                                </div>
-                            </div>
-
-
-                            <div id="table-container[1]"
-                                class="mt-4 w-full text-[15px] Reg-font bg-gray-100 rounded-lg border-2 p-2">
-                                <!-- The table will be inserted here -->
-                            </div>
-                        </div>
+                    <div class="mt-2 mb-3">
+                        <p class="text-sm Reg-font text-justify">
+                            Note: Checklist of Requirements and Where to Secure input Fields are correspond to each
+                            input fields, if the Checklist of Requirements input field number 1 doesn't need an
+                            information on Where to Secure just Add in the input Field number 1 of Where to Secure is
+                            <span class="text-blue-400">N/A</span>
+                        </p>
                     </div>
+                    <div class="mt-2 mb-3">
+                        <div class="p-1 flex justify-between">
+                            <label for="" class="text-md Reg-font">Check List of Requierements:</label>
+                            <button type="button" id="addRqr_inpt"
+                                class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
+                                Fields</button>
+                        </div>
+                        <div class="mt-2 mb-3">
+                            <div class="flex gap-3 mt-2 mb-2">
+                                <input type="text" name="rqr_inpt[1]" id="rqr_inpt[1]"
+                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
+                                <button type="button" id="dltRqr_inpt[1]"
+                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            </div>
+                            <div class="flex gap-3 mt-2 mb-2">
+                                <input type="text" name="rqr_inpt[2]" id="rqr_inpt[2]"
+                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
+                                <button type="button" id="dltRqr_inpt[2]"
+                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            </div>
+                            <div class="flex gap-3 mt-2 mb-2">
+                                <input type="text" name="rqr_inpt[3]" id="rqr_inpt[3]"
+                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
+                                <button type="button" id="dltRqr_inpt[3]"
+                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div>
+                        <div class="p-1 flex justify-between">
+                            <label for="" class="text-md Reg-font">Where to Secure:</label>
+                            <button type="button" id="addWhr_inpt"
+                                class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
+                                Fields</button>
+                        </div>
+                        <div class="mt-2 mb-3">
+                            <div class="flex gap-3 mt-2 mb-2">
+                                <input type="text" name="whr_inpt[1]" id="whr_inpt[1]"
+                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
+                                <button type="button" id="dltWhr_inpt[1]"
+                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            </div>
+                            <div class="flex gap-3 mt-2 mb-2">
+                                <input type="text" name="whr_inpt[2]" id="whr_inpt[2]"
+                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
+                                <button type="button" id="dltWhr_inpt[2]"
+                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            </div>
+                            <div class="flex gap-3 mt-2 mb-2">
+                                <input type="text" name="whr_inpt[3]" id="whr_inpt[3]"
+                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
+                                <button type="button" id="dltWhr_inpt[3]"
+                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
 
 
                     <!-- icons -->
@@ -162,7 +189,7 @@
         </div>
     </div>
 </div>
-<style>
+{{-- <style>
     /* Define custom CSS styles for the table */
     .custom-table {
         border-collapse: collapse;
@@ -189,7 +216,45 @@
         height: 50px;
     }
 </style>
+<div class="block p-1">
+    <div class="flex justify-between mt-2 mb-2">
+        <button id="create-table" type="button"
+            class="bg-blue-500 text-white px-2 py-1 rounded">Create
+            Table</button>
+
+    </div>
+    <!-- tables -->
+    <div class="p-1" id="tbl_set[1]">
+        <div class="flex justify-between">
+            <div class="p-4 flex gap-3">
+                <button id="add-row[1]" type="button"
+                    class="bg-green-500 text-white px-2 py-1 rounded">Add
+                    Row</button>
+                <button id="delete-row[1]" type="button"
+                    class="bg-red-500 text-white px-2 py-1 rounded">Delete
+                    Row</button>
+                <button id="add-column[1]" type="button"
+                    class="bg-green-500 text-white px-2 py-1 rounded">Add
+                    Column</button>
+                <button id="delete-column[1]" type="button"
+                    class="bg-red-500 text-white px-2 py-1 rounded">Delete
+                    Column</button>
+            </div>
+            <div class="p-4">
+                <button id="delete-table" type="button"
+                    class="bg-red-500 text-white px-2 py-1 rounded">Delete
+                    Table</button>
+            </div>
+        </div>
+
+
+        <div id="table-container[1]"
+            class="mt-4 w-full text-[15px] Reg-font bg-gray-100 rounded-lg border-2 p-2">
+            <!-- The table will be inserted here -->
+        </div>
+    </div>
+</div> --}}
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> --}}
-<script src="{{ mix('resources/js/functionTables.js') }}"></script>
+{{-- <script src="{{ mix('resources/js/functionTables.js') }}"></script> --}}
 @include('partials.footerAdmin')

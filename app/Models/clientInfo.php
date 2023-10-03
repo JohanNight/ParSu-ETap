@@ -19,5 +19,19 @@ class clientInfo extends Model
         'idOfficeOrigin',
         'purpose',
         'emailAdd',
+        'cc1',
+        'cc2',
+        'cc3',
+        'sqd0',
+        'sqd1',
+        'sqd2',
+        'sqd3',
+        'sqd4',
+        'sqd5',
+        'sqd6',
+        'sqd7',
+        'sqd8',
+        'comment'
+
     ];
 }

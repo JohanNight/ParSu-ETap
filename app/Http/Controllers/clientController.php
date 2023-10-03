@@ -110,6 +110,7 @@ class clientController extends Controller
     //store the survey data
     public function storeSurveyData(Request $request)
     {
+
         $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
         $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
 
@@ -122,10 +123,22 @@ class clientController extends Controller
             'date_of_transaction' => 'required|date',
             'offices' => ['required', Rule::in($validateOffices)],
             'service_availed' => 'required',
-            'email_of_client' => ''
+            'email_of_client' => '',
+            'question1' => 'required|in:1,2,3,4',
+            'question2' => 'required|in:1,2,3,4,5',
+            'question3' => 'required|in:1,2,3,4',
+            'question-S2-Q0' => 'required|in:1,2,3,4,5',
+            'question-S2-Q1' => 'required|in:1,2,3,4,5',
+            'question-S2-Q2' => 'required|in:1,2,3,4,5',
+            'question-S2-Q3' => 'required|in:1,2,3,4,5',
+            'question-S2-Q4' => 'required|in:1,2,3,4,5',
+            'question-S2-Q5' => 'required|in:1,2,3,4,5',
+            'question-S2-Q6' => 'required|in:1,2,3,4,5',
+            'question-S2-Q7' => 'required|in:1,2,3,4,5',
+            'question-S2-Q8' => 'required|in:1,2,3,4,5',
+            'suggestion_for_client' => ''
 
         ]);
-
         //store the data in the database
         $UserData = [
             'name' => $validateData['name_of_client'],
@@ -136,9 +149,22 @@ class clientController extends Controller
             'idOfficeOrigin' => $validateData['offices'],
             'purpose' => $validateData['service_availed'],
             'emailAdd' => $validateData['email_of_client'],
+            'cc1' => $validateData['question1'],
+            'cc2' => $validateData['question2'],
+            'cc3' => $validateData['question3'],
+            'sqd0' => $validateData['question-S2-Q0'],
+            'sqd1' => $validateData['question-S2-Q1'],
+            'sqd2' => $validateData['question-S2-Q2'],
+            'sqd3' => $validateData['question-S2-Q3'],
+            'sqd4' => $validateData['question-S2-Q4'],
+            'sqd5' => $validateData['question-S2-Q5'],
+            'sqd6' => $validateData['question-S2-Q6'],
+            'sqd7' => $validateData['question-S2-Q7'],
+            'sqd8' => $validateData['question-S2-Q8'],
+            'comment' => $validateData['suggestion_for_client']
         ];
         clientInfo::create($UserData);
-        return redirect('/home/clientSurvey');
+        return redirect('/home')->with('message', 'Thank you for your time :) ');
     }
 
     public function surveySecurity()
