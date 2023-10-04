@@ -12,14 +12,15 @@
         <div class="flex-1 w-full md:w-1/2 bg-gray-200 min-h-screen ">
             <!-- component -->
             <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">New Service</div>
-            <form action="">
+            <form action="" method="POST">
+                @csrf
                 <div
                     class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl bg-white rounded-md">
                     <div class="flex flex-col gap-2 mt-2 mb-2">
                         <label for="code_Title" class="text-md Reg-font">Code:</label>
                         <input name="code_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font "
-                            spellcheck="false" type="text">
+                            spellcheck="false" type="text" autocomplete="off">
                     </div>
                     <div class="flex flex-col gap-2  mt-2 mb-2 ">
                         <label for="service_Title" class="text-md Reg-font">Title:</label>
@@ -47,8 +48,8 @@
                             </select>
                         </div>
                         <div class="p-2 w-96">
-                            <label for="classification" class="text-md Reg-font">Classification:</label>
-                            <select name="classification" id="classification"
+                            <label for="classification_service" class="text-md Reg-font">Classification:</label>
+                            <select name="classification_service" id="classification_service"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
 
@@ -89,98 +90,176 @@
                             class=" bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
                             spellcheck="false" placeholder="Who may Avil" type="text">
                     </div>
+
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gray-300 h-px mb-6"></div>
                     <!-- Line with gradient -->
-                    <div class="mt-2 mb-3">
-                        <p class="text-sm Reg-font text-justify">
-                            Note: Checklist of Requirements and Where to Secure input Fields are correspond to each
-                            input fields, if the Checklist of Requirements input field number 1 doesn't need an
-                            information on Where to Secure just Add in the input Field number 1 of Where to Secure is
-                            <span class="text-blue-400">N/A</span>
-                        </p>
-                    </div>
-                    <div class="mt-2 mb-3">
-                        <div class="p-1 flex justify-between">
-                            <label for="" class="text-md Reg-font">Check List of Requierements:</label>
-                            <button type="button" id="addRqr_inpt"
-                                class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
-                                Fields</button>
-                        </div>
-                        <div class="mt-2 mb-3">
-                            <div class="flex gap-3 mt-2 mb-2">
-                                <input type="text" name="rqr_inpt[1]" id="rqr_inpt[1]"
-                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
-                                <button type="button" id="dltRqr_inpt[1]"
-                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
-                            </div>
-                            <div class="flex gap-3 mt-2 mb-2">
-                                <input type="text" name="rqr_inpt[2]" id="rqr_inpt[2]"
-                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
-                                <button type="button" id="dltRqr_inpt[2]"
-                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
-                            </div>
-                            <div class="flex gap-3 mt-2 mb-2">
-                                <input type="text" name="rqr_inpt[3]" id="rqr_inpt[3]"
-                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
-                                <button type="button" id="dltRqr_inpt[3]"
-                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
-                            </div>
-                        </div>
-
-                    </div>
                     <div>
-                        <div class="p-1 flex justify-between">
-                            <label for="" class="text-md Reg-font">Where to Secure:</label>
-                            <button type="button" id="addWhr_inpt"
-                                class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
-                                Fields</button>
+                        <div class="mt-2 mb-3">
+                            <p class="text-sm Reg-font text-justify">
+                                Note: Checklist of Requirements and Where to Secure input Fields are correspond to each
+                                input fields, if the Checklist of Requirements input field number 1 doesn't need an
+                                information on Where to Secure just Add in the input Field number 1 of Where to Secure
+                                is
+                                <span class="text-blue-400">N/A</span>
+                            </p>
                         </div>
                         <div class="mt-2 mb-3">
-                            <div class="flex gap-3 mt-2 mb-2">
-                                <input type="text" name="whr_inpt[1]" id="whr_inpt[1]"
-                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
-                                <button type="button" id="dltWhr_inpt[1]"
-                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            <div class="p-1 flex justify-between">
+                                <label for="rqr_inpt[]" class="text-md Reg-font">Check List of Requirements:</label>
+                                <button type="button" id="addRqr_inpt"
+                                    class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
+                                    Fields</button>
                             </div>
-                            <div class="flex gap-3 mt-2 mb-2">
-                                <input type="text" name="whr_inpt[2]" id="whr_inpt[2]"
-                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
-                                <button type="button" id="dltWhr_inpt[2]"
-                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                            <div class="mt-2 mb-3" id="requirementsContainer">
+                                <div class="flex gap-3 mt-2 mb-2">
+                                    <input type="text" name="rqr_inpt[1]" id="rqr_inpt[1]"
+                                        class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
+                                        autocomplete="off">
+                                    <button type="button" id="dltRqr_inpt[1]"
+                                        class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                                </div>
+                                <div class="flex gap-3 mt-2 mb-2">
+                                    <input type="text" name="rqr_inpt[2]" id="rqr_inpt[2]"
+                                        class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
+                                        autocomplete="off">
+                                    <button type="button" id="dltRqr_inpt[2]"
+                                        class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                                </div>
+                                <div class="flex gap-3 mt-2 mb-2">
+                                    <input type="text" name="rqr_inpt[3]" id="rqr_inpt[3]"
+                                        class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
+                                        autocomplete="off">
+                                    <button type="button" id="dltRqr_inpt[3]"
+                                        class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                                </div>
                             </div>
-                            <div class="flex gap-3 mt-2 mb-2">
-                                <input type="text" name="whr_inpt[3]" id="whr_inpt[3]"
-                                    class="text-[md] w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none">
-                                <button type="button" id="dltWhr_inpt[3]"
-                                    class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
-                            </div>
-                        </div>
 
+                        </div>
+                        <div>
+                            <div class="p-1 flex justify-between">
+                                <label for="whr_inpt[]" class="text-md Reg-font">Where to Secure:</label>
+                                <button type="button" id="addWhr_inpt"
+                                    class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
+                                    Fields</button>
+                            </div>
+                            <div class="mt-2 mb-3" id="whr_secure">
+                                <div class="flex gap-3 mt-2 mb-2">
+                                    <input type="text" name="whr_inpt[1]" id="whr_inpt[1]"
+                                        class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
+                                        autocomplete="off">
+                                    <button type="button" id="dltWhr_inpt[1]"
+                                        class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                                </div>
+                                <div class="flex gap-3 mt-2 mb-2">
+                                    <input type="text" name="whr_inpt[2]" id="whr_inpt[2]"
+                                        class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
+                                        autocomplete="off">
+                                    <button type="button" id="dltWhr_inpt[2]"
+                                        class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                                </div>
+                                <div class="flex gap-3 mt-2 mb-2">
+                                    <input type="text" name="whr_inpt[3]" id="whr_inpt[3]"
+                                        class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
+                                        autocomplete="off">
+                                    <button type="button" id="dltWhr_inpt[3]"
+                                        class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
 
-                    <!-- icons -->
-                    <div class="icons flex text-gray-500 m-2">
-                        <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                        </svg>
 
+
+                    <div class="my-1"></div> <!-- Separation space -->
+                    <div class="bg-gray-300 h-px mb-6"></div>
+                    <!-- Line with gradient -->
+                    <div class="p-2">
+                        <div class="mt-2 mb-3">
+                            <p class="text-sm Reg-font text-justify">
+                                Note: Checklist of Requirements and Where to Secure input Fields are correspond to each
+                                input fields, if the Checklist of Requirements input field number 1 doesn't need an
+                                information on Where to Secure just Add in the input Field number 1 of Where to Secure
+                                is
+                                <span class="text-blue-400">N/A</span>
+                            </p>
+                        </div>
+                        <div>
+                            <button type="button" id="add_row"
+                                class="text-sm Reg-font p-1 border-2 bg-green-600 text-white rounded-lg">
+                                Add Row
+                            </button>
+                            <button type="button" id="dlt_row"
+                                class="text-sm Reg-font p-1 border-2 bg-red-600 text-white rounded-lg">
+                                Delete Row
+                            </button>
+                        </div>
+                        <div>
+                            <table id="table_id" name="table_id"
+                                class="w-full text-sm text-left text-gray-500 border-2 border-collapse">
+                                <thead class="text-xs Reg-font text-gray-700 uppercase bg-blue-800 text-white">
+                                    <th scope="row" class="py-3 px-6 text-center border-2 ">
+                                        Client Steps
+                                    </th>
+                                    <th scope="row" class="py-3 px-6 text-center border-2 ">
+                                        Agency Action
+                                    </th>
+                                    <th scope="row" class="py-3 px-6 text-center border-2 ">
+                                        Fees to be Paid
+                                    </th>
+                                    <th scope="row" class="py-3 px-6 text-center border-2 ">
+                                        Processing Time
+                                    </th>
+                                    <th scope="row" class="py-3 px-6 text-center border-2 ">
+                                        Person Responsible
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr class=" text-left">
+                                        <td class="w-40 h-28 p-1 border-2">
+                                            {{-- <textarea name="client_steps[]" id="client_steps[]"></textarea> --}}
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+                                            {{-- <textarea name="agency_action[]" id="agency_action[]"></textarea> --}}
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+                                            {{-- <textarea name="fees_to_paid[]" id="fees_to_paid[]"></textarea> --}}
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+                                            {{-- <textarea name="fees_to_paid[]" id="fees_to_paid[]"></textarea> --}}
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+
+                                        </td>
+                                    </tr>
+                                    <tr class=" text-left">
+                                        <td class="w-40 h-28 p-1 border-2">
+
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+
+                                        </td>
+                                        <td class="w-40 h-28 p-1 border-2">
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- buttons -->
-                    <div class="buttons flex">
+                    <div class="flex">
                         <div
-                            class="btn border border-indigo-500 p-1 px-4 SemiB-font cursor-pointer text-gray-200 ml-2 bg-indigo-500 rounded">
-                            <button type="submit">Upload</button>
+                            class=" border border-indigo-500 p-1 px-4 SemiB-font cursor-pointer text-gray-200 ml-2 bg-indigo-500 rounded w-full flex justify-center p-4">
+                            <button type="submit" class="text-lg uppercase">Upload</button>
 
                         </div>
                     </div>
@@ -189,72 +268,222 @@
         </div>
     </div>
 </div>
-{{-- <style>
-    /* Define custom CSS styles for the table */
-    .custom-table {
-        border-collapse: collapse;
-        width: 100%;
-        resize: both;
-        overflow: auto;
+<!--for handling the table to be editable-->
+<script>
+    // Event listener for the "Add Row" button
+    document.getElementById("add_row").addEventListener("click", function() {
+        addRow();
+    });
+
+    // Event listener for the "Delete Row" button
+    document.getElementById("dlt_row").addEventListener("click", function() {
+        deleteRow();
+    });
+
+    // Function to add a new row with the same structure as the existing rows
+    function addRow() {
+        var table = document.getElementById("table_id");
+        var newRow = table.insertRow(-1); // -1 inserts the row at the end
+
+        for (var i = 0; i < 5; i++) {
+            var newCell = newRow.insertCell(i);
+            newCell.className = "w-40 h-28 p-1 border-2"; // Apply the same CSS classes as existing cells
+            setCellStyles(newCell); // Set the cell styles
+        }
     }
 
-    .custom-table th,
-    .custom-table td {
-        border: 1px solid #000;
-        padding: 2px;
+    // Function to delete the last row
+    function deleteRow() {
+        var table = document.getElementById("table_id");
+        if (table.rows.length > 2) {
+            table.deleteRow(-1); // Delete the last row
+        }
     }
 
-    .custom-table th {
-        background: #f7efef;
-        width: 30%;
-        height: 30px;
-        padding: 2px;
+    // Set cell styles (e.g., for generated cells)
+    function setCellStyles(cell) {
+        var textarea = document.createElement('textarea');
+        textarea.value = cell.innerText;
+
+        // Set the textarea's width and height to match the cell's styles
+        textarea.style.width = "100%";
+        textarea.style.height = "100%";
+        textarea.style.padding = "0";
+        textarea.style.border = "none";
+
+        textarea.addEventListener('blur', function() {
+            cell.innerText = textarea.value;
+        });
+
+        cell.innerText = '';
+        cell.appendChild(textarea);
     }
 
-    .custom-table td {
-        width: 50px;
-        height: 50px;
+    // Event listener for the table to handle cell editing
+    document.getElementById("table_id").addEventListener("click", function(e) {
+        var cell = e.target;
+
+        // Check if the target is a table cell and not currently being edited
+        if (cell.tagName === "TD" && cell !== document.activeElement) {
+            enableCellEditing(cell);
+        }
+    });
+
+    // Function to enable cell editing
+    function enableCellEditing(cell) {
+        var textarea = document.createElement('textarea');
+        textarea.value = cell.innerText;
+
+        // Set the textarea's width and height to match the cell's styles
+        textarea.style.width = "100%";
+        textarea.style.height = "100%";
+        textarea.style.padding = "0";
+        textarea.style.border = "none";
+
+        textarea.addEventListener('blur', function() {
+            cell.innerText = textarea.value;
+        });
+
+        cell.innerText = '';
+        cell.appendChild(textarea);
+        textarea.focus();
     }
-</style>
-<div class="block p-1">
-    <div class="flex justify-between mt-2 mb-2">
-        <button id="create-table" type="button"
-            class="bg-blue-500 text-white px-2 py-1 rounded">Create
-            Table</button>
+</script>
 
-    </div>
-    <!-- tables -->
-    <div class="p-1" id="tbl_set[1]">
-        <div class="flex justify-between">
-            <div class="p-4 flex gap-3">
-                <button id="add-row[1]" type="button"
-                    class="bg-green-500 text-white px-2 py-1 rounded">Add
-                    Row</button>
-                <button id="delete-row[1]" type="button"
-                    class="bg-red-500 text-white px-2 py-1 rounded">Delete
-                    Row</button>
-                <button id="add-column[1]" type="button"
-                    class="bg-green-500 text-white px-2 py-1 rounded">Add
-                    Column</button>
-                <button id="delete-column[1]" type="button"
-                    class="bg-red-500 text-white px-2 py-1 rounded">Delete
-                    Column</button>
-            </div>
-            <div class="p-4">
-                <button id="delete-table" type="button"
-                    class="bg-red-500 text-white px-2 py-1 rounded">Delete
-                    Table</button>
-            </div>
-        </div>
+<!--for handling the input fields of where to secure and requirements-->
+<script>
+    function addField(container, inputCounterName, containerId) {
+        const inputCounter = container.getAttribute(inputCounterName);
+        const newInput = document.createElement("div");
+        newInput.className = "flex gap-3 mt-2 mb-2";
+        newInput.innerHTML = `
+            <input type="text" name="${containerId}[${inputCounter}]" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">
+            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeField(this, '${containerId}')">Delete</button>
+        `;
 
+        container.appendChild(newInput);
+        container.setAttribute(inputCounterName, parseInt(inputCounter) + 1);
+    }
 
-        <div id="table-container[1]"
-            class="mt-4 w-full text-[15px] Reg-font bg-gray-100 rounded-lg border-2 p-2">
-            <!-- The table will be inserted here -->
-        </div>
-    </div>
-</div> --}}
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> --}}
-{{-- <script src="{{ mix('resources/js/functionTables.js') }}"></script> --}}
+    function removeField(element, containerId) {
+        const container = element.parentElement.parentElement;
+        container.removeChild(element.parentElement);
+    }
+
+    // Event listeners for the "Add new Fields" buttons
+    document.getElementById("addRqr_inpt").addEventListener("click", () => addField(document.getElementById(
+        "requirementsContainer"), "data-rqr-input-counter", "rqr_inpt"));
+    document.getElementById("addWhr_inpt").addEventListener("click", () => addField(document.getElementById(
+        "whr_secure"), "data-whr-input-counter", "whr_inpt"));
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--for handling the data-->
+<script>
+    $(document).ready(function() {
+        // Handle adding new checklist items
+        $('#addRqr_inpt').on('click', function() {
+            var newItem = $('<div class="flex gap-3 mt-2 mb-2">' +
+                '<input type="text" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">' +
+                '<button class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white deleteRqr_inpt">Delete</button>' +
+                '</div>');
+
+            $('#requirementsContainer').append(newItem);
+        });
+
+        // Handle deleting checklist items
+        $('#requirementsContainer').on('click', '.deleteRqr_inpt', function() {
+            $(this).parent().remove();
+        });
+
+        // Handle adding new "Where to Secure" items
+        $('#addWhr_inpt').on('click', function() {
+            var newItem = $('<div class="flex gap-3 mt-2 mb-2">' +
+                '<input type="text" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">' +
+                '<button class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white deleteWhr_inpt">Delete</button>' +
+                '</div>');
+
+            $('#whr_secure').append(newItem);
+        });
+
+        // Handle deleting "Where to Secure" items
+        $('#whr_secure').on('click', '.deleteWhr_inpt', function() {
+            $(this).parent().remove();
+        });
+
+        // Handle adding new rows to the table
+        $('#add_row').on('click', function() {
+            var newRow = $('<tr class="text-left">' +
+                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
+                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
+                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
+                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
+                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
+                '</tr>');
+
+            $('#table_id tbody').append(newRow);
+        });
+
+        // Handle deleting rows from the table
+        $('#dlt_row').on('click', function() {
+            $('#table_id tbody tr:last').remove();
+        });
+
+        // Handle form submission
+        $('form').on('submit', function(event) {
+            event.preventDefault();
+
+            // Gather the data from dynamically generated fields
+            var rqrInputs = [];
+            var whrInputs = [];
+
+            $('#requirementsContainer input').each(function() {
+                rqrInputs.push($(this).val());
+            });
+
+            $('#whr_secure input').each(function() {
+                whrInputs.push($(this).val());
+            });
+
+            // Gather the table data
+            var tableData = [];
+            $('#table_id tbody tr').each(function() {
+                var row = $(this);
+                var rowData = {
+                    clientSteps: row.find('td:eq(0)').text(),
+                    agencyAction: row.find('td:eq(1)').text(),
+                    feesToBePaid: row.find('td:eq(2)').text(),
+                    processingTime: row.find('td:eq(3)').text(),
+                    personResponsible: row.find('td:eq(4)').text()
+                };
+                tableData.push(rowData);
+            });
+
+            // Send all the data to the server using AJAX
+            $.ajax({
+                url: 'http://127.0.0.1:8000/indexAdmin/addService'
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr(
+                        'content'), // Include the CSRF token
+                    code_Title: $('#code_Title').val(),
+                    service_Title: $('#service_Title').val(),
+                    description_service: $('#description_service').val(),
+                    classification_service: $('#classification_service').val(),
+                    transaction_type: $('#transaction_type').val(),
+                    who_avail: $('#who_avail').val(),
+                    // ... other form fields
+                    rqr_inpt: rqrInputs,
+                    whr_inpt: whrInputs,
+                    table_data: JSON.stringify(tableData) // Convert table data to JSON
+                },
+                success: function(response) {
+                    // Handle the success response or redirect to a success page
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                }
+            });
+        });
+    });
+</script>
+
 @include('partials.footerAdmin')

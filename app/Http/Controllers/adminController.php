@@ -100,6 +100,12 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function storeService(Request $request)
+    {
+
+        $tableData = json_decode($request->input('table_data'), true);
+        dd($tableData);
+    }
 
     public function showAccountPage()
     {

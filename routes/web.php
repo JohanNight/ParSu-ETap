@@ -43,6 +43,7 @@ Route::controller(adminController::class)->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/indexAdmin',  'index')->name('index');
         Route::get('/indexAdmin/addService', 'addServicePage')->name('AddService');
+        Route::post('/indexAdmin/addService', 'storeService');
         Route::get('/indexAdmin/account',  'showAccountPage')->name('Account');
         Route::put('/indexAdmin/account', 'update');
         Route::get('/indexAdmin/storageService', 'storagePage')->name('Storage');
