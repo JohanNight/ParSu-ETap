@@ -152,7 +152,7 @@
                                     <button type="button" id="dltRqr_inpt[1]"
                                         class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
                                 </div>
-                                <div class="flex gap-3 mt-2 mb-2">
+                                {{-- <div class="flex gap-3 mt-2 mb-2">
                                     <input type="text" name="rqr_inpt[2]" id="rqr_inpt[2]"
                                         class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
                                         autocomplete="off">
@@ -165,7 +165,7 @@
                                         autocomplete="off">
                                     <button type="button" id="dltRqr_inpt[3]"
                                         class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
-                                </div>
+                                </div> --}}
                             </div>
 
                         </div>
@@ -184,7 +184,7 @@
                                     <button type="button" id="dltWhr_inpt[1]"
                                         class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
                                 </div>
-                                <div class="flex gap-3 mt-2 mb-2">
+                                {{-- <div class="flex gap-3 mt-2 mb-2">
                                     <input type="text" name="whr_inpt[2]" id="whr_inpt[2]"
                                         class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
                                         autocomplete="off">
@@ -197,7 +197,7 @@
                                         autocomplete="off">
                                     <button type="button" id="dltWhr_inpt[3]"
                                         class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white"> Delete</button>
-                                </div>
+                                </div> --}}
                             </div>
 
                         </div>

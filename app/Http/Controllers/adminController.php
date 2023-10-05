@@ -104,7 +104,7 @@ class adminController extends Controller
     }
     public function storeService(Request $request)
     {
-        dd($request);
+        // dd($request);
         $this->validate($request, [
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
