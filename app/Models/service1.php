@@ -22,6 +22,6 @@ class service1 extends Model
     ];
     public function checklistRequirements()
     {
-        return $this->hasMany(service2::class);
+        return $this->hasMany(service2::class, 'service_id', 'id');
     }
 }

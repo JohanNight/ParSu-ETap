@@ -6,6 +6,7 @@ use App\Models\clientCategory;
 use App\Models\clientCode;
 use App\Models\offices;
 use App\Models\service1;
+use App\Models\service2;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,9 +102,10 @@ class adminController extends Controller
             return abort(404);
         }
     }
-    public function rulesOfServices($services)
+    public function storeService(Request $request)
     {
-        return $services = $services->validate([
+        dd($request);
+        $this->validate($request, [
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
             'description_service' => 'required|string',
@@ -119,16 +121,66 @@ class adminController extends Controller
             'processing_time' => 'array',
             'person_responsible' => 'array',
         ]);
-    }
-    public function storeService(Request $request)
-    {
 
-        $this->rulesOfServices($request);
-        dd($request);
-        $service1 = new service1;
+        $service1 = new Service1;
         $service1->code_Title = $request->code_Title;
         $service1->service_Title = $request->service_Title;
+        $service1->description_service = $request->description_service;
+        $service1->office_service = $request->office_service;
+        $service1->classification_service = $request->classification_service;
+        $service1->transaction_type = $request->transaction_type;
+        $service1->who_avail = $request->who_avail;
+        // Set other attributes as well
+        $service1->save();
+
+        //  checklist requirements
+        foreach ($request->rqr_inpt as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->requirement_description = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+        //where to secure
+        foreach ($request->whr_inpt as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->where_to_secure = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+        //client steps
+        foreach ($request->client_steps as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->client_steps = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+        //agency action
+        foreach ($request->agency_action as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->agency_action = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+        //fees to be paid
+        foreach ($request->fees_to_paid as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->fees_to_be_paid = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+        //processing time
+        foreach ($request->processing_time as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->processing_time = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+        //person responsible
+        foreach ($request->person_responsible as $requirement) {
+            $checklistRequirement = new service2;
+            $checklistRequirement->person_responsible = $requirement;
+            $service1->checklistRequirements()->save($checklistRequirement);
+        }
+
+        // Repeat the above process for other related data
+
+        return redirect()->route('AddService')->with('message', 'Service created successfully.');
     }
+
 
     public function showAccountPage()
     {
