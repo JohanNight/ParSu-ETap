@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\clientCategory;
 use App\Models\clientCode;
 use App\Models\offices;
+use App\Models\service1;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,11 +101,33 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function rulesOfServices($services)
+    {
+        return $services = $services->validate([
+            'code_Title' => 'required|string|max:255',
+            'service_Title' => 'required|string|max:255',
+            'description_service' => 'required|string',
+            'office_service' => 'required|string',
+            'classification_service' => 'required|string',
+            'transaction_type' => 'required|string',
+            'who_avail' => 'required|string',
+            'rqr_inpt' => 'array',
+            'whr_inpt' => 'array',
+            'client_steps' => 'array',
+            'agency_action' => 'array',
+            'fees_to_paid' => 'array',
+            'processing_time' => 'array',
+            'person_responsible' => 'array',
+        ]);
+    }
     public function storeService(Request $request)
     {
 
-        $tableData = json_decode($request->input('table_data'), true);
-        dd($tableData);
+        $this->rulesOfServices($request);
+        dd($request);
+        $service1 = new service1;
+        $service1->code_Title = $request->code_Title;
+        $service1->service_Title = $request->service_Title;
     }
 
     public function showAccountPage()

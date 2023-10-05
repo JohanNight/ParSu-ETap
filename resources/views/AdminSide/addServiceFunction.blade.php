@@ -21,18 +21,33 @@
                         <input name="code_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font "
                             spellcheck="false" type="text" autocomplete="off">
+                        @error('code_Title')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="flex flex-col gap-2  mt-2 mb-2 ">
                         <label for="service_Title" class="text-md Reg-font">Title:</label>
                         <input name="service_Title"
-                            class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
-                            spellcheck="false" placeholder="Title" type="text">
+                            class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font" spellcheck="false"
+                            placeholder="Title" type="text" autocomplete="off">
+                        @error('service_Title')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class=" mt-2 mb-2 ">
                         <label for="description_service" class="text-md Reg-font">Description:</label>
                         <textarea id="description_service" name="description_service"
                             class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none Reg-font w-full" spellcheck="false"
                             placeholder="Describe everything here"></textarea>
+                        @error('description_service')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="flex justify-evenly">
                         <div class="p-2 w-96">
@@ -46,6 +61,11 @@
                                         {{ $officeType->officeAcronym }}</option>
                                 @endforeach
                             </select>
+                            @error('office_service')
+                                <p class="text-red-400 text-sm p-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="p-2 w-96">
                             <label for="classification_service" class="text-md Reg-font">Classification:</label>
@@ -62,8 +82,12 @@
                                 <option value="G-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
                                     G-2-C Government to Citizen
                                 </option>
-
                             </select>
+                            @error('classification_service')
+                                <p class="text-red-400 text-sm p-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="p-2 w-96">
                             <label for="transaction_type" class="text-md Reg-font capitalize">Transaction Type:</label>
@@ -80,15 +104,24 @@
                                 <option value="Hard" class="text-[16px] Reg-font capitalize ">
                                     Hard
                                 </option>
-
                             </select>
+                            @error('transaction_type')
+                                <p class="text-red-400 text-sm p-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-col gap-2  mt-2 mb-2 ">
                         <label for="who_avail" class="text-md Reg-font capitalize">Who may Avail:</label>
                         <input name="who_avail" id="who_avail"
                             class=" bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
-                            spellcheck="false" placeholder="Who may Avil" type="text">
+                            spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off">
+                        @error('who_avail')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <div class="my-1"></div> <!-- Separation space -->
@@ -219,36 +252,37 @@
                                 <tbody>
                                     <tr class=" text-left">
                                         <td class="w-40 h-28 p-1 border-2">
-                                            {{-- <textarea name="client_steps[]" id="client_steps[]"></textarea> --}}
+                                            <textarea name="client_steps[]" id="client_steps[]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            {{-- <textarea name="agency_action[]" id="agency_action[]"></textarea> --}}
+                                            <textarea name="agency_action[]" id="agency_action[]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            {{-- <textarea name="fees_to_paid[]" id="fees_to_paid[]"></textarea> --}}
+                                            <textarea name="fees_to_paid[]" id="fees_to_paid[]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            {{-- <textarea name="fees_to_paid[]" id="fees_to_paid[]"></textarea> --}}
+                                            <textarea name="processing_time[]" id="processing_time[]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
+                                            <textarea name="person_responsible[]" id="person_responsible[]" class="w-full h-full"></textarea>
 
                                         </td>
                                     </tr>
                                     <tr class=" text-left">
                                         <td class="w-40 h-28 p-1 border-2">
-
+                                            <textarea name="client_steps[1]" id="client_steps[1]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-
+                                            <textarea name="agency_action[1]" id="agency_action[1]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-
+                                            <textarea name="fees_to_paid[1]" id="fees_to_paid[1]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-
+                                            <textarea name="processing_time[1]" id="processing_time[1]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-
+                                            <textarea name="person_responsible[1]" id="person_responsible[1]" class="w-full h-full"></textarea>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -270,42 +304,36 @@
 </div>
 <!--for handling the table to be editable-->
 <script>
-    // Event listener for the "Add Row" button
     document.getElementById("add_row").addEventListener("click", function() {
         addRow();
     });
 
-    // Event listener for the "Delete Row" button
     document.getElementById("dlt_row").addEventListener("click", function() {
         deleteRow();
     });
 
-    // Function to add a new row with the same structure as the existing rows
     function addRow() {
         var table = document.getElementById("table_id");
-        var newRow = table.insertRow(-1); // -1 inserts the row at the end
+        var newRow = table.insertRow(-1);
 
         for (var i = 0; i < 5; i++) {
             var newCell = newRow.insertCell(i);
-            newCell.className = "w-40 h-28 p-1 border-2"; // Apply the same CSS classes as existing cells
-            setCellStyles(newCell); // Set the cell styles
+            newCell.className = "w-40 h-28 p-1 border-2";
+            setCellStyles(newCell);
         }
     }
 
-    // Function to delete the last row
     function deleteRow() {
         var table = document.getElementById("table_id");
         if (table.rows.length > 2) {
-            table.deleteRow(-1); // Delete the last row
+            table.deleteRow(-1);
         }
     }
 
-    // Set cell styles (e.g., for generated cells)
     function setCellStyles(cell) {
         var textarea = document.createElement('textarea');
         textarea.value = cell.innerText;
 
-        // Set the textarea's width and height to match the cell's styles
         textarea.style.width = "100%";
         textarea.style.height = "100%";
         textarea.style.padding = "0";
@@ -323,7 +351,6 @@
     document.getElementById("table_id").addEventListener("click", function(e) {
         var cell = e.target;
 
-        // Check if the target is a table cell and not currently being edited
         if (cell.tagName === "TD" && cell !== document.activeElement) {
             enableCellEditing(cell);
         }
@@ -334,7 +361,6 @@
         var textarea = document.createElement('textarea');
         textarea.value = cell.innerText;
 
-        // Set the textarea's width and height to match the cell's styles
         textarea.style.width = "100%";
         textarea.style.height = "100%";
         textarea.style.padding = "0";
@@ -349,6 +375,7 @@
         textarea.focus();
     }
 </script>
+
 
 <!--for handling the input fields of where to secure and requirements-->
 <script>
@@ -380,54 +407,6 @@
 <!--for handling the data-->
 <script>
     $(document).ready(function() {
-        // Handle adding new checklist items
-        $('#addRqr_inpt').on('click', function() {
-            var newItem = $('<div class="flex gap-3 mt-2 mb-2">' +
-                '<input type="text" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">' +
-                '<button class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white deleteRqr_inpt">Delete</button>' +
-                '</div>');
-
-            $('#requirementsContainer').append(newItem);
-        });
-
-        // Handle deleting checklist items
-        $('#requirementsContainer').on('click', '.deleteRqr_inpt', function() {
-            $(this).parent().remove();
-        });
-
-        // Handle adding new "Where to Secure" items
-        $('#addWhr_inpt').on('click', function() {
-            var newItem = $('<div class="flex gap-3 mt-2 mb-2">' +
-                '<input type="text" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">' +
-                '<button class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white deleteWhr_inpt">Delete</button>' +
-                '</div>');
-
-            $('#whr_secure').append(newItem);
-        });
-
-        // Handle deleting "Where to Secure" items
-        $('#whr_secure').on('click', '.deleteWhr_inpt', function() {
-            $(this).parent().remove();
-        });
-
-        // Handle adding new rows to the table
-        $('#add_row').on('click', function() {
-            var newRow = $('<tr class="text-left">' +
-                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
-                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
-                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
-                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
-                '<td class="w-40 h-28 p-1 border-2" contenteditable="true"></td>' +
-                '</tr>');
-
-            $('#table_id tbody').append(newRow);
-        });
-
-        // Handle deleting rows from the table
-        $('#dlt_row').on('click', function() {
-            $('#table_id tbody tr:last').remove();
-        });
-
         // Handle form submission
         $('form').on('submit', function(event) {
             event.preventDefault();
@@ -449,14 +428,17 @@
             $('#table_id tbody tr').each(function() {
                 var row = $(this);
                 var rowData = {
-                    clientSteps: row.find('td:eq(0)').text(),
-                    agencyAction: row.find('td:eq(1)').text(),
-                    feesToBePaid: row.find('td:eq(2)').text(),
-                    processingTime: row.find('td:eq(3)').text(),
-                    personResponsible: row.find('td:eq(4)').text()
+                    clientSteps: row.find('textarea[name="client_steps[]"]').val(),
+                    agencyAction: row.find('textarea[name="agency_action[]"]').val(),
+                    feesToBePaid: row.find('textarea[name="fees_to_paid[]"]').val(),
+                    processingTime: row.find('textarea[name="processing_time[]"]').val(),
+                    personResponsible: row.find('textarea[name="person_responsible[]"]')
+                        .val()
                 };
                 tableData.push(rowData);
             });
+
+
 
             // Send all the data to the server using AJAX
             $.ajax({
