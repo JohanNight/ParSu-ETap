@@ -177,7 +177,7 @@ class clientController extends Controller
         }
     }
 
-    public function word()
+    public function example()
     {
         if (View::exists('example.example1')) {
 

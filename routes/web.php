@@ -29,6 +29,8 @@ Route::controller(clientController::class)->group(function () {
     Route::post('/clientSecurity', 'checkSecurity');
 
     Route::get('/home/word', 'word');
+
+    Route::get('/example', 'example');
 });
 
 
