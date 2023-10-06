@@ -139,14 +139,16 @@
                         </div>
                         <div class="mt-2 mb-3">
                             <div class="p-1 flex justify-between">
-                                <label for="rqr_inpt[]" class="text-md Reg-font">Check List of Requirements:</label>
+                                <label for="requirements[][rqr_inpt]" class="text-md Reg-font">Check List of
+                                    Requirements:</label>
                                 <button type="button" id="addRqr_inpt"
                                     class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
                                     Fields</button>
                             </div>
                             <div class="mt-2 mb-3" id="requirementsContainer">
                                 <div class="flex gap-3 mt-2 mb-2">
-                                    <input type="text" name="rqr_inpt[1]" id="rqr_inpt[1]"
+                                    <input type="text" name="requirements[1][rqr_inpt]"
+                                        id="requirements[1][rqr_inpt]"
                                         class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
                                         autocomplete="off">
                                     <button type="button" id="dltRqr_inpt[1]"
@@ -171,14 +173,16 @@
                         </div>
                         <div>
                             <div class="p-1 flex justify-between">
-                                <label for="whr_inpt[]" class="text-md Reg-font">Where to Secure:</label>
+                                <label for="requirements[][whr_inpt]" class="text-md Reg-font">Where to
+                                    Secure:</label>
                                 <button type="button" id="addWhr_inpt"
                                     class="text-sm Reg-font p-1 bg-green-500 rounded-lg text-white"> Add new
                                     Fields</button>
                             </div>
                             <div class="mt-2 mb-3" id="whr_secure">
                                 <div class="flex gap-3 mt-2 mb-2">
-                                    <input type="text" name="whr_inpt[1]" id="whr_inpt[1]"
+                                    <input type="text" name="requirements[1][whr_inpt]"
+                                        id="requirements[1][whr_inpt]"
                                         class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
                                         autocomplete="off">
                                     <button type="button" id="dltWhr_inpt[1]"
@@ -250,42 +254,42 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr class=" text-left">
+                                    <tr class="text-left">
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="client_steps[]" id="client_steps[]" class="w-full h-full"></textarea>
+                                            <textarea name="table[0][client_steps]" id="table[0][client_steps]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="agency_action[]" id="agency_action[]" class="w-full h-full"></textarea>
+                                            <textarea name="table[0][agency_action]" id="table[0][agency_action]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="fees_to_paid[]" id="fees_to_paid[]" class="w-full h-full"></textarea>
+                                            <textarea name="table[0][fees_to_paid]" id="table[0][fees_to_paid]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="processing_time[]" id="processing_time[]" class="w-full h-full"></textarea>
+                                            <textarea name="table[0][processing_time]" id="table[0][processing_time]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="person_responsible[]" id="person_responsible[]" class="w-full h-full"></textarea>
-
+                                            <textarea name="table[0][person_responsible]" id="table[0][person_responsible]" class="w-full h-full"></textarea>
                                         </td>
                                     </tr>
-                                    <tr class=" text-left">
+                                    <tr class="text-left">
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="client_steps[1]" id="client_steps[1]" class="w-full h-full"></textarea>
+                                            <textarea name="table[1][client_steps]" id="table[1][client_steps]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="agency_action[1]" id="agency_action[1]" class="w-full h-full"></textarea>
+                                            <textarea name="table[1][agency_action]" id="table[1][agency_action]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="fees_to_paid[1]" id="fees_to_paid[1]" class="w-full h-full"></textarea>
+                                            <textarea name="table[1][fees_to_paid]" id="table[1][fees_to_paid]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="processing_time[1]" id="processing_time[1]" class="w-full h-full"></textarea>
+                                            <textarea name="table[1][processing_time]" id="table[1][processing_time]" class="w-full h-full"></textarea>
                                         </td>
                                         <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="person_responsible[1]" id="person_responsible[1]" class="w-full h-full"></textarea>
+                                            <textarea name="table[1][person_responsible]" id="table[1][person_responsible]" class="w-full h-full"></textarea>
                                         </td>
                                     </tr>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
@@ -356,7 +360,6 @@
         }
     });
 
-    // Function to enable cell editing
     function enableCellEditing(cell) {
         var textarea = document.createElement('textarea');
         textarea.value = cell.innerText;
@@ -366,11 +369,13 @@
         textarea.style.padding = "0";
         textarea.style.border = "none";
 
+        // Clear the cell's content before appending the textarea
+        cell.innerHTML = '';
+
         textarea.addEventListener('blur', function() {
             cell.innerText = textarea.value;
         });
 
-        cell.innerText = '';
         cell.appendChild(textarea);
         textarea.focus();
     }
@@ -378,7 +383,7 @@
 
 
 <!--for handling the input fields of where to secure and requirements-->
-<script>
+{{-- <script>
     function addField(container, inputCounterName, containerId) {
         const inputCounter = container.getAttribute(inputCounterName);
         const newInput = document.createElement("div");
@@ -402,7 +407,34 @@
         "requirementsContainer"), "data-rqr-input-counter", "rqr_inpt"));
     document.getElementById("addWhr_inpt").addEventListener("click", () => addField(document.getElementById(
         "whr_secure"), "data-whr-input-counter", "whr_inpt"));
+</script> --}}
+<script>
+    function addField(container, inputCounterName, containerId, inputName) {
+        const inputCounter = container.getAttribute(inputCounterName);
+        const newInput = document.createElement("div");
+        newInput.className = "flex gap-3 mt-2 mb-2";
+        newInput.innerHTML = `
+            <input type="text" name="${containerId}[${inputCounter}][${inputName}]" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">
+            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeField(this, '${containerId}')">Delete</button>
+        `;
+
+        container.appendChild(newInput);
+        container.setAttribute(inputCounterName, parseInt(inputCounter) + 1);
+    }
+
+    function removeField(element, containerId) {
+        const container = element.parentElement.parentElement;
+        container.removeChild(element.parentElement);
+    }
+
+    // Event listeners for the "Add new Fields" buttons
+    document.getElementById("addRqr_inpt").addEventListener("click", () => addField(document.getElementById(
+        "requirementsContainer"), "data-rqr-input-counter", "requirements", "rqr_inpt"));
+    document.getElementById("addWhr_inpt").addEventListener("click", () => addField(document.getElementById(
+        "whr_secure"), "data-whr-input-counter", "requirements", "whr_inpt"));
 </script>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--for handling the data-->
 <script>
@@ -415,25 +447,39 @@
             var rqrInputs = [];
             var whrInputs = [];
 
-            $('#requirementsContainer input').each(function() {
-                rqrInputs.push($(this).val());
+            $('#requirementsContainer input').each(function(index) {
+                var rqrValue = $(this).val();
+                var whrValue = $('#whr_secure input[name="requirements[' + index +
+                    '][whr_inpt]"]').val();
+                rqrInputs.push(rqrValue);
+                whrInputs.push(whrValue);
             });
+            // Combine rqr_inpt and whr_inpt into a single array
+            var combinedInputs = [];
+            for (var i = 0; i < rqrInputs.length; i++) {
+                combinedInputs.push({
+                    rqr_inpt: rqrInputs[i],
+                    whr_inpt: whrInputs[i]
+                });
+            }
 
-            $('#whr_secure input').each(function() {
-                whrInputs.push($(this).val());
-            });
 
             // Gather the table data
             var tableData = [];
-            $('#table_id tbody tr').each(function() {
+            $('#table_id tbody tr').each(function(index) {
                 var row = $(this);
                 var rowData = {
-                    clientSteps: row.find('textarea[name="client_steps[]"]').val(),
-                    agencyAction: row.find('textarea[name="agency_action[]"]').val(),
-                    feesToBePaid: row.find('textarea[name="fees_to_paid[]"]').val(),
-                    processingTime: row.find('textarea[name="processing_time[]"]').val(),
-                    personResponsible: row.find('textarea[name="person_responsible[]"]')
-                        .val()
+                    // Use the 'index' variable to match the row index
+                    clientSteps: row.find('textarea[name="table[' + index +
+                        '][client_steps]"]').val(),
+                    agencyAction: row.find('textarea[name="table[' + index +
+                        '][agency_action]"]').val(),
+                    feesToBePaid: row.find('textarea[name="table[' + index +
+                        '][fees_to_paid]"]').val(),
+                    processingTime: row.find('textarea[name="table[' + index +
+                        '][processing_time]"]').val(),
+                    personResponsible: row.find('textarea[name="table[' + index +
+                        '][person_responsible]"]').val()
                 };
                 tableData.push(rowData);
             });
@@ -453,8 +499,9 @@
                     transaction_type: $('#transaction_type').val(),
                     who_avail: $('#who_avail').val(),
                     // ... other form fields
-                    rqr_inpt: rqrInputs,
-                    whr_inpt: whrInputs,
+                    // rqr_inpt: rqrInputs,
+                    // whr_inpt: whrInputs,
+                    rqr_whr_inpt: combinedInputs,
                     table_data: JSON.stringify(tableData) // Convert table data to JSON
                 },
                 success: function(response) {

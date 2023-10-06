@@ -6,7 +6,8 @@ use App\Models\clientCategory;
 use App\Models\clientCode;
 use App\Models\offices;
 use App\Models\service1;
-use App\Models\service2;
+use App\Models\service1_2;
+use App\Models\service1_3;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -104,7 +105,12 @@ class adminController extends Controller
     }
     public function storeService(Request $request)
     {
-        // dd($request);
+        //dd($request);
+        // Retrieve the "requirements" array from the request
+        $requirements = $request->input('requirements');
+
+        // Retrieve the "table" array from the request
+        $tables = $request->input('table');
         $this->validate($request, [
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
@@ -113,14 +119,13 @@ class adminController extends Controller
             'classification_service' => 'required|string',
             'transaction_type' => 'required|string',
             'who_avail' => 'required|string',
-            'rqr_inpt' => 'array',
-            'whr_inpt' => 'array',
-            'client_steps' => 'array',
-            'agency_action' => 'array',
-            'fees_to_paid' => 'array',
-            'processing_time' => 'array',
-            'person_responsible' => 'array',
+            // 'rqr_inpt' => 'array',
+            // 'whr_inpt' => 'array',
+            'rqr_whr_inpt' => 'array', // Combined array of rqr_inpt and whr_inpt
+            'table_data' => 'array',
         ]);
+
+
 
         $service1 = new Service1;
         $service1->code_Title = $request->code_Title;
@@ -133,53 +138,56 @@ class adminController extends Controller
         // Set other attributes as well
         $service1->save();
 
-        //  checklist requirements
-        foreach ($request->rqr_inpt as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->requirement_description = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
-        }
-        //where to secure
-        foreach ($request->whr_inpt as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->where_to_secure = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
-        }
-        //client steps
-        foreach ($request->client_steps as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->client_steps = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
-        }
-        //agency action
-        foreach ($request->agency_action as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->agency_action = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
-        }
-        //fees to be paid
-        foreach ($request->fees_to_paid as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->fees_to_be_paid = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
-        }
-        //processing time
-        foreach ($request->processing_time as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->processing_time = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
-        }
-        //person responsible
-        foreach ($request->person_responsible as $requirement) {
-            $checklistRequirement = new service2;
-            $checklistRequirement->person_responsible = $requirement;
-            $service1->checklistRequirements()->save($checklistRequirement);
+        if (isset($requirements) && is_array($requirements)) {
+            foreach ($requirements as $requirement) {
+                // Create and associate checklist requirements
+                $checklistRequirement = new Service1_2;
+                $checklistRequirement->requirement_description = $requirement['rqr_inpt'];
+                $checklistRequirement->where_to_secure = $requirement['whr_inpt'];
+                $service1->checklistRequirements1()->save($checklistRequirement);
+            }
         }
 
-        // Repeat the above process for other related data
+        if (isset($tables) && is_array($tables)) {
+            foreach ($tables as $table) {
+                // Create and associate checklist requirements
+                $checklistRequirement = new service1_3;
+                $checklistRequirement->client_steps = $table['client_steps'];
+                $checklistRequirement->agency_action = $table['agency_action'];
+                $checklistRequirement->fees_to_be_paid = $table['fees_to_paid'];
+                $checklistRequirement->processing_time = $table['processing_time'];
+                $checklistRequirement->person_responsible = $table['person_responsible'];
+                $service1->checklistRequirements2()->save($checklistRequirement);
+            }
+        }
+
+        // Create and associate checklist requirements of type 1 (rqr_inpt)
+        // foreach ($request->rqr_inpt as $requirement) {
+        //     $checklistRequirement1 = new Service1_2;
+        //     $checklistRequirement1->requirement_description = $requirement;
+        //     $service1->checklistRequirements1()->save($checklistRequirement1);
+        // }
+
+        // Create and associate checklist requirements of type 2 (whr_inpt)
+        // foreach ($request->whr_inpt as $requirement) {
+        //     $checklistRequirement2 = new Service1_2;
+        //     $checklistRequirement2->where_to_secure = $requirement;
+        //     $service1->checklistRequirements1()->save($checklistRequirement2);
+        // }
+
+        // Create and associate checklist requirements of type 3 (client_steps, agency_action, fees_to_paid, processing_time, person_responsible)
+        // foreach ($request->client_steps as $clientStep) {
+        //     $checklistRequirement3 = new Service1_3;
+        //     $checklistRequirement3->client_steps = $clientStep;
+        //     // Set other attributes as well
+        //     $service1->checklistRequirements3()->save($checklistRequirement3);
+        // }
+
+        // Other related data can be handled similarly
 
         return redirect()->route('AddService')->with('message', 'Service created successfully.');
     }
+
 
 
     public function showAccountPage()

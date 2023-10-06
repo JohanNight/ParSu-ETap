@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class service2 extends Model
+class service1_3 extends Model
 {
     use HasFactory;
-    protected $table = 'table_services2_2';
+    protected $table = 'table_services1_3';
 
     protected $fillable = [
-        'service_id',
-        'requirement_description',
-        'where_to_secure',
+        'service_id1',
         'client_steps',
         'agency_action',
         'fees_to_be_paid',
@@ -22,6 +20,6 @@ class service2 extends Model
     ];
     public function service()
     {
-        return $this->belongsTo(service1::class);
+        return $this->belongsTo(Service1::class, 'service_id1', 'id');
     }
 }
