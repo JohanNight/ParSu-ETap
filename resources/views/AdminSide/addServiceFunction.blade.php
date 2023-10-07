@@ -307,7 +307,7 @@
     </div>
 </div>
 <!--for handling the table to be editable-->
-<script>
+{{-- <script>
     document.getElementById("add_row").addEventListener("click", function() {
         addRow();
     });
@@ -323,7 +323,7 @@
         for (var i = 0; i < 5; i++) {
             var newCell = newRow.insertCell(i);
             newCell.className = "w-40 h-28 p-1 border-2";
-            setCellStyles(newCell);
+            setCellStyles(newCell, table.rows.length - 1); // Pass the row index
         }
     }
 
@@ -334,14 +334,19 @@
         }
     }
 
-    function setCellStyles(cell) {
+    function setCellStyles(cell, rowIndex) {
         var textarea = document.createElement('textarea');
         textarea.value = cell.innerText;
+
+        // Set unique names and IDs for each textarea based on the row index
+        textarea.name = "table[" + rowIndex + "][field_name]";
+        textarea.id = "table[" + rowIndex + "][field_name]";
 
         textarea.style.width = "100%";
         textarea.style.height = "100%";
         textarea.style.padding = "0";
         textarea.style.border = "none";
+
 
         textarea.addEventListener('blur', function() {
             cell.innerText = textarea.value;
@@ -351,7 +356,7 @@
         cell.appendChild(textarea);
     }
 
-    // Event listener for the table to handle cell editing
+    // // // Event listener for the table to handle cell editing
     document.getElementById("table_id").addEventListener("click", function(e) {
         var cell = e.target;
 
@@ -369,6 +374,8 @@
         textarea.style.padding = "0";
         textarea.style.border = "none";
 
+
+
         // Clear the cell's content before appending the textarea
         cell.innerHTML = '';
 
@@ -379,7 +386,65 @@
         cell.appendChild(textarea);
         textarea.focus();
     }
+</script> --}}
+
+<script>
+    document.getElementById("add_row").addEventListener("click", function() {
+        addRow();
+    });
+
+    document.getElementById("dlt_row").addEventListener("click", function() {
+        deleteRow();
+    });
+
+    function addRow() {
+        var table = document.getElementById("table_id");
+        var newRow = table.insertRow(-1);
+
+        for (var i = 0; i < 5; i++) {
+            var newCell = newRow.insertCell(i);
+            newCell.className = "w-40 h-28 p-1 border-2";
+            setCellStyles(newCell, table.rows.length - 1, i); // Pass the row index and column index
+        }
+    }
+
+    function deleteRow() {
+        var table = document.getElementById("table_id");
+        if (table.rows.length > 2) {
+            table.deleteRow(-1);
+        }
+    }
+
+    function setCellStyles(cell, rowIndex, columnIndex) {
+        var textarea = document.createElement('textarea');
+        textarea.value = cell.innerText;
+
+        // Create a unique name and ID for each textarea based on the row and column indices
+        var columnName = getColumnNameByIndex(columnIndex);
+        textarea.name = "table[" + rowIndex + "][" + columnName + "]";
+        textarea.id = "table[" + rowIndex + "][" + columnName + "]";
+
+        textarea.style.width = "100%";
+        textarea.style.height = "100%";
+        textarea.style.padding = "0";
+        textarea.style.border = "none";
+
+
+        cell.innerText = '';
+        cell.appendChild(textarea);
+    }
+
+    function getColumnNameByIndex(columnIndex) {
+        // Define your own logic to get the column name based on the index
+        // For example, you can use an array of column names or other data structure
+        // Modify this logic as per your table structure
+        var columnNames = ["client_steps", "agency_action", "fees_to_paid", "processing_time", "person_responsible"];
+        return columnNames[columnIndex];
+    }
 </script>
+
+
+
 
 
 <!--for handling the input fields of where to secure and requirements-->
