@@ -11,16 +11,17 @@
         <!--Main Content Area-->
         <div class="flex-1 w-full md:w-1/2 bg-gray-200 min-h-screen ">
             <!-- component -->
-            <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">New Service</div>
+            <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">Edit Service</div>
             <form action="" method="POST">
                 @csrf
+                @method('PUT')
                 <div
                     class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl bg-white rounded-md">
                     <div class="flex flex-col gap-2 mt-2 mb-2">
                         <label for="code_Title" class="text-md Reg-font">Code:</label>
                         <input name="code_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font "
-                            spellcheck="false" type="text" autocomplete="off">
+                            spellcheck="false" type="text" autocomplete="off" value="{{ $service1->code_Title }}">
                         @error('code_Title')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -31,7 +32,8 @@
                         <label for="service_Title" class="text-md Reg-font">Title:</label>
                         <input name="service_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font" spellcheck="false"
-                            placeholder="Title" type="text" autocomplete="off">
+                            placeholder="Title" type="text" autocomplete="off"
+                            value="{{ $service1->service_Title }}">
                         @error('service_Title')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -41,8 +43,8 @@
                     <div class=" mt-2 mb-2 ">
                         <label for="description_service" class="text-md Reg-font">Description:</label>
                         <textarea id="description_service" name="description_service"
-                            class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none Reg-font w-full" spellcheck="false"
-                            placeholder="Describe everything here"></textarea>
+                            class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none Reg-font w-full text-justify"
+                            spellcheck="false" placeholder="Describe everything here">{{ $service1->description_service }}</textarea>
                         @error('description_service')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -57,8 +59,10 @@
                                 <option value=""></option>
                                 @foreach ($officeTypes as $officeType)
                                     <option value="{{ $officeType->officeDescription }}"
-                                        class="text-[16px] Reg-font capitalize ">
-                                        {{ $officeType->officeAcronym }}</option>
+                                        class="text-[16px] Reg-font capitalize "
+                                        @if ($service1->office_service == $officeType->officeDescription) selected @endif>
+                                        {{ $officeType->officeAcronym }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('office_service')
@@ -71,15 +75,21 @@
                             <label for="classification_service" class="text-md Reg-font">Classification:</label>
                             <select name="classification_service" id="classification_service"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
-                                <option value=""></option>
-
-                                <option value="C-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
+                                <option value=""{{ $service1->clssification_service == '' ? 'selected' : '' }}>
+                                </option>
+                                <option value="C-2-C Government to Citizen"
+                                    {{ $service1->classification_service == 'C-2-C Government to Citizen' ? 'selected' : '' }}
+                                    class="text-[16px] Reg-font capitalize ">
                                     C-2-C Citizen to Citizen
                                 </option>
-                                <option value="G-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
+                                <option value="G-2-C Government to Citizen"
+                                    {{ $service1->classification_service == 'G-2-C Government to Citizen' ? 'selected' : '' }}
+                                    class="text-[16px] Reg-font capitalize ">
                                     G-2-C Government to Citizen
                                 </option>
-                                <option value="G-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
+                                <option value="G-2-C Government to Citizen"
+                                    {{ $service1->classification_service == 'G-2-C Government to Citizen' ? 'selected' : '' }}
+                                    class="text-[16px] Reg-font capitalize ">
                                     G-2-C Government to Citizen
                                 </option>
                             </select>
@@ -93,15 +103,19 @@
                             <label for="transaction_type" class="text-md Reg-font capitalize">Transaction Type:</label>
                             <select name="transaction_type" id="transaction_type"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
-                                <option value=""></option>
+                                <option value=""{{ $service1->transaction_type == '' ? 'selected' : '' }}>
+                                </option>
 
-                                <option value=" Simple" class="text-[16px] Reg-font capitalize ">
+                                <option value=" Simple" {{ $service1->transaction_type == 'Simple' ? 'selected' : '' }}
+                                    class="text-[16px] Reg-font capitalize ">
                                     Simple
                                 </option>
-                                <option value="Medium" class="text-[16px] Reg-font capitalize ">
+                                <option value="Medium" {{ $service1->transaction_type == 'Medium' ? 'selected' : '' }}
+                                    class="text-[16px] Reg-font capitalize ">
                                     Medium
                                 </option>
-                                <option value="Hard" class="text-[16px] Reg-font capitalize ">
+                                <option value="Hard" {{ $service1->transaction_type == 'Hard' ? 'selected' : '' }}
+                                    class="text-[16px] Reg-font capitalize ">
                                     Hard
                                 </option>
                             </select>
@@ -116,7 +130,8 @@
                         <label for="who_avail" class="text-md Reg-font capitalize">Who may Avail:</label>
                         <input name="who_avail" id="who_avail"
                             class=" bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
-                            spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off">
+                            spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off"
+                            value="{{ $service1->who_avail }}">
                         @error('who_avail')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -128,15 +143,24 @@
                     <div class="bg-gray-300 h-px mb-6"></div>
                     <!-- Line with gradient -->
                     <div>
+
                         <div class="mt-2 mb-3">
                             <p class="text-sm Reg-font text-justify">
-                                Note: Checklist of Requirements and Where to Secure input Fields are correspond to each
-                                input fields, if the Checklist of Requirements input field number 1 doesn't need an
-                                information on Where to Secure just Add in the input Field number 1 of Where to Secure
+                                Note: Checklist of Requirements and Where to Secure input Fields are
+                                correspond
+                                to
+                                each
+                                input fields, if the Checklist of Requirements input field number 1 doesn't
+                                need
+                                an
+                                information on Where to Secure just Add in the input Field number 1 of Where
+                                to
+                                Secure
                                 is
                                 <span class="text-blue-400">N/A</span>
                             </p>
                         </div>
+
                         <div class="mt-2 mb-3">
                             <div class="p-1 flex justify-end gap-5">
                                 <button type="button" id="add_rqr_whr_row"
@@ -162,24 +186,20 @@
                                         </th>
                                     </thead>
                                     <tbody>
-                                        <tr class="text-left">
-                                            <td class="w-60 h-20 p-1 border-2">
-                                                <textarea name="Rqr_Whr[0][checklist_of_requirement]" id="Rqr_Whr[0][checklist_of_requirement]"
-                                                    class="w-full h-full"></textarea>
-                                            <td class="w-60 h-20 p-1 border-2">
-                                                <textarea name="Rqr_Whr[0][where_to_secure]" id="Rqr_Whr[0][where_to_secure]" class="w-full h-full"></textarea>
-                                        </tr>
-                                        <tr class="text-left">
-                                            <td class="w-60 h-20 p-1 border-2">
-                                                <textarea name="Rqr_Whr[1][checklist_of_requirement]" id="Rqr_Whr[1][checklist_of_requirement]"
-                                                    class="w-full h-full"></textarea>
-                                            <td class="w-60 h-20 p-1 border-2">
-                                                <textarea name="Rqr_Whr[1][where_to_secure]" id="Rqr_Whr[1][where_to_secure]" class="w-full h-full"></textarea>
-                                        </tr>
+                                        @foreach ($service1->checklistRequirements1 as $checklist)
+                                            <tr class="text-left">
+                                                <td class="w-60 h-20 p-1 border-2">
+                                                    <textarea name="Rqr_Whr[0][checklist_of_requirement]" id="Rqr_Whr[0][checklist_of_requirement]"
+                                                        class="w-full h-full">{{ $checklist->requirement_description }}</textarea>
+                                                <td class="w-60 h-20 p-1 border-2">
+                                                    <textarea name="Rqr_Whr[0][where_to_secure]" id="Rqr_Whr[0][where_to_secure]" class="w-full h-full">{{ $checklist->where_to_secure }}</textarea>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                     </div>
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gray-300 h-px mb-6"></div>
@@ -225,40 +245,42 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr class="text-left">
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[0][client_steps]" id="table[0][client_steps]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[0][agency_action]" id="table[0][agency_action]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[0][fees_to_paid]" id="table[0][fees_to_paid]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[0][processing_time]" id="table[0][processing_time]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[0][person_responsible]" id="table[0][person_responsible]" class="w-full h-full"></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-left">
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[1][client_steps]" id="table[1][client_steps]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[1][agency_action]" id="table[1][agency_action]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[1][fees_to_paid]" id="table[1][fees_to_paid]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[1][processing_time]" id="table[1][processing_time]" class="w-full h-full"></textarea>
-                                        </td>
-                                        <td class="w-40 h-28 p-1 border-2">
-                                            <textarea name="table[1][person_responsible]" id="table[1][person_responsible]" class="w-full h-full"></textarea>
-                                        </td>
-                                    </tr>
+                                    @foreach ($service1->checklistRequirements2 as $checklist)
+                                        <tr class="text-left">
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[0][client_steps]" id="table[0][client_steps]" class="w-full h-full">{{ $checklist->client_steps }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[0][agency_action]" id="table[0][agency_action]" class="w-full h-full">{{ $checklist->agency_action }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[0][fees_to_paid]" id="table[0][fees_to_paid]" class="w-full h-full">{{ $checklist->fees_to_be_paid }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[0][processing_time]" id="table[0][processing_time]" class="w-full h-full">{{ $checklist->processing_time }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[0][person_responsible]" id="table[0][person_responsible]" class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
+                                            </td>
+                                        </tr>
+                                        {{-- <tr class="text-left">
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[1][client_steps]" id="table[1][client_steps]" class="w-full h-full">{{ $checklist->client_steps }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[1][agency_action]" id="table[1][agency_action]" class="w-full h-full">{{ $checklist->agency_action }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[1][fees_to_paid]" id="table[1][fees_to_paid]" class="w-full h-full">{{ $checklist->fees_to_be_paid }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[1][processing_time]" id="table[1][processing_time]" class="w-full h-full">{{ $checklist->processing_time }}</textarea>
+                                            </td>
+                                            <td class="w-40 h-28 p-1 border-2">
+                                                <textarea name="table[1][person_responsible]" id="table[1][person_responsible]" class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
+                                            </td>
+                                        </tr> --}}
+                                    @endforeach
                                 </tbody>
 
                             </table>
@@ -334,72 +356,6 @@
 </script>
 
 <!--for handling the input fields of where to secure and requirements-->
-{{-- <script>
-    function addField(container, inputCounterName, containerId, inputName) {
-        const inputCounter = container.getAttribute(inputCounterName);
-        const newInput = document.createElement("div");
-        newInput.className = "flex gap-3 mt-2 mb-2";
-        newInput.innerHTML = `
-            <input type="text" name="${containerId}[${inputCounter}][${inputName}]" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">
-            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeField(this, '${containerId}')">Delete</button>
-        `;
-
-        container.appendChild(newInput);
-        container.setAttribute(inputCounterName, parseInt(inputCounter) + 1);
-    }
-
-    function removeField(element, containerId) {
-        const container = element.parentElement.parentElement;
-        container.removeChild(element.parentElement);
-    }
-
-    // Event listeners for the "Add new Fields" buttons
-    document.getElementById("addRqr_inpt").addEventListener("click", () => addField(document.getElementById(
-        "requirementsContainer"), "data-rqr-input-counter", "requirements", "rqr_inpt"));
-    document.getElementById("addWhr_inpt").addEventListener("click", () => addField(document.getElementById(
-        "whr_secure"), "data-whr-input-counter", "requirements", "whr_inpt"));
-</script> --}}
-{{-- <script>
-    function addFields() {
-        const container = document.getElementById("requirementsContainer");
-        const newSet = document.createElement("div");
-        newSet.className = "gap-3 mt-2 mb-2";
-
-        newSet.innerHTML = `
-            <label for="requirements[][rqr_inpt]" class="text-md Reg-font">Check List of Requirements:</label>
-            <input type="text" name="requirements[][rqr_inpt]"
-                class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
-                autocomplete="off">
-            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeFields(this)">Delete</button>
-        `;
-
-        container.appendChild(newSet);
-
-        const whrContainer = document.getElementById("whr_secure");
-        const newWhrSet = document.createElement("div");
-        newWhrSet.className = "gap-3 mt-2 mb-2";
-
-        newWhrSet.innerHTML = `
-            <label for="requirements[][whr_inpt]" class="text-md Reg-font">Where to Secure:</label>
-            <input type="text" name="requirements[][whr_inpt]"
-                class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
-                autocomplete="off">
-            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeFields(this)">Delete</button>
-        `;
-
-        whrContainer.appendChild(newWhrSet);
-    }
-
-    function removeFields(element) {
-        const container = element.parentElement.parentElement;
-        container.removeChild(element.parentElement);
-
-        // Ensure at least one set remains
-        if (container.children.length === 0) {
-            addFields(); // Add a new set if all sets were removed
-        }
-    }
-</script> --}}
 <script>
     document.getElementById("add_rqr_whr_row").addEventListener("click", function() {
         addTheRow();
@@ -446,7 +402,7 @@
         cell.appendChild(textarea);
     }
 
-    function getTheColumnNameByIndex(columnIndex) {
+    function geTheColumnNameByIndex(columnIndex) {
         // Define your own logic to get the column name based on the index
         // For example, you can use an array of column names or other data structure
         // Modify this logic as per your table structure
@@ -455,6 +411,7 @@
     }
 </script>
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--for handling the data-->
 <script>
@@ -462,26 +419,6 @@
         // Handle form submission
         $('form').on('submit', function(event) {
             event.preventDefault();
-
-            // // Gather the data from dynamically generated fields
-            // var rqrInputs = [];
-            // var whrInputs = [];
-
-            // $('#requirementsContainer input').each(function(index) {
-            //     var rqrValue = $(this).val();
-            //     var whrValue = $('#whr_secure input[name="requirements[' + index +
-            //         '][whr_inpt]"]').val();
-            //     rqrInputs.push(rqrValue);
-            //     whrInputs.push(whrValue);
-            // });
-            // // Combine rqr_inpt and whr_inpt into a single array
-            // var combinedInputs = [];
-            // for (var i = 0; i < rqrInputs.length; i++) {
-            //     combinedInputs.push({
-            //         rqr_inpt: rqrInputs[i],
-            //         whr_inpt: whrInputs[i]
-            //     });
-            // }
 
             // Gather the table of checklist and where to secure data
             var tableRqrWhrData = [];
@@ -496,6 +433,7 @@
                 };
                 tableRqrWhrData.push(rowData);
             });
+
 
             // Gather the table data
             var tableData = [];
@@ -521,7 +459,7 @@
 
             // Send all the data to the server using AJAX
             $.ajax({
-                url: 'http://127.0.0.1:8000/indexAdmin/addService'
+                url: 'http://127.0.0.1:8000/indexAdmin/editService'
                 data: {
                     _token: $('meta[name="csrf-token"]').attr(
                         'content'), // Include the CSRF token
@@ -531,7 +469,6 @@
                     classification_service: $('#classification_service').val(),
                     transaction_type: $('#transaction_type').val(),
                     who_avail: $('#who_avail').val(),
-                    // rqr_whr_inpt: combinedInputs,
                     table_Rqr_Whr_data: JSON.stringify(
                         tableRqrWhrData), // Convert table data to JSON
                     table_data: JSON.stringify(tableData) // Convert table data to JSON
