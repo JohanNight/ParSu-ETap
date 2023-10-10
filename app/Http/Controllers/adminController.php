@@ -235,7 +235,6 @@ class adminController extends Controller
         // Retrieve the main service1 record
         $service1 = Service1::find($id);
         $checklistRequirements1 = $service1->checklistRequirements1;
-        $service1 = Service1::find($id);
         $checklistRequirements2 = $service1->checklistRequirements2;
 
         $officeTypes = offices::all();
@@ -248,10 +247,11 @@ class adminController extends Controller
 
         return view('AdminSide.editService', compact('service1', 'officeTypes'));
     }
-    public function saveEditService(Request $request, service1 $service)
+    public function saveEditService(Request $request, $serviceId)
     {
         //dd($request);
         // Validate the input
+        $service = service1::findOrFail($serviceId);
         $this->validate($request, [
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
@@ -274,110 +274,62 @@ class adminController extends Controller
             'transaction_type' => $request->transaction_type,
             'who_avail' => $request->who_avail,
         ]);
-        // Update or delete checklist requirements (Service1_2 and Service1_3) as needed
-        $this->updateChecklistRequirements($service, 'checklist_of_requirement', 'where_to_secure', $request->input('Rqr_Whr'));
-        $this->updateChecklistRequirements2($service, $request->input('table_data'));
+
+
+        // Retrieve the "requirements" array from the request
+        $Requirements = $request->input('Rqr_Whr');
+        $existingRequirements = $service->checklistRequirements1;
+
+        // Update existing requirements and add new ones as needed
+        foreach ($Requirements as $index => $requirementData) {
+            if (isset($existingRequirements[$index])) {
+                // Update existing requirement
+                $existingRequirement = $existingRequirements[$index];
+                $existingRequirement->update([
+                    'requirement_description' => $requirementData['checklist_of_requirement'],
+                    'where_to_secure' => $requirementData['where_to_secure'],
+                ]);
+            } else {
+                // Create and associate a new requirement
+                $newRequirement = new Service1_2([
+                    'requirement_description' => $requirementData['checklist_of_requirement'],
+                    'where_to_secure' => $requirementData['where_to_secure'],
+                ]);
+                $service->checklistRequirements1()->save($newRequirement);
+            }
+        }
+
+        // Retrieve the "table" array from the request
+        $tables = $request->input('table');
+        $existingTable = $service->checklistRequirements2;
+
+        foreach ($tables as $index => $table) {
+            if (isset($existingTable[$index])) {
+                // Update existing requirement
+                $existingRequirement = $existingTable[$index]; // Use a different variable name
+                $existingRequirement->update([
+                    'client_steps' => $table['client_steps'],
+                    'agency_action' => $table['agency_action'],
+                    'fees_to_be_paid' => $table['fees_to_paid'],
+                    'processing_time' => $table['processing_time'],
+                    'person_responsible' => $table['person_responsible'],
+                ]);
+            } else {
+                // Create and associate a new requirement
+                $newRequirement = new service1_3([
+                    'client_steps' => $table['client_steps'],
+                    'agency_action' => $table['agency_action'],
+                    'fees_to_be_paid' => $table['fees_to_paid'],
+                    'processing_time' => $table['processing_time'],
+                    'person_responsible' => $table['person_responsible'],
+                ]);
+                $service->checklistRequirements2()->save($newRequirement);
+            }
+        }
+
 
         return redirect()->route('Storage')->with('message', 'Service updated successfully.');
     }
-    private function updateChecklistRequirements($service, $requirementKey, $whereToSecureKey, $checklistRequirements)
-    {
-        $existingRequirements = $service->checklistRequirements1;
-
-        // Create an array to keep track of which requirements need to be updated or deleted
-        $updateOrDeleteMap = [];
-
-        foreach ($checklistRequirements as $index => $requirement) {
-            if (isset($existingRequirements[$index])) {
-                $existingRequirement = $existingRequirements[$index];
-                if (!empty($requirement[$requirementKey]) || !empty($requirement[$whereToSecureKey])) {
-                    // Update existing requirement if not empty
-                    $existingRequirement->update([
-                        'requirement_description' => $requirement[$requirementKey],
-                        'where_to_secure' => $requirement[$whereToSecureKey],
-                    ]);
-
-                    // Mark this requirement as updated
-                    $updateOrDeleteMap[$index] = 'updated';
-                } else {
-                    // Delete the requirement if both fields are empty
-                    $existingRequirement->delete();
-
-                    // Mark this requirement as deleted
-                    $updateOrDeleteMap[$index] = 'deleted';
-                }
-            } else {
-                if (!empty($requirement[$requirementKey]) || !empty($requirement[$whereToSecureKey])) {
-                    // Create and associate new requirement if not empty
-                    $newRequirement = new Service1_2([
-                        'requirement_description' => $requirement[$requirementKey],
-                        'where_to_secure' => $requirement[$whereToSecureKey],
-                    ]);
-                    $service->checklistRequirements1()->save($newRequirement);
-
-                    // Mark this requirement as added
-                    $updateOrDeleteMap[$index] = 'added';
-                }
-            }
-        }
-
-        // Delete requirements that are not in the updateOrDeleteMap
-        foreach ($existingRequirements as $index => $existingRequirement) {
-            if (!isset($updateOrDeleteMap[$index])) {
-                $existingRequirement->delete();
-            }
-        }
-    }
-
-
-    private function updateChecklistRequirements2($service, $tableData)
-    {
-        $existingRequirements = $service->checklistRequirements2;
-
-        // Create an array to keep track of which requirements need to be updated or deleted
-        $updateOrDeleteMap = [];
-
-        foreach ($tableData as $row) {
-            $index = $row['index'];
-
-            if (isset($existingRequirements[$index])) {
-                // Update existing requirement
-                $existingRequirements[$index]->update([
-                    'client_steps' => $row['client_steps'],
-                    'agency_action' => $row['agency_action'],
-                    'fees_to_be_paid' => $row['fees_to_paid'],
-                    'processing_time' => $row['processing_time'],
-                    'person_responsible' => $row['person_responsible'],
-                ]);
-
-                // Mark this requirement as updated
-                $updateOrDeleteMap[$index] = 'updated';
-            } else {
-                // Create and associate new requirement
-                $newRequirement = new Service1_3([
-                    'client_steps' => $row['client_steps'],
-                    'agency_action' => $row['agency_action'],
-                    'fees_to_be_paid' => $row['fees_to_paid'],
-                    'processing_time' => $row['processing_time'],
-                    'person_responsible' => $row['person_responsible'],
-                ]);
-
-                $service->checklistRequirements2()->save($newRequirement);
-
-                // Mark this requirement as added
-                $updateOrDeleteMap[$index] = 'added';
-            }
-        }
-
-        // Delete requirements that are not in the updateOrDeleteMap
-        foreach ($existingRequirements as $index => $existingRequirement) {
-            if (!isset($updateOrDeleteMap[$index])) {
-                $existingRequirement->delete();
-            }
-        }
-    }
-
-
 
     public function draftPage()
     {

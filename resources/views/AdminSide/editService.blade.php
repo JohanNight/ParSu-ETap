@@ -12,7 +12,7 @@
         <div class="flex-1 w-full md:w-1/2 bg-gray-200 min-h-screen ">
             <!-- component -->
             <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">Edit Service</div>
-            <form action="" method="POST">
+            <form action="/indexAdmin/editService/{{ $service1->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div
@@ -186,13 +186,14 @@
                                         </th>
                                     </thead>
                                     <tbody>
-                                        @foreach ($service1->checklistRequirements1 as $checklist)
+                                        @foreach ($service1->checklistRequirements1 as $index => $checklist)
                                             <tr class="text-left">
                                                 <td class="w-60 h-20 p-1 border-2">
-                                                    <textarea name="Rqr_Whr[0][checklist_of_requirement]" id="Rqr_Whr[0][checklist_of_requirement]"
-                                                        class="w-full h-full">{{ $checklist->requirement_description }}</textarea>
+                                                    <textarea name="Rqr_Whr[{{ $index }}][checklist_of_requirement]"
+                                                        id="Rqr_Whr[{{ $index }}][checklist_of_requirement]" class="w-full h-full">{{ $checklist->requirement_description }}</textarea>
                                                 <td class="w-60 h-20 p-1 border-2">
-                                                    <textarea name="Rqr_Whr[0][where_to_secure]" id="Rqr_Whr[0][where_to_secure]" class="w-full h-full">{{ $checklist->where_to_secure }}</textarea>
+                                                    <textarea name="Rqr_Whr[{{ $index }}][where_to_secure]" id="Rqr_Whr[{{ $index }}][where_to_secure]"
+                                                        class="w-full h-full">{{ $checklist->where_to_secure }}</textarea>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -245,22 +246,27 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($service1->checklistRequirements2 as $checklist)
+                                    @foreach ($service1->checklistRequirements2 as $index => $checklist)
                                         <tr class="text-left">
                                             <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[0][client_steps]" id="table[0][client_steps]" class="w-full h-full">{{ $checklist->client_steps }}</textarea>
+                                                <textarea name="table[{{ $index }}][client_steps]" id="table[{{ $index }}][client_steps]"
+                                                    class="w-full h-full">{{ $checklist->client_steps }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[0][agency_action]" id="table[0][agency_action]" class="w-full h-full">{{ $checklist->agency_action }}</textarea>
+                                                <textarea name="table[{{ $index }}][agency_action]" id="table[{{ $index }}][agency_action]"
+                                                    class="w-full h-full">{{ $checklist->agency_action }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[0][fees_to_paid]" id="table[0][fees_to_paid]" class="w-full h-full">{{ $checklist->fees_to_be_paid }}</textarea>
+                                                <textarea name="table[{{ $index }}][fees_to_paid]" id="table[{{ $index }}][fees_to_paid]"
+                                                    class="w-full h-full">{{ $checklist->fees_to_be_paid }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[0][processing_time]" id="table[0][processing_time]" class="w-full h-full">{{ $checklist->processing_time }}</textarea>
+                                                <textarea name="table[{{ $index }}][processing_time]" id="table[{{ $index }}][processing_time]"
+                                                    class="w-full h-full">{{ $checklist->processing_time }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[0][person_responsible]" id="table[0][person_responsible]" class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
+                                                <textarea name="table[{{ $index }}][person_responsible]" id="table[{{ $index }}][person_responsible]"
+                                                    class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
                                             </td>
                                         </tr>
                                         {{-- <tr class="text-left">
@@ -300,7 +306,7 @@
     </div>
 </div>
 <!--for handling the table to be editable-->
-<script>
+{{-- <script>
     document.getElementById("add_row").addEventListener("click", function() {
         addRow();
     });
@@ -353,10 +359,60 @@
         var columnNames = ["client_steps", "agency_action", "fees_to_paid", "processing_time", "person_responsible"];
         return columnNames[columnIndex];
     }
+</script> --}}
+<script>
+    document.getElementById("add_row").addEventListener("click", function() {
+        addRow();
+    });
+
+    document.getElementById("dlt_row").addEventListener("click", function() {
+        deleteRow();
+    });
+
+    function addRow() {
+        var table = document.getElementById("table_id");
+        var newRow = table.insertRow(-1);
+
+        for (var i = 0; i < 5; i++) {
+            var newCell = newRow.insertCell(i);
+            newCell.className = "w-40 h-28 p-1 border-2";
+            setCellStyles(newCell, table.rows.length - 1, i);
+        }
+    }
+
+    function deleteRow() {
+        var table = document.getElementById("table_id");
+        if (table.rows.length > 2) {
+            table.deleteRow(-1);
+        }
+    }
+
+    function setCellStyles(cell, rowIndex, columnIndex) {
+        var textarea = document.createElement('textarea');
+        textarea.value = cell.innerText;
+
+        var columnName = getColumnNameByIndex(columnIndex);
+        textarea.name = "table[" + rowIndex + "][" + columnName + "]";
+        textarea.id = "table[" + rowIndex + "][" + columnName + "]";
+
+        textarea.style.width = "100%";
+        textarea.style.height = "100%";
+        textarea.style.padding = "0";
+        textarea.style.border = "none";
+
+        cell.innerText = '';
+        cell.appendChild(textarea);
+    }
+
+    function getColumnNameByIndex(columnIndex) {
+        var columnNames = ["client_steps", "agency_action", "fees_to_paid", "processing_time", "person_responsible"];
+        return columnNames[columnIndex];
+    }
 </script>
 
+
 <!--for handling the input fields of where to secure and requirements-->
-<script>
+{{-- <script>
     document.getElementById("add_rqr_whr_row").addEventListener("click", function() {
         addTheRow();
     });
@@ -402,14 +458,83 @@
         cell.appendChild(textarea);
     }
 
-    function geTheColumnNameByIndex(columnIndex) {
+    function getTheColumnNameByIndex(columnIndex) {
         // Define your own logic to get the column name based on the index
         // For example, you can use an array of column names or other data structure
         // Modify this logic as per your table structure
         var columnNames = ["checklist_of_requirement", "where_to_secure"];
         return columnNames[columnIndex];
     }
+</script> --}}
+<script>
+    document.getElementById("add_rqr_whr_row").addEventListener("click", function() {
+        addTheRow();
+    });
+
+    document.getElementById("dlt_rqr_whr_row").addEventListener("click", function() {
+        deleteTheRow();
+    });
+
+    function addTheRow() {
+        var table = document.getElementById("Rqr_Whr_id");
+        var newRow = table.insertRow(-1);
+        var rowIndex = table.rows.length - 1; // Get the current row index
+
+        for (var i = 0; i < 2; i++) {
+            var newCell = newRow.insertCell(i);
+            newCell.className = "w-60 h-20 p-1 border-2";
+            setTheCellStyles(newCell, rowIndex, i); // Pass the row index and column index
+        }
+    }
+
+    function deleteTheRow() {
+        var table = document.getElementById("Rqr_Whr_id");
+        if (table.rows.length > 2) {
+            var rowIndex = table.rows.length - 1; // Get the current row index
+            table.deleteRow(-1);
+
+            // Re-index the inputs for the remaining rows
+            reindexInputs(table, rowIndex);
+        }
+    }
+
+    function reindexInputs(table, startIndex) {
+        // Update the name and id attributes of the input elements to have consecutive indices
+        for (var i = startIndex; i < table.rows.length; i++) {
+            var row = table.rows[i];
+            for (var j = 0; j < 2; j++) {
+                var cell = row.cells[j];
+                var textarea = cell.querySelector('textarea');
+                textarea.name = "Rqr_Whr[" + i + "][" + getTheColumnNameByIndex(j) + "]";
+                textarea.id = "Rqr_Whr[" + i + "][" + getTheColumnNameByIndex(j) + "]";
+            }
+        }
+    }
+
+    function setTheCellStyles(cell, rowIndex, columnIndex) {
+        var textarea = document.createElement('textarea');
+        textarea.value = cell.innerText;
+
+        // Create a unique name and ID for each textarea based on the row and column indices
+        var columnName = getTheColumnNameByIndex(columnIndex);
+        textarea.name = "Rqr_Whr[" + rowIndex + "][" + columnName + "]";
+        textarea.id = "Rqr_Whr[" + rowIndex + "][" + columnName + "]";
+
+        textarea.style.width = "100%";
+        textarea.style.height = "100%";
+        textarea.style.padding = "0";
+        textarea.style.border = "none";
+
+        cell.innerText = '';
+        cell.appendChild(textarea);
+    }
+
+    function getTheColumnNameByIndex(columnIndex) {
+        var columnNames = ["checklist_of_requirement", "where_to_secure"];
+        return columnNames[columnIndex];
+    }
 </script>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -456,10 +581,23 @@
             });
 
 
+            var url = window.location.href; // Get the current URL
+            var urlParts = url.split('/'); // Split the URL by '/'
+            var serviceIdIndex = urlParts.indexOf(
+                'editService'); // Find the index of 'update-service' in the URL
+
+            if (serviceIdIndex !== -1) {
+                // If 'update-service' is found in the URL
+                var serviceId = urlParts[serviceIdIndex +
+                    1]; // Get the service ID which is the next part of the URL
+                console.log('Service ID:', serviceId);
+            } else {
+                console.error('Service ID not found in the URL');
+            }
 
             // Send all the data to the server using AJAX
             $.ajax({
-                url: 'http://127.0.0.1:8000/indexAdmin/editService'
+                url: 'http://127.0.0.1:8000/indexAdmin/editService/' + serviceId
                 data: {
                     _token: $('meta[name="csrf-token"]').attr(
                         'content'), // Include the CSRF token
