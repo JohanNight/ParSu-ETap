@@ -128,144 +128,55 @@
         </section>
         <!--Search Data Section-->
         <section class="mt-10">
-            <div class="overflow-x-auto relative ">
-                <table class="w-full text-sm text-left text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-blue-400">
-                        <tr>
-                            <th scope="col" class="py-3 px-6 text-center">Types Services</th>
-                            <th scope="col" class="py-3 px-6 text-center">Services Titles</th>
-                            <th scope="col" class="py-3 px-6 text-center">Service Site</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-white">
-                        <tr class="bg-gray-800 border-b ">
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
+            <div class="overflow-x-auto relative w-full ">
+                <div class="">
+                    <!-- component -->
+                    <div class="flex flex-col">
+                        <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+                            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                                <div class="overflow-hidden">
+                                    <table class="min-w-full">
+                                        <thead class="bg-blue-800 text-white border-b text-left">
+                                            <tr>
+                                                <th scope="col" class="text-sm SemiB-font  px-6 py-4 ">
+                                                    Code
+                                                </th>
+                                                <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
+                                                    Title
+                                                </th>
 
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
+                                                <th scope="col" class="text-sm  SemiB-font  px-6 py-4 ">
+                                                    Handle
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-left">
+                                            @foreach ($services as $service)
+                                                <tr
+                                                    class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                                    <td
+                                                        class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
+                                                        {{ $service->code_Title }}</td>
+                                                    <td
+                                                        class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
+                                                        {{ $service->service_Title }}
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <a href="/home/Document/{{ $service->id }}"
+                                                            class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-green-700">
+                                                            View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-800 border-b ">
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-
-
-                            <td class="py-4 px-6 border-r">
-                                Lorem ipsum dolor sit .
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </section>
     </div>

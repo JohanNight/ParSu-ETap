@@ -269,23 +269,6 @@
                                                     class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
                                             </td>
                                         </tr>
-                                        {{-- <tr class="text-left">
-                                            <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[1][client_steps]" id="table[1][client_steps]" class="w-full h-full">{{ $checklist->client_steps }}</textarea>
-                                            </td>
-                                            <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[1][agency_action]" id="table[1][agency_action]" class="w-full h-full">{{ $checklist->agency_action }}</textarea>
-                                            </td>
-                                            <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[1][fees_to_paid]" id="table[1][fees_to_paid]" class="w-full h-full">{{ $checklist->fees_to_be_paid }}</textarea>
-                                            </td>
-                                            <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[1][processing_time]" id="table[1][processing_time]" class="w-full h-full">{{ $checklist->processing_time }}</textarea>
-                                            </td>
-                                            <td class="w-40 h-28 p-1 border-2">
-                                                <textarea name="table[1][person_responsible]" id="table[1][person_responsible]" class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
-                                            </td>
-                                        </tr> --}}
                                     @endforeach
                                 </tbody>
 

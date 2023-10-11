@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 use App\Models\clientCode;
+use App\Models\service1;
 
 class clientController extends Controller
 {
@@ -34,8 +35,24 @@ class clientController extends Controller
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
+            $service = service1::all();
+            return view('ClientSide.citizenCharter', ['services' => $service]);
+        } else {
+            return abort(404);
+        }
+    }
+    public function citizenDocument($id)
+    {
+        // Retrieve the main service1 record
+        $service1 = Service1::find($id);
+        $checklistRequirements1 = $service1->checklistRequirements1;
+        $checklistRequirements2 = $service1->checklistRequirements2;
 
-            return view('ClientSide.citizenCharter');
+        $officeTypes = offices::all();
+
+        $service1 = Service1::with('checklistRequirements1', 'checklistRequirements2')->find($id);
+        if (View::exists('ClientSide.citizenDocument')) {
+            return view('ClientSide.citizenDocument', compact('service1', 'officeTypes'));
         } else {
             return abort(404);
         }
