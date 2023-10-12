@@ -73,15 +73,11 @@
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
 
-                                <option value="C-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
-                                    C-2-C Citizen to Citizen
-                                </option>
-                                <option value="G-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
-                                    G-2-C Government to Citizen
-                                </option>
-                                <option value="G-2-C Government to Citizen" class="text-[16px] Reg-font capitalize ">
-                                    G-2-C Government to Citizen
-                                </option>
+                                @foreach ($classifications as $classification)
+                                    <option value="{{ $classification->serviceClassification }}"
+                                        class="text-[16px] Reg-font capitalize ">
+                                        {{ $classification->serviceClassification }}</option>
+                                @endforeach
                             </select>
                             @error('classification_service')
                                 <p class="text-red-400 text-sm p-1">
@@ -90,19 +86,24 @@
                             @enderror
                         </div>
                         <div class="p-2 w-96">
-                            <label for="transaction_type" class="text-md Reg-font capitalize">Transaction Type:</label>
+                            <label for="transaction_type" class="text-md Reg-font capitalize">Type of
+                                Transaction:</label>
                             <select name="transaction_type" id="transaction_type"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
 
-                                <option value=" Simple" class="text-[16px] Reg-font capitalize ">
-                                    Simple
+                                <option value="  G2C- Government to Citizen" class="text-[16px] Reg-font capitalize ">
+                                    G2C- Government to Citzen
                                 </option>
-                                <option value="Medium" class="text-[16px] Reg-font capitalize ">
-                                    Medium
+                                <option value=" G2G- Government to Government
+                                "
+                                    class="text-[16px] Reg-font capitalize ">
+                                    G2G- Government to Government
+
                                 </option>
-                                <option value="Hard" class="text-[16px] Reg-font capitalize ">
-                                    Hard
+                                <option value="C2C- Citizen to Citizen" class="text-[16px] Reg-font capitalize ">
+                                    C2C- Citizen to Citizen
+
                                 </option>
                             </select>
                             @error('transaction_type')
@@ -114,9 +115,15 @@
                     </div>
                     <div class="flex flex-col gap-2  mt-2 mb-2 ">
                         <label for="who_avail" class="text-md Reg-font capitalize">Who may Avail:</label>
-                        <input name="who_avail" id="who_avail"
+                        <select name="who_avail" id="who_avail"
                             class=" bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
                             spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off">
+                            <option value=""></option>
+                            @foreach ($whoAvail as $WhoAvail)
+                                <option value="{{ $WhoAvail->client }}" class="text-[16px] Reg-font capitalize ">
+                                    {{ $WhoAvail->client }}</option>
+                            @endforeach
+                        </select>
                         @error('who_avail')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}

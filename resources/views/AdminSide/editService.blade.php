@@ -75,23 +75,15 @@
                             <label for="classification_service" class="text-md Reg-font">Classification:</label>
                             <select name="classification_service" id="classification_service"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
-                                <option value=""{{ $service1->clssification_service == '' ? 'selected' : '' }}>
+                                <option value=""{{ $service1->classification_service == '' ? 'selected' : '' }}>
                                 </option>
-                                <option value="C-2-C Government to Citizen"
-                                    {{ $service1->classification_service == 'C-2-C Government to Citizen' ? 'selected' : '' }}
-                                    class="text-[16px] Reg-font capitalize ">
-                                    C-2-C Citizen to Citizen
-                                </option>
-                                <option value="G-2-C Government to Citizen"
-                                    {{ $service1->classification_service == 'G-2-C Government to Citizen' ? 'selected' : '' }}
-                                    class="text-[16px] Reg-font capitalize ">
-                                    G-2-C Government to Citizen
-                                </option>
-                                <option value="G-2-C Government to Citizen"
-                                    {{ $service1->classification_service == 'G-2-C Government to Citizen' ? 'selected' : '' }}
-                                    class="text-[16px] Reg-font capitalize ">
-                                    G-2-C Government to Citizen
-                                </option>
+                                @foreach ($classifications as $classification)
+                                    <option value="{{ $classification->serviceClassification }}"
+                                        class="text-[16px] Reg-font capitalize "
+                                        @if ($service1->classification_service == $classification->serviceClassification) selected @endif>
+                                        {{ $classification->serviceClassification }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('classification_service')
                                 <p class="text-red-400 text-sm p-1">
@@ -100,23 +92,30 @@
                             @enderror
                         </div>
                         <div class="p-2 w-96">
-                            <label for="transaction_type" class="text-md Reg-font capitalize">Transaction Type:</label>
+                            <label for="transaction_type" class="text-md Reg-font capitalize">Type of
+                                Transaction:</label>
                             <select name="transaction_type" id="transaction_type"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""{{ $service1->transaction_type == '' ? 'selected' : '' }}>
                                 </option>
 
-                                <option value=" Simple" {{ $service1->transaction_type == 'Simple' ? 'selected' : '' }}
+                                <option value=" G2C- Government to Citizen"
+                                    {{ $service1->transaction_type == 'G2C- Government to Citizen' ? 'selected' : '' }}
                                     class="text-[16px] Reg-font capitalize ">
-                                    Simple
+                                    G2C- Government to Citzen's
                                 </option>
-                                <option value="Medium" {{ $service1->transaction_type == 'Medium' ? 'selected' : '' }}
+                                <option
+                                    value="G2G- Goverment to Goverment
+                                "{{ $service1->transaction_type == 'G2G- Government to Government' ? 'selected' : '' }}
                                     class="text-[16px] Reg-font capitalize ">
-                                    Medium
+                                    G2G- Government to Government
+
                                 </option>
-                                <option value="Hard" {{ $service1->transaction_type == 'Hard' ? 'selected' : '' }}
+                                <option
+                                    value=" C2C- Citizen to Citizen
+                                "{{ $service1->transaction_type == ' C2C- Citizen to Citizen' ? 'selected' : '' }}
                                     class="text-[16px] Reg-font capitalize ">
-                                    Hard
+                                    C2C- Citizen's to Citizen's
                                 </option>
                             </select>
                             @error('transaction_type')
@@ -128,10 +127,18 @@
                     </div>
                     <div class="flex flex-col gap-2  mt-2 mb-2 ">
                         <label for="who_avail" class="text-md Reg-font capitalize">Who may Avail:</label>
-                        <input name="who_avail" id="who_avail"
+                        <select name="who_avail" id="who_avail"
                             class=" bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
                             spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off"
                             value="{{ $service1->who_avail }}">
+                            <option value=""></option>
+                            @foreach ($whoAvail as $WhoAvail)
+                                <option value="{{ $WhoAvail->client }}" class="text-[16px] Reg-font capitalize "
+                                    @if ($service1->who_avail == $WhoAvail->client) selected @endif>
+                                    {{ $WhoAvail->client }}
+                                </option>
+                            @endforeach
+                        </select>
                         @error('who_avail')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}

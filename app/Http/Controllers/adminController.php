@@ -9,6 +9,8 @@ use App\Models\service1;
 use App\Models\service1_2;
 use App\Models\service1_3;
 use App\Models\User;
+use App\Models\Who_avail;
+use App\Models\Classification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -98,7 +100,9 @@ class adminController extends Controller
     {
         if (View::exists('AdminSide.addServiceFunction')) {
             $officeTypes = offices::all();
-            return view('AdminSide.addServiceFunction', compact('officeTypes'));
+            $whoAvail = Who_avail::all();
+            $classifications = Classification::all();
+            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications'));
         } else {
             return abort(404);
         }
@@ -238,6 +242,8 @@ class adminController extends Controller
         $checklistRequirements2 = $service1->checklistRequirements2;
 
         $officeTypes = offices::all();
+        $whoAvail = Who_avail::all();
+        $classifications = Classification::all();
 
         $service1 = Service1::with('checklistRequirements1', 'checklistRequirements2')->find($id);
         //dd($service1);
@@ -245,7 +251,7 @@ class adminController extends Controller
             return abort(404); // Handle the case when the record is not found.
         }
 
-        return view('AdminSide.editService', compact('service1', 'officeTypes'));
+        return view('AdminSide.editService', compact('service1', 'officeTypes', 'whoAvail', 'classifications'));
     }
     public function saveEditService(Request $request, $serviceId)
     {
