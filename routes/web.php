@@ -56,12 +56,13 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
         Route::post('/indexAdmin/generateCode', 'createCode');
         // Route::get('/indexAdmin/report',  'reportPage');
+        Route::get('/indexAdmin/Create-questionnaire', 'createQuestion')->name('CreateSurvey');
+        Route::post('/indexAdmin/Create-questionnaire', 'saveQuestion');
         Route::get('/indexAdmin/report2', 'report2')->name('Report');
 
         Route::get('/superAdmin', 'indexAdmin')->name('Admin');
         Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');
     });
-    Route::get('/edit/questionnaire', 'editQuestion');
 });
 
 

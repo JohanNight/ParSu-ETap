@@ -1,21 +1,20 @@
 @include('partials.headerClient')
 <div class="bg-gray-50 min-h-screen">
+    <div class="p-4 w-full flex justify-between">
+        <a href="{{ route('index') }}" class="bg-blue-700 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white"
+            id="">
+            Return
+        </a>
+        <button type="button" class="bg-blue-700 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white"
+            id="">
+            Publish
+        </button>
 
+    </div>
     {{-- <x-navBarClient /> Main Header --}}
     <div class="p-2">
-        <form action="" method="">
+        <form action="" method="POST">
             @csrf
-            <div class="p-4 w-full flex justify-between">
-                <a href="#" class="bg-blue-700 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white"
-                    id="">
-                    Return
-                </a>
-                <button type="button" class="bg-blue-700 px-4 py-2 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white"
-                    id="">
-                    Publish
-                </button>
-
-            </div>
             <div class="flex justify-center items-center mb-4 mt-3">
                 <header class="bg-blue-800 p-4 rounded-md">
                     <h1 class="text-[30px] SemiB-font text-yellow-400 ">
@@ -42,11 +41,11 @@
                     </div>
                     {{-- Instruction --}}
                     <div class="mt-2 mb-3 gap-2 flex flex-col border-2 border-black p-1 rounded-md">
-                        <label for="instruction[1]" class="text-[15px] Reg-font">Instruction: </label>
-                        <textarea name="instruction[1]" id="instruction[1]" cols="30" rows="3"
+                        <label for="instruction" class="text-[15px] Reg-font">Instruction: </label>
+                        <textarea name="instruction" id="instruction" cols="30" rows="3"
                             class="w-full bg-gray-100 border-2 px-1 py-1 focus:outline-none text-sm" autocomplete="off"></textarea>
                     </div>
-                    <div class="question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
+                    <div class="set-question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
                         id="cc_question">
                         <div class="w-full flex justify-end">
                             <button
@@ -128,7 +127,7 @@
                                         Delete
                                     </button>
                                 </div>
-                                <div class="flex gap-2 w-full ">
+                                {{-- <div class="flex gap-2 w-full ">
                                     <label for="option[3][]">3.</label>
                                     <input type="text" name="option[3]" id="option[3][]"
                                         class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
@@ -138,14 +137,14 @@
                                         type="button">
                                         Delete
                                     </button>
-                                </div>
+                                </div> --}}
                                 <div class="flex gap-2 w-full ">
-                                    <label for="option[4][]">4.</label>
-                                    <input type="text" name="option[4][]" id="option[4][]"
+                                    <label for="option[3][]">3.</label>
+                                    <input type="text" name="option[3][]" id="option[3][]"
                                         class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                     <button
-                                        id="dlt_opt[4] "class="bg-red-500 text-white text-sm SemiB-font p-1 rounded-md active:bg-red-600"
+                                        id="dlt_opt[3] "class="bg-red-500 text-white text-sm SemiB-font p-1 rounded-md active:bg-red-600"
                                         type="button">
                                         Delete
                                     </button>
@@ -397,5 +396,72 @@
     // Call the setupCommentQuestion function
     setupCommentQuestion();
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--for handling the data-->
+<script>
+    $(document).ready(function() {
+        // Handle form submission
+        $('form').on('submit', function(event) {
+            event.preventDefault();
+
+            // Create an empty array to store the data
+            const formData = [];
+
+            // Collect data from the CC Instructions
+            $('[name^="instruction"]').each(function() {
+                const name = $(this).attr('name');
+                const value = $(this).val();
+                formData.push({
+                    name,
+                    value
+                });
+            });
+
+            // Collect data from Questions and Options
+            $('[name^="question_num"]').each(function(index) {
+                const questionName = $(this).attr('name');
+                const questionValue = $(this).val();
+                const descriptionName = `description[${index + 1}]`;
+                const descriptionValue = $(`[name="${descriptionName}"]`).val();
+                formData.push({
+                    name: questionName,
+                    value: questionValue
+                });
+                formData.push({
+                    name: descriptionName,
+                    value: descriptionValue
+                });
+
+                // Collect option data
+                $(`[name^="option[${index + 1}][]"]`).each(function(optionIndex) {
+                    const optionName = $(this).attr('name');
+                    const optionValue = $(this).val();
+                    formData.push({
+                        name: optionName,
+                        value: optionValue
+                    });
+                });
+            });
+
+            // Send all the data to the server using AJAX
+            $.ajax({
+                url: 'http://127.0.0.1:8000/indexAdmin/Create-questionnaire'
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr(
+                        'content'), // Include the CSRF token
+                    formData: formData,
+                },
+                success: function(response) {
+                    // Handle the success response or redirect to a success page
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                }
+            });
+        });
+    });
+</script>
+
 
 @include('partials.footerClient')

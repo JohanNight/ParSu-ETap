@@ -381,15 +381,17 @@ class adminController extends Controller
             return abort(404);
         }
     }
-    public function editQuestion()
+    public function createQuestion()
     {
-        if (View::exists('AdminSide.editQuestion')) {
-            $clientTypes = clientCategory::all();
-            $officeTypes = offices::all();
-            return view('AdminSide.editQuestion', compact('clientTypes', 'officeTypes'));
+        if (View::exists('AdminSide.createQuestionnaireFunction')) {
+            return view('AdminSide.createQuestionnaireFunction',);
         } else {
             return abort(404);
         }
+    }
+    public function saveQuestion(Request $request)
+    {
+        dd($request);
     }
 
     public function report2()
