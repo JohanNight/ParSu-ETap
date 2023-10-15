@@ -14,7 +14,7 @@
                     <div class=" flex justify-center mb-3 ">
                         <header class="border-b-2 border-b-blue-800">
                             <h1 class="text-lg Reg-font mb-1"><span
-                                    class="text-[15px] text-md Reg-font mr-5">{{ $service1->code_Title }}</span>{{ $service1->service_Title }}
+                                    class="text-[15px] text-md Bold-font mr-5 ">{{ $service1->code_Title }}</span>{{ $service1->service_Title }}
                             </h1>
                         </header>
                     </div>

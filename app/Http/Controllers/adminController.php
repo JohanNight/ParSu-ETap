@@ -392,6 +392,13 @@ class adminController extends Controller
     public function saveQuestion(Request $request)
     {
         dd($request);
+
+        $this->validate($request, [
+            'instruction' => 'required|string',
+            'cc_question' => 'array',
+            'option' => 'array',
+            'comment' => 'required|string',
+        ]);
     }
 
     public function report2()
@@ -423,6 +430,24 @@ class adminController extends Controller
     {
         if (View::exists('SuperAdmin.reportAdmin')) {
             return view('SuperAdmin.reportAdmin');
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function createCcQuestion()
+    {
+        if (View::exists('SetSurvey.citizenCharterSurvey')) {
+            return view('SetSurvey.citizenCharterSurvey');
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function createSurveyQuestion()
+    {
+        if (View::exists('SetSurvey.SurveyAndComment')) {
+            return view('SetSurvey.SurveyAndComment');
         } else {
             return abort(404);
         }

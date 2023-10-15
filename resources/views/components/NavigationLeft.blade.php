@@ -18,6 +18,7 @@
                     <i class="fas fa-home mr-2"></i>Home
                 </a>
             @endunless
+            <!-- Generate A Service-->
             <div class="relative" x-data="{ open: false }"> <a
                     class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px] "
                     href="#">
@@ -64,6 +65,67 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Generate A Survey for SuperAdmin-->
+            @if ($user->idOfficeOriginFK === 3)
+                {{-- Report Route --}}
+                <div class="relative" x-data="{ open: false }"> <a
+                        class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px] "
+                        href="#">
+                        <div class=" mr-0 flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
+                                <path
+                                    d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80Zm200-190q13 0 21.5-8.5T510-820q0-13-8.5-21.5T480-850q-13 0-21.5 8.5T450-820q0 13 8.5 21.5T480-790ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm-20-80h40v-100h100v-40H740v-100h-40v100H600v40h100v100Z" />
+                            </svg>
+                            <button type="button" id="buttonSurvey" class="Reg-font text-[15px]" @click="open = !open"
+                                data-dropdown-toggle="generate_survey">Generate Survey</button>
+                        </div>
+                    </a>
+                    {{-- Dropdown column container  --}}
+                    <div class="block min-w-[200px] absolute top-[0px] left-[250px] bg-gray-300 pointer shadow-lg  z-10 rounded-lg "
+                        x-show="open" @click.away="open = false" id="generate_survey" x-cloak>
+                        <div class="py-[10px] px-0 flex flex-col items-center">
+                            <div class="generate_code_body ">
+                                <header class="border-b-2 border-b-gray-600 text-center">
+                                    <h2 class="text-[20px] Reg-font text-gray-700">
+                                        Survey
+                                    </h2>
+                                </header>
+                                <div class="ml-10">
+                                    <div class="mt-5 ">
+                                        {{-- Add Survey Route --}}
+                                        <a href="{{ route('CreateSurvey') }}"
+                                            class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add
+                                            New
+                                            Survey</a>
+                                    </div>
+                                    <div class="mt-5 ">
+                                        {{-- Add Citizen Survey Route --}}
+                                        <a href="{{ route('CreateCcSurvey') }}"
+                                            class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add
+                                            New Citizen Charter
+                                            Survey</a>
+                                    </div>
+                                    <div class="mt-5 ">
+                                        {{-- Add Actual Survey Route --}}
+                                        <a href="{{ route('CreateClientSurvey') }}"
+                                            class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add New Client
+                                            Satisfaction
+                                            Survey</a>
+                                    </div>
+                                    <div class="mt-5 ">
+                                        {{-- Storage Route  --}}
+                                        <a href="#" class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
+                                            Survey Storage</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            @endif
             <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white  pointer "
                 href="{{ route('Generator') }}">
                 {{-- Code Generator Route  --}}
@@ -109,50 +171,6 @@
                     </div>
                 </a>
             @endunless
-
-            <!-- Generate A Survey for SuperAdmin-->
-            @if ($user->idOfficeOriginFK === 3)
-                {{-- Report Route --}}
-                <div class="relative" x-data="{ open: false }"> <a
-                        class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px] "
-                        href="#">
-                        <div class=" mr-0 flex gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
-                                <path
-                                    d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h168q13-36 43.5-58t68.5-22q38 0 68.5 22t43.5 58h168q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80Zm200-190q13 0 21.5-8.5T510-820q0-13-8.5-21.5T480-850q-13 0-21.5 8.5T450-820q0 13 8.5 21.5T480-790ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm-20-80h40v-100h100v-40H740v-100h-40v100H600v40h100v100Z" />
-                            </svg>
-                            <button type="button" id="buttonSurvey" class="Reg-font text-[15px]" @click="open = !open"
-                                data-dropdown-toggle="generate_survey">Generate Survey</button>
-                        </div>
-                    </a>
-                    {{-- Dropdown column container  --}}
-                    <div class="block min-w-[200px] absolute top-[0px] left-[250px] bg-gray-300 pointer shadow-lg  z-10 rounded-lg "
-                        x-show="open" @click.away="open = false" id="generate_survey" x-cloak>
-                        <div class="py-[10px] px-0 flex flex-col items-center">
-                            <div class="generate_code_body ">
-                                <header class="border-b-2 border-b-gray-600 text-center">
-                                    <h2 class="text-[20px] Reg-font text-gray-700">
-                                        Survey
-                                    </h2>
-                                </header>
-                                <div class="mt-5 ">
-                                    {{-- Add Service Route --}}
-                                    <a href="{{ route('CreateSurvey') }}"
-                                        class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add
-                                        New
-                                        Survey</a>
-                                </div>
-                                <div class="mt-5 ">
-                                    {{-- Storage Route  --}}
-                                    <a href="#" class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
-                                        Survey Storage</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            @endif
         </nav>
 
         <!-- Logout Item-->
