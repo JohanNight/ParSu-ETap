@@ -7,6 +7,7 @@
     </div>
     {{-- <x-navBarClient /> Main Header --}}
     <div class="p-2">
+        <x-messages />
         <form action="" method="POST">
             @csrf
             <div class="flex justify-center items-center mb-1 w-full bg-blue-800 h-16">
@@ -40,55 +41,65 @@
                     <div class="survey_question flex flex-col p-3 w-full gap-4 mt-4 ">
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">1.</label>
-                            <input type="text" name="srvy_qstn[1]" id="srvy_qstn[1]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[0]" id="srvy_qstn[0]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
 
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">2.</label>
-                            <input type="text" name="srvy_qstn[2]" id="srvy_qstn[2]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[1]" id="srvy_qstn[1]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
 
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">3.</label>
-                            <input type="text" name="srvy_qstn[3]" id="srvy_qstn[3]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[2]" id="srvy_qstn[2]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">4.</label>
-                            <input type="text" name="srvy_qstn[4]" id="srvy_qstn[4]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[3]" id="srvy_qstn[3]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">5.</label>
-                            <input type="text" name="srvy_qstn[5]" id="srvy_qstn[5]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[4]" id="srvy_qstn[4]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">6.</label>
-                            <input type="text" name="srvy_qstn[6]" id="srvy_qstn[6]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[5]" id="srvy_qstn[5]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">7.</label>
-                            <input type="text" name="srvy_qstn[7]" id="srvy_qstn[7]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[6]" id="srvy_qstn[6]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">8.</label>
-                            <input type="text" name="srvy_qstn[8]" id="srvy_qstn[8]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[7]" id="srvy_qstn[7]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">9.</label>
-                            <input type="text" name="srvy_qstn[9" id="srvy_qstn[9]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[8]" id="srvy_qstn[8]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                         <div class="flex gap-2 w-full ">
                             <label for="srvy_qstn[]">10.</label>
-                            <input type="text" name="srvy_qstn[10]" id="srvy_qstn[10]"
-                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide">
+                            <input type="text" name="srvy_qstn[9]" id="srvy_qstn[9]"
+                                class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
+                                autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -114,7 +125,7 @@
                             <label for="comment">1.</label>
                             <input type="text" name="comment" id="comment"
                                 class="w-full bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
-                                readonly autocomplete="off">
+                                autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -140,38 +151,14 @@
         $('form').on('submit', function(event) {
             event.preventDefault();
             // Create an empty object to store the data
-            const formData = {
-                cc_question: {},
-                option: {},
-            };
-
-            // Collect data from the CC Instructions
-            const instruction = document.getElementById('instruction').value;
-            formData.cc_question[1] = instruction;
-
-            // Collect data from Questions and Options
-            const questionContainers = document.querySelectorAll('.set-question');
-            questionContainers.forEach((questionContainer, index) => {
-                const questionData = {
-                    question: questionContainer.querySelector(
-                        `input[name="cc_question[${index + 1}][]"]`).value,
-                    options: [],
-                };
-                const optionInputs = questionContainer.querySelectorAll(
-                    `input[name^="option[${index + 1}]"]`);
-                optionInputs.forEach((optionInput, optionIndex) => {
-                    questionData.options.push(optionInput.value);
-                });
-                formData.option[index + 1] = [questionData];
-            });
-
+            const formData = new FormData(form);
             // Send all the data to the server using AJAX
             $.ajax({
-                url: 'http://127.0.0.1:8000/indexAdmin/Create-questionnaire'
+                url: 'http://127.0.0.1:8000/indexAdmin/Create-Survey-Questionnaire'
                 data: {
                     _token: $('meta[name="csrf-token"]').attr(
                         'content'), // Include the CSRF token
-                    formData: JSON.stringify(formData),
+                    formData: formData,
                 },
                 success: function(response) {
                     // Handle the success response or redirect to a success page

@@ -60,6 +60,7 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/Create-CC-Questionnaire', 'createCcQuestion')->name('CreateCcSurvey');
         Route::post('/indexAdmin/Create-CC-Questionnaire', 'saveCcQuestion');
         Route::get('/indexAdmin/Create-Survey-Questionnaire', 'createSurveyQuestion')->name('CreateClientSurvey');
+        Route::post('/indexAdmin/Create-Survey-Questionnaire', 'saveSurveyQuestion');
         Route::post('/indexAdmin/Create-questionnaire', 'saveQuestion');
         Route::get('/indexAdmin/report2', 'report2')->name('Report');
 

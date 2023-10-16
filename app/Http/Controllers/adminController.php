@@ -14,6 +14,9 @@ use App\Models\service1_3;
 use App\Models\User;
 use App\Models\Who_avail;
 use App\Models\Classification;
+use App\Models\SurveyInstruction;
+use App\Models\SurveyQuestion;
+use App\Models\SurveyComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -581,5 +584,39 @@ class adminController extends Controller
         } else {
             return abort(404);
         }
+    }
+
+    public function saveSurveyQuestion(Request $request)
+    {
+        //dd($request);
+
+        $request->validate([
+            'instruction_SQstn' => '',
+            'srvy_qstn' => 'array',
+            'comment' => '',
+        ]);
+
+        // Create an Instruction record
+        SurveyInstruction::create([
+            'instruction' => $request->input('instruction_SQstn'),
+        ]);
+
+        // Get the survey questions array
+        $surveyQuestions = $request->input('srvy_qstn');
+        // Create SurveyQuestion records for non-null values
+        foreach ($surveyQuestions as $question) {
+            if (!is_null($question)) {
+                SurveyQuestion::create([
+                    'questions' => $question,
+                ]);
+            }
+        }
+
+        // Create a Comment record
+        SurveyComment::create([
+            'comment' => $request->input('comment'),
+        ]);
+
+        return redirect()->route('CreateClientSurvey')->with('message', 'Survey Question successfully created.');
     }
 }
