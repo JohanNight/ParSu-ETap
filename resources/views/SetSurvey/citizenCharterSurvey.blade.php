@@ -7,6 +7,7 @@
     </div>
     {{-- <x-navBarClient /> Main Header --}}
     <div class="p-2">
+        <x-messages />
         <form action="" method="POST">
             @csrf
             <div class="flex justify-center items-center mb-1 w-full bg-blue-800 h-16">
@@ -33,7 +34,7 @@
 
                     {{-- CC Number 0 --}}
                     <div class="set-question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
-                        id="set_cc_question">
+                        id="set_cc_question_0">
                         <div class="flex flex-col gap-2">
                             <div class="flex items-center gap-2">
                                 <h1 class="text-[18px] Bold-font">
@@ -57,9 +58,10 @@
                         {{-- Question Number and Questions --}}
                         <div class="mt-2 mb-3 flex flex-col gap-4">
                             <div class="gap-2 flex flex-col">
-                                <label for="cc_question[]" class="text-[15px] Reg-font">Citizen Charter Question 1:
+                                <label for="cc_questions[][question]" class="text-[15px] Reg-font">Citizen Charter
+                                    Question 1:
                                 </label>
-                                <input type="text" name="cc_question[0][]" id="cc_question[0][]"
+                                <input type="text" name="cc_questions[0][question]" id="cc_questions[0][question]"
                                     class="w-full h-12 bg-gray-100 border-2 px-1 py-1 focus:outline-none text-md Reg-font"
                                     autocomplete="off">
                             </div>
@@ -74,32 +76,37 @@
                             </div>
                             <div class="Option flex flex-col p-3 w-full gap-4 mt-4">
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">1.</label>
-                                    <input type="text" name="option[0][1][]" id="option[0][1][]"
+                                    <label for="cc_questions[][options][]">1.</label>
+                                    <input type="text" name="cc_questions[0][options][0]"
+                                        id="cc_questions[0][options][0]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">2.</label>
-                                    <input type="text" name="option[0][2][]" id="option[0][2][]"
+                                    <label for="cc_questions[][options][]">2.</label>
+                                    <input type="text" name="cc_questions[0][options][1]"
+                                        id="cc_questions[0][options][1]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">3.</label>
-                                    <input type="text" name="option[0][3][]" id="option[0][3][]"
+                                    <label for="cc_questions[0][options][0]">3.</label>
+                                    <input type="text" name="cc_questions[0][options][2]"
+                                        id="cc_questions[0][options][2]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">4.</label>
-                                    <input type="text" name="option[0][4][]" id="option[0][4][]"
+                                    <label for="cc_questions[][options][]">4.</label>
+                                    <input type="text" name="cc_questions[0][options][3]"
+                                        id="cc_questions[0][options]3]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">5.</label>
-                                    <input type="text" name="option[0][5][]" id="option[0][5][]"
+                                    <label for="cc_questions[][options][]">5.</label>
+                                    <input type="text" name="cc_questions[0][options][4]"
+                                        id="cc_questions[0][options][4]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
@@ -108,7 +115,7 @@
                     </div>
                     {{-- CC Number 1 --}}
                     <div class="set-question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
-                        id="set_cc_question">
+                        id="set_cc_question_1">
                         <div class="flex flex-col gap-2">
                             <div class="flex items-center gap-2">
                                 <h1 class="text-[18px] Bold-font">
@@ -132,9 +139,10 @@
                         {{-- Question Number and Questions --}}
                         <div class="mt-2 mb-3 flex flex-col gap-4">
                             <div class="gap-2 flex flex-col">
-                                <label for="cc_question[]" class="text-[15px] Reg-font">Citizen Charter Question 2:
+                                <label for="cc_questions[][question]" class="text-[15px] Reg-font">Citizen Charter
+                                    Question 2:
                                 </label>
-                                <input type="text" name="cc_question[1][]" id="cc_question[1][]"
+                                <input type="text" name="cc_questions[1][question]" id="cc_questions[1][question]"
                                     class="w-full h-12 bg-gray-100 border-2 px-1 py-1 focus:outline-none text-md Reg-font"
                                     autocomplete="off">
                             </div>
@@ -149,32 +157,37 @@
                             </div>
                             <div class="Option flex flex-col p-3 w-full gap-4 mt-4">
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">1.</label>
-                                    <input type="text" name="option[1][1][]" id="option[1][1][]"
+                                    <label for="cc_questions[][options][]">1.</label>
+                                    <input type="text" name="cc_questions[1][options][0]"
+                                        id="cc_questions[1][options][0]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">2.</label>
-                                    <input type="text" name="option[1][2][]" id="option[1][2][]"
+                                    <label for="cc_questions[][options][]">2.</label>
+                                    <input type="text" name="cc_questions[1][options][1]"
+                                        id="cc_questions[1][options][1]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">3.</label>
-                                    <input type="text" name="option[1][3][]" id="option[1][3][]"
+                                    <label for="cc_questions[][options][]">3.</label>
+                                    <input type="text" name="cc_questions[1][options][2]"
+                                        id="cc_questions[1][options][2]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">4.</label>
-                                    <input type="text" name="option[1][4][]" id="option[1][4][]"
+                                    <label for="cc_questions[][options][]">4.</label>
+                                    <input type="text" name="cc_questions[1][options][3]"
+                                        id="cc_questions[1][options][3]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">5.</label>
-                                    <input type="text" name="option[1][5][]" id="option[1][5][]"
+                                    <label for="cc_questions[][options][]">5.</label>
+                                    <input type="text" name="cc_questions[1][options][4]"
+                                        id="cc_questions[1][options][4]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
@@ -184,7 +197,7 @@
 
                     {{-- CC Number 2 --}}
                     <div class="set-question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
-                        id="set_cc_question">
+                        id="set_cc_question_2">
                         <div class="flex flex-col gap-2">
                             <div class="flex items-center gap-2">
                                 <h1 class="text-[18px] Bold-font">
@@ -208,9 +221,10 @@
                         {{-- Question Number and Questions --}}
                         <div class="mt-2 mb-3 flex flex-col gap-4">
                             <div class="gap-2 flex flex-col">
-                                <label for="cc_question[]" class="text-[15px] Reg-font">Citizen Charter Question 3:
+                                <label for="cc_questions[][question]" class="text-[15px] Reg-font">Citizen Charter
+                                    Question 3:
                                 </label>
-                                <input type="text" name="cc_question[2][]" id="cc_question[2][]"
+                                <input type="text" name="cc_questions[2][question]" id="cc_questions[2][question]"
                                     class="w-full h-12 bg-gray-100 border-2 px-1 py-1 focus:outline-none text-md Reg-font"
                                     autocomplete="off">
                             </div>
@@ -225,32 +239,37 @@
                             </div>
                             <div class="Option flex flex-col p-3 w-full gap-4 mt-4">
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">1.</label>
-                                    <input type="text" name="option[2][1][]" id="option[2][1][]"
+                                    <label for="cc_questions[][options][]">1.</label>
+                                    <input type="text" name="cc_questions[2][options][0]"
+                                        id="cc_questions[2][options][0]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">2.</label>
-                                    <input type="text" name="option[2][2][]" id="option[2][2][]"
+                                    <label for="cc_questions[][options][]">2.</label>
+                                    <input type="text" name="cc_questions[2][options][1]"
+                                        id="cc_questions[2][options][1]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">3.</label>
-                                    <input type="text" name="option[2][3][]" id="option[2][3][]"
+                                    <label for="cc_questions[][options][]">3.</label>
+                                    <input type="text" name="cc_questions[2][options][2]"
+                                        id="cc_questions[2][options][2]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">4.</label>
-                                    <input type="text" name="option[2][4][]" id="option[2][4][]"
+                                    <label for="cc_questions[][options][]">4.</label>
+                                    <input type="text" name="cc_questions[2][options][3]"
+                                        id="cc_questions[2][options][3]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">5.</label>
-                                    <input type="text" name="option[2][5][]" id="option[2][5][]"
+                                    <label for="cc_questions[][options][]">5.</label>
+                                    <input type="text" name="cc_questions[2][options][4]"
+                                        id="cc_questions[2][options][4]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
@@ -260,7 +279,7 @@
 
                     {{-- CC Number 3 --}}
                     <div class="set-question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
-                        id="set_cc_question">
+                        id="set_cc_question_3">
                         <div class="flex flex-col gap-2">
                             <div class="flex items-center gap-2">
                                 <h1 class="text-[18px] Bold-font">
@@ -284,9 +303,10 @@
                         {{-- Question Number and Questions --}}
                         <div class="mt-2 mb-3 flex flex-col gap-4">
                             <div class="gap-2 flex flex-col">
-                                <label for="cc_question[]" class="text-[15px] Reg-font">Citizen Charter Question 4:
+                                <label for="cc_questions[][question]" class="text-[15px] Reg-font">Citizen Charter
+                                    Question 4:
                                 </label>
-                                <input type="text" name="cc_question[3][]" id="cc_question[3][]"
+                                <input type="text" name="cc_questions[3][question]" id="cc_questions[3][question]"
                                     class="w-full h-12 bg-gray-100 border-2 px-1 py-1 focus:outline-none text-md Reg-font"
                                     autocomplete="off">
                             </div>
@@ -301,32 +321,37 @@
                             </div>
                             <div class="Option flex flex-col p-3 w-full gap-4 mt-4">
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">1.</label>
-                                    <input type="text" name="option[3][1][]" id="option[3][1][]"
+                                    <label for="cc_questions[][options][]">1.</label>
+                                    <input type="text" name="cc_questions[3][options][0]"
+                                        id="cc_questions[3][options][0]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">2.</label>
-                                    <input type="text" name="option[3][2][]" id="option[3][2][]"
+                                    <label for="cc_questions[][options][]">2.</label>
+                                    <input type="text" name="cc_questions[3][options][1]"
+                                        id="cc_questions[3][options][1]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">3.</label>
-                                    <input type="text" name="option[3][3][]" id="option[3][3][]"
+                                    <label for="cc_questions[][options][]">3.</label>
+                                    <input type="text" name="cc_questions[3][options][2]"
+                                        id="cc_questions[3][options][2]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">4.</label>
-                                    <input type="text" name="option[3][4][]" id="option[3][4][]"
+                                    <label for="cc_questions[][options][]">4.</label>
+                                    <input type="text" name="cc_questions[3][options][3]"
+                                        id="cc_questions[3][options][3]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">5.</label>
-                                    <input type="text" name="option[3][5][]" id="option[3][5][]"
+                                    <label for="cc_questions[][options][]">5.</label>
+                                    <input type="text" name="cc_questions[3][options][4]"
+                                        id="cc_questions[3][options][4]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
@@ -336,7 +361,7 @@
 
                     {{-- CC Number 4 --}}
                     <div class="set-question w-full flex flex-col border-2 border-black p-2 mb-3 rounded-md"
-                        id="set_cc_question">
+                        id="set_cc_question_4">
                         <div class="flex flex-col gap-2">
                             <div class="flex items-center gap-2">
                                 <h1 class="text-[18px] Bold-font">
@@ -360,9 +385,10 @@
                         {{-- Question Number and Questions --}}
                         <div class="mt-2 mb-3 flex flex-col gap-4">
                             <div class="gap-2 flex flex-col">
-                                <label for="cc_question[]" class="text-[15px] Reg-font">Citizen Charter Question 4:
+                                <label for="cc_questions[][question]" class="text-[15px] Reg-font">Citizen Charter
+                                    Question 4:
                                 </label>
-                                <input type="text" name="cc_question[4][]" id="cc_question[4][]"
+                                <input type="text" name="cc_questions[4][question]" id="cc_questions[4][question]"
                                     class="w-full h-12 bg-gray-100 border-2 px-1 py-1 focus:outline-none text-md Reg-font"
                                     autocomplete="off">
                             </div>
@@ -377,32 +403,37 @@
                             </div>
                             <div class="Option flex flex-col p-3 w-full gap-4 mt-4">
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">1.</label>
-                                    <input type="text" name="option[4][1][]" id="option[4][1][]"
+                                    <label for="cc_questions[][options][]">1.</label>
+                                    <input type="text" name="cc_questions[4][options][0]"
+                                        id="cc_questions[4][options][0]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">2.</label>
-                                    <input type="text" name="option[4][2][]" id="option[4][2][]"
+                                    <label for="cc_questions[][options][]">2.</label>
+                                    <input type="text" name="cc_questions[4][options][1]"
+                                        id="cc_questions[4][options][1]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">3.</label>
-                                    <input type="text" name="option[4][3][]" id="option[4][3][]"
+                                    <label for="cc_questions[][options][]">3.</label>
+                                    <input type="text" name="cc_questions[4][options][2]"
+                                        id="cc_questions[4][options][2]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">4.</label>
-                                    <input type="text" name="option[4][4][]" id="option[4][4][]"
+                                    <label for="cc_questions[][options][]">4.</label>
+                                    <input type="text" name="cc_questions[4][options][3]"
+                                        id="cc_questions[4][options][3]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
                                 <div class="flex gap-2 w-full">
-                                    <label for="option[][][]">5.</label>
-                                    <input type="text" name="option[4][5][]" id="option[4][5][]"
+                                    <label for="cc_questions[][options][]">5.</label>
+                                    <input type="text" name="cc_questions[4][options][4]"
+                                        id="cc_questions[4][options][4]"
                                         class="w-full Reg-font bg-gray-100 border-2 px-1 py-0.5 focus:outline-none text-sm tracking-wide"
                                         autocomplete="off">
                                 </div>
@@ -410,7 +441,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             {{-- Submit button --}}
@@ -427,43 +457,41 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--for handling the data-->
 <script>
+    const form = document.querySelector('form');
     $(document).ready(function() {
         // Handle form submission
         $('form').on('submit', function(event) {
             event.preventDefault();
-            // Create an empty object to store the data
-            const formData = {
-                cc_question: {},
-                option: {},
+            const formData = new FormData(form);
+
+            const data = {
+                instruction: formData.get('instruction'),
+                questions: [],
             };
 
-            // Collect data from the CC Instructions
-            const instruction = document.getElementById('instruction').value;
-            formData.cc_question[1] = instruction;
+            for (let i = 0; i < 5; i++) { // Assuming there are 5 sets of questions and options
+                const question = formData.get(`cc_questions[${i}][question]`);
+                const options = [];
 
-            // Collect data from Questions and Options
-            const questionContainers = document.querySelectorAll('.set-question');
-            questionContainers.forEach((questionContainer, index) => {
-                const questionData = {
-                    question: questionContainer.querySelector(
-                        `input[name="cc_question[${index + 1}][]"]`).value,
-                    options: [],
-                };
-                const optionInputs = questionContainer.querySelectorAll(
-                    `input[name^="option[${index + 1}]"]`);
-                optionInputs.forEach((optionInput, optionIndex) => {
-                    questionData.options.push(optionInput.value);
+                for (let j = 0; j < 5; j++) {
+                    const option = formData.get(`cc_questions[${i}][options][${j}]`);
+                    options.push(option);
+                }
+
+                data.questions.push({
+                    description: question,
+                    options: options,
                 });
-                formData.option[index + 1] = [questionData];
-            });
+            }
 
             // Send all the data to the server using AJAX
             $.ajax({
-                url: 'http://127.0.0.1:8000/indexAdmin/Create-questionnaire'
+                url: 'http://127.0.0.1:8000/indexAdmin/Create-CC-Questionnaire'
                 data: {
                     _token: $('meta[name="csrf-token"]').attr(
                         'content'), // Include the CSRF token
-                    formData: JSON.stringify(formData),
+                    // formData: JSON.stringify(formData),
+                    formData: data
                 },
                 success: function(response) {
                     // Handle the success response or redirect to a success page
