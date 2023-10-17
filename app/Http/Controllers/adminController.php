@@ -444,6 +444,7 @@ class adminController extends Controller
     public function createCcQuestion()
     {
         if (View::exists('SetSurvey.citizenCharterSurvey')) {
+
             return view('SetSurvey.citizenCharterSurvey');
         } else {
             return abort(404);
@@ -497,13 +498,59 @@ class adminController extends Controller
         }
     }
 
-    public function editCcQuestion()
+    public function EditingCcQuestionPage()
     {
+        $ccInstruction = Cc_Instruction::all();
+        $ccQuestion = Cc_Questions::all();
+
+        if (View::exists('SetSurvey.CcAndCssStorage')) {
+            return view('SetSurvey.CcAndCssStorage', compact('ccInstruction', 'ccQuestion'));
+        } else {
+            return abort(404);
+        }
     }
 
-    public function updateCcQuestion(Request $request, $id1, $id2, $id3, $id4, $id5)
+    public function EditingCcInstruction($id)
     {
+        $ccInstruction = Cc_Instruction::find($id);
+
+        if (View::exists('SetSurvey.editingCcInstruction')) {
+            return view('SetSurvey.editingCcInstruction', ['ccInstruction' => $ccInstruction]);
+        } else {
+            return abort(404);
+        }
     }
+    public function saveCcInstruction(Request $request, $id)
+    {
+        $ccInstruction = Cc_Instruction::findOrFail($id);
+        $this->validate($request, [
+            'instruction' => 'required|string',
+        ]);
+
+        $ccInstruction->update([
+            'instruction' => $request->instruction,
+        ]);
+
+        return redirect()->route('CcAndCssPage')->with('message', 'Service updated successfully.');
+    }
+
+    public function editCcQuestion()
+    {
+        $ccInstruction = Cc_Instruction::all();
+        //$ccQuestions = Cc_Questions::all();
+
+        // $id = $ccQuestions->id;
+        $ccQuestions = Cc_Questions::with('CcOption')->get();
+        if (View::exists('SetSurvey.editCcQuestion')) {
+            return view('SetSurvey.editCcQuestion', compact('ccInstruction', 'ccQuestions'));
+        } else {
+            return abort(404);
+        }
+    }
+
+    // public function updateCcQuestion(Request $request, $id1, $id2, $id3, $id4, $id5)
+    // {
+    // }
 
     public function createSurveyQuestion()
     {

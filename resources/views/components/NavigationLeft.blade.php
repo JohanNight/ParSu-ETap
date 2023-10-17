@@ -11,6 +11,8 @@
                     <i class="fas fa-home mr-2"></i>Home
                 </a>
             @endif
+
+
             {{--  Route for SubAdmin --}}
             @unless ($user->idOfficeOriginFK === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
@@ -18,6 +20,8 @@
                     <i class="fas fa-home mr-2"></i>Home
                 </a>
             @endunless
+
+
             <!-- Generate A Service-->
             <div class="relative" x-data="{ open: false }"> <a
                     class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px] "
@@ -115,8 +119,9 @@
                                     </div>
                                     <div class="mt-5 ">
                                         {{-- Storage Route  --}}
-                                        <a href="#" class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
-                                            Survey Storage</a>
+                                        <a href="{{ route('CcAndCssPage') }}"
+                                            class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
+                                            Edit CC And CSS Questions</a>
                                     </div>
                                 </div>
 
@@ -126,6 +131,8 @@
                     </div>
                 </div>
             @endif
+
+            <!-- Generate A Code-->
             <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white  pointer "
                 href="{{ route('Generator') }}">
                 {{-- Code Generator Route  --}}
@@ -138,6 +145,7 @@
                 </div>
             </a>
 
+            <!--User-->
             <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
                 href="#">
                 <i class="fas fa-users mr-2"></i>Users

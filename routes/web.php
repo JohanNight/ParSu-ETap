@@ -59,9 +59,18 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/Create-questionnaire', 'createQuestion')->name('CreateSurvey');
         Route::get('/indexAdmin/Create-CC-Questionnaire', 'createCcQuestion')->name('CreateCcSurvey');
         Route::post('/indexAdmin/Create-CC-Questionnaire', 'saveCcQuestion');
+
+
+        Route::get('/indexAdmin/Edit-CC-Questionnaire', 'editCcQuestion')->name('EditCcSurvey');
+
         Route::get('/indexAdmin/Create-Survey-Questionnaire', 'createSurveyQuestion')->name('CreateClientSurvey');
         Route::post('/indexAdmin/Create-Survey-Questionnaire', 'saveSurveyQuestion');
         Route::post('/indexAdmin/Create-questionnaire', 'saveQuestion');
+
+        Route::get('/indexAdmin/Storage/CC/CSS', 'EditingCcQuestionPage')->name('CcAndCssPage');
+        Route::get('/indexAdmin/edit/ccInsruction/{id}', 'EditingCcInstruction'); //For the CC Instruction
+        Route::put('/indexAdmin/edit/ccInsruction/{id}', 'saveCcInstruction'); //For the CC Instruction
+
         Route::get('/indexAdmin/report2', 'report2')->name('Report');
 
         Route::get('/superAdmin', 'indexAdmin')->name('Admin');

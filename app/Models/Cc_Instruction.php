@@ -11,7 +11,5 @@ class Cc_Instruction extends Model
     protected $table = 'table_cc_instructions';
     protected $fillable = [
         'instruction',
-
-
     ];
 }
