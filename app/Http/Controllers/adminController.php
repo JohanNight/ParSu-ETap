@@ -457,88 +457,9 @@ class adminController extends Controller
             'instruction' => 'required',
             'cc_questions' => 'array',
         ]);
-
-        // try {
-        //     // Store the instruction
-        //     $instruction = Cc_Instruction::create([
-        //         'instruction' => $request->input('instruction'),
-        //     ]);
-
-        //     if ($request->has('cc_question') && is_array($request->input('cc_question'))) {
-        //         foreach ($request->input('cc_question') as $index => $questionData) {
-        //             // Ensure the array structure is as expected
-        //             if (is_array($questionData) && array_key_exists(0, $questionData)) {
-        //                 $description = $questionData[0]; // Assuming the description is at index 0
-        //                 $question = Cc_Questions::create([
-        //                     'description' => $description,
-        //                     'table_cc_instruction_id' => $instruction->id,
-        //                 ]);
-
-        //                 // Check if "option" array exists and is not empty
-        //                 if ($request->has('option') && is_array($request->input('option'))) {
-        //                     foreach ($request->input('option') as $outerIndex => $outerOptions) {
-        //                         foreach ($outerOptions as $innerIndex => $innerOptions) {
-        //                             // Ensure $innerOptions is an array, and if it's not, set it as an empty array
-        //                             if (!is_array($innerOptions)) {
-        //                                 $innerOptions = [$innerOptions];
-        //                             }
-
-        //                             foreach ($innerOptions as $optionText) {
-        //                                 // Create a new option related to the question
-        //                                 Cc_Options::create([
-        //                                     'option_text' => $optionText,
-        //                                     'table_cc_question_id' => $question->id,
-        //                                 ]);
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     // // Check if "cc_question" array exists and is not empty
-        //     // if ($request->has('cc_question') && is_array($request->input('cc_question'))) {
-        //     //     foreach ($request->input('cc_question') as $index => $questionData) {
-        //     //         // Create a new question related to the instruction
-        //     //         $description = is_array($questionData) && count($questionData) > 0 ? $questionData[0] : null;
-
-        //     //         if ($description) {
-        //     //             $question = Cc_Questions::create([
-        //     //                 'description' => $description,
-        //     //                 'table_cc_instruction_id' => $instruction->id,
-        //     //             ]);
-        //     //         }
-
-        //     //         // Check if "option" array exists and is not empty
-        //     //         if ($request->has('option') && is_array($request->input('option'))) {
-        //     //             if (isset($request->input('option')[$index])) {
-        //     //                 $options = $request->input('option')[$index];
-
-        //     //                 if (is_array($options)) {
-        //     //                     foreach ($options as $optionText) {
-        //     //                         // Create a new option related to the question
-        //     //                         Cc_Options::create([
-        //     //                             'option_text' => $optionText,
-        //     //                             'table_cc_question_id' => $question->id,
-        //     //                         ]);
-        //     //                     }
-        //     //                 }
-        //     //             }
-        //     //         }
-        //     //     }
-        //     // }
-
-        //     // Return a success response
-        //     return redirect()->route('CreateCcSurvey')->with('message', 'Service updated successfully.');
-        // } catch (\Exception $e) {
-        //     // Handle exceptions (e.g., log, display an error message)
-        //     return back()->withInput()->withErrors(['error' => 'An error occurred while saving the survey.']);
-        // }
-
         try {
             // Store the instruction
-            $instruction = Cc_Instruction::create([
+            Cc_Instruction::create([
                 'instruction' => $request->input('instruction'),
             ]);
 
@@ -552,7 +473,6 @@ class adminController extends Controller
                         // Create a new question related to the instruction
                         $question = Cc_Questions::create([
                             'description' => $description,
-                            'table_cc_instruction_id' => $instruction->id,
                         ]);
 
                         // Check if "options" array exists and is not empty
@@ -575,6 +495,14 @@ class adminController extends Controller
             // Handle exceptions (e.g., log, display an error message)
             return back()->withInput()->withErrors(['error' => 'An error occurred while saving the survey.']);
         }
+    }
+
+    public function editCcQuestion()
+    {
+    }
+
+    public function updateCcQuestion(Request $request, $id1, $id2, $id3, $id4, $id5)
+    {
     }
 
     public function createSurveyQuestion()

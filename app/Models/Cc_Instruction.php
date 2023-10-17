@@ -14,8 +14,4 @@ class Cc_Instruction extends Model
 
 
     ];
-    public function CcQuestion()
-    {
-        return $this->hasMany(Cc_Questions::class, 'table_cc_instruction_id', 'id');
-    }
 }
