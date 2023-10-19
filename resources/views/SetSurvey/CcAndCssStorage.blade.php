@@ -5,6 +5,7 @@
     <x-NavigationTop />
     <!-- Main content-->
     <div class="flex-1 flex flex-wrap">
+        <x-messages />
         <!-- Navigation sidebar (hidden on small devices) -->
         <x-NavigationLeft />
         <!--Main Content Area-->
@@ -14,7 +15,6 @@
             <!-- component1 -->
             <div
                 class=" mx-auto w-full overflow-y-scroll text-gray-800 border border-gray-300 bg-white p-1 shadow-xl mb-6">
-                <!-- component 1 -->
                 <div class="flex flex-col gap-5">
                     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5 h-96">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -44,11 +44,21 @@
                                                         <textarea name="" class="w-full h-16 p-2 text-xs  Reg-font text-gray-900 " readonly> {{ $Instruction->instruction }}</textarea>
 
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
+                                                    <td
+                                                        class="px-6 py-4 whitespace-nowrap flex justify-evenly items-center">
                                                         <a href="/indexAdmin/edit/ccInsruction/{{ $Instruction->id }}"
                                                             class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                             Edit
                                                         </a>
+                                                        <form
+                                                            action="/indexAdmin/delete/ccInsruction/{{ $Instruction->id }}"
+                                                            method="POST">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="bg-red-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                                Delete</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -80,11 +90,20 @@
                                                             readonly>{{ $Question->description }}</textarea>
 
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
-                                                        <a href="/indexAdmin/editService/{{ $Question->id }}"
+                                                    <td
+                                                        class="px-6 py-4 whitespace-nowrap flex justify-evenly  items-center">
+                                                        <a href="/indexAdmin/edit/ccQuestion/{{ $Question->id }}"
                                                             class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                             Edit
                                                         </a>
+                                                        <form action="/indexAdmin/delete/ccQuestion/{{ $Question->id }}"
+                                                            method="POST">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="bg-red-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                                Delete</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

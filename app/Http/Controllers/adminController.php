@@ -397,7 +397,7 @@ class adminController extends Controller
     }
     public function saveQuestion(Request $request)
     {
-        dd($request);
+        //dd($request);
 
         $this->validate($request, [
             'instruction' => 'required|string',
@@ -455,8 +455,8 @@ class adminController extends Controller
         //dd($request);
         // Validate the incoming data
         $request->validate([
-            'instruction' => 'required',
-            'cc_questions' => 'array',
+            'instruction' => '',
+            'cc_questions' => '',
         ]);
         try {
             // Store the instruction
@@ -498,7 +498,7 @@ class adminController extends Controller
         }
     }
 
-    public function EditingCcQuestionPage()
+    public function EditingCcQuestionsPage()
     {
         $ccInstruction = Cc_Instruction::all();
         $ccQuestion = Cc_Questions::all();
@@ -533,7 +533,85 @@ class adminController extends Controller
 
         return redirect()->route('CcAndCssPage')->with('message', 'Service updated successfully.');
     }
+    public function deleteInstructionCc(Request $request, $id)
+    {
+        //dd($request);
+        $IdDelete = Cc_Questions::find($id);
+        $IdDelete->delete();
+        return redirect()->route('CcAndCssPage')->with('message', 'Citizen Charter Instruction successfully deleted :) .');
+    }
 
+    public function EditingCcQuestion($id)
+    {
+        $ccQuestion = Cc_Questions::find($id);
+        $ccQuestion = Cc_Questions::with('CcOption')->find($id);
+
+        if (View::exists('SetSurvey.editingCcQuestion')) {
+            return view('SetSurvey.editingCcQuestion', ['ccQuestion' => $ccQuestion]);
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function updateCcQuestion(Request $request, $id)
+    {
+        $ccQuestion = Cc_Questions::find($id);
+
+        // Validate the request data
+        $this->validate($request, [
+            'cc_questions' => '',
+            'cc_questions.' . $id . '.question' => 'required|string', // Validate the question
+            'cc_questions.' . $id . '.options' => 'array', // Validate options array
+        ]);
+
+        // Update the question's description
+        $ccQuestion->update([
+            'description' => $request->input('cc_questions')[$id]['question'],
+        ]);
+
+        // Get the existing options associated with the question
+        $existingOptions = $ccQuestion->CcOption;
+
+        // Get the options data from the request
+        $optionsData = $request->input('cc_questions')[$id]['options'];
+
+        // Check if existingOptions is not null
+        if ($existingOptions) {
+            // Loop through the existing options and update them
+            foreach ($existingOptions as $index => $option) {
+                if (isset($optionsData[$index])) {
+                    $option->update(['option_text' => $optionsData[$index]]);
+                }
+            }
+        }
+        return redirect()->route('CcAndCssPage')->with('message', 'Citizen Charter Question and Options updated successfully.');
+    }
+
+    public function deleteCcQuestion(Request $request, $id)
+    {
+        // Find the CcQuestion by its ID
+        $ccQuestion = Cc_Questions::find($id);
+
+        // Disable foreign key checks temporarily
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+        try {
+            // Delete the CcQuestion and its associated CcOptions
+            $ccQuestion->delete();
+
+            // You can also delete its associated CcOptions
+            $ccQuestion->CcOption()->delete();
+
+
+            // Re-enable foreign key checks
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+            return redirect()->route('CcAndCssPage')->with('message', 'Citizen Charter Question successfully deleted :) .');
+        } catch (\Exception $e) {
+            // Handle any exceptions, e.g., log the error
+            return redirect()->route('CcAndCssPage')->with('message', 'Error deleting Citizen Charter Question.');
+        }
+    }
     public function editCcQuestion()
     {
         $ccInstruction = Cc_Instruction::all();
@@ -548,9 +626,7 @@ class adminController extends Controller
         }
     }
 
-    // public function updateCcQuestion(Request $request, $id1, $id2, $id3, $id4, $id5)
-    // {
-    // }
+
 
     public function createSurveyQuestion()
     {

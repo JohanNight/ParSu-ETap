@@ -56,9 +56,9 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
         Route::post('/indexAdmin/generateCode', 'createCode');
         // Route::get('/indexAdmin/report',  'reportPage');
-        Route::get('/indexAdmin/Create-questionnaire', 'createQuestion')->name('CreateSurvey');
-        Route::get('/indexAdmin/Create-CC-Questionnaire', 'createCcQuestion')->name('CreateCcSurvey');
-        Route::post('/indexAdmin/Create-CC-Questionnaire', 'saveCcQuestion');
+        Route::get('/indexAdmin/Create-questionnaire', 'createQuestion')->name('CreateSurvey'); //For the CC Question
+        Route::get('/indexAdmin/Create-CC-Questionnaire', 'createCcQuestion')->name('CreateCcSurvey'); //For the CC Question
+        Route::post('/indexAdmin/Create-CC-Questionnaire', 'saveCcQuestion'); //For the CC Question
 
 
         Route::get('/indexAdmin/Edit-CC-Questionnaire', 'editCcQuestion')->name('EditCcSurvey');
@@ -67,9 +67,15 @@ Route::controller(adminController::class)->group(function () {
         Route::post('/indexAdmin/Create-Survey-Questionnaire', 'saveSurveyQuestion');
         Route::post('/indexAdmin/Create-questionnaire', 'saveQuestion');
 
-        Route::get('/indexAdmin/Storage/CC/CSS', 'EditingCcQuestionPage')->name('CcAndCssPage');
+        Route::get('/indexAdmin/Storage/CC/CSS', 'EditingCcQuestionsPage')->name('CcAndCssPage');
         Route::get('/indexAdmin/edit/ccInsruction/{id}', 'EditingCcInstruction'); //For the CC Instruction
         Route::put('/indexAdmin/edit/ccInsruction/{id}', 'saveCcInstruction'); //For the CC Instruction
+        Route::delete('/indexAdmin/delete/ccInsruction/{id}', 'deleteInstructionCc'); //For the CC Instruction
+
+        Route::get('/indexAdmin/edit/ccQuestion/{id}', 'EditingCcQuestion'); //For the CC Question
+        Route::put('/indexAdmin/edit/ccQuestion/{id}', 'updateCcQuestion'); //For the CC Question
+        Route::delete('/indexAdmin/delete/ccQuestion/{id}', 'deleteCcQuestion'); //For the CC Question
+
 
         Route::get('/indexAdmin/report2', 'report2')->name('Report');
 
