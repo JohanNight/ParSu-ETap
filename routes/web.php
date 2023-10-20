@@ -63,9 +63,16 @@ Route::controller(adminController::class)->group(function () {
 
         Route::get('/indexAdmin/Edit-CC-Questionnaire', 'editCcQuestion')->name('EditCcSurvey');
 
-        Route::get('/indexAdmin/Create-Survey-Questionnaire', 'createSurveyQuestion')->name('CreateClientSurvey');
-        Route::post('/indexAdmin/Create-Survey-Questionnaire', 'saveSurveyQuestion');
-        Route::post('/indexAdmin/Create-questionnaire', 'saveQuestion');
+        Route::get('/indexAdmin/Create-Survey-Questionnaire', 'createSurveyQuestion')->name('CreateClientSurvey'); //For the Client Satisfaction Survey
+        Route::post('/indexAdmin/Create-Survey-Questionnaire', 'saveSurveyQuestion'); //For the Client Satisfaction Survey
+        Route::post('/indexAdmin/Create-questionnaire', 'saveQuestion'); //For the Client Satisfaction Survey
+
+        Route::get('/indexAdmin/edit/Css-Instruction/{id}', 'editPageSrvyInstruction'); //For the Client Satisfaction Survey Instruction
+        Route::put('/indexAdmin/edit/Css-Instruction/{id}', 'saveSrvyInstruction'); //For the Client Satisfaction Survey Instruction
+        Route::delete('/indexAdmin/delete/Css-Instruction/{id}', 'deleteSrvyInstruction'); //For the Client Satisfaction Survey Instruction
+
+
+
 
         Route::get('/indexAdmin/Storage/CC/CSS', 'EditingCcQuestionsPage')->name('CcAndCssPage');
         Route::get('/indexAdmin/edit/ccInsruction/{id}', 'EditingCcInstruction'); //For the CC Instruction

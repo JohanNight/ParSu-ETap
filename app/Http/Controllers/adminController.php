@@ -502,9 +502,13 @@ class adminController extends Controller
     {
         $ccInstruction = Cc_Instruction::all();
         $ccQuestion = Cc_Questions::all();
+        $SrvyInstruction = SurveyInstruction::all();
+        $SrvyComment = SurveyComment::all();
+        $SrvyQuestion = SurveyQuestion::all();
+
 
         if (View::exists('SetSurvey.CcAndCssStorage')) {
-            return view('SetSurvey.CcAndCssStorage', compact('ccInstruction', 'ccQuestion'));
+            return view('SetSurvey.CcAndCssStorage', compact('ccInstruction', 'ccQuestion', 'SrvyInstruction', 'SrvyComment', 'SrvyQuestion'));
         } else {
             return abort(404);
         }
@@ -615,9 +619,6 @@ class adminController extends Controller
     public function editCcQuestion()
     {
         $ccInstruction = Cc_Instruction::all();
-        //$ccQuestions = Cc_Questions::all();
-
-        // $id = $ccQuestions->id;
         $ccQuestions = Cc_Questions::with('CcOption')->get();
         if (View::exists('SetSurvey.editCcQuestion')) {
             return view('SetSurvey.editCcQuestion', compact('ccInstruction', 'ccQuestions'));
@@ -643,7 +644,7 @@ class adminController extends Controller
 
         $request->validate([
             'instruction_SQstn' => '',
-            'srvy_qstn' => 'array',
+            'srvy_qstn' => '',
             'comment' => '',
         ]);
 
@@ -669,5 +670,35 @@ class adminController extends Controller
         ]);
 
         return redirect()->route('CreateClientSurvey')->with('message', 'Survey Question successfully created.');
+    }
+
+    public function editPageSrvyInstruction($id)
+    {
+        $SrvyInstruction = SurveyInstruction::find($id);
+
+        if (View::exists('SetSurvey.editingCssInstructionAndSrvy')) {
+            return view('SetSurvey.editingCssInstructionAndSrvy', compact('SrvyInstruction'));
+        } else {
+            return abort(404);
+        }
+    }
+    public function saveSrvyInstruction(Request $request, $id)
+    {
+        $SrvyInstruction = SurveyInstruction::find($id);
+
+        $this->validate($request, [
+            'instruction_SQstn' => ['required'],
+        ]);
+        $SrvyInstruction->update([
+            'instruction' => $request->input('instruction_SQstn')
+        ]);
+        return redirect()->route('CcAndCssPage')->with('message', 'Client Satisafaction Survey Instruction successfully updated :) .');
+    }
+    public function deleteSrvyInstruction(Request $request, $id)
+    {
+        //dd($id);
+        $IdDelete = SurveyInstruction::find($id);
+        $IdDelete->delete();
+        return redirect()->route('CcAndCssPage')->with('message', 'Citizen Charter Instruction successfully deleted :) .');
     }
 }
