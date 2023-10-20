@@ -8,7 +8,6 @@
     </div>
     {{-- <x-navBarClient /> Main Header --}}
     <div class="p-2">
-        <x-messages />
         <form action="/indexAdmin/edit/Css-Instruction/{{ $SrvyInstruction->id }}" method="POST">
             @csrf
             @method('PUT')

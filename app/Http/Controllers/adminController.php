@@ -699,6 +699,66 @@ class adminController extends Controller
         //dd($id);
         $IdDelete = SurveyInstruction::find($id);
         $IdDelete->delete();
-        return redirect()->route('CcAndCssPage')->with('message', 'Citizen Charter Instruction successfully deleted :) .');
+        return redirect()->route('CcAndCssPage')->with('message', 'Client Satisafaction Survey  Instruction successfully deleted :) .');
+    }
+
+    public function editPageSrvyQuestion($id)
+    {
+        $SrvyQuestion = SurveyQuestion::find($id);
+
+        if (View::exists('SetSurvey.editingCssQuestion')) {
+            return view('SetSurvey.editingCssQuestion', compact('SrvyQuestion'));
+        } else {
+            return abort(404);
+        }
+    }
+    public function saveSrvyQuestion(Request $request, $id)
+    {
+        $SrvyQuestion = SurveyQuestion::find($id);
+
+        $this->validate($request, [
+            'srvy_qstn' => 'required',
+        ]);
+        $SrvyQuestion->update([
+            'questions' => $request->input('srvy_qstn')
+        ]);
+        return redirect()->route('CcAndCssPage')->with('message', 'Client Satisafaction Survey Question successfully updated :) .');
+    }
+    public function deleteSrvyQuestion(Request $request, $id)
+    {
+        //dd($id);
+        $IdDelete = SurveyQuestion::find($id);
+        $IdDelete->delete();
+        return redirect()->route('CcAndCssPage')->with('message', 'Client Satisafaction Survey  Question successfully deleted :) .');
+    }
+
+    public function editPageSrvyComment($id)
+    {
+        $SrvyComment = SurveyComment::find($id);
+
+        if (View::exists('SetSurvey.editingCssComment')) {
+            return view('SetSurvey.editingCssComment', compact('SrvyComment'));
+        } else {
+            return abort(404);
+        }
+    }
+    public function saveSrvyComment(Request $request, $id)
+    {
+        $SrvyComment = SurveyComment::find($id);
+
+        $this->validate($request, [
+            'comment' => 'required',
+        ]);
+        $SrvyComment->update([
+            'comment' => $request->input('comment')
+        ]);
+        return redirect()->route('CcAndCssPage')->with('message', 'Client Satisafaction Survey Comment successfully updated :) .');
+    }
+    public function deleteSrvyComment(Request $request, $id)
+    {
+        dd($id);
+        $IdDelete = SurveyComment::find($id);
+        $IdDelete->delete();
+        return redirect()->route('CcAndCssPage')->with('message', 'Client Satisafaction Survey  Comment successfully deleted :) .');
     }
 }

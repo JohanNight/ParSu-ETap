@@ -211,7 +211,7 @@
                                                     class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                     Edit
                                                 </a>
-                                                <form action="/indexAdmin/delete/ccQuestion/{{ $srvyQuestion->id }}"
+                                                <form action="/indexAdmin/delete/Css-Question/{{ $srvyQuestion->id }}"
                                                     method="POST">
                                                     @method('delete')
                                                     @csrf
@@ -233,13 +233,13 @@
             <div
                 class=" mx-auto w-full overflow-y-scroll text-gray-800 border border-gray-300 bg-white p-1 shadow-xl mb-6">
                 <!-- component 1 -->
+                <div class="flex justify-center border-b-2 border-b-gray-300 my-2">
+                    <h3 class="text-lg leading-6 Med-font text-gray-900">Client Satisfaction Survey
+                        Comment</h3>
+                </div>
                 <div class="flex flex-col gap-5">
                     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5 h-96">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                            <div class="flex justify-center border-b-2 border-b-gray-300 my-2">
-                                <h3 class="text-lg leading-6 Med-font text-gray-900">Client Satisfaction Survey
-                                    Comment</h3>
-                            </div>
                             <!--table number 1-->
                             <div>
                                 <table class="min-w-full border-2 border-gray-200 ">
@@ -265,11 +265,11 @@
                                                 </td>
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap flex justify-evenly  items-center">
-                                                    <a href="/indexAdmin/edit/Css-Question/{{ $comment->id }}"
+                                                    <a href="/indexAdmin/edit/Css-Comment/{{ $comment->id }}"
                                                         class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         Edit
                                                     </a>
-                                                    <form action="/indexAdmin/delete/ccQuestion/{{ $comment->id }}"
+                                                    <form action="/indexAdmin/delete/Css-Comment/{{ $comment->id }}"
                                                         method="POST">
                                                         @method('delete')
                                                         @csrf
