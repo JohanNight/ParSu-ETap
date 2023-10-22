@@ -14,6 +14,7 @@ use App\Models\service1_3;
 use App\Models\User;
 use App\Models\Who_avail;
 use App\Models\Classification;
+use App\Models\ServiceType;
 use App\Models\SurveyInstruction;
 use App\Models\SurveyQuestion;
 use App\Models\SurveyComment;
@@ -108,7 +109,8 @@ class adminController extends Controller
             $officeTypes = offices::all();
             $whoAvail = Who_avail::all();
             $classifications = Classification::all();
-            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications'));
+            $ServiceType = ServiceType::all();
+            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications', 'ServiceType'));
         } else {
             return abort(404);
         }
@@ -126,6 +128,7 @@ class adminController extends Controller
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
             'description_service' => 'required|string',
+            'serviceType' => 'required|string',
             'office_service' => 'required|string',
             'classification_service' => 'required|string',
             'transaction_type' => 'required|string',
@@ -140,6 +143,7 @@ class adminController extends Controller
         $service1->code_Title = $request->code_Title;
         $service1->service_Title = $request->service_Title;
         $service1->description_service = $request->description_service;
+        $service1->service_type = $request->serviceType;
         $service1->office_service = $request->office_service;
         $service1->classification_service = $request->classification_service;
         $service1->transaction_type = $request->transaction_type;
@@ -250,6 +254,7 @@ class adminController extends Controller
         $officeTypes = offices::all();
         $whoAvail = Who_avail::all();
         $classifications = Classification::all();
+        $ServiceType = ServiceType::all();
 
         $service1 = Service1::with('checklistRequirements1', 'checklistRequirements2')->find($id);
         //dd($service1);
@@ -257,7 +262,7 @@ class adminController extends Controller
             return abort(404); // Handle the case when the record is not found.
         }
 
-        return view('AdminSide.editService', compact('service1', 'officeTypes', 'whoAvail', 'classifications'));
+        return view('AdminSide.editService', compact('service1', 'officeTypes', 'whoAvail', 'classifications', 'ServiceType'));
     }
     public function saveEditService(Request $request, $serviceId)
     {
@@ -268,6 +273,7 @@ class adminController extends Controller
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
             'description_service' => 'required|string',
+            'serviceType' => 'required|string',
             'office_service' => 'required|string',
             'classification_service' => 'required|string',
             'transaction_type' => 'required|string',
@@ -281,6 +287,7 @@ class adminController extends Controller
             'code_Title' => $request->code_Title,
             'service_Title' => $request->service_Title,
             'description_service' => $request->description_service,
+            'service_type' => $request->serviceType,
             'office_service' => $request->office_service,
             'classification_service' => $request->classification_service,
             'transaction_type' => $request->transaction_type,

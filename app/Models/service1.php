@@ -13,6 +13,7 @@ class service1 extends Model
         'code_Title',
         'service_Title',
         'description_service',
+        'service_type',
         'office_service',
         'classification_service',
         'classification_service',
