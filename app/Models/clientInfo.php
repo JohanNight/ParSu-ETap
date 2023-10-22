@@ -9,7 +9,7 @@ class clientInfo extends Model
 {
     //for storing the client information
     use HasFactory;
-    protected $table = 'table_clientinfos_final';
+    protected $table = 'table_client_survey_information';
     protected $fillable = [
         'name',
         'sex',
@@ -17,6 +17,7 @@ class clientInfo extends Model
         'idCategoryFk',
         'dateOfTransaction',
         'idOfficeOrigin',
+        'service_avail',
         'purpose',
         'emailAdd',
         'cc1',

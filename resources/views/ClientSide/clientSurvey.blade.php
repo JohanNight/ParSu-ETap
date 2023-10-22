@@ -47,32 +47,32 @@
         <form action="/home/clientSurvey/StoreData" method="POST">
             @csrf
             {{-- Client Info --}}
-            <div class="block p-5 flex flex-wrap mt-2  border-b-2 border-b-gray-700 ">
-                <div class="block ml-3 ">
+            <div class="block p-5 flex flex-wrap mt-2 border-b-2 border-b-gray-700 ">
+                <div class="block ml-3  mt-2">
                     <label for="name_of_client" class="text-[20px] Reg-font mr-2 text-black">Name: </label>
                     <input type="text" name="name_of_client" id="name_of_client"
-                        class=" px-2 py-2 text-[16px] Reg-font w-96 bg-gray-300 rounded-md shadow-md" value=""
-                        autocomplete="off">
+                        class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
+                        value="" autocomplete="off">
                 </div>
-                <div class="block ml-3">
+                <div class="block ml-3 mt-2">
                     <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
                     <select name="gender_of_client" id="gender_of_client"
-                        class=" w-40 bg-gray-300 py-2 px-2 mb-3 sm:ml-10 md:ml-0  rounded-md shadow-md text-[16px] Reg-font">
+                        class=" w-40 bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full  rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
                         <option value="male" class="text-[16px] Reg-font">Male</option>
                         <option value="female" class="text-[16px] Reg-font">Female</option>
                     </select>
                 </div>
-                <div class="block ml-3">
+                <div class="block ml-3 mt-2">
                     <label for="age_of_client" class="text-[20px] Reg-font mr-2 text-black">Age: </label>
                     <input type="number" name="age_of_client" id="age_of_client"
-                        class=" px-2 py-2 text-[16px] Reg-font w-40 bg-gray-300 rounded-md shadow-md"autocomplete="off"
+                        class=" px-2 py-2 text-[16px] Reg-font w-40 sm:w-full bg-gray-300 rounded-md shadow-md"autocomplete="off"
                         value="">
                 </div>
-                <div class="block ml-3">
+                <div class="block ml-3 mt-2">
                     <label for="client_type" class="text-[20px] Reg-font mr-2 text-black">Client Type: </label>
                     <select name="client_type" id="client_type"
-                        class=" w-48 bg-gray-300 py-2 px-2 mb-3 sm:ml-10 md:ml-0  rounded-md shadow-md text-[16px] Reg-font">
+                        class=" w-48  sm:w-full bg-gray-300 py-2 px-2 mb-3  md:ml-0  rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
                         @foreach ($clientTypes as $clientType)
                             <option value="{{ $clientType->idCategory }}" class="text-[16px] Reg-font capitalize ">
@@ -83,13 +83,13 @@
                 <div class="block ml-3 mt-2 ">
                     <label for="date_of_transaction" class="text-[20px] Reg-font mr-2 text-black">Date: </label>
                     <input type="date" name="date_of_transaction" id="date_of_transaction"
-                        class="px-2 py-2 Reg-font w-80 bg-gray-300 rounded-md shadow-md"autocomplete="off"
+                        class="px-2 py-2 Reg-font w-80 bg-gray-300 rounded-md shadow-md sm:w-full"autocomplete="off"
                         value="">
                 </div>
                 <div class="block ml-3 mt-2 ">
                     <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office/Campus Visited: </label>
                     <select name="offices" id="offices"
-                        class=" w-48 bg-gray-300 py-2 px-2 mb-3 sm:ml-10 md:ml-0  rounded-md shadow-md text-[16px] Reg-font">
+                        class=" w-40 bg-gray-300 py-2 px-2 mb-3  md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
                         @foreach ($officeTypes as $officeType)
                             <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
@@ -97,166 +97,75 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="block ml-3 mt-2 ">
+                <div class="block ml-3 mt-2 flex flex-col">
                     <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
-                    <input type="text" name="service_availed" id="service_availed"
-                        class=" w-72  px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off">
+                    <select type="text" name="service_availed" id="service_availed"
+                        class=" w-96 md:w-80 sm:w-80 px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off">
+                        <option value=""></option>
+                        @foreach ($Service as $services)
+                            <option value="{{ $services->service_Title }}" class="text-[16px] Reg-font capitalize ">
+                                {{ $services->service_Title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="block ml-3 mt-2 ">
+                    <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
+                    <input type="text" name="purpose" id="purpose"
+                        class=" w-full sm:w-full px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off">
                 </div>
                 <div class="mt-2 flex flex-wrap p-2 ">
                     <label for="email_of_client" class="text-lg Reg-font tracking-wide mt-2 mr-2">Email address
                         (optional):
                     </label>
                     <input type="email" name="email_of_client" id="email_of_client"
-                        class="w-96 py-2.5 px-2 bg-gray-300 rounded text-[16px] Reg-font " autocomplete="off">
+                        class="w-96 py-2.5 sm:w-full px-2 bg-gray-300 rounded text-[16px] Reg-font "
+                        autocomplete="off">
                 </div>
             </div>
             {{-- Survey Number 1 --}}
             <div class="p-3 border-b-2 border-b-gray-400">
                 <header class="p-2 border-b-2 border-b-gray-700">
-                    <h3 class="text-[18px] SemiB-font text-black text-center">
-                        INSTRUCTIONS: Check mark (✔ ) your answer to the Citizen’s Charter (CC) questions. The
-                        Citizen’s
-                        Charter
-                        is an official document that reflects the services of a government agency/office including
-                        its
-                        requirements, fees, and processing times among others.
-                    </h3>
+                    @foreach ($ccInstruction as $CCinstruction)
+                        <h3 class="text-[18px] SemiB-font text-black text-center">
+                            {{ $CCinstruction->instruction }}
+                        </h3>
+                    @endforeach
+
                 </header>
                 <div class="w-full mt-[12px] ml-[30px]">
                     {{-- Question 1 --}}
-                    <div class="flex flex-col m-4">
-                        <div class="w-full">
-                            <label class="text-[18px] Reg-font tracking-wide"><span
-                                    class="text-[18px] SemiB-font p-4">CC1
-                                </span>Which of
-                                the
-                                following
-                                best
-                                describes
-                                your awareness of a CC?</label>
+                    @foreach ($ccQuestions as $CCquestion)
+                        <div class="flex flex-col m-4">
+                            <div class="w-full">
+                                <label
+                                    class="text-[18px] Reg-font tracking-wide">{{ $CCquestion->description }}</label>
+                            </div>
+                            <div class="flex flex-col space-y-2 ml-[50px] mt-5">
+                                @foreach ($CCquestion->CcOption as $index => $Option)
+                                    <label class="text-[16px] Reg-font">
+                                        <input type="radio" name="question{{ $CCquestion->id }}"
+                                            value="{{ $Option->option_text }}"
+                                            id="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}"
+                                            class="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}">
+                                        <span class="ml-3">{{ $Option->option_text }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="flex flex-col space-y-2 ml-[50px] mt-5">
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1" value="1" id="cc1-answer1"
-                                    class="cc1-answer1">
-                                <span class="ml-3">1. I know
-                                    what a CC is and I saw
-                                    this office’s CC.</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1" value="2"id="cc1-answer1"
-                                    class="cc1-answer1"> <span class="ml-3">2. I know
-                                    what a CC is but I did NOT see this office’s CC</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1" value="3" id="cc1-answer1"
-                                    class="cc1-answer1">
-                                <span class="ml-3">3. I
-                                    learned of the CC only when I saw this office’s CC.</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question1" value="4" id="cc1-answer1"
-                                    class="cc1-answer1">
-                                <span class="ml-3">4. I do
-                                    not know what a CC is and I did not see one in this office. (Answer ‘N/A’ on CC2
-                                    and
-                                    CC3)</span>
-                            </label>
-
-                        </div>
-                    </div>
-                    {{-- Question 2 --}}
-                    <div class="flex flex-col m-4">
-                        <div class="w-full">
-                            <label class="text-[18px] Reg-font tracking-wide"><span
-                                    class="text-[18px] SemiB-font p-4">CC2
-                                </span>If aware of CC (answered 1-3 in CC1), would you say that the CC of this
-                                office
-                                was
-                                …?</label>
-                        </div>
-                        <div class="flex flex-col space-y-2 ml-[50px] mt-5">
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2" value="1" id="cc2-answer2"
-                                    class="cc2-answer2">
-                                <span class="ml-3">1. Easy
-                                    to see</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2" value="2" id="cc2-answer2"
-                                    class="cc2-answer2">
-                                <span class="ml-3">2.
-                                    Somewhat easy to see</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2" value="3" id="cc2-answer2"
-                                    class="cc2-answer2">
-                                <span class="ml-3">3.
-                                    Difficult to see</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2" value="4" id="cc2-answer2"
-                                    class="cc2-answer2">
-                                <span class="ml-3">4. Not
-                                    visible at all</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question2" value="5" id="cc2-answer2"
-                                    class="cc2-answer2">
-                                <span class="ml-3">5.
-                                    N/A</span>
-                            </label>
-
-                        </div>
-                    </div>
-                    {{-- Question 3 --}}
-                    <div class="flex flex-col m-4">
-                        <div class="w-full">
-                            <label class="text-[18px] Reg-font tracking-wide"><span
-                                    class="text-[18px] SemiB-font p-4">CC3
-                                </span>If aware of CC (answered codes 1-3 in CC1), how much did the CC help you in
-                                your
-                                transaction?</label>
-                        </div>
-                        <div class="flex flex-col space-y-2 ml-[50px] mt-5">
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3" value="1" id="cc3-answer3"
-                                    class="cc3-answer3">
-                                <span class="ml-3">1.
-                                    Helped very much </span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3" value="2" id="cc3-answer3"
-                                    class="cc3-answer3">
-                                <span class="ml-3">2.
-                                    Somewhat helped</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3" value="3" id="cc3-answer3"
-                                    class="cc3-answer3">
-                                <span class="ml-3">3. Did
-                                    not help</span>
-                            </label>
-                            <label class="text-[16px] Reg-font">
-                                <input type="radio" name="question3" value="4" id="cc3-answer3"
-                                    class="cc3-answer3">
-                                <span class="ml-3">4.
-                                    N/A</span>
-                            </label>
+                    @endforeach
 
 
-                        </div>
-                    </div>
                 </div>
             </div>
             {{-- Survey Number 2 --}}
             <div class="relative mt-[10px] p-4 border-b-2 border-b-gray-400">
                 <header class=" border-b-2 border-b-gray-700">
-                    <h3 class="text-[18px] SemiB-font text-black text-center">
-                        INSTRUCTIONS:
-                        For SQD 0-8, please put a check mark (✔ ) on the column that best corresponds to your
-                        answer.
-                    </h3>
+                    @foreach ($SrvyInstruction as $srvyInstruction)
+                        <h3 class="text-[18px] SemiB-font text-black text-center">
+                            {{ $srvyInstruction->instruction }}
+                        </h3>
+                    @endforeach
+
                 </header>
                 <div class="pt-2 pb-2 ">
                     <table class="w-full border-collapse border">
@@ -339,41 +248,237 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="border p-2">
-                                    <span class="text-[18px] Bold-font text-justify">
-                                        SQD0.
-                                    </span>
-                                    <label for="question-S2-Q0" id="question-S2-Q0"
-                                        class="text-[18px] Reg-font text-justify">I am satisfied with the service that
-                                        I availed.</label>
-                                </td>
-                                <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0" id="" value="5"
-                                        class="w-full">
-                                </td>
-                                <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0" id="" value="4"
-                                        class="w-full">
-                                </td>
-                                <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0" id="" value="3"
-                                        class="w-full">
-                                </td>
-                                <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0" id="" value="2"
-                                        class="w-full">
-                                </td>
-                                <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0" id="" value="1"
-                                        class="w-full">
-                                </td>
-                                <td class="border p-2">
-                                    <input type="radio" name="question-S2-Q0" id="" value="0"
-                                        class="w-full">
-                                </td>
-                            </tr>
-                            <tr>
+                            @foreach ($SrvyQuestion as $srvyQuestion)
+                                <tr>
+                                    <td class="border p-2">
+                                        <label for="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="question-S2-Q{{ $srvyQuestion->id }}"
+                                            class="text-[18px] Reg-font text-justify">{{ $srvyQuestion->questions }}</label>
+                                    </td>
+                                    <td class="border p-2">
+                                        <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="" value="strongly agree" class="w-full">
+                                    </td>
+                                    <td class="border p-2">
+                                        <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="" value="agree" class="w-full">
+                                    </td>
+                                    <td class="border p-2">
+                                        <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="" value="neither agree nor disagree" class="w-full">
+                                    </td>
+                                    <td class="border p-2">
+                                        <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="" value="disagree" class="w-full">
+                                    </td>
+                                    <td class="border p-2">
+                                        <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="" value="very disagree" class="w-full">
+                                    </td>
+                                    <td class="border p-2">
+                                        <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
+                                            id="" value="not applicable" class="w-full">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            {{-- Survey 3 --}}
+            <div class="mt-2 p-2 ">
+                <div class="w-full flex flex-col">
+                    @foreach ($SrvyComment as $srvyComment)
+                        <label for="suggestion_for_client"
+                            class="text-[18px] SemiB-font tracking-wide text-left mb-2">{{ $srvyComment->comment }}
+                        </label>
+                        <textarea name="suggestion_for_client" id="suggestion_for_client" cols="30" rows="10"
+                            class="bg-gray-400 p-2 text-lg Reg-font placeholder:text-lg placeholder:Reg-font placeholder:text-black"
+                            placeholder="Write Here"></textarea>
+                    @endforeach
+
+                </div>
+
+            </div>
+            {{-- Submit button --}}
+            <div class="mt-2 p-10 flex justify-center ">
+                <button class="py-4 Med-font  text-[30px] bg-green-400 rounded active:bg-green-600 w-full"
+                    type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        //to retrive the data and the populate them in each fields
+        $(document).ready(function() {
+            var categoryMapping = {
+                'Student': 1,
+                'Faculty': 2,
+                'Personnel': 3,
+                'Others': 4
+            };
+            $('#searchButton').on('click', function() {
+                const csrfToken = $('meta[name="csrf-token"]').attr(
+                    'content'); // Get the CSRF token from the meta tag
+                const searchTerm = $('#search-id').val();
+                // Send AJAX request to the server to fetch client data
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/home/clientSurvey/Search',
+                    method: 'POST',
+                    data: {
+                        '_token': csrfToken,
+                        'searchId': searchTerm
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Populate client info fields with retrieved data 
+                        setTimeout(() => {
+                            $('#name_of_client').val(data.name);
+                            $('#gender_of_client').val(data.gender);
+                            $('#age_of_client').val(data.age);
+                            // Map the category string to its numeric value using categoryMapping
+                            var numericCategory = categoryMapping[data
+                                .category];
+                            // Set the selected option in the client_type select element based on the numeric value
+                            $('#client_type').val(numericCategory);
+
+                            // Populate other fields as needed
+                        }, 0);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        console.log("Status:", status);
+                        console.error("XHR Error:", xhr);
+                    }
+                });
+            });
+        });
+
+        // date_autofill.js
+        // Get the current date in the format "YYYY-MM-DD"
+        var today = new Date().toISOString().split('T')[0];
+
+        // Set the input field's value to today's date
+        document.getElementById("date_of_transaction").value = today;
+    });
+</script>
+
+@include('partials.footerClient')
+
+
+{{-- Question 2 --}}
+{{-- <div class="flex flex-col m-4">
+                        <div class="w-full">
+                            <label class="text-[18px] Reg-font tracking-wide"><span
+                                    class="text-[18px] SemiB-font p-4">CC2
+                                </span>If aware of CC (answered 1-3 in CC1), would you say that the CC of this
+                                office
+                                was
+                                …?</label>
+                        </div>
+                        <div class="flex flex-col space-y-2 ml-[50px] mt-5">
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question2" value="1" id="cc2-answer2"
+                                    class="cc2-answer2">
+                                <span class="ml-3">1. Easy
+                                    to see</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question2" value="2" id="cc2-answer2"
+                                    class="cc2-answer2">
+                                <span class="ml-3">2.
+                                    Somewhat easy to see</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question2" value="3" id="cc2-answer2"
+                                    class="cc2-answer2">
+                                <span class="ml-3">3.
+                                    Difficult to see</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question2" value="4" id="cc2-answer2"
+                                    class="cc2-answer2">
+                                <span class="ml-3">4. Not
+                                    visible at all</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question2" value="5" id="cc2-answer2"
+                                    class="cc2-answer2">
+                                <span class="ml-3">5.
+                                    N/A</span>
+                            </label>
+
+                        </div>
+                    </div> --}}
+{{-- Question 3 --}}
+{{-- <div class="flex flex-col m-4">
+                        <div class="w-full">
+                            <label class="text-[18px] Reg-font tracking-wide"><span
+                                    class="text-[18px] SemiB-font p-4">CC3
+                                </span>If aware of CC (answered codes 1-3 in CC1), how much did the CC help you in
+                                your
+                                transaction?</label>
+                        </div>
+                        <div class="flex flex-col space-y-2 ml-[50px] mt-5">
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question3" value="1" id="cc3-answer3"
+                                    class="cc3-answer3">
+                                <span class="ml-3">1.
+                                    Helped very much </span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question3" value="2" id="cc3-answer3"
+                                    class="cc3-answer3">
+                                <span class="ml-3">2.
+                                    Somewhat helped</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question3" value="3" id="cc3-answer3"
+                                    class="cc3-answer3">
+                                <span class="ml-3">3. Did
+                                    not help</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question3" value="4" id="cc3-answer3"
+                                    class="cc3-answer3">
+                                <span class="ml-3">4.
+                                    N/A</span>
+                            </label>
+
+
+                        </div>
+                    </div> --}}
+
+{{-- <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question1" value="2"id="cc1-answer1"
+                                    class="cc1-answer1"> <span class="ml-3">2. I know
+                                    what a CC is but I did NOT see this office’s CC</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question1" value="3" id="cc1-answer1"
+                                    class="cc1-answer1">
+                                <span class="ml-3">3. I
+                                    learned of the CC only when I saw this office’s CC.</span>
+                            </label>
+                            <label class="text-[16px] Reg-font">
+                                <input type="radio" name="question1" value="4" id="cc1-answer1"
+                                    class="cc1-answer1">
+                                <span class="ml-3">4. I do
+                                    not know what a CC is and I did not see one in this office. (Answer ‘N/A’ on CC2
+                                    and
+                                    CC3)</span>
+                            </label> --}}
+
+
+
+{{-- <tr>
                                 <td class="border p-2">
                                     <span class="text-[18px] Bold-font text-justify">
                                         SQD1.
@@ -659,94 +764,4 @@
                                     <input type="radio" name="question-S2-Q8" id="" value="0"
                                         class="w-full">
                                 </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-                </div>
-
-            </div>
-            {{-- Survey 3 --}}
-            <div class="mt-2 p-2 ">
-                <div class="w-full flex flex-col">
-                    <label for="suggestion_for_client"
-                        class="text-[18px] SemiB-font tracking-wide text-left mb-2">Suggestions
-                        on
-                        how
-                        we can
-                        further improve our services (optional): </label>
-                    <textarea name="suggestion_for_client" id="suggestion_for_client" cols="30" rows="10"
-                        class="bg-gray-400 p-2 text-lg Reg-font placeholder:text-lg placeholder:Reg-font placeholder:text-black"
-                        placeholder="Write Here"></textarea>
-                </div>
-
-            </div>
-            {{-- Submit button --}}
-            <div class="mt-2 p-10 flex justify-center ">
-                <button class="p-2 text-xl Reg-font bg-green-400 rounded active:bg-green-600" type="submit">
-                    Submit
-                </button>
-            </div>
-        </form>
-
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        //to retrive the data and the populate them in each fields
-        $(document).ready(function() {
-            var categoryMapping = {
-                'Student': 1,
-                'Faculty': 2,
-                'Personnel': 3,
-                'Others': 4
-            };
-            $('#searchButton').on('click', function() {
-                const csrfToken = $('meta[name="csrf-token"]').attr(
-                    'content'); // Get the CSRF token from the meta tag
-                const searchTerm = $('#search-id').val();
-                // Send AJAX request to the server to fetch client data
-                $.ajax({
-                    url: 'http://127.0.0.1:8000/home/clientSurvey/Search',
-                    method: 'POST',
-                    data: {
-                        '_token': csrfToken,
-                        'searchId': searchTerm
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        // Populate client info fields with retrieved data 
-                        setTimeout(() => {
-                            $('#name_of_client').val(data.name);
-                            $('#gender_of_client').val(data.gender);
-                            $('#age_of_client').val(data.age);
-                            // Map the category string to its numeric value using categoryMapping
-                            var numericCategory = categoryMapping[data
-                                .category];
-                            // Set the selected option in the client_type select element based on the numeric value
-                            $('#client_type').val(numericCategory);
-
-                            // Populate other fields as needed
-                        }, 0);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                        console.log("Status:", status);
-                        console.error("XHR Error:", xhr);
-                    }
-                });
-            });
-        });
-
-        // date_autofill.js
-        // Get the current date in the format "YYYY-MM-DD"
-        var today = new Date().toISOString().split('T')[0];
-
-        // Set the input field's value to today's date
-        document.getElementById("date_of_transaction").value = today;
-    });
-</script>
-
-@include('partials.footerClient')
+                            </tr> --}}
