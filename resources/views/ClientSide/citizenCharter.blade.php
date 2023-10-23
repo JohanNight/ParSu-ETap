@@ -144,6 +144,9 @@
                                                 <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
                                                     Title
                                                 </th>
+                                                <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
+                                                    Offices
+                                                </th>
 
                                                 <th scope="col" class="text-sm  SemiB-font  px-6 py-4 ">
                                                     Handle
@@ -160,6 +163,10 @@
                                                     <td
                                                         class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
                                                         {{ $service->service_Title }}
+                                                    </td>
+                                                    <td
+                                                        class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
+                                                        {{ $service->office_service }}
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <a href="/home/Document/{{ $service->id }}"

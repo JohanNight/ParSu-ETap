@@ -144,7 +144,7 @@
                                 @foreach ($CCquestion->CcOption as $index => $Option)
                                     <label class="text-[16px] Reg-font">
                                         <input type="radio" name="question{{ $CCquestion->id }}"
-                                            value="{{ $Option->option_text }}"
+                                            value="{{ $Option->id }}"
                                             id="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}"
                                             class="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}">
                                         <span class="ml-3">{{ $Option->option_text }}</span>
@@ -257,27 +257,27 @@
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
-                                            id="" value="strongly agree" class="w-full">
+                                            id="" value="5" class="w-full">
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
-                                            id="" value="agree" class="w-full">
+                                            id="" value="4" class="w-full">
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
-                                            id="" value="neither agree nor disagree" class="w-full">
+                                            id="" value="3" class="w-full">
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
-                                            id="" value="disagree" class="w-full">
+                                            id="" value="2" class="w-full">
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
-                                            id="" value="very disagree" class="w-full">
+                                            id="" value="1" class="w-full">
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
-                                            id="" value="not applicable" class="w-full">
+                                            id="" value="0" class="w-full">
                                     </td>
                                 </tr>
                             @endforeach

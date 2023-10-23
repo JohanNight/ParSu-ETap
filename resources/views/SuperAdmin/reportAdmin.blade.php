@@ -44,7 +44,7 @@
             </div>
             <!--Graph 2 Overall Client-->
             <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
-                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Overall Survey Answered by Clients</h2>
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Overall Number of Clients</h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!--Line with gradient-->
@@ -54,15 +54,16 @@
                     <canvas id="ovrClientChart[1]"></canvas>
                 </div>
             </div>
-            <!-- Graph - FeedBack -->
+            <!-- chart- FeedBack -->
             <div class="flex-1 mt-2 mb-3 bg-white p-4 shadow rounded-lg w-full">
-                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Overall Sarisfaction of Clients </h2>
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Overall Satisfaction of Clients </h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!-- Line with gradient -->
                 <div class="chart-container" style="position: relative; height:300px; width:100%">
-                    <!-- The canvas for the graph -->
-                    <canvas id="feedBackChart[1]"></canvas>
+                    <!-- The canvas for the pie chart -->
+                    {{-- <canvas id="feedBackChart[1]"></canvas> --}}
+                    {!! $chart->container() !!}
                 </div>
             </div>
 
@@ -652,6 +653,8 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
 <script>
     ServiceBarChart();
 
@@ -703,7 +706,7 @@
         const data = {
             labels: labels,
             datasets: [{
-                label: 'Overall Survey Answered by Clients',
+                label: 'Total number of Clients',
                 data: [65, 59, 80], // Update this data with your specific values
                 backgroundColor: [
                     '#044389',
@@ -739,25 +742,25 @@
     }
 
 
-    var feedBackChartChart = new Chart(document.getElementById('feedBackChart[1]'), {
-        type: 'pie',
-        data: {
-            labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
-                'Not Applicable'
-            ],
-            datasets: [{
-                data: [60, 40, 25, 15, 5, 0],
-                backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: 'bottom' // Ubicar la leyenda debajo del círculo
-            }
-        }
-    });
+    // var feedBackChartChart = new Chart(document.getElementById('feedBackChart[1]'), {
+    //     type: 'pie',
+    //     data: {
+    //         labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
+    //             'Not Applicable'
+    //         ],
+    //         datasets: [{
+    //             data: [60, 40, 25, 15, 5, 0],
+    //             backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend: {
+    //             position: 'bottom' // Ubicar la leyenda debajo del círculo
+    //         }
+    //     }
+    // });
 </script>
-
+{!! $chart->script() !!}
 @include('partials.footerAdmin')

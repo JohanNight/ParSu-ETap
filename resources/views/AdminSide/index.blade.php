@@ -117,7 +117,8 @@
 
             <!-- Fourth container -->
             <!-- Section 4 - Table of Transactions-->
-            <div class="mt-8 bg-white p-4 shadow rounded-lg">
+
+            {{-- <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <div class="bg-white p-4 rounded-md mt-4">
                     <h2 class="text-gray-500 text-lg font-semibold pb-4">Transactions</h2>
                     <div class="my-1"></div> <!-- Separation space -->
@@ -168,10 +169,10 @@
                             </button>
                         </button>
                     </div>
-                </div>
-            </div>
+                </div> --}}
         </div>
     </div>
+</div>
 </div>
 
 @include('partials.footerAdmin')

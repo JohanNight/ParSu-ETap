@@ -28,6 +28,8 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use App\Charts\TotalClientSatisfaction;
+
 class adminController extends Controller
 {
     //
@@ -441,8 +443,9 @@ class adminController extends Controller
     }
     public function reportAdmin()
     {
+        $chart = new TotalClientSatisfaction;
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin');
+            return view('SuperAdmin.reportAdmin', compact('chart'));
         } else {
             return abort(404);
         }
