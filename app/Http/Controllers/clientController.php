@@ -208,14 +208,4 @@ class clientController extends Controller
             return abort(404);
         }
     }
-
-    public function example()
-    {
-        if (View::exists('example.example1')) {
-
-            return view('example.example1',);
-        } else {
-            return abort(404);
-        }
-    }
 }

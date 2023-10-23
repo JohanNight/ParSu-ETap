@@ -200,20 +200,25 @@ class SumOfAllData extends Controller
     public function calculateClientCategory()
     {
         $surveyData = clientInfo::all(); // retrieve all survey data
-        $clientCategory = clientCategory::all(); //  retrieve all  data from the table  clients Category
-        $categoryCounts = [];
+        // $clientCategory = clientCategory::all(); //  retrieve all  data from the table  clients Category
+        // $categoryCounts = [];
 
-        foreach ($clientCategory as $category) {
-            $categoryCounts[$category->category] = 0;
-        }
+        $studenCount = 0;
+        $facultyCount = 0;
+        $personnnelCount = 0;
+        $othersCount = 0;
 
-        foreach ($surveyData as $surveyedOffice) {
-            foreach ($clientCategory as $category) {
-                if ($surveyedOffice->idCategoryFK == $category->id) {
-                    $categoryCounts[$category->category]++;
-                }
-            }
-        }
+        // foreach ($clientCategory as $category) {
+        //     $categoryCounts[$category->category] = 0;
+        // }
+
+        // foreach ($surveyData as $surveyedOffice) {
+        //     foreach ($clientCategory as $category) {
+        //         if ($surveyedOffice->idCategoryFK == $category->id) {
+        //             $categoryCounts[$category->category]++;
+        //         }
+        //     }
+        // }
 
         // foreach ($clientCategory as $category) {
         //     foreach ($surveyData as $surveyedOffice) {
@@ -223,6 +228,44 @@ class SumOfAllData extends Controller
         //     }
         // }
 
-        return $categoryCounts;
+        foreach ($surveyData as $surveyedOffice) {
+            if ($surveyedOffice->idCategoryFK == 4) {
+                $othersCount++;
+            } elseif ($surveyedOffice->idCategoryFK == 3) {
+                $personnnelCount++;
+            } elseif ($surveyedOffice->idCategoryFK == 2) {
+                $facultyCount++;
+            } else {
+                $studenCount++;
+            }
+        }
+
+        return [
+            'Student' => $studenCount,
+            'Faculty' => $facultyCount,
+            'Personnel' => $personnnelCount,
+            'Others' => $othersCount,
+        ];
+    }
+    public function calculatePerOfficeSurveyed()
+    {
+        $surveyData = clientInfo::all(); // retrieve all survey data
+        $officeAvailable = offices::all();
+
+        $officeCount = [];
+
+        foreach ($officeAvailable as $offices) {
+            $officeCount[$offices->id] = 0;
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($officeAvailable as $offices) {
+                if ($surveyed->idOfficeOrigin == $offices->id) {
+                    $officeCount[$offices->$offices->id]++;
+                }
+            }
+        }
+
+        return $officeCount;
     }
 }

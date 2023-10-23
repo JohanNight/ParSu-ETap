@@ -9,4 +9,9 @@ class offices extends Model
 {
     use HasFactory;
     protected $table = 'tbloffices';
+    protected $fillable = [
+        'idCampus',
+        'officeAcronym',
+        'officeDescription'
+    ];
 }

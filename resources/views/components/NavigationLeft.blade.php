@@ -133,9 +133,8 @@
             @endif
 
             <!-- Generate A Code-->
-            <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white  pointer "
+            {{-- <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white  pointer "
                 href="{{ route('Generator') }}">
-                {{-- Code Generator Route  --}}
                 <div class=" mr-0 flex gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
                         <path
@@ -143,14 +142,14 @@
                     </svg>
                     <span class="Reg-font text-[15px]">Generate Code</span>
                 </div>
-            </a>
+            </a> --}}
 
             <!--User-->
-            <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
+            {{-- <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
                 href="#">
                 <i class="fas fa-users mr-2"></i>Users
 
-            </a>
+            </a> --}}
             <!-- Report page for Super Admin-->
             @if ($user->idOfficeOriginFK === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "

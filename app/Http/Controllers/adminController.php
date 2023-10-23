@@ -448,25 +448,31 @@ class adminController extends Controller
         // Create an instance of the SumOfAllData controller
         $sumOfAllDataController = new SumOfAllData(); //import a controller
         $chart = new TotalClientSatisfaction; // this is a chart php
-
         $totalUsers = new TotalClientSatisfaction;
+        $totalOffices = new TotalClientSatisfaction;
 
         // Call the calculateClientSatisfaction method to get the satisfaction data
         $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
         $chart->labels(array_keys($satisfactionData));
-        $chart->dataset('Client Satisfaction', 'pie', array_values($satisfactionData))
+        $chart->dataset('Total Client Satisfaction', 'pie', array_values($satisfactionData))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
 
 
 
         $TotalUser = $sumOfAllDataController->calculateClientCategory();
         $totalUsers->labels(array_keys($TotalUser));
-        $totalUsers->dataset('Number Of Users By Category', 'bar', array_values($TotalUser))
+        $totalUsers->dataset('Number Of Clients By Category', 'bar', array_values($TotalUser))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+
+        $TotalOfficesSurveyed = $sumOfAllDataController->calculatePerOfficeSurveyed();
+        $totalOffices->labels(array_keys($TotalOfficesSurveyed));
+        $totalOffices->dataset('Number Of Offices', 'bar', array_values($TotalOfficesSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
 
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices'));
         } else {
             return abort(404);
         }
