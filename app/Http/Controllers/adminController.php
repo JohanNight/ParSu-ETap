@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 use App\Charts\TotalClientSatisfaction;
+use App\Http\Controllers\SumOfAllData; // Import the controller
+
 
 class adminController extends Controller
 {
@@ -443,9 +445,28 @@ class adminController extends Controller
     }
     public function reportAdmin()
     {
-        $chart = new TotalClientSatisfaction;
+        // Create an instance of the SumOfAllData controller
+        $sumOfAllDataController = new SumOfAllData(); //import a controller
+        $chart = new TotalClientSatisfaction; // this is a chart php
+
+        $totalUsers = new TotalClientSatisfaction;
+
+        // Call the calculateClientSatisfaction method to get the satisfaction data
+        $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
+        $chart->labels(array_keys($satisfactionData));
+        $chart->dataset('Client Satisfaction', 'pie', array_values($satisfactionData))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
+
+
+
+        $TotalUser = $sumOfAllDataController->calculateClientCategory();
+        $totalUsers->labels(array_keys($TotalUser));
+        $totalUsers->dataset('Number Of Users By Category', 'bar', array_values($TotalUser))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers'));
         } else {
             return abort(404);
         }

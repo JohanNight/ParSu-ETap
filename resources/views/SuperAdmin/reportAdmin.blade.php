@@ -1,3 +1,4 @@
+{{-- @dd($totalUsers->container()); --}}
 @include('partials.headerAdmin')
 <!-- component -->
 <div class="flex flex-col min-h-screen bg-gray-100">
@@ -51,7 +52,8 @@
 
                 <div class="chart-container" class="flex" style="position: relative; height:300px; width:100%">
                     <!-- The canvas for the graph -->
-                    <canvas id="ovrClientChart[1]"></canvas>
+                    {{-- <canvas id="ovrClientChart[1]"></canvas> --}}
+                    {!! $totalUsers->container() !!}
                 </div>
             </div>
             <!-- chart- FeedBack -->
@@ -699,47 +701,47 @@
     }
 
 
-    AnsweredByClient();
+    // AnsweredByClient();
 
-    function AnsweredByClient() {
-        const labels = ['Student', 'Personnel/Non-Personnel', 'Visitor', ]; // Updated labels
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Total number of Clients',
-                data: [65, 59, 80], // Update this data with your specific values
-                backgroundColor: [
-                    '#044389',
-                    '#FCFF4B',
-                    '#03CEA4',
+    // function AnsweredByClient() {
+    //     const labels = ['Student', 'Personnel/Non-Personnel', 'Visitor', ]; // Updated labels
+    //     const data = {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: 'Total number of Clients',
+    //             data: [65, 59, 80], // Update this data with your specific values
+    //             backgroundColor: [
+    //                 '#044389',
+    //                 '#FCFF4B',
+    //                 '#03CEA4',
 
-                ],
-                borderColor: [
-                    '#044389',
-                    '#FCFF4B',
-                    '#03CEA4',
+    //             ],
+    //             borderColor: [
+    //                 '#044389',
+    //                 '#FCFF4B',
+    //                 '#03CEA4',
 
-                ],
-                borderWidth: 1,
-            }],
-        };
+    //             ],
+    //             borderWidth: 1,
+    //         }],
+    //     };
 
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-                responsive: true, // Allow the chart to be responsive
-                maintainAspectRatio: false, // Prevent maintaining aspect ratio
-            },
-        };
-        const ctx = document.getElementById('ovrClientChart[1]').getContext('2d');
-        new Chart(ctx, config);
-    }
+    //     const config = {
+    //         type: 'bar',
+    //         data: data,
+    //         options: {
+    //             scales: {
+    //                 y: {
+    //                     beginAtZero: true,
+    //                 },
+    //             },
+    //             responsive: true, // Allow the chart to be responsive
+    //             maintainAspectRatio: false, // Prevent maintaining aspect ratio
+    //         },
+    //     };
+    //     const ctx = document.getElementById('ovrClientChart[1]').getContext('2d');
+    //     new Chart(ctx, config);
+    // }
 
 
     // var feedBackChartChart = new Chart(document.getElementById('feedBackChart[1]'), {
@@ -763,4 +765,5 @@
     // });
 </script>
 {!! $chart->script() !!}
+{!! $totalUsers->script() !!}
 @include('partials.footerAdmin')
