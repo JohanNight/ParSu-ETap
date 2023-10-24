@@ -251,21 +251,21 @@ class SumOfAllData extends Controller
     {
         $surveyData = clientInfo::all(); // retrieve all survey data
         $officeAvailable = offices::all();
-
         $officeCount = [];
-
         foreach ($officeAvailable as $offices) {
-            $officeCount[$offices->id] = 0;
+            $officeCount[$offices->officeAcronym] = 0;
         }
 
+        //$office = $officeCount;
         foreach ($surveyData as $surveyed) {
             foreach ($officeAvailable as $offices) {
-                if ($surveyed->idOfficeOrigin == $offices->id) {
-                    $officeCount[$offices->$offices->id]++;
+                if ($surveyed->idOfficeOrigin == $offices->officeAcronym) {
+                    $officeCount[$offices->officeAcronym]++;
                 }
             }
         }
 
+        // dd($officeCount);
         return $officeCount;
     }
 }

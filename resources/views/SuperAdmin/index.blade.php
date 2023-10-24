@@ -225,7 +225,8 @@
                     <!-- Line with gradient -->
                     <div class="chart-container" style="position: relative; height:200px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="totalUserFeedBackChart"></canvas>
+                        {{-- <canvas id="totalUserFeedBackChart"></canvas> --}}
+                        {!! $chart->container() !!}
                     </div>
                 </div>
             </div>
@@ -738,6 +739,8 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
 <script>
     //over all service
     var serviceBarChart = new Chart(document.getElementById('totalUserChart'), {
@@ -773,25 +776,27 @@
         },
     });
 
-    //overall Feedback
-    var commercesChart = new Chart(document.getElementById('totalUserFeedBackChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
-                'Not Applicable'
-            ],
-            datasets: [{
-                data: [60, 40, 25, 15, 5, 0],
-                backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                position: 'bottom' // Ubicar la leyenda debajo del círculo
-            }
-        }
-    });
+    // //overall Feedback
+    // var commercesChart = new Chart(document.getElementById('totalUserFeedBackChart'), {
+    //     type: 'doughnut',
+    //     data: {
+    //         labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
+    //             'Not Applicable'
+    //         ],
+    //         datasets: [{
+    //             data: [60, 40, 25, 15, 5, 0],
+    //             backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend: {
+    //             position: 'bottom' // Ubicar la leyenda debajo del círculo
+    //         }
+    //     }
+    // });
 </script>
+
+{!! $chart->script() !!}
 @include('partials.footerAdmin')

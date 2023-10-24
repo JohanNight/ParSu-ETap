@@ -92,7 +92,7 @@
                         class=" w-40 bg-gray-300 py-2 px-2 mb-3  md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
                         @foreach ($officeTypes as $officeType)
-                            <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
+                            <option value="{{ $officeType->officeAcronym }}" class="text-[16px] Reg-font capitalize ">
                                 {{ $officeType->officeAcronym }}</option>
                         @endforeach
                     </select>

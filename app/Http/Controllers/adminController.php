@@ -437,8 +437,18 @@ class adminController extends Controller
 
     public function indexAdmin()
     {
+        $sumOfAllDataController = new SumOfAllData(); //import a controller
+        $chart = new TotalClientSatisfaction; // this is a chart php
+
+        // Call the calculateClientSatisfaction method to get the satisfaction data
+        $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
+        $chart->labels(array_keys($satisfactionData));
+        $chart->dataset('Total Client Satisfaction', 'doughnut', array_values($satisfactionData))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
+
+
         if (View::exists('SuperAdmin.index')) {
-            return view('SuperAdmin.index');
+            return view('SuperAdmin.index', compact('chart'));
         } else {
             return abort(404);
         }

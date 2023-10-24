@@ -96,13 +96,14 @@
                                     </h2>
                                 </header>
                                 <div class="ml-10">
-                                    <div class="mt-5 ">
-                                        {{-- Add Survey Route --}}
+                                    {{-- Add Survey Route --}}
+                                    {{-- <div class="mt-5 ">
+                                       
                                         <a href="{{ route('CreateSurvey') }}"
                                             class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">Add
                                             New
                                             Survey</a>
-                                    </div>
+                                    </div> --}}
                                     <div class="mt-5 ">
                                         {{-- Add Citizen Survey Route --}}
                                         <a href="{{ route('CreateCcSurvey') }}"
