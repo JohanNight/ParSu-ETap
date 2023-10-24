@@ -468,18 +468,51 @@ class adminController extends Controller
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
 
 
-
+        // Call the calculateClientCategory method to get the total of client category
         $TotalUser = $sumOfAllDataController->calculateClientCategory();
         $totalUsers->labels(array_keys($TotalUser));
         $totalUsers->dataset('Number Of Clients By Category', 'bar', array_values($TotalUser))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-
+        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
         $TotalOfficesSurveyed = $sumOfAllDataController->calculatePerOfficeSurveyed();
         $totalOffices->labels(array_keys($TotalOfficesSurveyed));
         $totalOffices->dataset('Number Of Offices', 'bar', array_values($TotalOfficesSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
+
+        if (View::exists('SuperAdmin.reportAdmin')) {
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices'));
+        } else {
+            return abort(404);
+        }
+    }
+    public function filterReport(Request $request)
+    {
+        // dd($request);
+        $sumOfAllDataController = new SumOfAllData(); //import a controller
+        $totalOffices = new TotalClientSatisfaction;
+        $totalUsers = new TotalClientSatisfaction;
+        $chart = new TotalClientSatisfaction; // this is a chart php
+
+
+        // Call the getCalculateClientSatisfaction method to get the satisfaction data
+        $satisfactionData = $sumOfAllDataController->getCalculateClientSatisfaction($request);
+        $chart->labels(array_keys($satisfactionData));
+        $chart->dataset('Total Client Satisfaction', 'pie', array_values($satisfactionData))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
+
+        // Call the getCalculateClientCategory method to get the total of client category
+        $TotalUser = $sumOfAllDataController->getCalculateClientCategory($request);
+        $totalUsers->labels(array_keys($TotalUser));
+        $totalUsers->dataset('Number Of Clients By Category', 'bar', array_values($TotalUser))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+        // Call the getCalculatePerOfficeSurveyed method to get the total of surveyed per offices
+        $getTotalOfficeSurveyed = $sumOfAllDataController->getCalculatePerOfficeSurveyed($request);
+        $totalOffices->labels(array_keys($getTotalOfficeSurveyed));
+        $totalOffices->dataset('Number Of Offices', 'bar', array_values($getTotalOfficeSurveyed))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
         if (View::exists('SuperAdmin.reportAdmin')) {
             return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices'));

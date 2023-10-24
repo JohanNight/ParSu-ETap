@@ -12,18 +12,21 @@
         <!--Main content area -->
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
             <!--Filter-->
-            <form action=""method="POST">
+            <form action="/superAdmin/report"method="POST">
+                @csrf
                 <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
 
                     <div class=" bg-white border-2 p-2" id="fltr_from_admin">
                         <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
-                        <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        <input type="date" name="date_from"
+                            class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
                     <div class=" bg-white border-2 p-2" id="fltr_to_admin">
                         <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
-                        <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        <input type="date" name="date_to"
+                            class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
-                    <button type="button" id="fltr_date_admin"
+                    <button type="submit" id="fltr_date_admin"
                         class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
                         Filter
                     </button>
@@ -661,7 +664,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
-<script>
+{{-- <script>
     // ServiceBarChart();
 
     // function ServiceBarChart() {
@@ -767,7 +770,7 @@
     //         }
     //     }
     // });
-</script>
+</script> --}}
 {!! $chart->script() !!}
 {!! $totalUsers->script() !!}
 {!! $totalOffices->script() !!}
