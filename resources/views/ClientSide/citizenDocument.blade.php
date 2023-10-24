@@ -64,7 +64,8 @@
                             </table>
                         </div>
                         <div class="mb-2">
-                            <table id="Rqr_Whr_id" class="w-full text-sm text-gray-500 border-2  border-collapse">
+                            <table id="Rqr_Whr_id"
+                                class="w-full sm:text-sm text-left text-gray-500 border-2 border-gray-300 border-collapse">
                                 <thead
                                     class="text-xs Reg-font text-gray-700 uppercase bg-blue-800 text-white text-center">
                                     <th scope="row" class="py-3 px-6 text-center border-2 ">

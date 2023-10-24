@@ -12,25 +12,28 @@
         <!--Main content area -->
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
             <!--Filter-->
-            <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
-                <div class=" bg-white border-2 p-2" id="fltr_from_admin">
-                    <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
-                    <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
-                </div>
-                <div class=" bg-white border-2 p-2" id="fltr_to_admin">
-                    <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
-                    <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
-                </div>
-                <button type="button" id="fltr_date_admin"
-                    class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
-                    Filter
-                </button>
-                <button type="button" id="assess_report_admin"
-                    class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-white">
-                    Assess
-                </button>
+            <form action=""method="POST">
+                <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
 
-            </div>
+                    <div class=" bg-white border-2 p-2" id="fltr_from_admin">
+                        <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
+                        <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
+                    </div>
+                    <div class=" bg-white border-2 p-2" id="fltr_to_admin">
+                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
+                        <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
+                    </div>
+                    <button type="button" id="fltr_date_admin"
+                        class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
+                        Filter
+                    </button>
+                    <button type="button" id="assess_report_admin"
+                        class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-white">
+                        Assess
+                    </button>
+
+                </div>
+            </form>
             <!--Graph 1 Overall Survey-->
             <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
                 <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Overall Survey Distributed by the

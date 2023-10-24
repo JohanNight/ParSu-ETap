@@ -684,7 +684,7 @@
                         <tr class="text-sm leading-normal">
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Photo</th>
+                                Office</th>
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
                                 Name</th>

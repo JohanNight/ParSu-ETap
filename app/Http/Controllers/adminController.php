@@ -443,7 +443,7 @@ class adminController extends Controller
         // Call the calculateClientSatisfaction method to get the satisfaction data
         $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
         $chart->labels(array_keys($satisfactionData));
-        $chart->dataset('Total Client Satisfaction', 'doughnut', array_values($satisfactionData))
+        $chart->dataset('Total Client Satisfaction', 'pie', array_values($satisfactionData))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
 
 
