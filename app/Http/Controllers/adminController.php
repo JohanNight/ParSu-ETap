@@ -460,6 +460,7 @@ class adminController extends Controller
         $chart = new TotalClientSatisfaction; // this is a chart php
         $totalUsers = new TotalClientSatisfaction;
         $totalOffices = new TotalClientSatisfaction;
+        // $totalServiceAvail = new TotalClientSatisfaction;
 
         // Call the calculateClientSatisfaction method to get the satisfaction data
         $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
@@ -480,9 +481,11 @@ class adminController extends Controller
         $totalOffices->dataset('Number Of Offices', 'bar', array_values($TotalOfficesSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
+        $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed();
+        // dd($TotalServiceAvail);
 
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'TotalServiceAvail'));
         } else {
             return abort(404);
         }
@@ -513,12 +516,21 @@ class adminController extends Controller
         $totalOffices->labels(array_keys($getTotalOfficeSurveyed));
         $totalOffices->dataset('Number Of Offices', 'bar', array_values($getTotalOfficeSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+        $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed($request);
+
 
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'TotalServiceAvail'));
         } else {
             return abort(404);
         }
+    }
+
+    public function filterReport2(Request $request)
+    {
+        $sumOfAllDataController = new SumOfAllData(); //import a controller
+        $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed($request);
+        return response()->json($TotalServiceAvail);
     }
 
     public function createCcQuestion()

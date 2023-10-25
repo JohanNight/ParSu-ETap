@@ -94,6 +94,7 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/superAdmin', 'indexAdmin')->name('Admin');
         Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');
         Route::post('/superAdmin/report', 'filterReport')->name('filterReport');
+        Route::post('/superAdmin/report2', 'filterReport2')->name('filterReport2');
     });
 });
 

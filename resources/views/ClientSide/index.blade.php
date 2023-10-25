@@ -11,9 +11,9 @@
                 Welcome to ParSu E-tap
             </h1>
         </header>
-        <div class="flex flex-col items-center ">
+        <div class="flex flex-col items-center pointer ">
             <div
-                class="swiper-container relative w-[600px] h-[400px] overflow-hidden border-4 border-gray-50 rounded-md shadow-md ">
+                class="swiper-container relative w-[600px] h-[400px] overflow-hidden border-4 border-gray-50 rounded-md shadow-md  ">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <img src="{{ asset('images/PARSU IMAGES/entrance.jpg') }}" alt="slide 1">

@@ -3,7 +3,7 @@
     <div class=" absolute w-full ">
         <img src="{{ asset('images/Entrance.jpg') }}" class="min-h-screen bg-no-repeat w-full opacity-80" alt="">
     </div>
-    <div class=" min-h-screen w-full absolute">
+    <div class=" h-full w-full absolute">
         <div class="w-full bg-blue-800 h-20 p-2 flex justify-start items-center">
             <a href="{{ route('CitizenCharter') }}"
                 class="text-lg Reg-font bg-gray-400 text-white rounded-md p-2 active:bg-gray-500">Return</a>

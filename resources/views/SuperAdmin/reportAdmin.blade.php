@@ -90,7 +90,7 @@
                         <tr class="text-sm leading-normal">
                             <th
                                 class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-black border-b border-grey-light">
-                                External Services
+                                Overall Services
                             </th>
                             <th
                                 class="py-2 px-4 bg-grey-lightest  Bold-font uppercase text-lg text-black border-b border-grey-light">
@@ -102,13 +102,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-grey-lighter text-center">
-                            <td class="py-2 px-4 border-b border-grey-light text-[18px] SemiB-font">Service 1</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">1</td>
-                            <td class="py-2 px-4 border-b border-grey-light">1</td>
-                        </tr>
+                        @foreach ($TotalServiceAvail as $serviceTitle => $count)
+                            <tr class="hover:bg-grey-lighter text-center">
+                                <td class="py-2 px-4 border-b border-grey-light text-[13px] SemiB-font">
+                                    {{ $serviceTitle }}</td>
+                                <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">
+                                    {{ $count }}</td>
+                                <td class="py-2 px-4 border-b border-grey-light">{{ $count }}</td>
+                            </tr>
+                        @endforeach
+
                         <!-- Add more rows here like the one above for each pending authorization -->
-                        <tr class="hover:bg-grey-lighter text-center">
+                        {{-- <tr class="hover:bg-grey-lighter text-center">
                             <td class="py-2 px-4 border-b border-grey-light text-[18px] SemiB-font">Service 2</td>
                             <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">2</td>
                             <td class="py-2 px-4 border-b border-grey-light">2</td>
@@ -133,7 +138,7 @@
                             <td class="py-2 px-4 border-b border-grey-light text-[18px] SemiB-font">Total</td>
                             <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font"> 15</td>
                             <td class="py-2 px-4 border-b border-grey-light">15</td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
                 <div class="flex justify-between w-full">
@@ -154,7 +159,7 @@
                             week</span> is <span class="underline text-sky-500"> 15</span></p>
                 </div>
             </div>
-            <!-- Table of Survey Service Internal-->
+            {{-- <!-- Table of Survey Service Internal-->
             <div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
                 <div class="w-full p-2">
                     <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Table 1.2: Overall Services Surveyed by
@@ -658,7 +663,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -774,4 +779,46 @@
 {!! $chart->script() !!}
 {!! $totalUsers->script() !!}
 {!! $totalOffices->script() !!}
+
+<script>
+    $(document).ready(function() {
+        $('#dateFilterForm').submit(function(e) {
+            e.preventDefault();
+
+            const dateFrom = $('#date_from').val();
+            const dateTo = $('#date_to').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/superAdmin/report2',
+                data: {
+                    date_from: dateFrom,
+                    date_to: dateTo,
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(data) {
+                    // Update the table with the filtered data
+                    updateTable(data);
+                },
+            });
+        });
+
+        function updateTable(data) {
+            const tableContainer = $('#tableContainer');
+            const table = tableContainer.find('table');
+
+            // Clear the existing table content
+            table.html('');
+
+            // Add new table content based on the filtered data
+            $.each(data, function(serviceTitle, count) {
+                const row = $('<tr>');
+                row.append($('<td>').text(serviceTitle));
+                row.append($('<td>').text(count));
+                table.append(row);
+            });
+        }
+    });
+</script>
+
 @include('partials.footerAdmin')

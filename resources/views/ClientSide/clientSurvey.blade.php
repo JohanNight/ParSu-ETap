@@ -1,8 +1,8 @@
 @include('partials.headerClient')
-<div class="bg-gray-50 min-h-screen">
+<div class="bg-gray-50 h-full w-full">
 
     <x-navBarClient />{{-- Main Header --}}
-    <div class="pagecontainer">
+    <div>
         {{-- This is for the title and the logo --}}
         <div class="flex flex-col items-center  bg-blue-700 bg-opacity-50 w-full ">
             <div class="block flex justify-center items-center">
@@ -53,6 +53,11 @@
                     <input type="text" name="name_of_client" id="name_of_client"
                         class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
                         value="" autocomplete="off">
+                    @error('name_of_client')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="block ml-3 mt-2">
                     <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
@@ -62,12 +67,22 @@
                         <option value="male" class="text-[16px] Reg-font">Male</option>
                         <option value="female" class="text-[16px] Reg-font">Female</option>
                     </select>
+                    @error('gender_of_client')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="block ml-3 mt-2">
                     <label for="age_of_client" class="text-[20px] Reg-font mr-2 text-black">Age: </label>
                     <input type="number" name="age_of_client" id="age_of_client"
                         class=" px-2 py-2 text-[16px] Reg-font w-40 sm:w-full bg-gray-300 rounded-md shadow-md"autocomplete="off"
                         value="">
+                    @error('age_of_client')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="block ml-3 mt-2">
                     <label for="client_type" class="text-[20px] Reg-font mr-2 text-black">Client Type: </label>
@@ -79,6 +94,11 @@
                                 {{ $clientType->category }}</option>
                         @endforeach
                     </select>
+                    @error('client_type')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="block ml-3 mt-2 ">
                     <label for="date_of_transaction" class="text-[20px] Reg-font mr-2 text-black">Date: </label>
@@ -96,6 +116,11 @@
                                 {{ $officeType->officeAcronym }}</option>
                         @endforeach
                     </select>
+                    @error('offices')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="block ml-3 mt-2 flex flex-col">
                     <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
@@ -107,11 +132,21 @@
                                 {{ $services->service_Title }}</option>
                         @endforeach
                     </select>
+                    @error('service_availed')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="block ml-3 mt-2 ">
                     <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
                     <input type="text" name="purpose" id="purpose"
                         class=" w-full sm:w-full px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off">
+                    @error('purpose')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="mt-2 flex flex-wrap p-2 ">
                     <label for="email_of_client" class="text-lg Reg-font tracking-wide mt-2 mr-2">Email address
@@ -120,6 +155,7 @@
                     <input type="email" name="email_of_client" id="email_of_client"
                         class="w-96 py-2.5 sm:w-full px-2 bg-gray-300 rounded text-[16px] Reg-font "
                         autocomplete="off">
+
                 </div>
             </div>
             {{-- Survey Number 1 --}}
@@ -310,7 +346,6 @@
                 </button>
             </div>
         </form>
-
     </div>
 </div>
 

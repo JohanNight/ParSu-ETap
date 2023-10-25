@@ -6,6 +6,7 @@ use App\Models\clientCategory;
 use Illuminate\Http\Request;
 use App\Models\clientInfo;
 use App\Models\offices;
+use App\Models\service1;
 
 class SumOfAllData extends Controller
 {
@@ -269,6 +270,24 @@ class SumOfAllData extends Controller
         return $officeCount;
     }
 
+    public function calculatePerOfficeServiceSurveyed()
+    {
+        $surveyData = clientInfo::all(); //retrieve all survey data
+        $serviceAvailable = service1::all();
+        $serviceCount = [];
+        foreach ($serviceAvailable as $service) {
+            $serviceCount[$service->service_Title] = 0;
+        }
+        foreach ($surveyData as $surveyed) {
+            foreach ($serviceAvailable as $service) {
+                if ($surveyed->service_avail == $service->service_Title) {
+                    $serviceCount[$service->service_Title]++;
+                }
+            }
+        }
+        return $serviceCount;
+    }
+
     public function getCalculatePerOfficeSurveyed(Request $request)
     {
         // dd($request);
@@ -529,5 +548,34 @@ class SumOfAllData extends Controller
             'Strongly Disagree' => $stronglyDisagreeCount,
             'Not Applicable' => $notApplicableCount,
         ];
+    }
+
+    public function getCalculatePerOfficeServiceSurveyed(Request $request)
+    {
+
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        $serviceAvailable = service1::all();
+        $serviceCount = [];
+
+
+        foreach ($serviceAvailable as $service) {
+            $serviceCount[$service->service_Title] = 0;
+        }
+        foreach ($surveyData as $surveyed) {
+            foreach ($serviceAvailable as $service) {
+                if ($surveyed->service_avail == $service->service_Title) {
+                    $serviceCount[$service->service_Title]++;
+                }
+            }
+        }
+        return $serviceCount;
     }
 }
