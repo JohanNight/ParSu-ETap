@@ -76,7 +76,35 @@
                 </div>
             </div>
 
-            <!-- Table of Survey Service External-->
+            <!--Graph 3 Total of external services-->
+            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Number of External Services</h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!--Line with gradient-->
+
+                <div class="chart-container" class="flex" style="position: relative; height:300px; width:100%">
+                    <!-- The canvas for the graph -->
+                    {{-- <canvas id="ovrClientChart[1]"></canvas> --}}
+                    {!! $totalExternalService->container() !!}
+                </div>
+            </div>
+
+            <!--Graph 4 Total of ixternal services-->
+            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Number of External Services</h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!--Line with gradient-->
+
+                <div class="chart-container" class="flex" style="position: relative; height:300px; width:100%">
+                    <!-- The canvas for the graph -->
+                    {{-- <canvas id="ovrClientChart[1]"></canvas> --}}
+                    {!! $totalInternalService->container() !!}
+                </div>
+            </div>
+
+            {{-- <!-- Table of Survey Service External-->
             <div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
                 <div class="w-full p-2">
                     <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize"> Table 1.1: Overall Services Surveyed
@@ -132,7 +160,7 @@
                         </span> to <span class="text-sky-400"> this
                             week</span> is <span class="underline text-sky-500"> 15</span></p>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
@@ -251,6 +279,8 @@
 {!! $chart->script() !!}
 {!! $totalUsers->script() !!}
 {!! $totalOffices->script() !!}
+{!! $totalExternalService->script() !!}
+{!! $totalInternalService->script() !!}
 
 {{-- <script>
     $(document).ready(function() {

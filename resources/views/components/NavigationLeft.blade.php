@@ -12,7 +12,6 @@
                 </a>
             @endif
 
-
             {{--  Route for SubAdmin --}}
             @unless ($user->idOfficeOriginFK === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"

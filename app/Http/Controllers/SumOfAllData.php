@@ -287,8 +287,48 @@ class SumOfAllData extends Controller
         }
         return $serviceCount;
     }
+    public function calculateExternalSerivices()
+    {
+        // $surveyData = clientInfo::where('external', true)->get(); //retrieve all survey data
+        $surveyData = clientInfo::all();
+        $Service = service1::where('service_type', 'external')->get();
+        $externalService = [];
 
-    public function getCalculatePerOfficeSurveyed(Request $request)
+        foreach ($Service as $service) {
+            $externalService[$service->service_Title] = 0;
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($Service as $service) {
+                if ($surveyed->service_avail == $service->service_Title) {
+                    $externalService[$service->service_Title]++;
+                }
+            }
+        }
+        return  $externalService;
+    }
+    public function calculateInternalSerivices()
+    {
+        // $surveyData = clientInfo::where('external', true)->get(); //retrieve all survey data
+        $surveyData = clientInfo::all();
+        $Service = service1::where('service_type', 'internal')->get();
+        $internalService = [];
+
+        foreach ($Service as $service) {
+            $internalService[$service->service_Title] = 0;
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($Service as $service) {
+                if ($surveyed->service_avail == $service->service_Title) {
+                    $internalService[$service->service_Title]++;
+                }
+            }
+        }
+        return   $internalService;
+    }
+
+    public function getCalculatePerOfficeSurveyed($request)
     {
         // dd($request);
         $request->validate([
@@ -319,7 +359,7 @@ class SumOfAllData extends Controller
         return $officeCount;
     }
 
-    public function getCalculateClientCategory(Request $request)
+    public function getCalculateClientCategory($request)
     {
         $request->validate([
             'date_from' => 'required|date',
@@ -357,7 +397,7 @@ class SumOfAllData extends Controller
         ];
     }
 
-    public function getCalculateClientSatisfaction(Request $request)
+    public function getCalculateClientSatisfaction($request)
     {
         $request->validate([
             'date_from' => 'required|date',
@@ -550,7 +590,7 @@ class SumOfAllData extends Controller
         ];
     }
 
-    public function getCalculatePerOfficeServiceSurveyed(Request $request)
+    public function getCalculatePerOfficeServiceSurveyed($request)
     {
 
         $request->validate([
@@ -577,5 +617,60 @@ class SumOfAllData extends Controller
             }
         }
         return $serviceCount;
+    }
+
+    public function getCalculateExternalSerivices($request)
+    {
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        $Service = service1::where('service_type', 'external')->get();
+        $externalService = [];
+
+        foreach ($Service as $service) {
+            $externalService[$service->service_Title] = 0;
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($Service as $service) {
+                if ($surveyed->service_avail == $service->service_Title) {
+                    $externalService[$service->service_Title]++;
+                }
+            }
+        }
+        return  $externalService;
+    }
+    public function getCalculateInternalSerivices($request)
+    {
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        $Service = service1::where('service_type', 'internal')->get();
+        $internalService = [];
+
+        foreach ($Service as $service) {
+            $internalService[$service->service_Title] = 0;
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($Service as $service) {
+                if ($surveyed->service_avail == $service->service_Title) {
+                    $internalService[$service->service_Title]++;
+                }
+            }
+        }
+        return  $internalService;
     }
 }

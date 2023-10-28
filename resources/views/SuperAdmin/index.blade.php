@@ -212,7 +212,8 @@
                     <!--Line with gradient-->
                     <div class="chart-container" style="position: relative; height:200px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="totalUserChart"></canvas>
+                        {{-- <canvas id="totalUserChart"></canvas> --}}
+                        {!! $totalOffices->container() !!}
                     </div>
                 </div>
 
@@ -799,4 +800,5 @@
 </script>
 
 {!! $chart->script() !!}
+{!! $totalOffices->script() !!}
 @include('partials.footerAdmin')

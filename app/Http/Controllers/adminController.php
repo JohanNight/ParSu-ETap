@@ -439,6 +439,7 @@ class adminController extends Controller
     {
         $sumOfAllDataController = new SumOfAllData(); //import a controller
         $chart = new TotalClientSatisfaction; // this is a chart php
+        $totalOffices = new TotalClientSatisfaction;
 
         // Call the calculateClientSatisfaction method to get the satisfaction data
         $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
@@ -447,9 +448,15 @@ class adminController extends Controller
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
         $TotalUser = $sumOfAllDataController->calculateClientCategory();
 
+        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
+        $TotalOfficesSurveyed = $sumOfAllDataController->calculatePerOfficeSurveyed();
+        $totalOffices->labels(array_keys($TotalOfficesSurveyed));
+        $totalOffices->dataset('Number Of Offices', 'bar', array_values($TotalOfficesSurveyed))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
 
         if (View::exists('SuperAdmin.index')) {
-            return view('SuperAdmin.index', compact('chart', 'TotalUser'));
+            return view('SuperAdmin.index', compact('chart', 'totalOffices'));
         } else {
             return abort(404);
         }
@@ -461,6 +468,8 @@ class adminController extends Controller
         $chart = new TotalClientSatisfaction; // this is a chart php
         $totalUsers = new TotalClientSatisfaction;
         $totalOffices = new TotalClientSatisfaction;
+        $totalExternalService = new TotalClientSatisfaction;
+        $totalInternalService = new TotalClientSatisfaction;
         // $totalServiceAvail = new TotalClientSatisfaction;
 
         // Call the calculateClientSatisfaction method to get the satisfaction data
@@ -482,11 +491,23 @@ class adminController extends Controller
         $totalOffices->dataset('Number Of Offices', 'bar', array_values($TotalOfficesSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
+        // Call the calculateExternalSerivices method to get the total of client category
+        $TotalExternalService = $sumOfAllDataController->calculateExternalSerivices();
+        $totalExternalService->labels(array_keys($TotalExternalService));
+        $totalExternalService->dataset('External Services', 'bar', array_values($TotalExternalService))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+        // Call the calculateInternalSerivices method to get the total of client category
+        $TotalInternalService = $sumOfAllDataController->calculateInternalSerivices();
+        $totalInternalService->labels(array_keys($TotalInternalService));
+        $totalInternalService->dataset('Internal Services', 'bar', array_values($TotalInternalService))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
         $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed();
         // dd($TotalServiceAvail);
 
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'TotalServiceAvail'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'TotalServiceAvail', 'totalExternalService', 'totalInternalService'));
         } else {
             return abort(404);
         }
@@ -498,7 +519,8 @@ class adminController extends Controller
         $totalOffices = new TotalClientSatisfaction;
         $totalUsers = new TotalClientSatisfaction;
         $chart = new TotalClientSatisfaction; // this is a chart php
-
+        $totalExternalService = new TotalClientSatisfaction;
+        $totalInternalService = new TotalClientSatisfaction;
 
         // Call the getCalculateClientSatisfaction method to get the satisfaction data
         $satisfactionData = $sumOfAllDataController->getCalculateClientSatisfaction($request);
@@ -518,15 +540,26 @@ class adminController extends Controller
         $totalOffices->dataset('Number Of Offices', 'bar', array_values($getTotalOfficeSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-        $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed($request);
-        $dataTotalService = [
-            'TotalServiceAvail' => $TotalServiceAvail,
-        ];
+        // Call the calculateExternalSerivices method to get the total of client category
+        $TotalExternalService = $sumOfAllDataController->getCalculateExternalSerivices($request);
+        $totalExternalService->labels(array_keys($TotalExternalService));
+        $totalExternalService->dataset('External Services', 'bar', array_values($TotalExternalService))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+        // Call the calculateExternalSerivices method to get the total of client category
+        $TotalInternalService = $sumOfAllDataController->getCalculateInternalSerivices($request);
+        $totalInternalService->labels(array_keys($TotalExternalService));
+        $totalInternalService->dataset('Internal Services', 'bar', array_values($TotalExternalService))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+
+
+        // $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed($request);
 
 
 
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'TotalServiceAvail'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'totalExternalService', 'totalInternalService'));
         } else {
             return abort(404);
         }
@@ -551,7 +584,7 @@ class adminController extends Controller
     //     $satisfactionData = $this->getSatisfactionData($request);
     //     $TotalUser = $this->getTotalClientCategory($request);
     //     $getTotalOfficeSurveyed = $this->getTotalOfficeSurveyed($request);
-    //     $TotalServiceAvail = $this->getTotalServiceAvail($request);
+    //     // $TotalServiceAvail = $this->getTotalServiceAvail($request);
 
     //     // Pass data to views
     //     return view('SuperAdmin.reportAdmin', [
@@ -562,12 +595,12 @@ class adminController extends Controller
     //         'totalUsers' => $totalUsers
     //             ->labels(array_keys($TotalUser))
     //             ->dataset('Number Of Clients By Category', 'bar', array_values($TotalUser))
-    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00'])->script(),
+    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']),
     //         'totalOffices' => $totalOffices
     //             ->labels(array_keys($getTotalOfficeSurveyed))
     //             ->dataset('Number Of Offices', 'bar', array_values($getTotalOfficeSurveyed))
-    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00'])->script(),
-    //         'TotalServiceAvail' => $TotalServiceAvail,
+    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']),
+    //         // 'TotalServiceAvail' => $TotalServiceAvail,
     //     ]);
     // }
 
