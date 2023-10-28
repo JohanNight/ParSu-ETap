@@ -245,7 +245,7 @@ class SumOfAllData extends Controller
             'Student' => $studenCount,
             'Faculty' => $facultyCount,
             'Personnel' => $personnnelCount,
-            'Others' => $othersCount,
+            'Guest' => $othersCount,
         ];
     }
     public function calculatePerOfficeSurveyed()
@@ -353,7 +353,7 @@ class SumOfAllData extends Controller
             'Student' => $studenCount,
             'Faculty' => $facultyCount,
             'Personnel' => $personnnelCount,
-            'Others' => $othersCount,
+            'Guest' => $othersCount,
         ];
     }
 

@@ -178,19 +178,19 @@
                             </div>
                             <div class="flex flex-col space-y-2 ml-[50px] mt-5">
                                 @foreach ($CCquestion->CcOption as $index => $Option)
-                                    <label class="text-[16px] Reg-font">
-                                        <input type="radio" name="question{{ $CCquestion->id }}"
-                                            value="{{ $Option->id }}"
-                                            id="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}"
-                                            class="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}">
-                                        <span class="ml-3">{{ $Option->option_text }}</span>
-                                    </label>
+                                    @if ($Option->option_text)
+                                        <label class="text-[16px] Reg-font">
+                                            <input type="radio" name="question{{ $CCquestion->id }}"
+                                                value="{{ $Option->id }}"
+                                                id="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}"
+                                                class="cc{{ $CCquestion->id }}-answer{{ $CCquestion->id }}">
+                                            <span class="ml-3">{{ $Option->option_text }}</span>
+                                        </label>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
             </div>
             {{-- Survey Number 2 --}}

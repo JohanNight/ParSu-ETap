@@ -85,7 +85,7 @@
                     <div class="my-1"></div> <!-- Separation space -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 </div>
-                <table class="w-full table-auto text-sm">
+                <table class="w-full table-auto text-sm" id="serviceTable">
                     <thead>
                         <tr class="text-sm leading-normal">
                             <th
@@ -112,8 +112,254 @@
                             </tr>
                         @endforeach
 
-                        <!-- Add more rows here like the one above for each pending authorization -->
-                        {{-- <tr class="hover:bg-grey-lighter text-center">
+
+                    </tbody>
+                </table>
+                <div class="flex justify-between w-full">
+                    <button type="button"
+                        class="text-[14px] Reg-font bg-gray-500 active:bg-gray-600 rounded-lg p-2 text-white mt-2">
+                        Preview
+                    </button>
+                    <button type="button"
+                        class="text-[14px] Reg-font bg-green-500 active:bg-green-600 rounded-lg p-2 text-white mt-2">
+                        Next
+                    </button>
+                </div>
+                <div class="flex justify-center items-center w-full mt-4 ">
+                    <p class="text-[18px] Reg-font text-justify">The Overall Services Surveyed by the University of
+                        External Services
+                        from <span class="text-blue-400">this week
+                        </span> to <span class="text-sky-400"> this
+                            week</span> is <span class="underline text-sky-500"> 15</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Include the Axios library -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
+{{-- <script>
+    // ServiceBarChart();
+
+    // function ServiceBarChart() {
+    //     const labels = ['Office 1', 'Office 2', 'Office 3', 'Office 4']; // Updated labels
+    //     const data = {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: 'Overall Distributed Survey',
+    //             data: [65, 59, 80, 81], // Update this data with your specific values
+    //             backgroundColor: [
+    //                 'rgb(255, 99, 132)',
+    //                 'rgb(255, 159, 64)',
+    //                 'rgb(255, 205, 86)',
+    //                 'rgb(75, 192, 192)',
+    //             ],
+    //             borderColor: [
+    //                 'rgb(255, 99, 132)',
+    //                 'rgb(255, 159, 64)',
+    //                 'rgb(255, 205, 86)',
+    //                 'rgb(75, 192, 192)',
+    //             ],
+    //             borderWidth: 1,
+    //         }],
+    //     };
+
+    //     const config = {
+    //         type: 'bar',
+    //         data: data,
+    //         options: {
+    //             scales: {
+    //                 y: {
+    //                     beginAtZero: true,
+    //                 },
+    //             },
+    //             responsive: true, // Allow the chart to be responsive
+    //             maintainAspectRatio: false, // Prevent maintaining aspect ratio
+    //         },
+    //     };
+    //     const ctx = document.getElementById('ovryAllSrvyChart[1]').getContext('2d');
+    //     new Chart(ctx, config);
+    // }
+
+
+    // AnsweredByClient();
+
+    // function AnsweredByClient() {
+    //     const labels = ['Student', 'Personnel/Non-Personnel', 'Visitor', ]; // Updated labels
+    //     const data = {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: 'Total number of Clients',
+    //             data: [65, 59, 80], // Update this data with your specific values
+    //             backgroundColor: [
+    //                 '#044389',
+    //                 '#FCFF4B',
+    //                 '#03CEA4',
+
+    //             ],
+    //             borderColor: [
+    //                 '#044389',
+    //                 '#FCFF4B',
+    //                 '#03CEA4',
+
+    //             ],
+    //             borderWidth: 1,
+    //         }],
+    //     };
+
+    //     const config = {
+    //         type: 'bar',
+    //         data: data,
+    //         options: {
+    //             scales: {
+    //                 y: {
+    //                     beginAtZero: true,
+    //                 },
+    //             },
+    //             responsive: true, // Allow the chart to be responsive
+    //             maintainAspectRatio: false, // Prevent maintaining aspect ratio
+    //         },
+    //     };
+    //     const ctx = document.getElementById('ovrClientChart[1]').getContext('2d');
+    //     new Chart(ctx, config);
+    // }
+
+
+    // var feedBackChartChart = new Chart(document.getElementById('feedBackChart[1]'), {
+    //     type: 'pie',
+    //     data: {
+    //         labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
+    //             'Not Applicable'
+    //         ],
+    //         datasets: [{
+    //             data: [60, 40, 25, 15, 5, 0],
+    //             backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend: {
+    //             position: 'bottom' // Ubicar la leyenda debajo del círculo
+    //         }
+    //     }
+    // });
+</script> --}}
+{!! $chart->script() !!}
+{!! $totalUsers->script() !!}
+{!! $totalOffices->script() !!}
+
+{{-- <script>
+    $(document).ready(function() {
+        $('#dateFilterForm').submit(function(e) {
+            e.preventDefault();
+
+            const dateFrom = $('#date_from').val();
+            const dateTo = $('#date_to').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/superAdmin/report',
+                data: {
+                    date_from: dateFrom,
+                    date_to: dateTo,
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(data) {
+                    // Update the table with the filtered data
+                    updateTable(data.TotalServiceAvail);
+                },
+            });
+        });
+
+        function updateTable(data) {
+            const tableContainer = $('#serviceTable');
+            // Clear the existing table content
+            table.find('tbody').empty();
+            // Add new table content based on the filtered data
+            $.each(data, function(serviceTitle, count) {
+                const row = $('<tr>');
+                row.append($('<td>').text(serviceTitle));
+                row.append($('<td>').text(count));
+                table.append(row);
+            });
+        }
+    });
+</script> --}}
+
+{{-- <script>
+    // Function to update the chart
+    function updateChart(chart, labels, data) {
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = data;
+        chart.update();
+    }
+
+    // Function to update the table
+    function updateTable(filteredData) {
+        const tableBody = document.querySelector('#serviceTable tbody');
+        tableBody.innerHTML = '';
+
+        for (const [serviceTitle, count] of Object.entries(filteredData)) {
+            const row = document.createElement('tr');
+            row.classList.add('hover:bg-grey-lighter', 'text-center');
+
+            const titleCell = document.createElement('td');
+            titleCell.textContent = serviceTitle;
+            titleCell.classList.add('py-2', 'px-4', 'border-b', 'border-grey-light', 'text-[13px]', 'SemiB-font');
+
+            const countCell = document.createElement('td');
+            countCell.textContent = count;
+            countCell.classList.add('py-2', 'px-4', 'border-b', 'border-grey-light', 'text-[15px]', 'Reg-font');
+
+            const totalTransactionCell = document.createElement('td');
+            totalTransactionCell.textContent = count;
+            totalTransactionCell.classList.add('py-2', 'px-4', 'border-b', 'border-grey-light');
+
+            row.appendChild(titleCell);
+            row.appendChild(countCell);
+            row.appendChild(totalTransactionCell);
+
+            tableBody.appendChild(row);
+        }
+    }
+
+    // Attach an event listener to the "Filter" button click.
+    document.querySelector('#fltr_date_admin').addEventListener('click', function() {
+        const dateFrom = document.querySelector('input[name="date_from"]').value;
+        const dateTo = document.querySelector('input[name="date_to"]').value;
+
+        // Send an AJAX request to your Laravel route.
+        axios.post('/superAdmin/report', {
+                date_from: dateFrom,
+                date_to: dateTo
+            })
+            .then(response => {
+                // Handle the AJAX response.
+                const filteredData = response.data;
+
+                // Update your chart with the filtered data
+                updateChart(chart, Object.keys(filteredData), Object.values(filteredData));
+
+                // Update the table with the filtered data
+                updateTable(filteredData);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script> --}}
+
+
+@include('partials.footerAdmin')
+
+
+<!-- Add more rows here like the one above for each pending authorization -->
+
+{{-- <tr class="hover:bg-grey-lighter text-center">
                             <td class="py-2 px-4 border-b border-grey-light text-[18px] SemiB-font">Service 2</td>
                             <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">2</td>
                             <td class="py-2 px-4 border-b border-grey-light">2</td>
@@ -138,28 +384,8 @@
                             <td class="py-2 px-4 border-b border-grey-light text-[18px] SemiB-font">Total</td>
                             <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font"> 15</td>
                             <td class="py-2 px-4 border-b border-grey-light">15</td>
-                        </tr> --}}
-                    </tbody>
-                </table>
-                <div class="flex justify-between w-full">
-                    <button type="button"
-                        class="text-[14px] Reg-font bg-gray-500 active:bg-gray-600 rounded-lg p-2 text-white mt-2">
-                        Preview
-                    </button>
-                    <button type="button"
-                        class="text-[14px] Reg-font bg-green-500 active:bg-green-600 rounded-lg p-2 text-white mt-2">
-                        Next
-                    </button>
-                </div>
-                <div class="flex justify-center items-center w-full mt-4 ">
-                    <p class="text-[18px] Reg-font text-justify">The Overall Services Surveyed by the University of
-                        External Services
-                        from <span class="text-blue-400">this week
-                        </span> to <span class="text-sky-400"> this
-                            week</span> is <span class="underline text-sky-500"> 15</span></p>
-                </div>
-            </div>
-            {{-- <!-- Table of Survey Service Internal-->
+ </tr> --}}
+{{-- <!-- Table of Survey Service Internal-->
             <div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
                 <div class="w-full p-2">
                     <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Table 1.2: Overall Services Surveyed by
@@ -664,161 +890,3 @@
 
                 </div>
             </div> --}}
-        </div>
-    </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
-{{-- <script>
-    // ServiceBarChart();
-
-    // function ServiceBarChart() {
-    //     const labels = ['Office 1', 'Office 2', 'Office 3', 'Office 4']; // Updated labels
-    //     const data = {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'Overall Distributed Survey',
-    //             data: [65, 59, 80, 81], // Update this data with your specific values
-    //             backgroundColor: [
-    //                 'rgb(255, 99, 132)',
-    //                 'rgb(255, 159, 64)',
-    //                 'rgb(255, 205, 86)',
-    //                 'rgb(75, 192, 192)',
-    //             ],
-    //             borderColor: [
-    //                 'rgb(255, 99, 132)',
-    //                 'rgb(255, 159, 64)',
-    //                 'rgb(255, 205, 86)',
-    //                 'rgb(75, 192, 192)',
-    //             ],
-    //             borderWidth: 1,
-    //         }],
-    //     };
-
-    //     const config = {
-    //         type: 'bar',
-    //         data: data,
-    //         options: {
-    //             scales: {
-    //                 y: {
-    //                     beginAtZero: true,
-    //                 },
-    //             },
-    //             responsive: true, // Allow the chart to be responsive
-    //             maintainAspectRatio: false, // Prevent maintaining aspect ratio
-    //         },
-    //     };
-    //     const ctx = document.getElementById('ovryAllSrvyChart[1]').getContext('2d');
-    //     new Chart(ctx, config);
-    // }
-
-
-    // AnsweredByClient();
-
-    // function AnsweredByClient() {
-    //     const labels = ['Student', 'Personnel/Non-Personnel', 'Visitor', ]; // Updated labels
-    //     const data = {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'Total number of Clients',
-    //             data: [65, 59, 80], // Update this data with your specific values
-    //             backgroundColor: [
-    //                 '#044389',
-    //                 '#FCFF4B',
-    //                 '#03CEA4',
-
-    //             ],
-    //             borderColor: [
-    //                 '#044389',
-    //                 '#FCFF4B',
-    //                 '#03CEA4',
-
-    //             ],
-    //             borderWidth: 1,
-    //         }],
-    //     };
-
-    //     const config = {
-    //         type: 'bar',
-    //         data: data,
-    //         options: {
-    //             scales: {
-    //                 y: {
-    //                     beginAtZero: true,
-    //                 },
-    //             },
-    //             responsive: true, // Allow the chart to be responsive
-    //             maintainAspectRatio: false, // Prevent maintaining aspect ratio
-    //         },
-    //     };
-    //     const ctx = document.getElementById('ovrClientChart[1]').getContext('2d');
-    //     new Chart(ctx, config);
-    // }
-
-
-    // var feedBackChartChart = new Chart(document.getElementById('feedBackChart[1]'), {
-    //     type: 'pie',
-    //     data: {
-    //         labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissastisfied',
-    //             'Not Applicable'
-    //         ],
-    //         datasets: [{
-    //             data: [60, 40, 25, 15, 5, 0],
-    //             backgroundColor: ['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100'],
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         maintainAspectRatio: false,
-    //         legend: {
-    //             position: 'bottom' // Ubicar la leyenda debajo del círculo
-    //         }
-    //     }
-    // });
-</script> --}}
-{!! $chart->script() !!}
-{!! $totalUsers->script() !!}
-{!! $totalOffices->script() !!}
-
-<script>
-    $(document).ready(function() {
-        $('#dateFilterForm').submit(function(e) {
-            e.preventDefault();
-
-            const dateFrom = $('#date_from').val();
-            const dateTo = $('#date_to').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '/superAdmin/report2',
-                data: {
-                    date_from: dateFrom,
-                    date_to: dateTo,
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function(data) {
-                    // Update the table with the filtered data
-                    updateTable(data);
-                },
-            });
-        });
-
-        function updateTable(data) {
-            const tableContainer = $('#tableContainer');
-            const table = tableContainer.find('table');
-
-            // Clear the existing table content
-            table.html('');
-
-            // Add new table content based on the filtered data
-            $.each(data, function(serviceTitle, count) {
-                const row = $('<tr>');
-                row.append($('<td>').text(serviceTitle));
-                row.append($('<td>').text(count));
-                table.append(row);
-            });
-        }
-    });
-</script>
-
-@include('partials.footerAdmin')
