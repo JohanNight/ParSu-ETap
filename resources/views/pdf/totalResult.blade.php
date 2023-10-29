@@ -8,17 +8,18 @@
         <div class="my-1"></div> <!-- Separation space -->
         <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 mb-6"></div>
     </div>
-    <table class="w-full table-auto text-sm" id="serviceTable">
+    <table class="w-full table-auto text-sm border-2 border-collapse border-black" id="serviceTable">
         <thead>
-            <tr class="text-sm leading-normal">
-                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-lg text-black border-b border-grey-light">
+            <tr class="leading-normal">
+                <th scope="row"
+                    class="py-2 px-4 bg-grey-lightest font-bold uppercase text-[15px]text-black border-b border-grey-light">
                     Overall Services
                 </th>
-                <th
-                    class="py-2 px-4 bg-grey-lightest  font-bold uppercase text-lg text-black border-b border-grey-light">
+                <th scope="row"
+                    class="py-2 px-4 bg-grey-lightest  font-bold uppercasetext-[15px] text-black border-b border-grey-light">
                     Responses</th>
-                <th
-                    class="py-2 px-4 bg-grey-lightest  font-bold uppercase text-lg text-black border-b border-grey-light">
+                <th scope="row"
+                    class="py-2 px-4 bg-grey-lightest  font-bold uppercase text-[15px] text-black border-b border-grey-light">
                     Total of Transaction
                 </th>
             </tr>
@@ -26,11 +27,11 @@
         <tbody>
             @foreach ($getTotalServiceAvail as $serviceTitle => $count)
                 <tr class="hover:bg-grey-lighter text-center">
-                    <td class="py-2 px-4 border-b border-grey-light text-[13px] font-semibold">
+                    <td class="py-2 px-4 border-2 border-grey-light text-[10px] font-semibold">
                         {{ $serviceTitle }}</td>
-                    <td class="py-2 px-4 border-b border-grey-light text-[15px] font-regular">
+                    <td class="py-2 px-4 border-2 border-grey-light text-[10px] font-regular">
                         {{ $count }}</td>
-                    <td class="py-2 px-4 border-b border-grey-light font-regular">{{ $count }}</td>
+                    <td class="py-2 px-4 border-2 border-grey-light text-[10px] font-regular">{{ $count }}</td>
                 </tr>
             @endforeach
         </tbody>

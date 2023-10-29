@@ -95,7 +95,6 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');
         Route::post('/superAdmin/report', 'filterReport')->name('filterReport');
         Route::post('/superAdmin/assessment', 'assessReport')->name('assesmentReport');
-        Route::get('/superAdmin/generatePDF', 'generatePDF')->name('generatePDF');
         // Route::post('/superAdmin/report2', 'filterReport2')->name('filterReport2');
     });
 });
