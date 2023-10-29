@@ -30,11 +30,26 @@
                         class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
                         Filter
                     </button>
-                    <button type="button" id="assess_report_admin"
+                </div>
+            </form>
+            <form action="{{ route('assesmentReport') }}"method="POST">
+                @csrf
+                <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
+
+                    <div class=" bg-white border-2 p-2" id="fltr_from_admin">
+                        <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
+                        <input type="date" name="date_from"
+                            class="p-1 rounded-md border-2 border-black focus:outline-none">
+                    </div>
+                    <div class=" bg-white border-2 p-2" id="fltr_to_admin">
+                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
+                        <input type="date" name="date_to"
+                            class="p-1 rounded-md border-2 border-black focus:outline-none">
+                    </div>
+                    <button type="submit" id="assess_report_admin"
                         class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-white">
                         Assess
                     </button>
-
                 </div>
             </form>
             <!--Graph 1 Overall Survey-->
@@ -71,7 +86,6 @@
                 <!-- Line with gradient -->
                 <div class="chart-container" style="position: relative; height:300px; width:100%">
                     <!-- The canvas for the pie chart -->
-                    {{-- <canvas id="feedBackChart[1]"></canvas> --}}
                     {!! $chart->container() !!}
                 </div>
             </div>
@@ -85,12 +99,11 @@
 
                 <div class="chart-container" class="flex" style="position: relative; height:300px; width:100%">
                     <!-- The canvas for the graph -->
-                    {{-- <canvas id="ovrClientChart[1]"></canvas> --}}
                     {!! $totalExternalService->container() !!}
                 </div>
             </div>
 
-            <!--Graph 4 Total of ixternal services-->
+            <!--Graph 4 Total of internal services-->
             <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
                 <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Number of External Services</h2>
                 <div class="my-1"></div> <!-- Separation space -->
@@ -99,69 +112,9 @@
 
                 <div class="chart-container" class="flex" style="position: relative; height:300px; width:100%">
                     <!-- The canvas for the graph -->
-                    {{-- <canvas id="ovrClientChart[1]"></canvas> --}}
                     {!! $totalInternalService->container() !!}
                 </div>
             </div>
-
-            {{-- <!-- Table of Survey Service External-->
-            <div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
-                <div class="w-full p-2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize"> Table 1.1: Overall Services Surveyed
-                        by the
-                        University</h2>
-                    <div class="my-1"></div> <!-- Separation space -->
-                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                </div>
-                <table class="w-full table-auto text-sm" id="serviceTable">
-                    <thead>
-                        <tr class="text-sm leading-normal">
-                            <th
-                                class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-black border-b border-grey-light">
-                                Overall Services
-                            </th>
-                            <th
-                                class="py-2 px-4 bg-grey-lightest  Bold-font uppercase text-lg text-black border-b border-grey-light">
-                                Responses</th>
-                            <th
-                                class="py-2 px-4 bg-grey-lightest  Bold-font uppercase text-lg text-black border-b border-grey-light">
-                                Total of Transaction
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($TotalServiceAvail as $serviceTitle => $count)
-                            <tr class="hover:bg-grey-lighter text-center">
-                                <td class="py-2 px-4 border-b border-grey-light text-[13px] SemiB-font">
-                                    {{ $serviceTitle }}</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">
-                                    {{ $count }}</td>
-                                <td class="py-2 px-4 border-b border-grey-light">{{ $count }}</td>
-                            </tr>
-                        @endforeach
-
-
-                    </tbody>
-                </table>
-                <div class="flex justify-between w-full">
-                    <button type="button"
-                        class="text-[14px] Reg-font bg-gray-500 active:bg-gray-600 rounded-lg p-2 text-white mt-2">
-                        Preview
-                    </button>
-                    <button type="button"
-                        class="text-[14px] Reg-font bg-green-500 active:bg-green-600 rounded-lg p-2 text-white mt-2">
-                        Next
-                    </button>
-                </div>
-                <div class="flex justify-center items-center w-full mt-4 ">
-                    <p class="text-[18px] Reg-font text-justify">The Overall Services Surveyed by the University of
-                        External Services
-                        from <span class="text-blue-400">this week
-                        </span> to <span class="text-sky-400"> this
-                            week</span> is <span class="underline text-sky-500"> 15</span></p>
-                </div>
-            </div> --}}
-
         </div>
     </div>
 </div>
@@ -386,6 +339,63 @@
 
 @include('partials.footerAdmin')
 
+{{-- <!-- Table of Survey Service External-->
+            <div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
+                <div class="w-full p-2">
+                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize"> Table 1.1: Overall Services Surveyed
+                        by the
+                        University</h2>
+                    <div class="my-1"></div> <!-- Separation space -->
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                </div>
+                <table class="w-full table-auto text-sm" id="serviceTable">
+                    <thead>
+                        <tr class="text-sm leading-normal">
+                            <th
+                                class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-black border-b border-grey-light">
+                                Overall Services
+                            </th>
+                            <th
+                                class="py-2 px-4 bg-grey-lightest  Bold-font uppercase text-lg text-black border-b border-grey-light">
+                                Responses</th>
+                            <th
+                                class="py-2 px-4 bg-grey-lightest  Bold-font uppercase text-lg text-black border-b border-grey-light">
+                                Total of Transaction
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($TotalServiceAvail as $serviceTitle => $count)
+                            <tr class="hover:bg-grey-lighter text-center">
+                                <td class="py-2 px-4 border-b border-grey-light text-[13px] SemiB-font">
+                                    {{ $serviceTitle }}</td>
+                                <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">
+                                    {{ $count }}</td>
+                                <td class="py-2 px-4 border-b border-grey-light">{{ $count }}</td>
+                            </tr>
+                        @endforeach
+
+
+                    </tbody>
+                </table>
+                <div class="flex justify-between w-full">
+                    <button type="button"
+                        class="text-[14px] Reg-font bg-gray-500 active:bg-gray-600 rounded-lg p-2 text-white mt-2">
+                        Preview
+                    </button>
+                    <button type="button"
+                        class="text-[14px] Reg-font bg-green-500 active:bg-green-600 rounded-lg p-2 text-white mt-2">
+                        Next
+                    </button>
+                </div>
+                <div class="flex justify-center items-center w-full mt-4 ">
+                    <p class="text-[18px] Reg-font text-justify">The Overall Services Surveyed by the University of
+                        External Services
+                        from <span class="text-blue-400">this week
+                        </span> to <span class="text-sky-400"> this
+                            week</span> is <span class="underline text-sky-500"> 15</span></p>
+                </div>
+            </div> --}}
 
 <!-- Add more rows here like the one above for each pending authorization -->
 

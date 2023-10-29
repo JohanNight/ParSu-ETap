@@ -27,10 +27,12 @@ use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use PDF;
 
 use App\Charts\TotalClientSatisfaction;
 use App\Http\Controllers\SumOfAllData; // Import the controller
-
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 
 class adminController extends Controller
 {
@@ -503,11 +505,11 @@ class adminController extends Controller
         $totalInternalService->dataset('Internal Services', 'bar', array_values($TotalInternalService))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-        $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed();
-        // dd($TotalServiceAvail);
+        // $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed();
+
 
         if (View::exists('SuperAdmin.reportAdmin')) {
-            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'TotalServiceAvail', 'totalExternalService', 'totalInternalService'));
+            return view('SuperAdmin.reportAdmin', compact('chart', 'totalUsers', 'totalOffices', 'totalExternalService', 'totalInternalService'));
         } else {
             return abort(404);
         }
@@ -565,69 +567,23 @@ class adminController extends Controller
         }
     }
 
-    // public function filterReport2(Request $request)
-    // {
-    //     $sumOfAllDataController = new SumOfAllData(); //import a controller
-    //     $TotalServiceAvail = $sumOfAllDataController->calculatePerOfficeServiceSurveyed($request);
-    //     return response()->json($TotalServiceAvail);
-    // }
+    public function assessReport(Request $request)
+    {
+        //dd($request);
+        $sumOfAllDataController = new SumOfAllData();
+        $getTotalServiceAvail = $sumOfAllDataController->getCalculateExternalSerivices($request);
 
-    // public function filterReport(Request $request)
-    // {
-    //     //dd($request);
-    //     // Use dependency injection instead of creating new instances
-    //     $totalOffices = app(TotalClientSatisfaction::class);
-    //     $totalUsers = app(TotalClientSatisfaction::class);
-    //     $chart = app(TotalClientSatisfaction::class);
+        $pdfView = view('pdf.totalResult', compact('getTotalServiceAvail'));
 
-    //     // Call the appropriate methods to get the data
-    //     $satisfactionData = $this->getSatisfactionData($request);
-    //     $TotalUser = $this->getTotalClientCategory($request);
-    //     $getTotalOfficeSurveyed = $this->getTotalOfficeSurveyed($request);
-    //     // $TotalServiceAvail = $this->getTotalServiceAvail($request);
+        // Generate the PDF
+        $pdf = FacadePdf::loadHTML($pdfView);
+        // $pdf = FacadePdf::loadView('pdf.totalResult', compact('getTotalServiceAvail'));
 
-    //     // Pass data to views
-    //     return view('SuperAdmin.reportAdmin', [
-    //         'chart' => $chart
-    //             ->labels(array_keys($satisfactionData))
-    //             ->dataset('Total Client Satisfaction', 'pie', array_values($satisfactionData))
-    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']),
-    //         'totalUsers' => $totalUsers
-    //             ->labels(array_keys($TotalUser))
-    //             ->dataset('Number Of Clients By Category', 'bar', array_values($TotalUser))
-    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']),
-    //         'totalOffices' => $totalOffices
-    //             ->labels(array_keys($getTotalOfficeSurveyed))
-    //             ->dataset('Number Of Offices', 'bar', array_values($getTotalOfficeSurveyed))
-    //             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']),
-    //         // 'TotalServiceAvail' => $TotalServiceAvail,
-    //     ]);
-    // }
+        // return $pdf->stream();
 
-    // // Separate methods for data retrieval
-    // private function getSatisfactionData($request)
-    // {
-    //     $sumOfAllDataController = app(SumOfAllData::class);
-    //     return $sumOfAllDataController->getCalculateClientSatisfaction($request);
-    // }
+        return $pdf->download('report.pdf');
+    }
 
-    // private function getTotalClientCategory($request)
-    // {
-    //     $sumOfAllDataController = app(SumOfAllData::class);
-    //     return $sumOfAllDataController->getCalculateClientCategory($request);
-    // }
-
-    // private function getTotalOfficeSurveyed($request)
-    // {
-    //     $sumOfAllDataController = app(SumOfAllData::class);
-    //     return $sumOfAllDataController->getCalculatePerOfficeSurveyed($request);
-    // }
-
-    // private function getTotalServiceAvail($request)
-    // {
-    //     $sumOfAllDataController = app(SumOfAllData::class);
-    //     return $sumOfAllDataController->calculatePerOfficeServiceSurveyed($request);
-    // }
 
     public function createCcQuestion()
     {
