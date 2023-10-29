@@ -582,12 +582,13 @@ class adminController extends Controller
 
         // return $pdf->stream();
 
-        return view('SuperAdmin.assessmentReport', compact('getTotalServiceAvail'));;
+        return view('SuperAdmin.assessmentReport', compact('getTotalServiceAvail'));
     }
     public function generatePDF()
     {
         $getTotalServiceAvail = clientInfo::all();
-        $pdf = FacadePdf::loadView('pdf.totalResult',  ['getTotalServiceAvail' => $getTotalServiceAvail]);
+        // $pdf = FacadePdf::loadView('pdf.totalResult',  ['getTotalServiceAvail' => $getTotalServiceAvail]);
+        $pdf = FacadePdf::loadView('SuperAdmin.assessmentReport', compact('getTotalServiceAvail'));
         return $pdf->stream();
     }
 
