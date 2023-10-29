@@ -31,6 +31,7 @@ use PDF;
 
 use App\Charts\TotalClientSatisfaction;
 use App\Http\Controllers\SumOfAllData; // Import the controller
+use App\Models\clientInfo;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 
@@ -573,15 +574,21 @@ class adminController extends Controller
         $sumOfAllDataController = new SumOfAllData();
         $getTotalServiceAvail = $sumOfAllDataController->getCalculateExternalSerivices($request);
 
-        $pdfView = view('pdf.totalResult', compact('getTotalServiceAvail'));
+        // $pdfView = view('pdf.totalResult', compact('getTotalServiceAvail'));
 
         // Generate the PDF
-        $pdf = FacadePdf::loadHTML($pdfView);
+        // $pdf = FacadePdf::loadHTML($pdfView);
         // $pdf = FacadePdf::loadView('pdf.totalResult', compact('getTotalServiceAvail'));
 
         // return $pdf->stream();
 
-        return $pdf->download('report.pdf');
+        return view('SuperAdmin.assessmentReport', compact('getTotalServiceAvail'));;
+    }
+    public function generatePDF()
+    {
+        $getTotalServiceAvail = clientInfo::all();
+        $pdf = FacadePdf::loadView('pdf.totalResult',  ['getTotalServiceAvail' => $getTotalServiceAvail]);
+        return $pdf->stream();
     }
 
 
