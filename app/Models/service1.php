@@ -30,4 +30,8 @@ class service1 extends Model
     {
         return $this->hasMany(Service1_3::class, 'service_id1', 'id');
     }
+    public function Services()
+    {
+        return $this->hasToMany(service1::class);
+    }
 }

@@ -13,37 +13,24 @@
         <!--Main content area -->
         <div class="flex-1 p-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
             <!-- Search field -->
-            <div class="relative max-w-md w-full">
+            {{-- <div class="relative max-w-md w-full">
                 <div class="absolute top-1 left-2 inline-flex items-center p-2">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
                 <input
                     class="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
                     type="search" placeholder="Search...">
-            </div>
+            </div> --}}
 
             <!--Conatainer Card 1-->
             <div class="p-2 flex  justify-around gap-4 bg-white shadow-md rounded-lg w-full mt-2">
                 <!-- Card 1-->
-                <div class="bg-sky-500 rounded-md p-2">
-                    <div>
-                        <header class="p-1 ">
-                            <h1 class="Bold-font text-[18px] text-white capitalize">
-                                Overall Total of Survey taken
-                            </h1>
-                        </header>
-                        <div class="p-1 ml-2">
-                            <span class="text-white SemiB-font text-[18px]">
-                                Total: 60
-                            </span>
-                        </div>
-                    </div>
-
+                <div class="bg-sky-500 rounded-md flex items-center justify-center">
                     <div class="flex justify-evenly">
                         <!-- Student-->
                         <div class="p-1 ml-2 flex justify-center items-center">
                             <div>
-                                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
                                     <!-- Paste your SVG code here -->
                                     <?xml version="1.0" ?><svg viewBox="0 0 256 256"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -63,12 +50,12 @@
                             </div>
                             <div class="flex flex-col items-center">
                                 <header class="p-1 ">
-                                    <h1 class="Bold-font text-[15px] text-black capitalize">
+                                    <h1 class="Bold-font text-[15px] text-white capitalize">
                                         Student
                                     </h1>
                                 </header>
                                 <span class="text-white SemiB-font text-[15px]">
-                                    20
+                                    {{ $totalStudents }}
                                 </span>
                             </div>
 
@@ -76,7 +63,7 @@
                         <!-- Personnel and Non-Personnel-->
                         <div class="p-1 ml-2 flex justify-center items-center">
                             <div>
-                                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
                                     <!-- Paste your SVG code here -->
                                     <?xml version="1.0" ?><svg data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -93,12 +80,12 @@
                             </div>
                             <div class="flex flex-col items-center">
                                 <header class="p-1 ">
-                                    <h1 class="Bold-font text-[15px] text-black capitalize">
+                                    <h1 class="Bold-font text-[15px] text-white capitalize">
                                         Personnel/Non-Personnel
                                     </h1>
                                 </header>
                                 <span class="text-white SemiB-font text-[15px]">
-                                    20
+                                    {{ $totalPersonnels }}
                                 </span>
                             </div>
 
@@ -106,10 +93,10 @@
                         <!-- Visitor-->
                         <div class="p-1 ml-2 flex justify-center items-center">
                             <div>
-                                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
                                     <!-- Paste your SVG code here -->
-                                    <?xml version="1.0" ?><svg fill="none" height="40" viewBox="0 0 20 20"
-                                        width="40" xmlns="http://www.w3.org/2000/svg">
+                                    <?xml version="1.0" ?><svg fill="none" height="50" viewBox="0 0 20 20"
+                                        width="50" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M8 9C8 7.89543 8.89543 7 10 7C11.1046 7 12 7.89543 12 9C12 10.1046 11.1046 11 10 11C8.89543 11 8 10.1046 8 9ZM10 8C9.44772 8 9 8.44772 9 9C9 9.55228 9.44772 10 10 10C10.5523 10 11 9.55228 11 9C11 8.44772 10.5523 8 10 8Z"
                                             fill="#212121" />
@@ -124,12 +111,11 @@
                             </div>
                             <div class="flex flex-col items-center">
                                 <header class="p-1 ">
-                                    <h1 class="Bold-font text-[15px] text-black capitalize">
-                                        Visitor
-                                    </h1>
+                                    <h1 class="Bold-font text-[15px] text-white capitalize">
+                                        Guests
                                 </header>
                                 <span class="text-white SemiB-font text-[15px]">
-                                    20
+                                    {{ $totalVisitors }}
                                 </span>
                             </div>
 
@@ -141,13 +127,12 @@
                 <div class="bg-yellow-400 rounded-md p-2">
                     <header class="p-1 ">
                         <h1 class="Bold-font text-[18px] text-white capitalize">
-                            Total No. Access of Citizen's Charter
-                        </h1>
+                            Total Number of Clients
                     </header>
                     <div class="flex justify-between">
                         <div class="p-1 ml-2">
                             <span class="text-white SemiB-font text-[40px]">
-                                45
+                                {{ $totalClients }}
                             </span>
                         </div>
                         <div class="p-1 mr-2">
@@ -238,53 +223,6 @@
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!-- Line with gradient -->
-                {{-- <table class="w-full table-auto text-sm">
-                    <thead class="text-left">
-                        <tr class="text-sm leading-normal">
-
-                            <th
-                                class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-grey-light border-b border-grey-light">
-                                Office/Colleges</th>
-                            <th
-                                class="py-2 px-4 bg-grey-lightest Bold-font uppercase text-lg text-grey-light border-b border-grey-light">
-                                Number Of Services</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-left">
-                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
-
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Offices of the
-                                Presidents</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">1</td>
-                        </tr>
-                        <!-- Add more rows here like the one above for each pending authorization -->
-                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
-
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">OVPAA</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">2</td>
-                        </tr>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
-
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">OVPAD</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">3</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
-
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">OVPREA</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">4</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
-
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">COED</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">5</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter mt-2 mb-3">
-                            <td class="py-2 px-4 border-b border-grey-light Bold-font text-[25px]">ToTal</td>
-                            <td class="py-2 px-4 border-b border-grey-light SemiB-font text-[20px]">100</td>
-                        </tr>
-                    </tbody>
-                </table> --}}
 
                 <div class="flex gap-2 justify-evenly">
                     <table class=" border-r-2 border-r-black">

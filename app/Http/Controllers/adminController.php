@@ -251,6 +251,55 @@ class adminController extends Controller
             return abort(404);
         }
     }
+
+    // public function storagePage2()
+    // {
+    //     if (View::exists('AdminSide.storageServiceFunction')) {
+    //         $services = service1::all();
+    //         $users = User::all();
+    //         foreach ($users as $user) {
+    //             foreach ($services as $service) {
+    //                 if ($user->idOfficeOriginFK == $service->office_service) {
+    //                     $userOffice = [$user->idOfficeOriginFK];
+    //                     $Service = service1::retrieved($userOffice);
+    //                     return view('AdminSide.storageServiceFunction', ['services' =>  $Service]);
+    //                 }
+    //             }
+    //         }
+    //         return view('AdminSide.storageServiceFunction', ['services' => $service]);
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
+
+
+    // public function storagePage2()
+    // {
+    //     if (View::exists('AdminSide.storageServiceFunction')) {
+    //         $services = service1::all();
+    //         $users = User::all();
+    //         $filteredServices = $services->filter(function ($service) use ($users) {
+    //             return $users->contains(function ($user) use ($service) {
+    //                 return $user->idOfficeOriginFK == $service->office_service;
+    //             });
+    //         });
+    //         return view('AdminSide.storageServiceFunction', ['services' => $filteredServices]);
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
+
+    // public function users()
+    // { service1 model relationship
+    //     return $this->belongsToMany(User::class, 'office_service', 'office_service', 'idOfficeOriginFK');
+    // }
+    // public function services()
+    // { usermodel relation ship
+    //     return $this->belongsToMany(service1::class, 'office_service', 'idOfficeOriginFK', 'office_service');
+    // $users = User::with('services')->get();
+    // }
+
+
     public function editService($id)
     {
         // Retrieve the main service1 record
@@ -357,34 +406,34 @@ class adminController extends Controller
         return redirect()->route('Storage')->with('message', 'Service updated successfully.');
     }
 
-    public function draftPage()
-    {
-        if (View::exists('AdminSide.draftServiceFunction')) {
-            return view('AdminSide.draftServiceFunction');
-        } else {
-            return abort(404);
-        }
-    }
-    public function codeGeneratorPage()
-    {
-        if (View::exists('AdminSide.generateCodeFunction')) {
-            return view('AdminSide.generateCodeFunction');
-        } else {
-            return abort(404);
-        }
-    }
-    public function createCode(Request $request)
-    {
-        $validated = $request->validate([
-            'client_name' => 'required'
-        ]);
-        $code = Str::random(6);
-        clientCode::create([
-            'name' => $validated['client_name'],
-            'code' => $code
-        ]);
-        return response()->json(['code' => $code]);;
-    }
+    // public function draftPage()
+    // {
+    //     if (View::exists('AdminSide.draftServiceFunction')) {
+    //         return view('AdminSide.draftServiceFunction');
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
+    // public function codeGeneratorPage()
+    // {
+    //     if (View::exists('AdminSide.generateCodeFunction')) {
+    //         return view('AdminSide.generateCodeFunction');
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
+    // public function createCode(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'client_name' => 'required'
+    //     ]);
+    //     $code = Str::random(6);
+    //     clientCode::create([
+    //         'name' => $validated['client_name'],
+    //         'code' => $code
+    //     ]);
+    //     return response()->json(['code' => $code]);;
+    // }
     // public function reportPage()
     // {
     //     if (View::exists('AdminSide.reportFunction')) {
@@ -444,6 +493,7 @@ class adminController extends Controller
         $chart = new TotalClientSatisfaction; // this is a chart php
         $totalOffices = new TotalClientSatisfaction;
 
+
         // Call the calculateClientSatisfaction method to get the satisfaction data
         $satisfactionData = $sumOfAllDataController->calculateClientSatisfaction();
         $chart->labels(array_keys($satisfactionData));
@@ -457,9 +507,14 @@ class adminController extends Controller
         $totalOffices->dataset('Number Of Offices', 'bar', array_values($TotalOfficesSurveyed))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
+        $totalStudents =   $sumOfAllDataController->calculateTotalStudent();
+        $totalClients =   $sumOfAllDataController->calculateTotalClient();
+        $totalPersonnels =   $sumOfAllDataController->calculateTotalPersonelAndNonPersonnel();
+        $totalVisitors =   $sumOfAllDataController->calculateTotalVisitors();
+
 
         if (View::exists('SuperAdmin.index')) {
-            return view('SuperAdmin.index', compact('chart', 'totalOffices'));
+            return view('SuperAdmin.index', compact('chart', 'totalOffices', 'totalStudents', 'totalClients', 'totalPersonnels', 'totalVisitors'));
         } else {
             return abort(404);
         }

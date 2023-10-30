@@ -197,7 +197,26 @@ class SumOfAllData extends Controller
             'Not Applicable' => $notApplicableCount,
         ];
     }
-
+    public function calculateTotalClient()
+    {
+        $totalClients = clientInfo::all()->count();
+        return $totalClients;
+    }
+    public function calculateTotalStudent()
+    {
+        $totalStudents = clientInfo::where('idCategoryFK', '1')->count();
+        return  $totalStudents;
+    }
+    public function calculateTotalPersonelAndNonPersonnel()
+    {
+        $totalPersonnel = clientInfo::whereIn('idCategoryFK', [2, 3])->count();
+        return  $totalPersonnel;
+    }
+    public function calculateTotalVisitors()
+    {
+        $totalVisitors = clientInfo::where('idCategoryFK', '4')->count();
+        return $totalVisitors;
+    }
     public function calculateClientCategory()
     {
         $surveyData = clientInfo::all(); // retrieve all survey data
@@ -208,26 +227,6 @@ class SumOfAllData extends Controller
         $facultyCount = 0;
         $personnnelCount = 0;
         $othersCount = 0;
-
-        // foreach ($clientCategory as $category) {
-        //     $categoryCounts[$category->category] = 0;
-        // }
-
-        // foreach ($surveyData as $surveyedOffice) {
-        //     foreach ($clientCategory as $category) {
-        //         if ($surveyedOffice->idCategoryFK == $category->id) {
-        //             $categoryCounts[$category->category]++;
-        //         }
-        //     }
-        // }
-
-        // foreach ($clientCategory as $category) {
-        //     foreach ($surveyData as $surveyedOffice) {
-        //         if ($surveyedOffice->idCategoryFK == $category->id) {
-        //             $categoryCounts[$category->category]++;
-        //         }
-        //     }
-        // }
 
         foreach ($surveyData as $surveyedOffice) {
             if ($surveyedOffice->idCategoryFK == 4) {
