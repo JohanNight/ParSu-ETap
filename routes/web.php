@@ -51,7 +51,7 @@ Route::controller(adminController::class)->group(function () {
         Route::put('/indexAdmin/account', 'update');
         Route::get('/indexAdmin/storageService', 'storagePage')->name('Storage');
         Route::get('/indexAdmin/editService/{id}', 'editService')->name('editService');
-        Route::put('/indexAdmin/editService/{id}', 'saveEditService');
+        Route::put('/indexAdmin/editService/{id}', 'saveEditService')->name('updateService');
         Route::get('/indexAdmin/draftService',  'draftPage')->name('Draft');
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
         Route::post('/indexAdmin/generateCode', 'createCode');

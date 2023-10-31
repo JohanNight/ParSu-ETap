@@ -31,6 +31,10 @@
                                             </th>
                                             <th scope="col"
                                                 class="text-sm SemiB-font text-gray-900 px-6 py-4 text-left">
+                                                offices
+                                            </th>
+                                            <th scope="col"
+                                                class="text-sm SemiB-font text-gray-900 px-6 py-4 text-left">
                                                 Site
                                             </th>
                                         </tr>
@@ -43,6 +47,9 @@
                                                 </td>
                                                 <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
                                                     {{ $service->serviceTitle }}
+                                                </td>
+                                                <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
+                                                    {{ $service->idOffice }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
                                                     <a href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"

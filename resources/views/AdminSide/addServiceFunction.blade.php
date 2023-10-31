@@ -349,72 +349,7 @@
 </script>
 
 <!--for handling the input fields of where to secure and requirements-->
-{{-- <script>
-    function addField(container, inputCounterName, containerId, inputName) {
-        const inputCounter = container.getAttribute(inputCounterName);
-        const newInput = document.createElement("div");
-        newInput.className = "flex gap-3 mt-2 mb-2";
-        newInput.innerHTML = `
-            <input type="text" name="${containerId}[${inputCounter}][${inputName}]" class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none" autocomplete="off">
-            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeField(this, '${containerId}')">Delete</button>
-        `;
 
-        container.appendChild(newInput);
-        container.setAttribute(inputCounterName, parseInt(inputCounter) + 1);
-    }
-
-    function removeField(element, containerId) {
-        const container = element.parentElement.parentElement;
-        container.removeChild(element.parentElement);
-    }
-
-    // Event listeners for the "Add new Fields" buttons
-    document.getElementById("addRqr_inpt").addEventListener("click", () => addField(document.getElementById(
-        "requirementsContainer"), "data-rqr-input-counter", "requirements", "rqr_inpt"));
-    document.getElementById("addWhr_inpt").addEventListener("click", () => addField(document.getElementById(
-        "whr_secure"), "data-whr-input-counter", "requirements", "whr_inpt"));
-</script> --}}
-{{-- <script>
-    function addFields() {
-        const container = document.getElementById("requirementsContainer");
-        const newSet = document.createElement("div");
-        newSet.className = "gap-3 mt-2 mb-2";
-
-        newSet.innerHTML = `
-            <label for="requirements[][rqr_inpt]" class="text-md Reg-font">Check List of Requirements:</label>
-            <input type="text" name="requirements[][rqr_inpt]"
-                class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
-                autocomplete="off">
-            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeFields(this)">Delete</button>
-        `;
-
-        container.appendChild(newSet);
-
-        const whrContainer = document.getElementById("whr_secure");
-        const newWhrSet = document.createElement("div");
-        newWhrSet.className = "gap-3 mt-2 mb-2";
-
-        newWhrSet.innerHTML = `
-            <label for="requirements[][whr_inpt]" class="text-md Reg-font">Where to Secure:</label>
-            <input type="text" name="requirements[][whr_inpt]"
-                class="text-sm w-full Reg-font h-9 border-2 bg-gray-100 p-2 focus:outline-none"
-                autocomplete="off">
-            <button type="button" class="text-sm Reg-font p-1 bg-red-500 rounded-lg text-white" onclick="removeFields(this)">Delete</button>
-        `;
-
-        whrContainer.appendChild(newWhrSet);
-    }
-
-    function removeFields(element) {
-        const container = element.parentElement.parentElement;
-        container.removeChild(element.parentElement);
-
-        // Ensure at least one set remains
-        if (container.children.length === 0) {
-            addFields(); // Add a new set if all sets were removed
-        }
-    }
-</script> --}}
 <script>
     document.getElementById("add_rqr_whr_row").addEventListener("click", function() {
         addTheRow();

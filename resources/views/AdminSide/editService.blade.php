@@ -12,7 +12,7 @@
         <div class="flex-1 w-full md:w-1/2 bg-gray-200 min-h-screen ">
             <!-- component -->
             <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">Edit Service</div>
-            <form action="/indexAdmin/editService/{{ $service1->id }}" method="POST">
+            <form action="/indexAdmin/editService/{{ $service1->idServiceSpecification }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div
@@ -221,10 +221,10 @@
                                             <tr class="text-left">
                                                 <td class="w-60 h-20 p-1 border-2">
                                                     <textarea name="Rqr_Whr[{{ $index }}][checklist_of_requirement]"
-                                                        id="Rqr_Whr[{{ $index }}][checklist_of_requirement]" class="w-full h-full">{{ $checklist->requirement_description }}</textarea>
+                                                        id="Rqr_Whr[{{ $index }}][checklist_of_requirement]" class="w-full h-full text-black">{{ $checklist->requirement_description ?: 'Null' }}</textarea>
                                                 <td class="w-60 h-20 p-1 border-2">
                                                     <textarea name="Rqr_Whr[{{ $index }}][where_to_secure]" id="Rqr_Whr[{{ $index }}][where_to_secure]"
-                                                        class="w-full h-full">{{ $checklist->where_to_secure }}</textarea>
+                                                        class="w-full h-full text-black">{{ $checklist->where_to_secure ?: 'Null' }}</textarea>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -281,23 +281,23 @@
                                         <tr class="text-left">
                                             <td class="w-40 h-28 p-1 border-2">
                                                 <textarea name="table[{{ $index }}][client_steps]" id="table[{{ $index }}][client_steps]"
-                                                    class="w-full h-full">{{ $checklist->client_steps }}</textarea>
+                                                    class="w-full h-full">{{ $checklist->client_steps ?: 'Null' }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
                                                 <textarea name="table[{{ $index }}][agency_action]" id="table[{{ $index }}][agency_action]"
-                                                    class="w-full h-full">{{ $checklist->agency_action }}</textarea>
+                                                    class="w-full h-full">{{ $checklist->agency_action ?: 'Null' }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
                                                 <textarea name="table[{{ $index }}][fees_to_paid]" id="table[{{ $index }}][fees_to_paid]"
-                                                    class="w-full h-full">{{ $checklist->fees_to_be_paid }}</textarea>
+                                                    class="w-full h-full">{{ $checklist->fees_to_be_paid ?: 'Null' }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
                                                 <textarea name="table[{{ $index }}][processing_time]" id="table[{{ $index }}][processing_time]"
-                                                    class="w-full h-full">{{ $checklist->processing_time }}</textarea>
+                                                    class="w-full h-full">{{ $checklist->processing_time ?: 'Null' }}</textarea>
                                             </td>
                                             <td class="w-40 h-28 p-1 border-2">
                                                 <textarea name="table[{{ $index }}][person_responsible]" id="table[{{ $index }}][person_responsible]"
-                                                    class="w-full h-full">{{ $checklist->person_responsible }}</textarea>
+                                                    class="w-full h-full">{{ $checklist->person_responsible ?: 'Null' }}</textarea>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -320,60 +320,7 @@
     </div>
 </div>
 <!--for handling the table to be editable-->
-{{-- <script>
-    document.getElementById("add_row").addEventListener("click", function() {
-        addRow();
-    });
 
-    document.getElementById("dlt_row").addEventListener("click", function() {
-        deleteRow();
-    });
-
-    function addRow() {
-        var table = document.getElementById("table_id");
-        var newRow = table.insertRow(-1);
-
-        for (var i = 0; i < 5; i++) {
-            var newCell = newRow.insertCell(i);
-            newCell.className = "w-40 h-28 p-1 border-2";
-            setCellStyles(newCell, table.rows.length - 1, i); // Pass the row index and column index
-        }
-    }
-
-    function deleteRow() {
-        var table = document.getElementById("table_id");
-        if (table.rows.length > 2) {
-            table.deleteRow(-1);
-        }
-    }
-
-    function setCellStyles(cell, rowIndex, columnIndex) {
-        var textarea = document.createElement('textarea');
-        textarea.value = cell.innerText;
-
-        // Create a unique name and ID for each textarea based on the row and column indices
-        var columnName = getColumnNameByIndex(columnIndex);
-        textarea.name = "table[" + rowIndex + "][" + columnName + "]";
-        textarea.id = "table[" + rowIndex + "][" + columnName + "]";
-
-        textarea.style.width = "100%";
-        textarea.style.height = "100%";
-        textarea.style.padding = "0";
-        textarea.style.border = "none";
-
-
-        cell.innerText = '';
-        cell.appendChild(textarea);
-    }
-
-    function getColumnNameByIndex(columnIndex) {
-        // Define your own logic to get the column name based on the index
-        // For example, you can use an array of column names or other data structure
-        // Modify this logic as per your table structure
-        var columnNames = ["client_steps", "agency_action", "fees_to_paid", "processing_time", "person_responsible"];
-        return columnNames[columnIndex];
-    }
-</script> --}}
 <script>
     document.getElementById("add_row").addEventListener("click", function() {
         addRow();
@@ -403,8 +350,9 @@
 
     function setCellStyles(cell, rowIndex, columnIndex) {
         var textarea = document.createElement('textarea');
-        textarea.value = cell.innerText;
-
+        // textarea.value = cell.innerText;
+        textarea.value = 'Null';
+        textarea.className = 'w-full h-full text-black p-0.5';
         var columnName = getColumnNameByIndex(columnIndex);
         textarea.name = "table[" + rowIndex + "][" + columnName + "]";
         textarea.id = "table[" + rowIndex + "][" + columnName + "]";
@@ -414,7 +362,7 @@
         textarea.style.padding = "0";
         textarea.style.border = "none";
 
-        cell.innerText = '';
+        // cell.innerText = '';
         cell.appendChild(textarea);
     }
 
@@ -426,60 +374,7 @@
 
 
 <!--for handling the input fields of where to secure and requirements-->
-{{-- <script>
-    document.getElementById("add_rqr_whr_row").addEventListener("click", function() {
-        addTheRow();
-    });
 
-    document.getElementById("dlt_rqr_whr_row").addEventListener("click", function() {
-        deleteTheRow();
-    });
-
-    function addTheRow() {
-        var table = document.getElementById("Rqr_Whr_id");
-        var newRow = table.insertRow(-1);
-
-        for (var i = 0; i < 2; i++) {
-            var newCell = newRow.insertCell(i);
-            newCell.className = "w-60 h-20 p-1 border-2";
-            setTheCellStyles(newCell, table.rows.length - 1, i); // Pass the row index and column index
-        }
-    }
-
-    function deleteTheRow() {
-        var table = document.getElementById("Rqr_Whr_id");
-        if (table.rows.length > 2) {
-            table.deleteRow(-1);
-        }
-    }
-
-    function setTheCellStyles(cell, rowIndex, columnIndex) {
-        var textarea = document.createElement('textarea');
-        textarea.value = cell.innerText;
-
-        // Create a unique name and ID for each textarea based on the row and column indices
-        var columnName = getTheColumnNameByIndex(columnIndex);
-        textarea.name = "Rqr_Whr[" + rowIndex + "][" + columnName + "]";
-        textarea.id = "Rqr_Whr[" + rowIndex + "][" + columnName + "]";
-
-        textarea.style.width = "100%";
-        textarea.style.height = "100%";
-        textarea.style.padding = "0";
-        textarea.style.border = "none";
-
-
-        cell.innerText = '';
-        cell.appendChild(textarea);
-    }
-
-    function getTheColumnNameByIndex(columnIndex) {
-        // Define your own logic to get the column name based on the index
-        // For example, you can use an array of column names or other data structure
-        // Modify this logic as per your table structure
-        var columnNames = ["checklist_of_requirement", "where_to_secure"];
-        return columnNames[columnIndex];
-    }
-</script> --}}
 <script>
     document.getElementById("add_rqr_whr_row").addEventListener("click", function() {
         addTheRow();
@@ -527,8 +422,9 @@
 
     function setTheCellStyles(cell, rowIndex, columnIndex) {
         var textarea = document.createElement('textarea');
-        textarea.value = cell.innerText;
-
+        // textarea.value = cell.innerText;
+        textarea.value = 'Null'
+        textarea.className = 'w-60 h-20 p-1 border-2 text-black';
         // Create a unique name and ID for each textarea based on the row and column indices
         var columnName = getTheColumnNameByIndex(columnIndex);
         textarea.name = "Rqr_Whr[" + rowIndex + "][" + columnName + "]";
@@ -539,7 +435,7 @@
         textarea.style.padding = "0";
         textarea.style.border = "none";
 
-        cell.innerText = '';
+        // cell.innerText = '';
         cell.appendChild(textarea);
     }
 

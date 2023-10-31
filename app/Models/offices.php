@@ -9,9 +9,15 @@ class offices extends Model
 {
     use HasFactory;
     protected $table = 'tbloffices';
+    protected $primaryKey = 'idOffices';
     protected $fillable = [
         'idCampus',
         'officeAcronym',
         'officeDescription'
     ];
+
+    // public function services()
+    // {
+    //     return $this->hasMany(service1::class);
+    // }
 }

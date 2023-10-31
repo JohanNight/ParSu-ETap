@@ -245,11 +245,43 @@ class adminController extends Controller
     // }
 
 
+    // public function storagePage()
+    // {
+    //     if (View::exists('AdminSide.storageServiceFunction')) {
+    //         // Assuming you have a logged-in user (you may need to get the user from the Auth system)
+    //         $user = Auth::user();
+
+    //         // Retrieve the offices related to the user
+    //         $offices = $user->offices;
+
+    //         // Initialize an empty array to store the service IDs related to the user's offices
+    //         $serviceIds = [];
+
+    //         // Iterate through the offices to collect service IDs
+    //         foreach ($offices as $office) {
+    //             $serviceIds = array_merge($serviceIds, $office->services->pluck('id')->toArray());
+    //         }
+    //         // $service = service1::paginate('10');
+
+    //         // Retrieve services related to the user's offices
+    //         $service = Service1::whereIn('id', $serviceIds)->paginate(10);
+    //         return view('AdminSide.storageServiceFunction', ['services' => $service]);
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
     public function storagePage()
     {
+        $user = Auth::user();
+
         if (View::exists('AdminSide.storageServiceFunction')) {
-            $service = service1::paginate('10');
-            return view('AdminSide.storageServiceFunction', ['services' => $service]);
+            $officeId = $user->idOfficeOrigin;
+            if ($officeId) {
+                $services = Service1::where('idOffice', $officeId)->paginate(10);
+                return view('AdminSide.storageServiceFunction', ['services' => $services]);
+            }
+            // $service = service1::paginate('10');
+            // return view('AdminSide.storageServiceFunction', ['services' => $service]);
         } else {
             return abort(404);
         }
@@ -342,27 +374,26 @@ class adminController extends Controller
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
             'description_service' => 'required|string',
-            'serviceType' => 'required|string',
-            'office_service' => 'required|string',
-            'classification_service' => 'required|string',
-            'transaction_type' => 'required|string',
-            'who_avail' => 'required|string',
+            'serviceType' => 'required',
+            'office_service' => 'required',
+            'classification_service' => 'required',
+            'transaction_type' => 'required',
+            'who_avail' => 'required',
             'table_Rqr_Whr_data' => 'array', // Combined array of rqr_inpt and whr_inpt
             'table_data' => 'array',
         ]);
 
         // Update the service attributes based on user input
         $service->update([
-            'code_Title' => $request->code_Title,
-            'service_Title' => $request->service_Title,
-            'description_service' => $request->description_service,
-            'service_type' => $request->serviceType,
-            'office_service' => $request->office_service,
-            'classification_service' => $request->classification_service,
-            'transaction_type' => $request->transaction_type,
-            'who_avail' => $request->who_avail,
+            'serviceCode' => $request->code_Title,
+            'serviceTitle' => $request->service_Title,
+            'serviceDescription' => $request->description_service,
+            'idService' => $request->serviceType,
+            'idOffice' => $request->office_service,
+            'idClassificationServices' => $request->classification_service,
+            'idtransactionType' => $request->transaction_type,
+            'idWhoAvail' => $request->who_avail,
         ]);
-
 
         // Retrieve the "requirements" array from the request
         $Requirements = $request->input('Rqr_Whr');
