@@ -8,17 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class service1 extends Model
 {
     use HasFactory;
-    protected $table = 'table_services1';
+    protected $table = 'table_services1_1';
     protected $fillable = [
-        'code_Title',
-        'service_Title',
-        'description_service',
-        'service_type',
-        'office_service',
-        'classification_service',
-        'classification_service',
-        'transaction_type',
-        'who_avail',
+        'serviceCode',
+        'idService',
+        'serviceTitle',
+        'serviceDescription',
+        'idOffice',
+        'idClassificationServices',
+        'idTransactionType',
+        'idWhoAvail',
 
     ];
     public function checklistRequirements1()
