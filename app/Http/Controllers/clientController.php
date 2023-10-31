@@ -42,8 +42,8 @@ class clientController extends Controller
     {
         if (View::exists('ClientSide.citizenCharter')) {
             $services = service1::all();
-            $service2 = service2::all();
-            return view('ClientSide.citizenCharter', compact('services', 'service2'));
+
+            return view('ClientSide.citizenCharter', compact('services'));
         } else {
             return abort(404);
         }

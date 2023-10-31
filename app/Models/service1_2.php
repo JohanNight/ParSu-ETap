@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class service1_2 extends Model
 {
     use HasFactory;
-    protected $table = 'table_services1_12';
+    protected $table = 'table_service1_12';
 
     protected $fillable  = [
         'service_id',
@@ -17,6 +17,6 @@ class service1_2 extends Model
     ];
     public function service()
     {
-        return $this->belongsTo(Service1::class, 'service_id', 'id');
+        return $this->belongsTo(Service1::class, 'service_id', 'idServiceSpecification');
     }
 }

@@ -21,7 +21,7 @@
                         <label for="code_Title" class="text-md Reg-font">Code:</label>
                         <input name="code_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font "
-                            spellcheck="false" type="text" autocomplete="off" value="{{ $service1->code_Title }}">
+                            spellcheck="false" type="text" autocomplete="off" value="{{ $service1->serviceCode }}">
                         @error('code_Title')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -32,8 +32,7 @@
                         <label for="service_Title" class="text-md Reg-font">Title:</label>
                         <input name="service_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font" spellcheck="false"
-                            placeholder="Title" type="text" autocomplete="off"
-                            value="{{ $service1->service_Title }}">
+                            placeholder="Title" type="text" autocomplete="off" value="{{ $service1->serviceTitle }}">
                         @error('service_Title')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -44,7 +43,7 @@
                         <label for="description_service" class="text-md Reg-font">Description:</label>
                         <textarea id="description_service" name="description_service"
                             class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none Reg-font w-full text-justify"
-                            spellcheck="false" placeholder="Describe everything here">{{ $service1->description_service }}</textarea>
+                            spellcheck="false" placeholder="Describe everything here">{{ $service1->serviceDescription }}</textarea>
                         @error('description_service')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -58,9 +57,9 @@
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
                                 @foreach ($ServiceType as $servicetype)
-                                    <option value="{{ $servicetype->services }}"
+                                    <option value="{{ $servicetype->idServices }}"
                                         class="text-[16px] Reg-font capitalize "
-                                        @if ($service1->service_type == $servicetype->services) selected @endif>
+                                        @if ($service1->idService == $servicetype->idServices) selected @endif>
                                         {{ $servicetype->services }}</option>
                                 @endforeach
                             </select>
@@ -76,9 +75,9 @@
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
                                 @foreach ($officeTypes as $officeType)
-                                    <option value="{{ $officeType->officeDescription }}"
+                                    <option value="{{ $officeType->idOffices }}"
                                         class="text-[16px] Reg-font capitalize "
-                                        @if ($service1->office_service == $officeType->officeDescription) selected @endif>
+                                        @if ($service1->idOffice == $officeType->idOffices) selected @endif>
                                         {{ $officeType->officeAcronym }}
                                     </option>
                                 @endforeach
@@ -93,12 +92,13 @@
                             <label for="classification_service" class="text-md Reg-font">Classification:</label>
                             <select name="classification_service" id="classification_service"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
-                                <option value=""{{ $service1->classification_service == '' ? 'selected' : '' }}>
+                                <option
+                                    value=""{{ $service1->idClassificationServices == '' ? 'selected' : '' }}>
                                 </option>
                                 @foreach ($classifications as $classification)
-                                    <option value="{{ $classification->serviceClassification }}"
+                                    <option value="{{ $classification->idClassificationService }}"
                                         class="text-[16px] Reg-font capitalize "
-                                        @if ($service1->classification_service == $classification->serviceClassification) selected @endif>
+                                        @if ($service1->idClassificationServices == $classification->idClassificationService) selected @endif>
                                         {{ $classification->serviceClassification }}
                                     </option>
                                 @endforeach
@@ -114,10 +114,17 @@
                                 Transaction:</label>
                             <select name="transaction_type" id="transaction_type"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
-                                <option value=""{{ $service1->transaction_type == '' ? 'selected' : '' }}>
+                                <option value=""{{ $service1->idTransactionType == '' ? 'selected' : '' }}>
                                 </option>
+                                @foreach ($transactionType as $transaction)
+                                    <option value="{{ $transaction->idTransactionType }}"
+                                        class="text-[16px] Reg-font capitalize "
+                                        @if ($service1->idTransactionType == $transaction->idTransactionType) selected @endif>
+                                        {{ $transaction->description }}
+                                    </option>
+                                @endforeach
 
-                                <option value=" G2C- Government to Citizen"
+                                {{-- <option value=" G2C- Government to Citizen"
                                     {{ $service1->transaction_type == 'G2C- Government to Citizen' ? 'selected' : '' }}
                                     class="text-[16px] Reg-font capitalize ">
                                     G2C- Government to Citzen's
@@ -134,7 +141,7 @@
                                 "{{ $service1->transaction_type == ' C2C- Citizen to Citizen' ? 'selected' : '' }}
                                     class="text-[16px] Reg-font capitalize ">
                                     C2C- Citizen's to Citizen's
-                                </option>
+                                </option> --}}
                             </select>
                             @error('transaction_type')
                                 <p class="text-red-400 text-sm p-1">
@@ -147,12 +154,11 @@
                         <label for="who_avail" class="text-md Reg-font capitalize">Who may Avail:</label>
                         <select name="who_avail" id="who_avail"
                             class=" bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font"
-                            spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off"
-                            value="{{ $service1->who_avail }}">
+                            spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off">
                             <option value=""></option>
                             @foreach ($whoAvail as $WhoAvail)
-                                <option value="{{ $WhoAvail->client }}" class="text-[16px] Reg-font capitalize "
-                                    @if ($service1->who_avail == $WhoAvail->client) selected @endif>
+                                <option value="{{ $WhoAvail->idWhoAvail }}" class="text-[16px] Reg-font capitalize "
+                                    @if ($service1->idWhoAvail == $WhoAvail->idWhoAvail) selected @endif>
                                     {{ $WhoAvail->client }}
                                 </option>
                             @endforeach

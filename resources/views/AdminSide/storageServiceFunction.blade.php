@@ -39,13 +39,13 @@
                                         @foreach ($services as $service)
                                             <tr class="bg-gray-100 border-b">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm Reg-font text-gray-900">
-                                                    {{ $service->code_Title }}
+                                                    {{ $service->serviceCode }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                    {{ $service->service_Title }}
+                                                    {{ $service->serviceTitle }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
-                                                    <a href="/indexAdmin/editService/{{ $service->id }}"
+                                                    <a href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
                                                         class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         Edit
                                                     </a>
@@ -57,6 +57,7 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
+                                    {{ $services->links() }}
                                 </table>
                             </div>
                         </div>

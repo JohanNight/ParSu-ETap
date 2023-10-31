@@ -108,20 +108,11 @@
                             <select name="transaction_type" id="transaction_type"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
-
-                                <option value="  G2C- Government to Citizen" class="text-[16px] Reg-font capitalize ">
-                                    G2C- Government to Citzen
-                                </option>
-                                <option value=" G2G- Government to Government
-                                "
-                                    class="text-[16px] Reg-font capitalize ">
-                                    G2G- Government to Government
-
-                                </option>
-                                <option value="C2C- Citizen to Citizen" class="text-[16px] Reg-font capitalize ">
-                                    C2C- Citizen to Citizen
-
-                                </option>
+                                @foreach ($transactionType as $transaction)
+                                    <option value="{{ $transaction->idTransactionType }}"
+                                        class="text-[16px] Reg-font capitalize ">
+                                        {{ $transaction->description }}</option>
+                                @endforeach
                             </select>
                             @error('transaction_type')
                                 <p class="text-red-400 text-sm p-1">

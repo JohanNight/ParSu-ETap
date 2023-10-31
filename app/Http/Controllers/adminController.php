@@ -32,6 +32,7 @@ use PDF;
 use App\Charts\TotalClientSatisfaction;
 use App\Http\Controllers\SumOfAllData; // Import the controller
 use App\Models\clientInfo;
+use App\Models\transactionType;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 
@@ -103,7 +104,7 @@ class adminController extends Controller
         );
         $Admindata = [
             'name' => $validated['name'],
-            'idOfficeOriginFK' => $validated['offices'],
+            'idOfficeOrigin' => $validated['offices'],
             'email' => $validated['email'],
             'password' => $validated['password'] = Hash::make($validated['password']),
         ];
@@ -163,7 +164,8 @@ class adminController extends Controller
             $whoAvail = Who_avail::all();
             $classifications = Classification::all();
             $ServiceType = ServiceType::all();
-            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications', 'ServiceType'));
+            $transactionType = transactionType::all();
+            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications', 'ServiceType', 'transactionType'));
         } else {
             return abort(404);
         }
@@ -181,11 +183,11 @@ class adminController extends Controller
             'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
             'description_service' => 'required|string',
-            'serviceType' => 'required|string',
-            'office_service' => 'required|string',
-            'classification_service' => 'required|string',
-            'transaction_type' => 'required|string',
-            'who_avail' => 'required|string',
+            'serviceType' => 'required',
+            'office_service' => 'required',
+            'classification_service' => 'required',
+            'transaction_type' => 'required',
+            'who_avail' => 'required',
             'table_Rqr_Whr_data' => 'array', // Combined array of rqr_inpt and whr_inpt
             'table_data' => 'array',
         ]);
@@ -193,14 +195,14 @@ class adminController extends Controller
 
 
         $service1 = new Service1;
-        $service1->code_Title = $request->code_Title;
-        $service1->service_Title = $request->service_Title;
-        $service1->description_service = $request->description_service;
-        $service1->service_type = $request->serviceType;
-        $service1->office_service = $request->office_service;
-        $service1->classification_service = $request->classification_service;
-        $service1->transaction_type = $request->transaction_type;
-        $service1->who_avail = $request->who_avail;
+        $service1->serviceCode = $request->code_Title;
+        $service1->serviceTitle = $request->service_Title;
+        $service1->serviceDescription = $request->description_service;
+        $service1->idService = $request->serviceType;
+        $service1->idOffice = $request->office_service;
+        $service1->idClassificationServices = $request->classification_service;
+        $service1->idtransactionType = $request->transaction_type;
+        $service1->idWhoAvail = $request->who_avail;
         // Set other attributes as well
         $service1->save();
 
@@ -246,21 +248,21 @@ class adminController extends Controller
     public function storagePage()
     {
         if (View::exists('AdminSide.storageServiceFunction')) {
-            $service = service1::all();
+            $service = service1::paginate('10');
             return view('AdminSide.storageServiceFunction', ['services' => $service]);
         } else {
             return abort(404);
         }
     }
-    public function storagePage3()
-    {
-        if (View::exists('AdminSide.storageServiceFunction')) {
-            $service = service1::all();
-            return view('AdminSide.storageServiceFunction', ['services' => $service]);
-        } else {
-            return abort(404);
-        }
-    }
+    // public function storagePage3()
+    // {
+    //     if (View::exists('AdminSide.storageServiceFunction')) {
+    //         $service = service1::all();
+    //         return view('AdminSide.storageServiceFunction', ['services' => $service]);
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
 
     // public function storagePage2()
     // {
@@ -310,10 +312,10 @@ class adminController extends Controller
     // }
 
 
-    public function editService($id)
+    public function editService($idServiceSpecification)
     {
         // Retrieve the main service1 record
-        $service1 = Service1::find($id);
+        $service1 = Service1::findOrFail($idServiceSpecification);
         $checklistRequirements1 = $service1->checklistRequirements1;
         $checklistRequirements2 = $service1->checklistRequirements2;
 
@@ -321,14 +323,15 @@ class adminController extends Controller
         $whoAvail = Who_avail::all();
         $classifications = Classification::all();
         $ServiceType = ServiceType::all();
+        $transactionType = transactionType::all();
 
-        $service1 = Service1::with('checklistRequirements1', 'checklistRequirements2')->find($id);
+        $service1 = Service1::with('checklistRequirements1', 'checklistRequirements2')->find($idServiceSpecification);
         //dd($service1);
         if (!$service1) {
             return abort(404); // Handle the case when the record is not found.
         }
 
-        return view('AdminSide.editService', compact('service1', 'officeTypes', 'whoAvail', 'classifications', 'ServiceType'));
+        return view('AdminSide.editService', compact('service1', 'officeTypes', 'whoAvail', 'classifications', 'ServiceType', 'transactionType'));
     }
     public function saveEditService(Request $request, $serviceId)
     {
