@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 use App\Models\clientCode;
 use App\Models\service1;
+use App\Models\service2;
 use App\Models\SurveyComment;
 use App\Models\SurveyInstruction;
 use App\Models\SurveyQuestion;
@@ -40,8 +41,9 @@ class clientController extends Controller
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
-            $service = service1::all();
-            return view('ClientSide.citizenCharter', ['services' => $service]);
+            $services = service1::all();
+            $service2 = service2::all();
+            return view('ClientSide.citizenCharter', compact('services', 'service2'));
         } else {
             return abort(404);
         }

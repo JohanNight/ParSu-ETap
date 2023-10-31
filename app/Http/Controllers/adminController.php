@@ -110,6 +110,52 @@ class adminController extends Controller
         $user = User::create($Admindata);
         Auth::login($user);
     }
+
+    public function showAccountPage()
+    {
+        $user = Auth::user();
+        if (View::exists('AdminSide.accountFunction')) {
+            return view('AdminSide.accountFunction', compact('user'));
+        } else {
+            return abort(404);
+        }
+    }
+    public function update(Request $request)
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+
+        $validated = $request->validate([
+            'name' => ['required', 'min:4'],
+            'email' => ['required', 'email'],
+            'user_image' => ['nullable', 'image'],
+            'bio' => ['nullable', 'min:1', 'max:255'],
+        ]);
+
+        // Check if 'user_image' exists in the request; if not, set it to the current user's image
+        if (!$request->hasFile('user_image')) {
+            $validated['user_image'] = $user->user_image;
+        } else {
+            // If a new image is uploaded, store it and delete the old image if it exists
+            $imagePath = $request->file('user_image')->store('profile', 'public');
+            $validated['user_image'] = $imagePath;
+
+            if ($user->user_image) {
+                Storage::disk('public')->delete($user->user_image);
+            }
+        }
+
+        $user->fill([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'user_image' => $validated['user_image'],
+            'bio' => $validated['bio']
+        ]);
+
+        $user->save();
+
+        return back()->with('message', 'Saved Successfully');
+    }
     public function addServicePage()
     {
         if (View::exists('AdminSide.addServiceFunction')) {
@@ -188,16 +234,6 @@ class adminController extends Controller
     }
 
 
-
-    public function showAccountPage()
-    {
-        $user = Auth::user();
-        if (View::exists('AdminSide.accountFunction')) {
-            return view('AdminSide.accountFunction', compact('user'));
-        } else {
-            return abort(404);
-        }
-    }
     // public function createThumbnail($path, $width, $height)
     // {
     //     $img = Image::make($path)->resize($width, $height, function ($constraint) {
@@ -205,44 +241,18 @@ class adminController extends Controller
     //     });
     //     $img->save($path);
     // }
-    public function update(Request $request)
-    {
-        $userId = Auth::id();
-        $user = User::findOrFail($userId);
 
-        $validated = $request->validate([
-            'name' => ['required', 'min:4'],
-            'email' => ['required', 'email'],
-            'user_image' => ['nullable', 'image'],
-            'bio' => ['nullable', 'min:1', 'max:255'],
-        ]);
-
-        // Check if 'user_image' exists in the request; if not, set it to the current user's image
-        if (!$request->hasFile('user_image')) {
-            $validated['user_image'] = $user->user_image;
-        } else {
-            // If a new image is uploaded, store it and delete the old image if it exists
-            $imagePath = $request->file('user_image')->store('profile', 'public');
-            $validated['user_image'] = $imagePath;
-
-            if ($user->user_image) {
-                Storage::disk('public')->delete($user->user_image);
-            }
-        }
-
-        $user->fill([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'user_image' => $validated['user_image'],
-            'bio' => $validated['bio']
-        ]);
-
-        $user->save();
-
-        return back()->with('message', 'Saved Successfully');
-    }
 
     public function storagePage()
+    {
+        if (View::exists('AdminSide.storageServiceFunction')) {
+            $service = service1::all();
+            return view('AdminSide.storageServiceFunction', ['services' => $service]);
+        } else {
+            return abort(404);
+        }
+    }
+    public function storagePage3()
     {
         if (View::exists('AdminSide.storageServiceFunction')) {
             $service = service1::all();
