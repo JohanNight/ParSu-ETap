@@ -337,8 +337,6 @@ class adminController extends Controller
                 $services = Service1::where('idOffice', $officeId)->paginate(10);
                 return view('AdminSide.storageServiceFunction', ['services' => $services]);
             }
-            // $service = service1::paginate('10');
-            // return view('AdminSide.storageServiceFunction', ['services' => $service]);
         } else {
             return abort(404);
         }

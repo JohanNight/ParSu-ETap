@@ -112,7 +112,7 @@
                         class=" w-40 bg-gray-300 py-2 px-2 mb-3  md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
                         @foreach ($officeTypes as $officeType)
-                            <option value="{{ $officeType->officeAcronym }}" class="text-[16px] Reg-font capitalize ">
+                            <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
                                 {{ $officeType->officeAcronym }}</option>
                         @endforeach
                     </select>
@@ -128,8 +128,9 @@
                         class=" w-96 md:w-80 sm:w-80 px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off">
                         <option value=""></option>
                         @foreach ($Service as $services)
-                            <option value="{{ $services->service_Title }}" class="text-[16px] Reg-font capitalize ">
-                                {{ $services->service_Title }}</option>
+                            <option value="{{ $services->idServiceSpecification }}"
+                                class="text-[12px] Reg-font capitalize ">
+                                {{ $services->serviceTitle }}</option>
                         @endforeach
                     </select>
                     @error('service_availed')

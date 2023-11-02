@@ -143,8 +143,8 @@ class clientController extends Controller
 
         //dd($request);
         $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
-        $validateOffices = DB::table('tbloffices')->pluck('officeAcronym')->toArray();
-        $services = DB::table('table_services1')->pluck('service_Title')->toArray();
+        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+        $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
 
         $validateData = $request->validate([
             'name_of_client' => 'required',
