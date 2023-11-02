@@ -41,7 +41,7 @@ class clientController extends Controller
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
-            $services = service1::all();
+            $services = service1::paginate(5);
 
             return view('ClientSide.citizenCharter', compact('services'));
         } else {

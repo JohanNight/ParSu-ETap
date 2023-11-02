@@ -12,18 +12,27 @@
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
             <!--Filter-->
             <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
-                <div class=" bg-white border-2 p-2" id="fltr_from">
-                    <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
-                    <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
-                </div>
-                <div class=" bg-white border-2 p-2" id="fltr_to">
-                    <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
-                    <input type="date" class="p-1 rounded-md border-2 border-black focus:outline-none">
-                </div>
-                <button type="button" id="fltr_date"
-                    class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
-                    Filter
-                </button>
+                <form action="{{ route('filterResult') }}" method="POST" class="flex gap-2">
+                    @csrf
+                    <div class=" bg-white border-2 p-2" id="fltr_from">
+                        <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
+                        <input type="date"
+                            name="date_from"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                    </div>
+                    <div class=" bg-white border-2 p-2" id="fltr_to">
+                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
+                        <input type="date"
+                            name="date_to"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <button type="submit" id="fltr_date"
+                            class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
+                            Filter
+                        </button>
+                    </div>
+
+                </form>
+
                 <button type="button" id="assess_report"
                     class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-white">
                     Assess

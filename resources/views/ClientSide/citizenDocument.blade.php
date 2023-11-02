@@ -14,13 +14,13 @@
                     <div class=" flex justify-center mb-3 ">
                         <header class="border-b-2 border-b-blue-800">
                             <h1 class="text-lg Reg-font mb-1"><span
-                                    class="text-[15px] text-md Bold-font mr-5 ">{{ $service1->code_Title }}</span>{{ $service1->service_Title }}
+                                    class="text-[15px] text-md Bold-font mr-5 ">{{ $service1->serviceCode }}</span>{{ $service1->serviceTitle }}
                             </h1>
                         </header>
                     </div>
                     <div class="p-5">
                         <p class="text-justify Reg-font text-md tracking-wider leading-7 mb-3">
-                            {{ $service1->description_service }}
+                            {{ $service1->serviceDescription }}
                         </p>
                         <div class="mb-2">
                             <table

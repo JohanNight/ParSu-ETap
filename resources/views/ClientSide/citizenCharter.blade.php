@@ -159,17 +159,17 @@
                                                     class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
-                                                        {{ $service->code_Title }}</td>
+                                                        {{ $service->serviceCode }}</td>
                                                     <td
                                                         class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                        {{ $service->service_Title }}
+                                                        {{ $service->serviceTitle }}
                                                     </td>
                                                     <td
                                                         class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                        {{ $service->office_service }}
+                                                        {{ $service->idOffice }}
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
-                                                        <a href="/home/Document/{{ $service->id }}"
+                                                        <a href="/home/Document/{{ $service->idServiceSpecification }}"
                                                             class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-green-700">
                                                             View
                                                         </a>
@@ -177,6 +177,9 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
+                                        <div class="flex">
+                                            {{ $services->links() }}
+                                        </div>
                                     </table>
                                 </div>
                             </div>
