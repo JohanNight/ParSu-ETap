@@ -42,7 +42,7 @@
                     <div class="flex justify-between">
                         <div class="p-1 ml-2">
                             <span class="text-white SemiB-font text-[40px]">
-                                45
+                                {{ $totalClient }}
                             </span>
                         </div>
                         <div class="p-1 mr-2">
@@ -84,7 +84,7 @@
                     <div class="flex justify-between">
                         <div class="p-1 ml-2">
                             <span class="text-white SemiB-font text-[40px]">
-                                45
+                                {{ $totalClient }}
                             </span>
                         </div>
                         <div class="p-1 mr-2">
@@ -121,7 +121,7 @@
                     <div class="flex justify-between">
                         <div class="p-1 ml-2">
                             <span class="text-white SemiB-font text-[40px]">
-                                45
+                                {{ $totalClient }}
                             </span>
                         </div>
                         <div class="p-1 mr-2">
@@ -175,7 +175,7 @@
             </div>
 
 
-            <!--Graph-->
+            <!--Graph 1-->
             <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
                 <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Survey Answered per Service</h2>
                 <div class="my-1"></div> <!-- Separation space -->
@@ -183,67 +183,45 @@
                 <!--Line with gradient-->
                 <div class="chart-container" style="position: relative; height:300px; width:100%">
                     <!-- The canvas for the graph -->
-                    <canvas id="usersChart[2]"></canvas>
+                    {{-- <canvas id="usersChart[2]"></canvas> --}}
+                    {!! $totalDataPerServices->container() !!}
+                </div>
+            </div>
+            <!--Graph 2-->
+            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Client Satisfaction</h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!--Line with gradient-->
+                <div class="chart-container" style="position: relative; height:300px; width:100%">
+                    <!-- The canvas for the graph -->
+                    {{-- <canvas id="usersChart[2]"></canvas> --}}
+                    {!! $totalClientSatisfaction->container() !!}
                 </div>
             </div>
 
-            <div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
-                <div class="w-full p-2">
-                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize"> Service Available</h2>
-                    <div class="my-1"></div> <!-- Separation space -->
-                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+            <!--Graph 3-->
+            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Users</h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!--Line with gradient-->
+                <div class="chart-container" style="position: relative; height:300px; width:100%">
+                    <!-- The canvas for the graph -->
+                    {{-- <canvas id="usersChart[2]"></canvas> --}}
+                    {!! $totalClientUser->container() !!}
                 </div>
-                <table class="w-full table-auto text-sm">
-                    <thead>
-                        <tr class="text-sm leading-normal">
-                            <th
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Number
-                            </th>
-                            <th
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Title</th>
-                            <th
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="hover:bg-grey-lighter text-center">
-                            <td class="py-2 px-4 border-b border-grey-light text-[20px] SemiB-font">1</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Service 1</td>
-                            <td class="py-2 px-4 border-b border-grey-light"></td>
-                        </tr>
-                        <!-- Add more rows here like the one above for each pending authorization -->
-                        <tr class="hover:bg-grey-lighter text-center">
-                            <td class="py-2 px-4 border-b border-grey-light text-[20px] SemiB-font">2</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Service 2</td>
-                            <td class="py-2 px-4 border-b border-grey-light"></td>
-                        </tr>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter text-center">
-                            <td class="py-2 px-4 border-b border-grey-light text-[20px] SemiB-font">3</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Service 3</td>
-                            <td class="py-2 px-4 border-b border-grey-light"></td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter text-center">
-                            <td class="py-2 px-4 border-b border-grey-light text-[20px] SemiB-font">4</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Service 4</td>
-                            <td class="py-2 px-4 border-b border-grey-light"></td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter text-center">
-                            <td class="py-2 px-4 border-b border-grey-light text-[20px] SemiB-font">5</td>
-                            <td class="py-2 px-4 border-b border-grey-light text-[15px] Reg-font">Service 5</td>
-                            <td class="py-2 px-4 border-b border-grey-light"></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-
         </div>
     </div>
 </div>
-<script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
+
+{!! $totalDataPerServices->script() !!}
+{!! $totalClientSatisfaction->script() !!}
+{!! $totalClientUser->script() !!}
+{{-- <script>
     ServiceBarChart();
 
     function ServiceBarChart() {
@@ -285,6 +263,6 @@
         const ctx = document.getElementById('usersChart[2]').getContext('2d');
         new Chart(ctx, config);
     }
-</script>
+</script> --}}
 
 @include('partials.footerAdmin')

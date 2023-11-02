@@ -484,14 +484,16 @@ class adminController extends Controller
     //         return abort(404);
     //     }
     // }
-    public function report()
-    {
-        if (View::exists('Report.serviceReport')) {
-            return view('Report.serviceReport');
-        } else {
-            return abort(404);
-        }
-    }
+    // public function report()
+    // {
+
+
+    //     if (View::exists('Report.serviceReport')) {
+    //         return view('Report.serviceReport');
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
     public function createQuestion()
     {
         if (View::exists('AdminSide.createQuestionnaireFunction')) {
@@ -514,8 +516,36 @@ class adminController extends Controller
 
     public function report2()
     {
+        $totalDataPerServices = new TotalClientSatisfaction;
+        $totalClientSatisfaction = new TotalClientSatisfaction;
+        $totalClientUser = new TotalClientSatisfaction;
+        $sumOfDatasController = new SumOfDatasController(); //import a controller
+
+        $user = Auth::user();
+        $userOffice = $user->idOfficeOrigin;
+
+        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
+        $TotalDataPerServices = $sumOfDatasController->getAnswerePerService($userOffice);
+        $totalDataPerServices->labels(array_keys($TotalDataPerServices));
+        $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+        // Call the calculateClientSatisfaction method to get the satisfaction data
+        $TotalClientSatisfaction =  $sumOfDatasController->getSatisfaction($userOffice);
+        $totalClientSatisfaction->labels(array_keys($TotalClientSatisfaction));
+        $totalClientSatisfaction->dataset('Total Client Satisfaction', 'pie', array_values($TotalClientSatisfaction))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
+
+        // Call the calculateClientCategory method to get the total of client category
+        $TotalClientUser = $sumOfDatasController->getClientCategory($userOffice);
+        $totalClientUser->labels(array_keys($TotalClientUser));
+        $totalClientUser->dataset('Number Of Clients By Category', 'bar', array_values($TotalClientUser))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+        $totalClient = $sumOfDatasController->getTotalClient($userOffice);
+
         if (View::exists('AdminSide.reportFunction2')) {
-            return view('AdminSide.reportFunction2');
+            return view('AdminSide.reportFunction2', compact('totalDataPerServices', 'totalClientSatisfaction', 'totalClientUser', 'totalClient'));
         } else {
             return abort(404);
         }
