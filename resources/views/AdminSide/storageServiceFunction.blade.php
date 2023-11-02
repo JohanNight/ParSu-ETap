@@ -31,7 +31,7 @@
                                             </th>
                                             <th scope="col"
                                                 class="text-sm SemiB-font text-gray-900 px-6 py-4 text-left">
-                                                offices
+                                                Office Number
                                             </th>
                                             <th scope="col"
                                                 class="text-sm SemiB-font text-gray-900 px-6 py-4 text-left">
@@ -64,8 +64,11 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                    {{ $services->links() }}
+                                    <div class="flex">
+                                        {{ $services->links() }}
+                                    </div>
                                 </table>
+
                             </div>
                         </div>
                     </div>

@@ -9,4 +9,5 @@ class ServiceType extends Model
 {
     use HasFactory;
     protected $table = 'tblservices';
+    protected $primaryKey = 'idServices';
 }

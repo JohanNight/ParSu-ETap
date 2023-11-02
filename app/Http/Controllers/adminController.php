@@ -165,7 +165,8 @@ class adminController extends Controller
             $classifications = Classification::all();
             $ServiceType = ServiceType::all();
             $transactionType = transactionType::all();
-            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications', 'ServiceType', 'transactionType'));
+            $user = Auth::user();
+            return view('AdminSide.addServiceFunction', compact('officeTypes', 'whoAvail', 'classifications', 'ServiceType', 'transactionType', 'user'));
         } else {
             return abort(404);
         }
@@ -178,9 +179,10 @@ class adminController extends Controller
 
         // Retrieve the "table" array from the request
         $tables = $request->input('table');
+        $user = Auth::user();
 
+        //dd($request);
         $this->validate($request, [
-            'code_Title' => 'required|string|max:255',
             'service_Title' => 'required|string|max:255',
             'description_service' => 'required|string',
             'serviceType' => 'required',
@@ -193,9 +195,11 @@ class adminController extends Controller
         ]);
 
 
+        $newCode = $this->createServiceCode($user->idOfficeOrigin, $request->serviceType);
+        //dd($newCode);
 
         $service1 = new Service1;
-        $service1->serviceCode = $request->code_Title;
+        $service1->serviceCode = $newCode;
         $service1->serviceTitle = $request->service_Title;
         $service1->serviceDescription = $request->description_service;
         $service1->idService = $request->serviceType;
@@ -235,6 +239,85 @@ class adminController extends Controller
         return redirect()->route('AddService')->with('message', 'Service created successfully.');
     }
 
+    public function createServiceCode($officeId, $typeService)
+    {
+        //ACADEMIC COLLEGES
+        if ($typeService == 1 && in_array($officeId, ['23', '24', '25', '26'])) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ACAD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'ACAD001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 4);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'ACAD' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && in_array($officeId, ['23', '24', '25', '26'])) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ACAD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'ACAD001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 4);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'ACAD' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'ACAD001';
+        }
+        // UNIVERSITY REGISTRAR
+        if ($typeService == 1 && $officeId == 29) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ACAD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'URO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'URO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 29) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ACAD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'URO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'URO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'UROD001';
+        }
+    }
+
+
 
     // public function createThumbnail($path, $width, $height)
     // {
@@ -244,32 +327,6 @@ class adminController extends Controller
     //     $img->save($path);
     // }
 
-
-    // public function storagePage()
-    // {
-    //     if (View::exists('AdminSide.storageServiceFunction')) {
-    //         // Assuming you have a logged-in user (you may need to get the user from the Auth system)
-    //         $user = Auth::user();
-
-    //         // Retrieve the offices related to the user
-    //         $offices = $user->offices;
-
-    //         // Initialize an empty array to store the service IDs related to the user's offices
-    //         $serviceIds = [];
-
-    //         // Iterate through the offices to collect service IDs
-    //         foreach ($offices as $office) {
-    //             $serviceIds = array_merge($serviceIds, $office->services->pluck('id')->toArray());
-    //         }
-    //         // $service = service1::paginate('10');
-
-    //         // Retrieve services related to the user's offices
-    //         $service = Service1::whereIn('id', $serviceIds)->paginate(10);
-    //         return view('AdminSide.storageServiceFunction', ['services' => $service]);
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
     public function storagePage()
     {
         $user = Auth::user();
@@ -286,63 +343,6 @@ class adminController extends Controller
             return abort(404);
         }
     }
-    // public function storagePage3()
-    // {
-    //     if (View::exists('AdminSide.storageServiceFunction')) {
-    //         $service = service1::all();
-    //         return view('AdminSide.storageServiceFunction', ['services' => $service]);
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
-
-    // public function storagePage2()
-    // {
-    //     if (View::exists('AdminSide.storageServiceFunction')) {
-    //         $services = service1::all();
-    //         $users = User::all();
-    //         foreach ($users as $user) {
-    //             foreach ($services as $service) {
-    //                 if ($user->idOfficeOriginFK == $service->office_service) {
-    //                     $userOffice = [$user->idOfficeOriginFK];
-    //                     $Service = service1::retrieved($userOffice);
-    //                     return view('AdminSide.storageServiceFunction', ['services' =>  $Service]);
-    //                 }
-    //             }
-    //         }
-    //         return view('AdminSide.storageServiceFunction', ['services' => $service]);
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
-
-
-    // public function storagePage2()
-    // {
-    //     if (View::exists('AdminSide.storageServiceFunction')) {
-    //         $services = service1::all();
-    //         $users = User::all();
-    //         $filteredServices = $services->filter(function ($service) use ($users) {
-    //             return $users->contains(function ($user) use ($service) {
-    //                 return $user->idOfficeOriginFK == $service->office_service;
-    //             });
-    //         });
-    //         return view('AdminSide.storageServiceFunction', ['services' => $filteredServices]);
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
-
-    // public function users()
-    // { service1 model relationship
-    //     return $this->belongsToMany(User::class, 'office_service', 'office_service', 'idOfficeOriginFK');
-    // }
-    // public function services()
-    // { usermodel relation ship
-    //     return $this->belongsToMany(service1::class, 'office_service', 'idOfficeOriginFK', 'office_service');
-    // $users = User::with('services')->get();
-    // }
-
 
     public function editService($idServiceSpecification)
     {

@@ -16,17 +16,6 @@
                 @csrf
                 <div
                     class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-xl bg-white rounded-md">
-                    <div class="flex flex-col gap-2 mt-2 mb-2">
-                        <label for="code_Title" class="text-md Reg-font">Code:</label>
-                        <input name="code_Title"
-                            class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font "
-                            spellcheck="false" type="text" autocomplete="off">
-                        @error('code_Title')
-                            <p class="text-red-400 text-sm p-1">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
                     <div class="flex flex-col gap-2  mt-2 mb-2 ">
                         <label for="service_Title" class="text-md Reg-font">Title:</label>
                         <input name="service_Title"
@@ -56,7 +45,7 @@
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
                                 @foreach ($ServiceType as $servicetype)
-                                    <option value="{{ $servicetype->services }}"
+                                    <option value="{{ $servicetype->idServices }}"
                                         class="text-[16px] Reg-font capitalize ">
                                         {{ $servicetype->services }}</option>
                                 @endforeach
@@ -73,8 +62,9 @@
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
                                 <option value=""></option>
                                 @foreach ($officeTypes as $officeType)
-                                    <option value="{{ $officeType->officeDescription }}"
-                                        class="text-[16px] Reg-font capitalize ">
+                                    <option value="{{ $officeType->idOffices }}"
+                                        class="text-[16px] Reg-font capitalize "
+                                        @if ($user->idOfficeOrigin == $officeType->idOffices) selected @endif>
                                         {{ $officeType->officeAcronym }}</option>
                                 @endforeach
                             </select>
@@ -91,7 +81,7 @@
                                 <option value=""></option>
 
                                 @foreach ($classifications as $classification)
-                                    <option value="{{ $classification->serviceClassification }}"
+                                    <option value="{{ $classification->idClassificationService }}"
                                         class="text-[16px] Reg-font capitalize ">
                                         {{ $classification->serviceClassification }}</option>
                                 @endforeach
@@ -128,7 +118,7 @@
                             spellcheck="false" placeholder="Who may Avail" type="text" autocomplete="off">
                             <option value=""></option>
                             @foreach ($whoAvail as $WhoAvail)
-                                <option value="{{ $WhoAvail->client }}" class="text-[16px] Reg-font capitalize ">
+                                <option value="{{ $WhoAvail->idWhoAvail }}" class="text-[16px] Reg-font capitalize ">
                                     {{ $WhoAvail->client }}</option>
                             @endforeach
                         </select>
