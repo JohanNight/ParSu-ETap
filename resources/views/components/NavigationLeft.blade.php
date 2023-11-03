@@ -5,7 +5,7 @@
     <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
         <nav>
             {{-- Route for SuperAdmin --}}
-            @if ($user->idOfficeOriginFK === 3)
+            @if ($user->idOfficeOrigin === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
                     href="{{ route('Admin') }}">
                     <i class="fas fa-home mr-2"></i>Home
@@ -13,7 +13,7 @@
             @endif
 
             {{--  Route for SubAdmin --}}
-            @unless ($user->idOfficeOriginFK === 3)
+            @unless ($user->idOfficeOrigin === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px]"
                     href="{{ route('index') }}">
                     <i class="fas fa-home mr-2"></i>Home
@@ -71,7 +71,7 @@
             </div>
 
             <!-- Generate A Survey for SuperAdmin-->
-            @if ($user->idOfficeOriginFK === 3)
+            @if ($user->idOfficeOrigin === 3)
                 {{-- Report Route --}}
                 <div class="relative" x-data="{ open: false }"> <a
                         class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white Reg-font text-[15px] "
@@ -152,7 +152,7 @@
 
             </a> --}}
             <!-- Report page for Super Admin-->
-            @if ($user->idOfficeOriginFK === 3)
+            @if ($user->idOfficeOrigin === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "
                     href="{{ route('reportAdmin') }}">
                     {{-- Report Route --}}
@@ -166,7 +166,7 @@
                 </a>
             @endif
             <!-- Report page for Sub-Admin-->
-            @unless ($user->idOfficeOriginFK === 3)
+            @unless ($user->idOfficeOrigin === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "
                     href="{{ route('Report') }}">
                     {{-- Report Route --}}

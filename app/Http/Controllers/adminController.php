@@ -720,6 +720,12 @@ class adminController extends Controller
     public function filterReport(Request $request)
     {
         // dd($request);
+
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
+
         $sumOfAllDataController = new SumOfAllData(); //import a controller
         $totalOffices = new TotalClientSatisfaction;
         $totalUsers = new TotalClientSatisfaction;

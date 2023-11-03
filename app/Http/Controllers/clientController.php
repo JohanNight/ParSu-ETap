@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cc_Instruction;
 use App\Models\Cc_Questions;
+use App\Models\Classification;
 use App\Models\clientCategory;
 use App\Models\clientInfo;
 use App\Models\offices;
@@ -18,6 +19,8 @@ use App\Models\service2;
 use App\Models\SurveyComment;
 use App\Models\SurveyInstruction;
 use App\Models\SurveyQuestion;
+use App\Models\transactionType;
+use App\Models\Who_avail;
 
 class clientController extends Controller
 {
@@ -55,11 +58,16 @@ class clientController extends Controller
         $checklistRequirements1 = $service1->checklistRequirements1;
         $checklistRequirements2 = $service1->checklistRequirements2;
 
+
         $officeTypes = offices::all();
+        $classification = Classification::all();
+        $transactionType = transactionType::all();
+        // $clientCategory = clientCategory::all();
+        $whoAvail = Who_avail::all();
 
         $service1 = Service1::with('checklistRequirements1', 'checklistRequirements2')->find($id);
         if (View::exists('ClientSide.citizenDocument')) {
-            return view('ClientSide.citizenDocument', compact('service1', 'officeTypes'));
+            return view('ClientSide.citizenDocument', compact('service1', 'officeTypes', 'classification', 'transactionType', 'whoAvail'));
         } else {
             return abort(404);
         }

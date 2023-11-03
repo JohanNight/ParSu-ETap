@@ -30,7 +30,7 @@
                     @endif
                     {{-- name of User or User name below --}}
                     <div class="content ml-[45px] py-[9px] pl-[12px]"><a href="#"
-                            class="text-yellow-500 uppercase SemiB-font text-[15px] inline-block ">Admin</a>
+                            class="text-yellow-500 uppercase SemiB-font text-[15px] inline-block ">{{ $user->name }}</a>
                     </div>
                     {{-- Dropdown column contains acc. management, settings, and logout --}}
                     <div class=" drop-down min-w-[305px] absolute top-[58px] right-0 bg-gray-300 pointer shadow-lg origin-[right top] z-10 rounded-lg"

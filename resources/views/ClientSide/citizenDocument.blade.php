@@ -30,8 +30,14 @@
                                         class="bg-blue-800 text-white text-[15px] Reg-font w-80 h-10 border-r-2 border-r-white">
                                         Office or Division:
                                     </td>
-                                    <td class="pl-4 text-black Reg-font text-[15px]">
-                                        {{ $service1->office_service }}
+
+                                    <td class="pl-4 text-black Reg-font text-[14px] text-center">
+                                        @foreach ($officeTypes as $offices)
+                                            @if ($service1->idOffice == $offices->idOffices)
+                                                {{ $offices->officeDescription }}
+                                            @endif
+                                        @endforeach
+
                                     </td>
                                 </tr>
                                 <tr scope ="row" class="border-b-2">
@@ -39,8 +45,12 @@
                                         class="bg-blue-800 text-white text-[15px] Reg-font w-80 h-10 border-r-2 border-r-white">
                                         Classification:
                                     </td>
-                                    <td class="pl-4 text-black Reg-font text-[15px]">
-                                        {{ $service1->classification_service }}
+                                    <td class="pl-4 text-black Reg-font  text-[14px] text-center">
+                                        @foreach ($classification as $class)
+                                            @if ($service1->idClassificationServices == $class->idClassificationService)
+                                                {{ $class->serviceClassification }}
+                                            @endif
+                                        @endforeach
                                     </td>
                                 </tr>
                                 <tr scope ="row" class="border-b-2">
@@ -48,8 +58,12 @@
                                         class="bg-blue-800 text-white text-[15px] Reg-font w-80 h-10 border-r-2 border-r-white">
                                         Type of Transaction
                                     </td>
-                                    <td class="pl-4 text-black Reg-font text-[15px]">
-                                        {{ $service1->transaction_type }}
+                                    <td class="pl-4 text-black Reg-font  text-[14px] text-center">
+                                        @foreach ($transactionType as $transaction)
+                                            @if ($service1->idTransactionType == $transaction->idTransactionType)
+                                                {{ $transaction->description }}
+                                            @endif
+                                        @endforeach
                                     </td>
                                 </tr>
                                 <tr scope ="row" class="border-b-2">
@@ -57,8 +71,12 @@
                                         class="bg-blue-800 text-white text-[15px] Reg-font w-80 h-10 border-r-2 border-r-white">
                                         Who may Avail
                                     </td>
-                                    <td class="pl-4 text-black Reg-font text-[15px]">
-                                        {{ $service1->who_avail }}
+                                    <td class="pl-4 text-black Reg-font  text-[14px] text-center">
+                                        @foreach ($whoAvail as $WhoAvail)
+                                            @if ($service1->idWhoAvail == $WhoAvail->idWhoAvail)
+                                                {{ $WhoAvail->client }}
+                                            @endif
+                                        @endforeach
                                     </td>
                                 </tr>
                             </table>
