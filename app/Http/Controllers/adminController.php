@@ -34,7 +34,7 @@ use App\Http\Controllers\SumOfAllData; // Import the controller
 use App\Models\clientInfo;
 use App\Models\transactionType;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
-use Barryvdh\DomPDF\PDF as DomPDFPDF;
+
 
 class adminController extends Controller
 {
@@ -42,8 +42,28 @@ class adminController extends Controller
 
     public function index()
     {
+        $totalDataPerServices = new TotalClientSatisfaction;
+        $totalClientSatisfaction = new TotalClientSatisfaction;
+        $totalClientUser = new TotalClientSatisfaction;
+        $sumOfDatasController = new SumOfDatasController(); //import a controller
+
+        $user = Auth::user();
+        $userOffice = $user->idOfficeOrigin;
+
+        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
+        $TotalDataPerServices = $sumOfDatasController->getAnswerePerService($userOffice);
+        $totalDataPerServices->labels(array_keys($TotalDataPerServices));
+        $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+        // Call the calculateClientSatisfaction method to get the satisfaction data
+        $TotalClientSatisfaction =  $sumOfDatasController->getSatisfaction($userOffice);
+        $totalClientSatisfaction->labels(array_keys($TotalClientSatisfaction));
+        $totalClientSatisfaction->dataset('Total Client Satisfaction', 'pie', array_values($TotalClientSatisfaction))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
+
         if (View::exists('AdminSide.index')) {
-            return view('AdminSide.index');
+            return view('AdminSide.index', compact('totalDataPerServices', 'totalClientSatisfaction'));
         } else {
             return abort(404);
         }

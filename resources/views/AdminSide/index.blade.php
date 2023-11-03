@@ -13,14 +13,14 @@
         <!--Main content area -->
         <div class="flex-1 p-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
             <!-- Search field -->
-            <div class="relative max-w-md w-full">
+            {{-- <div class="relative max-w-md w-full">
                 <div class="absolute top-1 left-2 inline-flex items-center p-2">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
                 <input
                     class="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
                     type="search" placeholder="Search...">
-            </div>
+            </div> --}}
 
             <!-- Graphics Container -->
             <div class="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
@@ -33,7 +33,9 @@
                     <!--Line with gradient-->
                     <div class="chart-container" style="position: relative; height:300px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="usersChart1"></canvas>
+                        {{-- <canvas id="usersChart1"></canvas> --}}
+                        {!! $totalDataPerServices->container() !!}
+
                     </div>
                 </div>
 
@@ -46,7 +48,8 @@
                     <!-- Line with gradient -->
                     <div class="chart-container" style="position: relative; height:300px; width:100%">
                         <!-- The canvas for the graph -->
-                        <canvas id="totalFeedBackChart[2]"></canvas>
+                        {{-- <canvas id="totalFeedBackChart[2]"></canvas> --}}
+                        {!! $totalClientSatisfaction->container() !!}
                     </div>
                 </div>
             </div>
@@ -174,5 +177,8 @@
     </div>
 </div>
 </div>
+
+{!! $totalDataPerServices->script() !!}
+{!! $totalClientSatisfaction->script() !!}
 
 @include('partials.footerAdmin')

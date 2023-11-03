@@ -210,7 +210,21 @@
                     {!! $totalDataPerServices->container() !!}
                 </div>
             </div>
+
             <!--Graph 2-->
+            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Users</h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!--Line with gradient-->
+                <div class="chart-container" style="position: relative; height:300px; width:100%">
+                    <!-- The canvas for the graph -->
+                    {{-- <canvas id="usersChart[2]"></canvas> --}}
+                    {!! $totalClientUser->container() !!}
+                </div>
+            </div>
+
+            <!--Graph 3-->
             <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
                 <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Client Satisfaction</h2>
                 <div class="my-1"></div> <!-- Separation space -->
@@ -223,18 +237,7 @@
                 </div>
             </div>
 
-            <!--Graph 3-->
-            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
-                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Users</h2>
-                <div class="my-1"></div> <!-- Separation space -->
-                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                <!--Line with gradient-->
-                <div class="chart-container" style="position: relative; height:300px; width:100%">
-                    <!-- The canvas for the graph -->
-                    {{-- <canvas id="usersChart[2]"></canvas> --}}
-                    {!! $totalClientUser->container() !!}
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
