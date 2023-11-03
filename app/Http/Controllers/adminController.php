@@ -583,6 +583,28 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    public function assessmentResult(Request $request)
+    {
+        //dd($request);
+        $sumOfDatasController = new SumOfDatasController();
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
+
+
+        $user = Auth::user();
+        $userOffice = $user->idOfficeOrigin;
+
+        $getTotalPerService = $sumOfDatasController->getCalculateAnswerePerService($request, $userOffice);
+        $getTotalNumberPerService = $sumOfDatasController->TotalAnswerePerService($request, $userOffice);
+        //dd($getTotalPerService);
+
+
+        $pdf = FacadePdf::loadView('pdf.result', compact('getTotalPerService', 'getTotalNumberPerService'));
+        return $pdf->stream('Result.pdf');
+    }
+
 
 
 

@@ -91,6 +91,8 @@ Route::controller(adminController::class)->group(function () {
 
         Route::get('/indexAdmin/report2', 'report2')->name('Report'); //For the sub-Admin
         Route::post('/indexAdmin/report2', 'filterResult')->name('filterResult'); //For the sub-Admin
+        Route::post('/indexAdmin/assessReport', 'assessmentResult')->name('assessResult'); //For the sub-Admin
+
 
         Route::get('/superAdmin', 'indexAdmin')->name('Admin');
         Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');

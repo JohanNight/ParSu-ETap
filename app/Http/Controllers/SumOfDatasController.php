@@ -263,10 +263,10 @@ class SumOfDatasController extends Controller
 
     public function getTotalAnswerePerService($request, $userOfficeId)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -518,5 +518,53 @@ class SumOfDatasController extends Controller
             ->whereBetween('created_at', [$dateFrom, $dateTo])
             ->get()->count(); // retrieve all survey data->count();
         return $totalClients;
+    }
+
+    public function getCalculateAnswerePerService($request, $userOfficeId)
+    {
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->get(); // retrieve all survey data
+        $services = service1::where('idOffice', $userOfficeId)
+            ->get();
+        $serviceMade = [];
+
+        foreach ($services  as $service) {
+            $serviceMade[$service->serviceTitle] = 0;
+        }
+        foreach ($surveyData as $surveyed) {
+            foreach ($services as $serviced) {
+                if ($surveyed->service_avail == $serviced->idServiceSpecification) {
+                    $serviceMade[$serviced->serviceTitle]++;
+                }
+            }
+        }
+        return $serviceMade;
+    }
+
+    public function TotalAnswerePerService($request, $userOfficeId)
+    {
+        // $request->validate([
+        //     'date_from' => 'required|date',
+        //     'date_to' => 'required|date|after_or_equal:date_from',
+        // ]);
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->where('idOfficeOrigin', $userOfficeId)
+            ->get()
+            ->count(); // retrieve all survey data
+
+
+        return  $surveyData;
     }
 }
