@@ -556,10 +556,6 @@ class SumOfDatasController extends Controller
 
     public function TotalAnswerePerService($request, $userOfficeId)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -571,5 +567,37 @@ class SumOfDatasController extends Controller
 
 
         return  $surveyData;
+    }
+
+    public function getTotalCcRecord($request, $userOfficeId)
+    {
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->where('idOfficeOrigin', $userOfficeId)->get(); // retrieve all survey data; 
+        $ccOption = Cc_Options::all();
+        $ccOptionCount = [];
+        foreach ($ccOption as $option) {
+            if ($option->option_text != null) {
+                $ccOptionCount[$option->option_text] = 0;
+            }
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($ccOption as $options) {
+                if ($surveyed->cc1 == $options->id) {
+                    $ccOptionCount[$options->option_text]++;
+                }
+                if ($surveyed->cc2 == $options->id) {
+                    $ccOptionCount[$options->option_text]++;
+                }
+                if ($surveyed->cc3 == $options->id) {
+                    $ccOptionCount[$options->option_text]++;
+                }
+            }
+        }
+
+        return $ccOptionCount;
     }
 }

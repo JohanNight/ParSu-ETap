@@ -236,7 +236,17 @@
                     {!! $totalClientSatisfaction->container() !!}
                 </div>
             </div>
-
+            <!--Graph 4-->
+            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Citizens Charter Result</h2>
+                <div class="my-1"></div> <!-- Separation space -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                <!--Line with gradient-->
+                <div class="chart-container" style="position: relative; height:300px; width:100%">
+                    <!-- The canvas for the graph -->
+                    {!! $totalCcOptions->container() !!}
+                </div>
+            </div>
 
         </div>
     </div>
@@ -247,6 +257,7 @@
 {!! $totalDataPerServices->script() !!}
 {!! $totalClientSatisfaction->script() !!}
 {!! $totalClientUser->script() !!}
+{!! $totalCcOptions->script() !!}
 {{-- <script>
     ServiceBarChart();
 
