@@ -62,8 +62,12 @@ class adminController extends Controller
         $totalClientSatisfaction->dataset('Total Client Satisfaction', 'pie', array_values($TotalClientSatisfaction))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
 
+        $services = service1::where('idOffice', $userOffice)
+            ->where('archive', 1)
+            ->paginate('5');
+
         if (View::exists('AdminSide.index')) {
-            return view('AdminSide.index', compact('totalDataPerServices', 'totalClientSatisfaction'));
+            return view('AdminSide.index', compact('totalDataPerServices', 'totalClientSatisfaction', 'services'));
         } else {
             return abort(404);
         }

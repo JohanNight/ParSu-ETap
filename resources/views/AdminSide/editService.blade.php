@@ -11,7 +11,7 @@
         <!--Main Content Area-->
         <div class="flex-1 w-full md:w-1/2 bg-gray-200 min-h-screen ">
             <!-- component -->
-            <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">Edit Service</div>
+            <div class="heading text-center Bold-font text-2xl m-5 text-gray-800">Update Service</div>
             <form action="/indexAdmin/editService/{{ $service1->idServiceSpecification }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -310,7 +310,7 @@
                     <div class="flex">
                         <div
                             class=" border border-indigo-500 p-1 px-4 SemiB-font cursor-pointer text-gray-200 ml-2 bg-indigo-500 rounded w-full flex justify-center p-4">
-                            <button type="submit" class="text-lg uppercase">Upload</button>
+                            <button type="submit" class="text-lg uppercase">Save</button>
 
                         </div>
                     </div>
