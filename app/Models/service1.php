@@ -20,6 +20,7 @@ class service1 extends Model
         'idClassificationServices',
         'idTransactionType',
         'idWhoAvail',
+        'archive',
 
     ];
     public function checklistRequirements1()

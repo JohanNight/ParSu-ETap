@@ -122,11 +122,14 @@ class adminController extends Controller
                 'password' => 'required|confirmed|min:6'
             ]
         );
+
+        $setArchive = 1;
         $Admindata = [
             'name' => $validated['name'],
             'idOfficeOrigin' => $validated['offices'],
             'email' => $validated['email'],
             'password' => $validated['password'] = Hash::make($validated['password']),
+            'archive' => $setArchive,
         ];
         $user = User::create($Admindata);
         Auth::login($user);
@@ -214,7 +217,7 @@ class adminController extends Controller
             'table_data' => 'array',
         ]);
 
-
+        $setArchive = 1;
         $newCode = $this->createServiceCode($user->idOfficeOrigin, $request->serviceType);
         //dd($newCode);
 
@@ -227,6 +230,7 @@ class adminController extends Controller
         $service1->idClassificationServices = $request->classification_service;
         $service1->idtransactionType = $request->transaction_type;
         $service1->idWhoAvail = $request->who_avail;
+        $service1->archive = $setArchive;
         // Set other attributes as well
         $service1->save();
 
@@ -354,7 +358,9 @@ class adminController extends Controller
         if (View::exists('AdminSide.storageServiceFunction')) {
             $officeId = $user->idOfficeOrigin;
             if ($officeId) {
-                $services = Service1::where('idOffice', $officeId)->paginate(10);
+                $services = Service1::where('idOffice', $officeId)
+                    ->where('archive', 1)
+                    ->paginate(10);
                 return view('AdminSide.storageServiceFunction', ['services' => $services]);
             }
         } else {
@@ -466,6 +472,13 @@ class adminController extends Controller
 
 
         return redirect()->route('Storage')->with('message', 'Service updated successfully.');
+    }
+    public function archiveService(Request $request, $serviceId)
+    {
+        $service = service1::find($serviceId);
+        $service->archive = 0;
+        $service->save();
+        return view('AdminSide.storageServiceFunction');
     }
 
     // public function draftPage()

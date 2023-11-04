@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cc_Options;
 use App\Models\clientCategory;
 use App\Models\clientInfo;
 use App\Models\service1;
@@ -229,32 +230,36 @@ class SumOfDatasController extends Controller
                 }
             }
         }
-
-        // $studenCount = 0;
-        // $facultyCount = 0;
-        // $personnnelCount = 0;
-        // $othersCount = 0;
-
-        // foreach ($surveyData as $surveyedOffice) {
-        //     if ($surveyedOffice->idCategoryFK == 4) {
-        //         $othersCount++;
-        //     } elseif ($surveyedOffice->idCategoryFK == 3) {
-        //         $personnnelCount++;
-        //     } elseif ($surveyedOffice->idCategoryFK == 2) {
-        //         $facultyCount++;
-        //     } else {
-        //         $studenCount++;
-        //     }
-        // }
-
-        // return [
-        //     'Student' => $studenCount,
-        //     'Faculty' => $facultyCount,
-        //     'Personnel' => $personnnelCount,
-        //     'Guest' => $othersCount,
-        // ];
         return $categoryCounts;
     }
+    public function getCcRecord($userOfficeId)
+    {
+        $surveyData = clientInfo::where('idOfficeOrigin', $userOfficeId)->get(); // retrieve all survey data; 
+        $ccOption = Cc_Options::all();
+        $ccOptionCount = [];
+        foreach ($ccOption as $option) {
+            if ($option->option_text != null) {
+                $ccOptionCount[$option->option_text] = 0;
+            }
+        }
+
+        foreach ($surveyData as $surveyed) {
+            foreach ($ccOption as $options) {
+                if ($surveyed->cc1 == $options->id) {
+                    $ccOptionCount[$options->option_text]++;
+                }
+                if ($surveyed->cc2 == $options->id) {
+                    $ccOptionCount[$options->option_text]++;
+                }
+                if ($surveyed->cc3 == $options->id) {
+                    $ccOptionCount[$options->option_text]++;
+                }
+            }
+        }
+
+        return $ccOptionCount;
+    }
+
     public function getTotalClient($userOfficeId)
     {
         $totalClients = clientInfo::where('idOfficeOrigin', $userOfficeId)->get()->count(); // retrieve all survey data->count();

@@ -56,10 +56,15 @@
                                                         class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         Edit
                                                     </a>
-                                                    <a href=""
+                                                    <form
+                                                        action="/indexAdmin/serviceArchive/{{ $service->idServiceSpecification }}"
+                                                        method="POST"
                                                         class="bg-orange-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                        @csrf
+                                                        @method('PUT')
                                                         Archive
-                                                    </a>
+                                                    </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach
