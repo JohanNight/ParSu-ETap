@@ -5,7 +5,7 @@
             <div class="flex justify-center mb-8">
                 <img src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png" alt="Logo" class="w-30 h-20">
             </div>
-            <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">Admin Registration</h1>
+            <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">Reset Password</h1>
             <form action="#" method="POST">
                 @csrf
                 <div class="mb-4">

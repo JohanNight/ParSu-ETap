@@ -29,13 +29,15 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use PDF;
+use App\Mail\ForgetPassword;
+
 
 use App\Charts\TotalClientSatisfaction;
 use App\Http\Controllers\SumOfAllData; // Import the controller
 use App\Models\clientInfo;
 use App\Models\transactionType;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
-
+use Illuminate\Support\Facades\Mail as FacadesMail;
 
 class adminController extends Controller
 {
@@ -134,16 +136,17 @@ class adminController extends Controller
         $user = User::getEmailCheck($request->email);
 
         if (!empty($user)) {
+            $user->remember_token = Str::random(30);
+            $user->save();
+            FacadesMail::to($user->email)->send(new ForgetPassword($user));
+            return redirect()->back()->with('message', "We now send you the link in your email to change your password");
         } else {
             return redirect()->back()->with('error', "Email not found in the Database");
         }
-        // $status = Password::sendResetLink(
-        //     $request->only('email')
-        // );
+    }
 
-        // return $status === Password::RESET_LINK_SENT
-        //     ? back()->with(['status' => __($status)])
-        //     : back()->withErrors(['email' => __($status)]);
+    public function emailResetPassword($token)
+    {
     }
 
     public function storeUserData(Request $request)

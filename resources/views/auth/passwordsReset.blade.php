@@ -1,7 +1,6 @@
 @include('partials.headerAdmin')
-
-
-<div class="antialiased bg-slate-200">
+<div class="antialiased bg-slate-200 min-h-screen flex justify-center items-center w-full">
+    <x-messages />
     <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
         <h1 class="text-4xl font-medium">Reset password</h1>
         <p class="text-slate-500">Fill up the form to reset the password</p>
