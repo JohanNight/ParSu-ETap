@@ -42,6 +42,7 @@ Route::controller(adminController::class)->group(function () {
     Route::get('/register', 'register');
     Route::post('/register/storeData', 'storeUserData');
     Route::post('/logout', 'logout');
+    Route::get('/forgot-pasword', 'forgotPassword')->middleware('guest')->name('password.request');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/indexAdmin',  'index')->name('index');

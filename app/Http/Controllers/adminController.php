@@ -115,6 +115,16 @@ class adminController extends Controller
             return abort(404);
         }
     }
+
+    public function forgotPassword()
+    {
+        if (View::exists('auth.passwordsReset')) {
+            return view('auth.passwordsReset');
+        } else {
+            return abort(404);
+        }
+    }
+
     public function storeUserData(Request $request)
     {
         $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
