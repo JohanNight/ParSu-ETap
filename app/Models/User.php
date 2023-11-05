@@ -62,6 +62,11 @@ class User extends Authenticatable
         return "https://api.dicebear.com/7.x/fun-emoji/svg?{{$this->name}"; // Generate avatar based on the user's name
     }
 
+    static public function getEmailCheck($email)
+    {
+        return self::where("email", '=', $email)->first();
+    }
+
 
     // "https://api.dicebear.com/7.x/fun-emoji/{$this->name}.svg incase it might not work
 }

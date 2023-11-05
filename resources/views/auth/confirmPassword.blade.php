@@ -6,35 +6,8 @@
                 <img src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png" alt="Logo" class="w-30 h-20">
             </div>
             <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">Admin Registration</h1>
-            <form action="/register/storeData" method="POST">
+            <form action="#" method="POST">
                 @csrf
-                <div class="mb-4">
-                    <label for="name" class="block mb-2 text-sm text-gray-600">Full Name</label>
-                    <input type="text" id="name" name="name"
-                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                        autocomplete="off">
-                    @error('name')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <label for="offices" class="block mb-2 text-sm text-gray-600">Office</label>
-                    <select name="offices" id="offices"
-                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                        <option value=""></option>
-                        @foreach ($officeTypes as $officeType)
-                            <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
-                                {{ $officeType->officeDescription }}</option>
-                        @endforeach
-                    </select>
-                    @error('offices')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
                 <div class="mb-4">
                     <label for="email" class="block mb-2 text-sm text-gray-600">Email</label>
                     <input type="email" id="email" name="email"
@@ -67,12 +40,9 @@
                     @enderror
                 </div>
                 <button type="submit"
-                    class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Register</button>
+                    class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Change
+                    Password</button>
             </form>
-            <div class="text-center">
-                <p class="text-sm">Already have an Account? <a href="{{ route('login') }}" class="text-cyan-600">Log
-                        in</a></p>
-            </div>
         </div>
     </div>
 </div>

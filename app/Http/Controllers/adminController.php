@@ -27,6 +27,7 @@ use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Password;
 use PDF;
 
 use App\Charts\TotalClientSatisfaction;
@@ -116,13 +117,33 @@ class adminController extends Controller
         }
     }
 
-    public function forgotPassword()
+    public function forgotPasswordPage()
     {
         if (View::exists('auth.passwordsReset')) {
             return view('auth.passwordsReset');
         } else {
             return abort(404);
         }
+    }
+
+    public function getPasword(Request $request)
+    {
+        // dd($request);
+        $request->validate(['email' => 'required|email']);
+
+        $user = User::getEmailCheck($request->email);
+
+        if (!empty($user)) {
+        } else {
+            return redirect()->back()->with('error', "Email not found in the Database");
+        }
+        // $status = Password::sendResetLink(
+        //     $request->only('email')
+        // );
+
+        // return $status === Password::RESET_LINK_SENT
+        //     ? back()->with(['status' => __($status)])
+        //     : back()->withErrors(['email' => __($status)]);
     }
 
     public function storeUserData(Request $request)
