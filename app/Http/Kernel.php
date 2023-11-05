@@ -80,4 +80,8 @@ class Kernel extends HttpKernel
         'checkcode' => \App\Http\Middleware\CheckSurveyCode::class,
 
     ];
+
+    protected $commands = [
+        \App\Console\Commands\DeleteExpiredTokens::class,
+    ];
 }

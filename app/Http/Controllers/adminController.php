@@ -28,8 +28,9 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
-use PDF;
 use App\Mail\ForgetPassword;
+use App\Console\Commands\DeleteExpiredTokens; // Import the command
+use Illuminate\Support\Facades\Artisan; // Import Artisan facade
 
 
 use App\Charts\TotalClientSatisfaction;
@@ -145,8 +146,46 @@ class adminController extends Controller
         }
     }
 
-    public function emailResetPassword($token)
+    public function emailResetPassword($remember_token)
     {
+        $user = User::getTokenSingle($remember_token);
+        if (!empty($user)) {
+            // $data['user'] = $user;
+            return view('auth.confirmPassword', ['data' => $user]);
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function confirmResetPassword(Request $request, $remember_token)
+    {
+        $validated = $request->validate(
+            [
+                'password' => 'required|confirmed|min:6'
+            ]
+        );
+        // if ($request->password == $request->password_confirmation) {
+        //     $user = User::getTokenSingle($remember_token);
+        //     $user->password = Hash::make($validated['password']);
+        //     $user->save();
+        //     return redirect('/login')->with('message', "Password Succesfully Change");
+        // }
+        if ($request->password == $request->password_confirmation) {
+            $user = User::getTokenSingle($remember_token);
+
+            if ($user) {
+                $user->password = Hash::make($validated['password']);
+                // $user->remember_token = null; // Set the token to null
+
+                // Save the user's changes
+                $user->save();
+
+                // Delete expired tokens using the command
+                Artisan::call('tokens:delete-expired');
+
+                return redirect('/login')->with('message', "Password Successfully Changed");
+            }
+        }
     }
 
     public function storeUserData(Request $request)

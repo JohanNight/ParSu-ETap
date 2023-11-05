@@ -44,8 +44,8 @@ Route::controller(adminController::class)->group(function () {
     Route::post('/logout', 'logout');
     Route::get('/forgot-pasword', 'forgotPasswordPage')->name('password.request');
     Route::post('/forgot-pasword', 'getPasword');
-    Route::get('forgot-password-email/{token}', 'emailResetPassword')->name('emailResetPassword');
-
+    Route::get('/forgot-password-email/{token}', 'emailResetPassword')->name('emailResetPassword');
+    Route::post('forgot-password-email/{token}', 'confirmResetPassword');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/indexAdmin',  'index')->name('index');
