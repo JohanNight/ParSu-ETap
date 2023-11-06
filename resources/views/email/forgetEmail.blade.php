@@ -8,7 +8,6 @@
     @endcomponent
     {{-- <x-mail::button :url="'forgot-password-email/' . $user->remember_token">
     </x-mail::button> --}}
-    <br />
-    <span class="Reg-font">Thanks,</span> <br />
-    <span class="Reg-font"> {{ config('app.name') }}</span>
+    <p>Thanks,<br />
+        {{ config('app.name') }}</p>
 @endcomponent
