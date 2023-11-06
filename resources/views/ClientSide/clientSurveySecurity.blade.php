@@ -1,5 +1,6 @@
 @include('partials.headerClient')
 <div class="relative">
+    <x-messages />
     <!-- background Image -->
     <div class=" absolute w-full ">
         <img src="{{ asset('images/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-80" alt="">

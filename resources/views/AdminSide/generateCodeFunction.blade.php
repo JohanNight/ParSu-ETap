@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </form>
-                <form action="" method="post">
+                {{-- <form action="" method="post">
                     <div class="block mt-10 mb-3 flex flex-col items-center ">
                         <div class="mt-2 flex flex-col items-center">
                             <div class="text-lg Reg-font">
@@ -61,70 +61,13 @@
                                 class="text-lg SemiB-font bg-blue-600 rounded p-2 text-white">Send</button>
                         </div>
                     </div>
-                </form>
+                </form> --}}
             </div>
         </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // $('#form_generateCode').click(function(event) {
-    //     // Prevent the default form submission behavior
-    //     event.preventDefault();
-
-    //     // Perform the code generation logic
-    //     $.post('/indexAdmin/generateCode', function(response) {
-    //         $('#code_generated').val(response.code);
-    //     });
-    // });
-
-    // $(document).ready(function() {
-    //     $('#form_generateCode').submit(function(event) {
-    //         event.preventDefault();
-
-    //         // Perform the code generation logic and update the code_generated field
-    //         $.post('/indexAdmin/generateCode', $(this).serialize(), function(response) {
-    //             $('#code_generated').val(response.code);
-    //         });
-    //     });
-
-    //     // Reset the form
-    //     $('#regenerate_code').click(function() {
-    //         $('#form_generateCode')[0].reset();
-    //         $('#code_generated').val('');
-    //     });
-    // });
-
-    // $(document).ready(function() {
-    //     $('#form_generateCode').submit(function(event) {
-    //         event.preventDefault(); // Prevent the default form submission
-
-    //         var clientName = $('#client_name').val();
-
-    //         $.ajax({
-    //             url: 'http://127.0.0.1:8000/indexAdmin/generateCode', // Replace with the actual URL for your Laravel route
-    //             method: 'POST',
-    //             data: {
-    //                 '_token': $('input[name="_token"]').val(),
-    //                 'client_name': clientName
-    //             },
-    //             success: function(data) {
-    //                 // Extract the code from the JSON response
-    //                 var generatedCode = data.code;
-
-    //                 // Update the "code_generated" input field with the received code
-    //                 $('#code_generated').val(generatedCode);
-    //             },
-    //             error: function(xhr, status, error) {
-    //                 // Handle errors, e.g., display an error message
-    //                 console.error(error);
-    //                 console.error(xhr);
-    //                 console.error(status);
-    //             }
-    //         });
-    //     });
-    // });
-
     $(document).ready(function() {
         $('#generate_code').click(function() {
             $.ajax({

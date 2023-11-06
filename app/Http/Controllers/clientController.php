@@ -21,10 +21,15 @@ use App\Models\SurveyInstruction;
 use App\Models\SurveyQuestion;
 use App\Models\transactionType;
 use App\Models\Who_avail;
+//use App\Http\Middleware\CheckSurveyCode;
 
 class clientController extends Controller
 {
     //
+    // public function __construct()
+    // {
+    //     $this->middleware(CheckSurveyCode::class)->only('checkSecurity');
+    // }
     public function showWelcomePage()
     {
         if (View::exists('ClientSide.index')) {
@@ -98,7 +103,7 @@ class clientController extends Controller
             return redirect()->route('ClientSurvey');
         }
 
-        return back()->with('message', 'Error');
+        return back()->with('message', 'Code not found');
     }
     public function isValidCode($code)
     {

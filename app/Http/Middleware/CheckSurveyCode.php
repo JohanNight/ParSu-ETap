@@ -20,24 +20,11 @@ class CheckSurveyCode
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $temporaryCode = ClientCode::where('code', $request->srvy_keycode)->get();
 
-        // Log the incoming request data
-        Log::info('Incoming Request', [
-            'uri' => $request->getRequestUri(),
-            'method' => $request->getMethod(),
-            'headers' => $request->header(),
-            'query' => $request->query(),
-            'data' => $request->all(),
-        ]);
-        $code = $request->input('srvy_keycode');
-        // Check if a code exists in the database
-        $temporaryCode = clientCode::where('code', $code)->first();
-
-        if (!$temporaryCode) {
-            // Code is invalid; you can return a response, redirect, or abort here
-            return redirect()->route('clientSecurity')->with('message', 'Invalid code');
+        if ($request->input('srvy_keycode') !==  $temporaryCode) {
+            return redirect('clientSecurity');
         }
-
         // Code is valid, proceed to the next middleware or route
         return $next($request);
     }

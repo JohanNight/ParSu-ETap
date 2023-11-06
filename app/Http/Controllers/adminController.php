@@ -566,26 +566,26 @@ class adminController extends Controller
     //         return abort(404);
     //     }
     // }
-    // public function codeGeneratorPage()
-    // {
-    //     if (View::exists('AdminSide.generateCodeFunction')) {
-    //         return view('AdminSide.generateCodeFunction');
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
-    // public function createCode(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'client_name' => 'required'
-    //     ]);
-    //     $code = Str::random(6);
-    //     clientCode::create([
-    //         'name' => $validated['client_name'],
-    //         'code' => $code
-    //     ]);
-    //     return response()->json(['code' => $code]);;
-    // }
+    public function codeGeneratorPage()
+    {
+        if (View::exists('AdminSide.generateCodeFunction')) {
+            return view('AdminSide.generateCodeFunction');
+        } else {
+            return abort(404);
+        }
+    }
+    public function createCode(Request $request)
+    {
+        $validated = $request->validate([
+            'client_name' => 'required'
+        ]);
+        $code = Str::random(6);
+        clientCode::create([
+            'name' => $validated['client_name'],
+            'code' => $code
+        ]);
+        return response()->json(['code' => $code]);
+    }
 
     // public function report()
     // {
