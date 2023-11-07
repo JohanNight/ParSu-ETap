@@ -37,7 +37,7 @@
                     <img src="{{ asset('images/CssImages.jpg') }}" alt="" srcset="" class="w-full h-96">
                 </div>
                 <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pointer">
-                    <a href="{{ route('clientSecurity') }}" class="hover:underline"> Client Satisfaction Survey</a>
+                    <a href="{{ route('clientButton') }}" class="hover:underline"> Client Satisfaction Survey</a>
                 </div>
 
             </div>

@@ -21,13 +21,14 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home',  'showHomePage')->name('HomePage');
     Route::get('/home/citizenCharter', 'showCitizenCharter')->name('CitizenCharter');
     Route::get('/home/Document/{id}', 'citizenDocument');
-    Route::get('/home/clientSurvey', 'showClientSurvey')
+    Route::get('/home/clientSurvey/{code}', 'showClientSurvey')
         ->name('ClientSurvey');
     Route::post('/home/clientSurvey/Search', 'fetchData'); //associate to fetch the data
     Route::get('/clientSurvey/selectService', 'selectService');
     Route::post('/home/clientSurvey/StoreData', 'storeSurveyData');
 
     Route::get('/home/clientSecurity', 'surveySecurity')->name('clientSecurity');
+    Route::get('/home/clientButton', 'clientButtons')->name('clientButton');
     Route::post('/clientSecurity', 'checkSecurity');
 
 

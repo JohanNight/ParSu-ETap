@@ -91,6 +91,15 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    public function clientButtons()
+    {
+        if (View::exists('ClientSide.clientButton')) {
+
+            return view('ClientSide.clientButton',);
+        } else {
+            return abort(404);
+        }
+    }
     public function checkSecurity(Request $request)
     {
 
@@ -107,7 +116,7 @@ class clientController extends Controller
 
         // Additional checks, if needed
         if ($tempCode === $code) {
-            return redirect()->route('ClientSurvey');
+            return redirect('home/clientSurvey/{code}');
         }
 
         return back()->with('message', 'Code not found');
@@ -131,6 +140,15 @@ class clientController extends Controller
     //     }
     //     return false; // Code is invalid
     // }
+    public function surveySecurity()
+    {
+        if (View::exists('ClientSide.clientSurveySecurity')) {
+
+            return view('ClientSide.clientSurveySecurity',);
+        } else {
+            return abort(404);
+        }
+    }
     public function showClientSurvey()
     {
 
@@ -227,15 +245,5 @@ class clientController extends Controller
         ];
         clientInfo::create($UserData);
         return redirect('/home')->with('message', 'Thank you for your time :) ');
-    }
-
-    public function surveySecurity()
-    {
-        if (View::exists('ClientSide.clientSurveySecurity')) {
-
-            return view('ClientSide.clientSurveySecurity',);
-        } else {
-            return abort(404);
-        }
     }
 }
