@@ -29,7 +29,6 @@ class User extends Authenticatable
         'user_image',
         'bio',
         'remember_token',
-        'archive',
     ];
 
 

@@ -9,15 +9,15 @@
     <div class=" min-h-screen w-full absolute">
         <x-messages />
         <div class="flex flex-col  gap-10">
-            <div class="p-2 rounded-lg  flex justify-between items-center ">
+            <div class="p-2 rounded-lg  flex justify-start items-center ">
                 <a href="{{ route('HomePage') }}"
                     class=" border-2 border-blue-800 rounded-lg text-xl SemiB-font uppercase p-2 text-white border-2 border-black mr-[50px]">
                     Return
                 </a>
-                <a href="#"
+                {{-- <a href="#"
                     class=" bg-gray-400 rounded-lg text-xl SemiB-font uppercase p-2 text-white border-2 border-black mr-[50px]">
                     Skip
-                </a>
+                </a> --}}
             </div>
             <div class="flex justify-center items-center mt-[40px]">
                 <div class=" mt bg-blue-800 p-2 rounded-lg w-96 flex justify-center items-center">

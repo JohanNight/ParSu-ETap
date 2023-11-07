@@ -17,15 +17,29 @@
                 <form id="form_generateCode" method="POST">
                     @csrf
                     <div class="flex flex-col gap-4">
-                        {{-- <div class="block mt-4 mb-3">
-                            <label for="id_num"class="text-lg Reg-font p-2 capitalize">ID Num: </label>
-                            <input type="text" name="id_num" id="id_num"
-                                class="w-full text-lg Reg-font p-4 focus:outline-none" autocomplete="off">
-                        </div> --}}
-                        <div class="block mt-2 mb-3">
+                        {{-- <div class="block mt-2 mb-3">
                             <label for="client_name"class="text-lg Reg-font p-2 capitalize">Name: </label>
                             <input type="text" name="client_name" id="client_name"
                                 class="w-full text-lg Reg-font p-4 focus:outline-none bg-white" autocomplete="off">
+                        </div> --}}
+                        <div class="flex flex-col gap-2  mt-2 mb-3">
+                            <label for="service_code" class="text-md Reg-font capitalize">Services:</label>
+                            <select name="service_code" id="service_code"
+                                class=" bg-white border border-gray-300 p-2 mb-4 outline-none Reg-font"
+                                spellcheck="false">
+                                <option value=""></option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->serviceCode }}"
+                                        class="text-[16px] Reg-font capitalize ">
+                                        {{ $service->serviceTitle }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('client_serviceCode')
+                                <p class="text-red-400 text-sm p-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="block mt-2 mb-3 flex justify-between  p-2">
                             <button type="button" id="regenerate_code"
@@ -98,4 +112,6 @@
         $('#code_generated').val('');
     });
 </script>
+
+
 @include('partials.footerAdmin')

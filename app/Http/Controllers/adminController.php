@@ -200,13 +200,11 @@ class adminController extends Controller
             ]
         );
 
-        $setArchive = 1;
         $Admindata = [
             'name' => $validated['name'],
             'idOfficeOrigin' => $validated['offices'],
             'email' => $validated['email'],
             'password' => $validated['password'] = Hash::make($validated['password']),
-            'archive' => $setArchive,
         ];
         $user = User::create($Admindata);
         Auth::login($user);
@@ -568,22 +566,24 @@ class adminController extends Controller
     // }
     public function codeGeneratorPage()
     {
+        $user = Auth::user();
+        $userOffice = $user->idOfficeOrigin;
+        $services = service1::where('idOffice', $userOffice)->get();
         if (View::exists('AdminSide.generateCodeFunction')) {
-            return view('AdminSide.generateCodeFunction');
+            return view('AdminSide.generateCodeFunction', ['services' => $services]);
         } else {
             return abort(404);
         }
     }
     public function createCode(Request $request)
     {
-        $validated = $request->validate([
-            'client_name' => 'required'
-        ]);
-        $code = Str::random(6);
-        clientCode::create([
-            'name' => $validated['client_name'],
-            'code' => $code
-        ]);
+        $searchCode = $request->input('service_code');
+        $user = Auth::user();
+        $userOffice = $user->idOfficeOrigin;
+
+        $serviceCode = service1::where('serviceCode',  $searchCode)
+            ->where('idOffice', $userOffice)->first();
+        $code = $serviceCode->serviceCode;
         return response()->json(['code' => $code]);
     }
 

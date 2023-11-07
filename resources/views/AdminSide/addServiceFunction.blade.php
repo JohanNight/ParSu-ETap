@@ -402,27 +402,6 @@
         // Handle form submission
         $('form').on('submit', function(event) {
             event.preventDefault();
-
-            // // Gather the data from dynamically generated fields
-            // var rqrInputs = [];
-            // var whrInputs = [];
-
-            // $('#requirementsContainer input').each(function(index) {
-            //     var rqrValue = $(this).val();
-            //     var whrValue = $('#whr_secure input[name="requirements[' + index +
-            //         '][whr_inpt]"]').val();
-            //     rqrInputs.push(rqrValue);
-            //     whrInputs.push(whrValue);
-            // });
-            // // Combine rqr_inpt and whr_inpt into a single array
-            // var combinedInputs = [];
-            // for (var i = 0; i < rqrInputs.length; i++) {
-            //     combinedInputs.push({
-            //         rqr_inpt: rqrInputs[i],
-            //         whr_inpt: whrInputs[i]
-            //     });
-            // }
-
             // Gather the table of checklist and where to secure data
             var tableRqrWhrData = [];
             $('#Rqr_Whr_id tbody tr').each(function(index) {
