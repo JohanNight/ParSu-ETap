@@ -24,10 +24,12 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home/clientSurvey', 'showClientSurvey')
         ->name('ClientSurvey');
     Route::post('/home/clientSurvey/Search', 'fetchData'); //associate to fetch the data
+    Route::get('/clientSurvey/selectService', 'selectService');
     Route::post('/home/clientSurvey/StoreData', 'storeSurveyData');
 
     Route::get('/home/clientSecurity', 'surveySecurity')->name('clientSecurity');
     Route::post('/clientSecurity', 'checkSecurity');
+
 
     Route::get('/home/word', 'word');
     Route::get('/example', 'example');

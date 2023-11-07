@@ -58,6 +58,18 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    public function selectService(Request $request)
+    {
+        $selectedOfficeId = $request->office_id;
+
+        if ($selectedOfficeId) {
+            $data = service1::where('idOffice', $selectedOfficeId)->get();
+        } else {
+            $data = service1::all(); // If no office is selected, retrieve all services.
+        }
+
+        return response()->json($data);
+    }
     public function citizenDocument($id)
     {
         // Retrieve the main service1 record
@@ -91,9 +103,10 @@ class clientController extends Controller
 
         // Check if the code exists in the database
         $temporaryCode = service1::where('serviceCode', $code)->first();
+        $tempCode = $temporaryCode->serviceCode;
 
         // Additional checks, if needed
-        if ($temporaryCode) {
+        if ($tempCode === $code) {
             return redirect()->route('ClientSurvey');
         }
 

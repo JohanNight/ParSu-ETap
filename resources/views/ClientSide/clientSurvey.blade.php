@@ -121,6 +121,8 @@
                             {{ $message }}
                         </p>
                     @enderror
+                    <button type="button" id="filterButton"
+                        class="p-0.5 Bold-font text-[11px] bg-blue-500 border-2 border-blue-600 rounded active:bg-blue-600 uppercase">Filter</button>
                 </div>
                 <div class="block ml-3 mt-2 flex flex-col">
                     <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
@@ -350,6 +352,8 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         //to retrive the data and the populate them in each fields
@@ -403,6 +407,44 @@
 
         // Set the input field's value to today's date
         document.getElementById("date_of_transaction").value = today;
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#filterButton').on('click', function() {
+            var selectedOfficeId = $('#offices').val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/clientSurvey/selectService',
+                data: {
+                    office_id: selectedOfficeId
+                },
+                success: function(data) {
+                    // Clear the current services dropdown
+                    $('#service_availed').empty();
+
+                    // Add an empty option at the beginning
+                    $('#service_availed').append($('<option>', {
+                        value: '', // Use an appropriate value for the empty option
+                        text: '' // Specify the text for the empty option
+                    }));
+
+                    // Populate the services dropdown with the retrieved data
+                    $.each(data, function(key, value) {
+                        $('#service_availed').append($('<option>', {
+                            value: value.idServiceSpecification,
+                            text: value.serviceTitle
+                        }));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.log("XHR Response:", xhr);
+                    console.log("Status:", status);
+                    console.log("Error:", error);
+                }
+            });
+        });
     });
 </script>
 
