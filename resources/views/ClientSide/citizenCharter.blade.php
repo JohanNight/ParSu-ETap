@@ -166,7 +166,13 @@
                                                     </td>
                                                     <td
                                                         class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                        {{ $service->idOffice }}
+                                                        @foreach ($office as $offices)
+                                                            @if ($service->idOffice == $offices->idOffices)
+                                                                {{ $offices->officeAcronym }}
+                                                            @endif
+                                                        @endforeach
+
+                                                        {{-- {{ $service->idOffice }} --}}
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
                                                         <a href="/home/Document/{{ $service->idServiceSpecification }}"

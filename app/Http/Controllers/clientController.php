@@ -49,9 +49,11 @@ class clientController extends Controller
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
+            $office = offices::all();
+            // $offices = $office->idOffices;
             $services = service1::paginate(5);
 
-            return view('ClientSide.citizenCharter', compact('services'));
+            return view('ClientSide.citizenCharter', compact('services', 'office'));
         } else {
             return abort(404);
         }
@@ -88,14 +90,14 @@ class clientController extends Controller
         $code = $validatedData['srvy_keycode'];
 
         // Check if the code exists in the database
-        $temporaryCode = ClientCode::where('code', $code)->first();
+        $temporaryCode = service1::where('serviceCode', $code)->first();
 
         // Additional checks, if needed
         if ($temporaryCode) {
             return redirect()->route('ClientSurvey');
         }
 
-        return back()->with('message', 'Error');
+        return back()->with('message', 'Code not found');
     }
     // public function checkSecurity(Request $request)
     // {
