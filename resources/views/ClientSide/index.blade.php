@@ -6,9 +6,9 @@
     </div>
     <!-- background Image -->
     <div class=" min-h-screen w-full absolute">
-        <header class="text-center mb-5 pt-2  bg-blue-800 h-20 w-full">
-            <h1 class="Bold-font text-yellow-400  text-6xl sm:text-5xl md:text-6xl capitalize">
-                Welcome to ParSu E-tap
+        <header class="text-center mb-5 pt-2  bg-blue-800 h-16 w-full">
+            <h1 class="Bold-font text-yellow-400  text-5xl sm:text-4xl md:text-5xl">
+                ParSU eTAP
             </h1>
         </header>
         <div class="flex flex-col items-center pointer ">

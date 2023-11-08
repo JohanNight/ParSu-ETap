@@ -19,12 +19,12 @@
 <section class="flex justify-around items-center mt-4">
     <header class="m-5 p-2.5 flex items-center">
         <h1 class="text-6xl font-bold text-blue-500">
-            ParSU e-Tap Admin
+            ParSU eTAP Admin
         </h1>
     </header>
     <div class="bg-gray-100 max-w-full mx-auto my-5 p-10 rounded-lg shadow-2xl border-2 ">
         <div class="bg-gray-100">
-            <h3 class="font-bold text-2xl">Welcome to ParSU e-TAP Systems</h3>
+            <h3 class="font-bold text-2xl">Welcome to ParSU eTAP System</h3>
             <p class="text-gray-600 pt-2">Sign in to your Account</p>
         </div>
         <div class="mt-2 bg-blue-700 w-full p-2"></div>{{-- separation line --}}

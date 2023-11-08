@@ -5,12 +5,12 @@
         <img src="{{ asset('images/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-80" alt="">
     </div>
     <div class=" w-full absolute h-full">
-        <header class="text-center pt-2 bg-blue-800 mb-5 ">
+        {{-- <header class="text-center pt-2 bg-blue-800 mb-5 ">
             <h1 class="Bold-font text-yellow-400  text-6xl sm:text-5xl md:text-6xl">ParSU E-TAP
             </h1>
-        </header>
+        </header> --}}
 
-        <div class="ml-[50px] mr-[50px] mb-[50px] flex justify-between">
+        <div class="ml-[50px] mr-[50px] mb-[50px] flex justify-between mt-2">
 
             <a href="{{ route('welcome') }}"
                 class="SemiB-font text-2xl text-white bg-gray-600 rounded-lg p-2 shadow-md hover:bg-yellow-500 active:bg-yellow-600 ">Return
