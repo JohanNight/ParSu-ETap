@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="flex justify-evenly items-center mt-[40px] p-5">
-                <a href="#"
+                <a href="{{ route('ClientSurvey2') }}"
                     class=" border-2 border-yellow-400 bg-yellow-400 rounded-lg text-4xl SemiB-font uppercase p-2 text-white border-2 border-black mr-[50px] active:bg-yellow-500">
                     Walk-In Survey
                 </a>

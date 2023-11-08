@@ -23,7 +23,10 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home/Document/{id}', 'citizenDocument');
     Route::get('/home/clientSurvey/{code}', 'showClientSurvey')
         ->name('ClientSurvey');
-    Route::post('/home/clientSurvey/Search', 'fetchData'); //associate to fetch the data
+    Route::get('/home/WalkIn-clientSurvey', 'showClientSurvey2')
+        ->name('ClientSurvey2');
+    Route::post('/home/WalkIn-clientSurvey/StoreData2', 'storeSurveyData2');
+    // Route::post('/home/clientSurvey/Search', 'fetchData'); //associate to fetch the data
     Route::get('/clientSurvey/selectService', 'selectService');
     Route::post('/home/clientSurvey/StoreData', 'storeSurveyData');
 

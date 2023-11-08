@@ -247,4 +247,85 @@ class clientController extends Controller
         clientInfo::create($UserData);
         return redirect('/home')->with('message', 'Thank you for your time :) ');
     }
+
+    public function showClientSurvey2()
+    {
+
+        if (View::exists('WalkInSurvey.WalkInSurvey')) {
+            $clientTypes = clientCategory::all();
+            $officeTypes = offices::all();
+            $ccInstruction = Cc_Instruction::all();
+            $ccQuestions = Cc_Questions::with('CcOption')->get();
+            $SrvyInstruction = SurveyInstruction::all();
+            $SrvyQuestion = SurveyQuestion::all();
+            $SrvyComment = SurveyComment::all();
+            $Service = service1::all();
+            return view('WalkInSurvey.WalkInSurvey', compact('clientTypes', 'officeTypes', 'ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment', 'Service',));
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function storeSurveyData2(Request $request)
+    {
+
+        //dd($request);
+        $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
+        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+        $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
+
+        $validateData = $request->validate([
+            'name_of_client' => 'required',
+            'gender_of_client' => ['required', Rule::in(['male', 'female'])],
+            'age_of_client' => 'required',
+            'client_type' => ['required', Rule::in($validateClientType)],
+            'date_of_transaction' => 'required|date',
+            'offices' => ['required', Rule::in($validateOffices)],
+            'service_availed' => ['required', Rule::in($services)],
+            'purpose' => 'required',
+            'email_of_client' => '',
+
+            'question1' => 'required',
+            'question2' => 'required',
+            'question3' => 'required',
+            'question-S2-Q1' => 'required',
+            'question-S2-Q2' => 'required',
+            'question-S2-Q3' => 'required',
+            'question-S2-Q4' => 'required',
+            'question-S2-Q5' => 'required',
+            'question-S2-Q6' => 'required',
+            'question-S2-Q7' => 'required',
+            'question-S2-Q8' => 'required',
+            'question-S2-Q9' => 'required',
+            'suggestion_for_client' => ''
+
+        ]);
+        //store the data in the database
+        $UserData = [
+            'name' => $validateData['name_of_client'],
+            'sex' => $validateData['gender_of_client'],
+            'age' => $validateData['age_of_client'],
+            'idCategoryFk' => $validateData['client_type'],
+            'dateOfTransaction' => $validateData['date_of_transaction'],
+            'idOfficeOrigin' => $validateData['offices'],
+            'service_avail' => $validateData['service_availed'],
+            'purpose' => $validateData['purpose'],
+            'emailAdd' => $validateData['email_of_client'],
+            'cc1' => $validateData['question1'],
+            'cc2' => $validateData['question2'],
+            'cc3' => $validateData['question3'],
+            'sqd0' => $validateData['question-S2-Q1'],
+            'sqd1' => $validateData['question-S2-Q2'],
+            'sqd2' => $validateData['question-S2-Q3'],
+            'sqd3' => $validateData['question-S2-Q4'],
+            'sqd4' => $validateData['question-S2-Q5'],
+            'sqd5' => $validateData['question-S2-Q6'],
+            'sqd6' => $validateData['question-S2-Q7'],
+            'sqd7' => $validateData['question-S2-Q8'],
+            'sqd8' => $validateData['question-S2-Q9'],
+            'comment' => $validateData['suggestion_for_client']
+        ];
+        clientInfo::create($UserData);
+        return redirect('/home')->with('message', 'Thank you for your time :) ');
+    }
 }
