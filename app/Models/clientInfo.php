@@ -32,7 +32,7 @@ class clientInfo extends Model
         'sqd6',
         'sqd7',
         'sqd8',
-        'comment'
-
+        'comment',
+        'serviceCode'
     ];
 }

@@ -217,7 +217,7 @@
                 </div>
             </div>
 
-            <div class="mt-8 bg-white p-4 shadow rounded-lg">
+            {{-- <div class="mt-8 bg-white p-4 shadow rounded-lg">
                 <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">Total Service Available per Office/Campus
                 </h2>
                 <div class="my-1"></div> <!-- Separation space -->
@@ -609,12 +609,11 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
-            <!-- Third container below the previous two -->
             <!-- Section 3 - Table of Pending Authorizations -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">Pending Authorizations</h2>
+                <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">New Services</h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!-- Line with gradient -->
@@ -623,55 +622,41 @@
                         <tr class="text-sm leading-normal">
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
+                                Title</th>
+                            <th
+                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
                                 Office</th>
                             <th
                                 class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Name</th>
-                            <th
-                                class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                Role</th>
+                                Site</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Juan Pérez</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
-                        </tr>
+                        @foreach ($services as $service)
+                            <tr class="hover:bg-grey-lighter">
+                                <td class="py-2 px-4 border-b border-grey-light">{{ $service->serviceTitle }}</td>
+                                <td class="py-2 px-4 border-b border-grey-light">
+                                    @foreach ($offices as $office)
+                                        @if ($service->idOffice == $office->idOffices)
+                                            {{ $office->officeAcronym }}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class="py-2 px-4 border-b border-grey-light"> <a
+                                        href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
+                                        class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                        Edit
+                                    </a></td>
+                            </tr>
+                        @endforeach
                         <!-- Add more rows here like the one above for each pending authorization -->
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">María Gómez</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                        </tr>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Carlos López</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Laura Torres</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Ana Ramírez</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                        </tr>
-                    </tbody>
                 </table>
                 <!-- "See more" button for the Pending Authorizations table -->
                 <div class="text-right mt-4">
-                    <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
+                    <a href="{{ route('storageOfAllService') }}"
+                        class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
                         See more
-                    </button>
+                    </a>
                 </div>
             </div>
 

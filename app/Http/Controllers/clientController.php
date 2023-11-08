@@ -192,6 +192,7 @@ class clientController extends Controller
         $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
         $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
         $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
+        $serviceCode = DB::table('table_service1_1')->pluck('serviceCode')->toArray();
 
         $validateData = $request->validate([
             'name_of_client' => 'required',
@@ -201,6 +202,7 @@ class clientController extends Controller
             'date_of_transaction' => 'required|date',
             'offices' => ['required', Rule::in($validateOffices)],
             'service_availed' => ['required', Rule::in($services)],
+            'ServiceCode' => ['required', Rule::in($serviceCode)],
             'purpose' => 'required',
             'email_of_client' => '',
 
@@ -216,7 +218,8 @@ class clientController extends Controller
             'question-S2-Q7' => 'required',
             'question-S2-Q8' => 'required',
             'question-S2-Q9' => 'required',
-            'suggestion_for_client' => ''
+            'suggestion_for_client' => '',
+
 
         ]);
         //store the data in the database
@@ -230,6 +233,7 @@ class clientController extends Controller
             'service_avail' => $validateData['service_availed'],
             'purpose' => $validateData['purpose'],
             'emailAdd' => $validateData['email_of_client'],
+            'serviceCode' => $validateData['ServiceCode'],
             'cc1' => $validateData['question1'],
             'cc2' => $validateData['question2'],
             'cc3' => $validateData['question3'],
@@ -274,6 +278,7 @@ class clientController extends Controller
         $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
         $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
 
+        $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
         $validateData = $request->validate([
             'name_of_client' => 'required',
             'gender_of_client' => ['required', Rule::in(['male', 'female'])],
@@ -283,6 +288,7 @@ class clientController extends Controller
             'offices' => ['required', Rule::in($validateOffices)],
             'service_availed' => ['required', Rule::in($services)],
             'purpose' => 'required',
+            'ServiceCode' => '',
             'email_of_client' => '',
 
             'question1' => 'required',
@@ -300,6 +306,8 @@ class clientController extends Controller
             'suggestion_for_client' => ''
 
         ]);
+
+        $service = $serviceCode->serviceCode;
         //store the data in the database
         $UserData = [
             'name' => $validateData['name_of_client'],
@@ -310,6 +318,7 @@ class clientController extends Controller
             'idOfficeOrigin' => $validateData['offices'],
             'service_avail' => $validateData['service_availed'],
             'purpose' => $validateData['purpose'],
+            'serviceCode' =>  $service,
             'emailAdd' => $validateData['email_of_client'],
             'cc1' => $validateData['question1'],
             'cc2' => $validateData['question2'],

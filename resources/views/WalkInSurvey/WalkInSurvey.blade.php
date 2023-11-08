@@ -48,6 +48,7 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Client Gender --}}
                 <div class="block ml-3 mt-2">
                     <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
                     <select name="gender_of_client" id="gender_of_client"
@@ -62,6 +63,7 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Client Age --}}
                 <div class="block ml-3 mt-2">
                     <label for="age_of_client" class="text-[20px] Reg-font mr-2 text-black">Age: </label>
                     <input type="number" name="age_of_client" id="age_of_client"
@@ -73,6 +75,7 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Client Type --}}
                 <div class="block ml-3 mt-2">
                     <label for="client_type" class="text-[20px] Reg-font mr-2 text-black">Client Type: </label>
                     <select name="client_type" id="client_type"
@@ -89,12 +92,14 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Date --}}
                 <div class="block ml-3 mt-2 ">
                     <label for="date_of_transaction" class="text-[20px] Reg-font mr-2 text-black">Date: </label>
                     <input type="date" name="date_of_transaction" id="date_of_transaction"
                         class="px-2 py-2 Reg-font w-80 bg-gray-300 rounded-md shadow-md sm:w-full"autocomplete="off"
                         value="">
                 </div>
+                {{-- Office Or Campus Visited --}}
                 <div class="block ml-3 mt-2 ">
                     <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office/Campus Visited: </label>
                     <select name="offices" id="offices"
@@ -113,6 +118,7 @@
                     <button type="button" id="filterButton"
                         class="p-0.5 Bold-font text-[11px] bg-blue-500 border-2 border-blue-600 rounded active:bg-blue-600 uppercase">Filter</button>
                 </div>
+                {{-- Service Avail --}}
                 <div class="block ml-3 mt-2 flex flex-col">
                     <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
                     <select type="text" name="service_availed" id="service_availed"
@@ -130,6 +136,7 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Service Code --}}
                 <div class="block ml-3  mt-2">
                     <label for="ServiceCode" class="text-[20px] Reg-font mr-2 text-black">Code: </label>
                     <input type="text" name="ServiceCode" id="ServiceCode"
@@ -141,6 +148,7 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Client Purpose --}}
                 <div class="block ml-3 mt-2 ">
                     <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
                     <input type="text" name="purpose" id="purpose"
@@ -151,6 +159,7 @@
                         </p>
                     @enderror
                 </div>
+                {{-- Client Email --}}
                 <div class=" ml-3 mt-2 flex flex-wrap p-2 ">
                     <label for="email_of_client" class="text-lg Reg-font tracking-wide mt-2 mr-2">Email address
                         (optional):

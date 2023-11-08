@@ -94,7 +94,7 @@ class adminController extends Controller
         );
         if (Auth::attempt($validated)) {
             $user = Auth::user();
-            $routeRedirect = $user->idOfficeOriginFK === 3 ? 'Admin' : 'index';
+            $routeRedirect = $user->idOfficeOrigin === 3 ? 'Admin' : 'index';
             $request->session()->regenerate();
             return redirect()->route($routeRedirect)->with('message', 'Welcome Admin');
         } else {
@@ -776,9 +776,12 @@ class adminController extends Controller
         $totalPersonnels =   $sumOfAllDataController->calculateTotalPersonelAndNonPersonnel();
         $totalVisitors =   $sumOfAllDataController->calculateTotalVisitors();
 
+        $services = service1::orderBy('created_at', 'desc')->paginate(10);
+        $offices = offices::all();
+
 
         if (View::exists('SuperAdmin.index')) {
-            return view('SuperAdmin.index', compact('chart', 'totalOffices', 'totalStudents', 'totalClients', 'totalPersonnels', 'totalVisitors'));
+            return view('SuperAdmin.index', compact('chart', 'totalOffices', 'totalStudents', 'totalClients', 'totalPersonnels', 'totalVisitors', 'services', 'offices'));
         } else {
             return abort(404);
         }
