@@ -152,7 +152,7 @@ class clientController extends Controller
     public function showClientSurvey($serviceCode)
     {
 
-        if (View::exists('ClientSide.clientSurvey')) {
+        if (!empty($serviceCode)) {
             $clientTypes = clientCategory::all();
             $officeTypes = offices::all();
             $ccInstruction = Cc_Instruction::all();

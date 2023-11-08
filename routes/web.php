@@ -102,6 +102,7 @@ Route::controller(adminController::class)->group(function () {
 
 
         Route::get('/superAdmin', 'indexAdmin')->name('Admin');
+        Route::get('/superAdmin/Storage', 'storageOfAllService')->name('storageOfAllService');
         Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');
         Route::post('/superAdmin/report', 'filterReport')->name('filterReport');
         Route::post('/superAdmin/assessment', 'assessReport')->name('assesmentReport');

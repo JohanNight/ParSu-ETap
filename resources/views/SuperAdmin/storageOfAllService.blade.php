@@ -49,7 +49,11 @@
                                                     {{ $service->serviceTitle }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                    {{ $service->idOffice }}
+                                                    @foreach ($offices as $office)
+                                                        @if ($service->idOffice == $office->idOffices)
+                                                            {{ $office->officeAcronym }}
+                                                        @endif
+                                                    @endforeach
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
                                                     <a href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"

@@ -566,10 +566,16 @@ class adminController extends Controller
     // }
     public function codeGeneratorPage()
     {
+
         $user = Auth::user();
-        $userOffice = $user->idOfficeOrigin;
-        $services = service1::where('idOffice', $userOffice)->get();
-        if (View::exists('AdminSide.generateCodeFunction')) {
+        $superAdmin = $user->idOfficeOrigin;
+
+        if ($superAdmin !== 3) {
+            $userOffice = $user->idOfficeOrigin;
+            $services = service1::where('idOffice', $userOffice)->get();
+            return view('AdminSide.generateCodeFunction', ['services' => $services]);
+        } elseif ($superAdmin === 3) {
+            $services = service1::all();
             return view('AdminSide.generateCodeFunction', ['services' => $services]);
         } else {
             return abort(404);
@@ -579,12 +585,19 @@ class adminController extends Controller
     {
         $searchCode = $request->input('service_code');
         $user = Auth::user();
-        $userOffice = $user->idOfficeOrigin;
+        $superAdmin = $user->idOfficeOrigin;
 
-        $serviceCode = service1::where('serviceCode',  $searchCode)
-            ->where('idOffice', $userOffice)->first();
-        $code = $serviceCode->serviceCode;
-        return response()->json(['code' => $code]);
+        if ($superAdmin == 3) {
+            $serviceCode = service1::where('serviceCode',  $searchCode)->first();
+            $code = $serviceCode->serviceCode;
+            return response()->json(['code' => $code]);
+        } else {
+            $userOffice = $user->idOfficeOrigin;
+            $serviceCode = service1::where('serviceCode',  $searchCode)
+                ->where('idOffice', $userOffice)->first();
+            $code = $serviceCode->serviceCode;
+            return response()->json(['code' => $code]);
+        }
     }
 
     // public function report()
@@ -766,6 +779,18 @@ class adminController extends Controller
 
         if (View::exists('SuperAdmin.index')) {
             return view('SuperAdmin.index', compact('chart', 'totalOffices', 'totalStudents', 'totalClients', 'totalPersonnels', 'totalVisitors'));
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function storageOfAllService()
+    {
+        if (View::exists('SuperAdmin.storageOfAllService')) {
+            $offices = offices::all();
+            $services = Service1::where('archive', 1)
+                ->paginate(10);
+            return view('SuperAdmin.storageOfAllService', compact('services', 'offices'));
         } else {
             return abort(404);
         }

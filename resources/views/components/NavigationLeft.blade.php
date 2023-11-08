@@ -49,9 +49,16 @@
                             </div>
                             <div class="mt-5 ">
                                 {{-- Storage Route  --}}
-                                <a href="{{ route('Storage') }}"
-                                    class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
-                                    Service Storage</a>
+                                @if ($user->idOfficeOrigin === 3)
+                                    <a href="{{ route('storageOfAllService') }}"
+                                        class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
+                                        Service Storage</a>
+                                @endif
+                                @unless ($user->idOfficeOrigin === 3)
+                                    <a href="{{ route('Storage') }}"
+                                        class="text-gray-600 Reg-font text-[15px] hover:text-blue-700">
+                                        Service Storage</a>
+                                @endunless
                             </div>
                             {{-- Draft Route --}}
                             {{-- <div class="mt-5 ">
