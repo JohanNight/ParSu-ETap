@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        {{-- Search Engine --}}
+        {{-- Search Engine
         <form action="" method="POST">
             @csrf
             <div class="flex justify-center items-center p-5 mb-4 gap-2">
@@ -42,7 +42,7 @@
                 <button type="button" id="searchButton"
                     class="p-2 Bold-font text-[12px] bg-blue-500 border-2 border-blue-600 rounded active:bg-blue-600 uppercase">search</button>
             </div>
-        </form>
+        </form> --}}
         {{-- Survey Form --}}
         <form action="/home/clientSurvey/StoreData" method="POST">
             @csrf
@@ -141,6 +141,17 @@
                         </p>
                     @enderror
                 </div>
+                <div class="block ml-3  mt-2">
+                    <label for="ServiceCode" class="text-[20px] Reg-font mr-2 text-black">Code: </label>
+                    <input type="text" name="ServiceCode" id="ServiceCode"
+                        class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
+                        value="{{ $ServiceCode }}" autocomplete="off">
+                    @error('ServiceCode')
+                        <p class="text-red-400 text-sm p-1">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
                 <div class="block ml-3 mt-2 ">
                     <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
                     <input type="text" name="purpose" id="purpose"
@@ -151,7 +162,7 @@
                         </p>
                     @enderror
                 </div>
-                <div class="mt-2 flex flex-wrap p-2 ">
+                <div class=" ml-3 mt-2 flex flex-wrap p-2 ">
                     <label for="email_of_client" class="text-lg Reg-font tracking-wide mt-2 mr-2">Email address
                         (optional):
                     </label>
@@ -354,7 +365,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         //to retrive the data and the populate them in each fields
         $(document).ready(function() {
@@ -408,7 +419,7 @@
         // Set the input field's value to today's date
         document.getElementById("date_of_transaction").value = today;
     });
-</script>
+</script> --}}
 <script>
     $(document).ready(function() {
         $('#filterButton').on('click', function() {

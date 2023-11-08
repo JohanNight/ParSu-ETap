@@ -116,7 +116,7 @@ class clientController extends Controller
 
         // Additional checks, if needed
         if ($tempCode === $code) {
-            return redirect('home/clientSurvey/{code}');
+            return redirect('home/clientSurvey/' . $code);
         }
 
         return back()->with('message', 'Code not found');
@@ -149,7 +149,7 @@ class clientController extends Controller
             return abort(404);
         }
     }
-    public function showClientSurvey()
+    public function showClientSurvey($serviceCode)
     {
 
         if (View::exists('ClientSide.clientSurvey')) {
@@ -161,28 +161,29 @@ class clientController extends Controller
             $SrvyQuestion = SurveyQuestion::all();
             $SrvyComment = SurveyComment::all();
             $Service = service1::all();
-            return view('ClientSide.clientSurvey', compact('clientTypes', 'officeTypes', 'ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment', 'Service'));
+            $ServiceCode = $serviceCode;
+            return view('ClientSide.clientSurvey', compact('clientTypes', 'officeTypes', 'ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment', 'Service', 'ServiceCode'));
         } else {
             return abort(404);
         }
     }
     //fetch the data from the database using user's query
-    public function fetchData(Request $request)
-    {
-        $searchId = $request->input('searchId');
-        $client = studentInformation::where('idClientInfo', $searchId)->first();
-        if ($client) {
-            return response()->json([
-                'name' => $client->name,
-                'gender' => $client->sex,
-                'age' => $client->age,
-                'category' => $client->category
-                // Add more fields as needed
-            ]);
-        } else {
-            return response()->json(['error' => 'Client not found'], 404);
-        }
-    }
+    // public function fetchData(Request $request)
+    // {
+    //     $searchId = $request->input('searchId');
+    //     $client = studentInformation::where('idClientInfo', $searchId)->first();
+    //     if ($client) {
+    //         return response()->json([
+    //             'name' => $client->name,
+    //             'gender' => $client->sex,
+    //             'age' => $client->age,
+    //             'category' => $client->category
+    //             // Add more fields as needed
+    //         ]);
+    //     } else {
+    //         return response()->json(['error' => 'Client not found'], 404);
+    //     }
+    // }
     //store the survey data
     public function storeSurveyData(Request $request)
     {
