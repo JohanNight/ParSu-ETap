@@ -25,6 +25,11 @@
                         <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
                         <input type="date" name="date_to"
                             class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        @error('date_to')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <button type="submit" id="fltr_date_admin"
                         class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
@@ -32,6 +37,7 @@
                     </button>
                 </div>
             </form>
+            <!--Assess-->
             <form action="{{ route('assesmentReport') }}"method="POST">
                 @csrf
                 <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
@@ -45,6 +51,11 @@
                         <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
                         <input type="date" name="date_to"
                             class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        @error('date_to')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <button type="submit" id="assess_report_admin"
                         class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-white">

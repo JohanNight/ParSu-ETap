@@ -10,8 +10,9 @@
 
         <!--Main content area -->
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
-            <!--Filter-->
+
             <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
+                <!--Filter-->
                 <form action="{{ route('filterResult') }}" method="POST" class="flex gap-2">
                     @csrf
                     <div class=" bg-white border-2 p-2" id="fltr_from">
@@ -23,6 +24,11 @@
                         <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
                         <input type="date"
                             name="date_to"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        @error('date_to')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="flex justify-center items-center">
                         <button type="submit" id="fltr_date"
@@ -32,6 +38,7 @@
                     </div>
 
                 </form>
+                <!--Assess-->
                 <form action="{{ route('assessResult') }}" method="POST" class="flex gap-2">
                     @csrf
                     <div class=" bg-white border-2 p-2" id="fltr_from">
@@ -43,6 +50,11 @@
                         <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
                         <input type="date"
                             name="date_to"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        @error('date_to')
+                            <p class="text-red-400 text-sm p-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="flex justify-center items-center">
                         <button type="submit" id="assess_report"

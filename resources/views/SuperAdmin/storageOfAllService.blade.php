@@ -55,7 +55,8 @@
                                                         @endif
                                                     @endforeach
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
+                                                <td
+                                                    class="px-6 py-4 whitespace-nowrap flex justify-evenly  gap-5 items-center">
                                                     <a href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
                                                         class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         Edit
@@ -67,6 +68,15 @@
                                                         @csrf
                                                         @method('PUT')
                                                         Archive
+                                                    </form>
+                                                    <form
+                                                        action="/superAdmin/delete-service/{{ $service->idServiceSpecification }}"
+                                                        method="POST">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="bg-red-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                            Delete</button>
                                                     </form>
 
                                                 </td>

@@ -642,11 +642,20 @@
                                         @endif
                                     @endforeach
                                 </td>
-                                <td class="py-2 px-4 border-b border-grey-light"> <a
+                                <td class="py-2 px-4 border-b border-grey-light flex justify-between"> <a
                                         href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
                                         class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                         Edit
-                                    </a></td>
+                                    </a>
+                                    <form action="/superAdmin/delete-service/{{ $service->idServiceSpecification }}"
+                                        method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit"
+                                            class="bg-red-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                            Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         <!-- Add more rows here like the one above for each pending authorization -->

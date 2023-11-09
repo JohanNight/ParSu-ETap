@@ -57,24 +57,12 @@
                         <div class="account-dropdown_body py-[12px] px-0 border-b-2 border-solid border-gray-400">
                             <div class="account-dropdown_item">
                                 {{-- Account Route  --}}
-                                {{-- @php
-                                $user = App\Models\User::First(); // Retrieve the user data here
-                            @endphp
-                            @if ($user) @endif --}}
+
                                 <a href="/indexAdmin/account"
                                     class="block text-gray-600 py-[15px] px-[25px] text-[16px] hover:bg-blue-600 hover:text-gray-800 Reg-font">Account</a>
 
                             </div>
-                            <div class="account-dropdown_item"><a href="#"
-                                    class="block text-gray-600 py-[15px] px-[25px] text-[16px] hover:bg-blue-600 hover:text-gray-800 Reg-font">Settings</a>
-                            </div>
-
                         </div>
-                        {{-- <div class="account-dropdown_footer border-t-[1px] border-solid border-t-gray-200">
-                        <a href="#"
-                            class="block text-gray-700 py-[15px] px-[25px] text-[16px] capitalize hover:bg-red-500 hover:text-gray-800 Reg-font">Log
-                            Out</a>{{-- make this a form to end the session 
-                    </div> --}}
                     </div>
                 </div>
             </div>

@@ -555,15 +555,6 @@ class adminController extends Controller
         $service->save();
         return view('AdminSide.storageServiceFunction');
     }
-
-    // public function draftPage()
-    // {
-    //     if (View::exists('AdminSide.draftServiceFunction')) {
-    //         return view('AdminSide.draftServiceFunction');
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
     public function codeGeneratorPage()
     {
 
@@ -796,6 +787,33 @@ class adminController extends Controller
             return view('SuperAdmin.storageOfAllService', compact('services', 'offices'));
         } else {
             return abort(404);
+        }
+    }
+
+    public function deleteService(Request $request, $serviceId)
+    {
+        // Find the CcQuestion by its ID
+        $service = service1::find($serviceId);
+
+        // Disable foreign key checks temporarily
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+        try {
+            // Delete the services and its associated requirements
+            $service->delete();
+
+            // You can also delete its associated Services
+            $service->checklistRequirements1()->delete();
+            $service->checklistRequirements2()->delete();
+
+
+            // Re-enable foreign key checks
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+            return redirect()->route('Admin')->with('message', 'Citizen Charter Question successfully deleted :) .');
+        } catch (\Exception $e) {
+            // Handle any exceptions, e.g., log the error
+            return redirect()->route('Admin')->with('message', 'Error deleting Citizen Charter Question.');
         }
     }
     public function reportAdmin()
