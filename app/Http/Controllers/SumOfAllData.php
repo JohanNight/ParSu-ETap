@@ -621,10 +621,6 @@ class SumOfAllData extends Controller
 
     public function getCalculateExternalSerivices($request)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -672,5 +668,73 @@ class SumOfAllData extends Controller
             }
         }
         return  $internalService;
+    }
+
+    public function getAllTotalServiceResult($request)
+    {
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        //total responses
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        $services = service1::all();
+
+        $servicesData = [];
+
+        foreach ($services as $service) {
+            $services[$service] = 0;
+        }
+
+        //Count per services  each offices
+        foreach ($surveyData as $surveyed) {
+            foreach ($services as $service) {
+                if ($surveyed->service_avail == $service->idServiceSpecification) {
+                    $servicesData[$service->serviceTitle]++;
+                }
+            }
+        }
+
+        // Calculate the total sum of services
+        $totalServices = array_sum($servicesData); //will be retrieve
+
+
+
+        //total Transaction per office service
+        $surveyDataWithCode = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->where('serviceCode')
+            ->get(); // retrieve all survey data
+        $Services = service1::all();
+
+        $serviceDataWithCode = [];
+
+        foreach ($Services as $service) {
+            $serviceDataWithCode[$service] = 0;
+        }
+
+        //Count per services  each offices
+        foreach ($surveyDataWithCode as $surveyed) {
+            foreach ($Services as $service) {
+                if ($surveyed->serviceCode == $service->serviceCode) {
+                    $serviceDataWithCode[$service->idServiceSpecification]++;
+                }
+            }
+        }
+
+        $totalServiceTransaction = array_sum($serviceDataWithCode); //will be retrieve
+
+
+        $divideTheTransactionAndResponse =   $totalServices /    $totalServiceTransaction;
+
+        $multiplyByHundred = 100 *  $divideTheTransactionAndResponse; //will be retrieve
+
+        return [
+            'totalServices' => $totalServices,
+            'totalServiceTransaction' => $totalServiceTransaction,
+            'multiplyByHundred' => $multiplyByHundred,
+            'serviceDataWithCode' => $serviceDataWithCode,
+            'servicesData' => $servicesData,
+        ];
     }
 }

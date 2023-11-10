@@ -49,15 +49,30 @@
 
     <table id="customers">
         <tr>
+            <th>Offices</th>
             <th>Overall Services</th>
             <th>Responses</th>
             <th>Total of Transaction</th>
         </tr>
-        @foreach ($getTotalServiceAvail as $serviceTitle => $count)
+        @foreach ($servicesData as $serviceTitle => $count)
             <tr>
-                <td> {{ $serviceTitle }}</td>
+                <td> {{ $serviceTitle->officeAcronym }}</td>
+                <td> {{ $serviceTitle->serviceTitle }}</td>
                 <td>{{ $count }}</td>
-                <td>{{ $count }}</td>
+                @foreach ($serviceDataWithCode as $serviceWithCode => $count)
+                    <td>{{ $count }}</td>
+                @endforeach
+            </tr>
+            <tr>
+                <td>
+                    TOTAL RESULT
+                </td>
+                <td>
+                    {{ $totalServices }}
+                </td>
+                <td>
+                    {{ $totalServiceTransaction }}
+                </td>
             </tr>
         @endforeach
     </table>

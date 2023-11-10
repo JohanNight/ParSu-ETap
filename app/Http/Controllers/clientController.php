@@ -279,6 +279,7 @@ class clientController extends Controller
         $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
 
         $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
+
         $validateData = $request->validate([
             'name_of_client' => 'required',
             'gender_of_client' => ['required', Rule::in(['male', 'female'])],
@@ -288,7 +289,7 @@ class clientController extends Controller
             'offices' => ['required', Rule::in($validateOffices)],
             'service_availed' => ['required', Rule::in($services)],
             'purpose' => 'required',
-            'ServiceCode' => '',
+            // 'ServiceCode' => '',
             'email_of_client' => '',
 
             'question1' => 'required',

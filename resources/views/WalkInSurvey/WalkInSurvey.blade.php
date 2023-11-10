@@ -137,7 +137,7 @@
                     @enderror
                 </div>
                 {{-- Service Code --}}
-                <div class="block ml-3  mt-2">
+                {{-- <div class="block ml-3  mt-2">
                     <label for="ServiceCode" class="text-[20px] Reg-font mr-2 text-black">Code: </label>
                     <input type="text" name="ServiceCode" id="ServiceCode"
                         class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
@@ -147,7 +147,7 @@
                             {{ $message }}
                         </p>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- Client Purpose --}}
                 <div class="block ml-3 mt-2 ">
                     <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
@@ -399,6 +399,12 @@
             });
         });
     });
+
+    // Get the current date in the format "YYYY-MM-DD"
+    var today = new Date().toISOString().split('T')[0];
+
+    // Set the input field's value to today's date
+    document.getElementById("date_of_transaction").value = today;
 </script>
 
 @include('partials.footerClient')

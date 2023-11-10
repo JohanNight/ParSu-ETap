@@ -929,11 +929,21 @@ class adminController extends Controller
     public function assessReport(Request $request)
     {
         //dd($request);
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+        ]);
         $sumOfAllDataController = new SumOfAllData();
-        $getTotalServiceAvail = $sumOfAllDataController->getCalculateExternalSerivices($request);
+        $result = $sumOfAllDataController->getAllTotalServiceResult($request);
+
+        $totalServices = $result['totalServices'];
+        $totalServiceTransaction = $result['totalServiceTransaction'];
+        $multiplyByHundred = $result['multiplyByHundred'];
+        $serviceDataWithCode = $result['serviceDataWithCode'];
+        $servicesData = $result['servicesData'];
 
 
-        $pdf = FacadePdf::loadView('pdf.totalResult', compact('getTotalServiceAvail'));
+        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData', 'serviceDataWithCode', 'totalServices', ' totalServiceTransaction'));
         return $pdf->stream('Result.pdf');
     }
 
