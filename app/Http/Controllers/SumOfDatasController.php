@@ -600,4 +600,62 @@ class SumOfDatasController extends Controller
 
         return $ccOptionCount;
     }
+
+    public function getCalculatePerCcRecord($request, $userOfficeId)
+    {
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->where('idOfficeOrigin', $userOfficeId)->get(); // retrieve all survey data; 
+
+        $CcOptions = Cc_Options::all();
+
+
+        $cc1Data = [];
+        $cc2Data = [];
+        $cc3Data = [];
+
+        foreach ($CcOptions as $CcOption) {
+            if ($CcOption->option_text != null) {
+                if ($CcOption->table_cc_question_id == 1) {
+                    $cc1Data[$CcOption->option_text] = 0;
+                }
+                if ($CcOption->table_cc_question_id == 2) {
+                    $cc2Data[$CcOption->option_text] = 0;
+                }
+                if ($CcOption->table_cc_question_id == 3) {
+                    $cc3Data[$CcOption->option_text] = 0;
+                }
+            }
+        }
+
+        foreach ($surveyData as $survey) {
+            foreach ($CcOptions as $CcOption) {
+                if ($survey->cc1 == $CcOption->id) {
+                    $cc1Data[$CcOption->option_text]++;
+                }
+                if ($survey->cc2 == $CcOption->id) {
+                    $cc2Data[$CcOption->option_text]++;
+                }
+                if ($survey->cc3 == $CcOption->id) {
+                    $cc3Data[$CcOption->option_text]++;
+                }
+            }
+        }
+
+        // Get separate sums for cc1, cc2, and cc3
+        $totalCc1Response = array_sum($cc1Data);
+        $totalCc2Response = array_sum($cc2Data);
+        $totalCc3Response = array_sum($cc3Data);
+        // Calculate percentages
+        $totalResponses = $totalCc1Response + $totalCc2Response + $totalCc3Response;
+
+        return [
+            'cc1Data' => $cc1Data,
+            'cc2Data' => $cc2Data,
+            'cc3Data' => $cc3Data,
+            'totalResponses' =>   $totalResponses,
+        ];
+    }
 }

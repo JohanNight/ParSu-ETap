@@ -723,13 +723,21 @@ class adminController extends Controller
 
         $user = Auth::user();
         $userOffice = $user->idOfficeOrigin;
+        $offices = offices::all();
 
         $getTotalPerService = $sumOfDatasController->getCalculateAnswerePerService($request, $userOffice);
         $getTotalNumberPerService = $sumOfDatasController->TotalAnswerePerService($request, $userOffice);
+        $CsmReport =  $sumOfDatasController->getCalculatePerCcRecord($request, $userOffice);
         //dd($getTotalPerService);
 
 
-        $pdf = FacadePdf::loadView('pdf.result', compact('getTotalPerService', 'getTotalNumberPerService'));
+        $cc1Report = $CsmReport['cc1Data'];
+        $cc2Report = $CsmReport['cc2Data'];
+        $cc3Report = $CsmReport['cc3Data'];
+        $totalResponses = $CsmReport['totalResponses'];
+
+
+        $pdf = FacadePdf::loadView('pdf.result', compact('getTotalPerService', 'getTotalNumberPerService', 'userOffice', 'offices', 'cc1Report', 'cc2Report', 'cc3Report', 'totalResponses'));
         return $pdf->stream('Result.pdf');
     }
 

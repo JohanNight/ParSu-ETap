@@ -12,7 +12,7 @@
         #customers td,
         #customers th {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 4px;
         }
 
         #customers tr:nth-child(even) {
@@ -56,10 +56,14 @@
 </head>
 
 <body>
+    @foreach ($offices as $office)
+        @if ($office->idOffices == $userOffice)
+            <h1>Services Surveyed
+                by the
+                {{ $office->officeDescription }}</h1>
+        @endif
+    @endforeach
 
-    <h1>Overall Services Surveyed
-        by the
-        University</h1>
 
     <table id="customers">
         <tr>
@@ -83,6 +87,72 @@
             </td>
         </tr>
     </table>
+    {{-- Citizen Charter --}}
+    <div>
+
+        <table id="customers" class="CSMcc">
+            <tr>
+                <th>CSM Report</th>
+                <th>Response</th>
+            </tr>
+
+            @foreach ($cc1Report as $ccOption => $count)
+                <tr>
+                    <td>
+                        {{ $ccOption }}
+                    </td>
+                    <td>
+                        {{ $count }}
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            @foreach ($cc2Report as $ccOption => $count)
+                <tr>
+                    <td>
+                        {{ $ccOption }}
+                    </td>
+                    <td>
+                        {{ $count }}
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            @foreach ($cc3Report as $ccOption => $count)
+                <tr>
+                    <td>
+                        {{ $ccOption }}
+                    </td>
+                    <td>
+                        {{ $count }}
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>
+                    Total Response
+                </td>
+                <td>
+                    {{ $totalResponses }}
+                </td>
+            </tr>
+        </table>
+
+    </div>
 
 </body>
 
