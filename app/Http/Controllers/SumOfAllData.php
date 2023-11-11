@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cc_Options;
+use App\Models\Cc_Questions;
 use App\Models\clientCategory;
 use Illuminate\Http\Request;
 use App\Models\clientInfo;
 use App\Models\offices;
 use App\Models\service1;
+use App\Models\SurveyQuestion;
 
 class SumOfAllData extends Controller
 {
@@ -673,8 +676,8 @@ class SumOfAllData extends Controller
     public function getAllTotalServiceResult($request)
     {
 
-        $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateFrom = $request->input('date_From');
+        $dateTo = $request->input('date_To');
 
         //total responses
 
@@ -683,49 +686,39 @@ class SumOfAllData extends Controller
 
         $servicesData = [];
 
-        foreach ($services as $service) {
-            $services[$service] = 0;
-        }
+        // foreach ($services as $service) {
+        //     $servicesData[$service->serviceTitle] = 0;
+        // }
 
-        //Count per services  each offices
+        // //Count per services  each offices
+        // foreach ($surveyData as $surveyed) {
+        //     foreach ($services as $service) {
+        //         if ($surveyed->service_avail == $service->idServiceSpecification) {
+        //             $servicesData[$service->serviceTitle]++;
+        //         }
+        //     }
+        // }
+
         foreach ($surveyData as $surveyed) {
             foreach ($services as $service) {
                 if ($surveyed->service_avail == $service->idServiceSpecification) {
-                    $servicesData[$service->serviceTitle]++;
+                    $serviceTitle = $service->serviceTitle;
+
+                    if (!isset($servicesData[$serviceTitle])) {
+                        $servicesData[$serviceTitle] = 0;
+                    }
+
+                    $servicesData[$serviceTitle]++;
                 }
             }
         }
 
         // Calculate the total sum of services
         $totalServices = array_sum($servicesData); //will be retrieve
+        $totalServiceTransaction = array_sum($servicesData); //will be retrieve
 
+        $divideTheTransactionAndResponse =   round($totalServices /    $totalServiceTransaction);
 
-
-        //total Transaction per office service
-        $surveyDataWithCode = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
-            ->where('serviceCode')
-            ->get(); // retrieve all survey data
-        $Services = service1::all();
-
-        $serviceDataWithCode = [];
-
-        foreach ($Services as $service) {
-            $serviceDataWithCode[$service] = 0;
-        }
-
-        //Count per services  each offices
-        foreach ($surveyDataWithCode as $surveyed) {
-            foreach ($Services as $service) {
-                if ($surveyed->serviceCode == $service->serviceCode) {
-                    $serviceDataWithCode[$service->idServiceSpecification]++;
-                }
-            }
-        }
-
-        $totalServiceTransaction = array_sum($serviceDataWithCode); //will be retrieve
-
-
-        $divideTheTransactionAndResponse =   $totalServices /    $totalServiceTransaction;
 
         $multiplyByHundred = 100 *  $divideTheTransactionAndResponse; //will be retrieve
 
@@ -733,8 +726,223 @@ class SumOfAllData extends Controller
             'totalServices' => $totalServices,
             'totalServiceTransaction' => $totalServiceTransaction,
             'multiplyByHundred' => $multiplyByHundred,
-            'serviceDataWithCode' => $serviceDataWithCode,
+            // 'serviceDataWithCode' => $serviceDataWithCode,
             'servicesData' => $servicesData,
         ];
+    }
+
+    public function getAllTheCcResult($request)
+    {
+
+        $dateFrom = $request->input('date_From');
+        $dateTo = $request->input('date_To');
+
+        //total responses
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        $CcOptions = Cc_Options::all();
+
+        $cc1Data = [];
+        $cc2Data = [];
+        $cc3Data = [];
+
+        foreach ($CcOptions as $CcOption) {
+            if ($CcOption->option_text != null) {
+                if ($CcOption->table_cc_question_id == 1) {
+                    $cc1Data[$CcOption->option_text] = 0;
+                }
+                if ($CcOption->table_cc_question_id == 2) {
+                    $cc2Data[$CcOption->option_text] = 0;
+                }
+                if ($CcOption->table_cc_question_id == 3) {
+                    $cc3Data[$CcOption->option_text] = 0;
+                }
+            }
+        }
+
+        foreach ($surveyData as $survey) {
+            foreach ($CcOptions as $CcOption) {
+                if ($survey->cc1 == $CcOption->id) {
+                    $cc1Data[$CcOption->option_text]++;
+                }
+                if ($survey->cc2 == $CcOption->id) {
+                    $cc2Data[$CcOption->option_text]++;
+                }
+                if ($survey->cc3 == $CcOption->id) {
+                    $cc3Data[$CcOption->option_text]++;
+                }
+            }
+        }
+
+        // Get separate sums for cc1, cc2, and cc3
+        $totalCc1Response = array_sum($cc1Data);
+        $totalCc2Response = array_sum($cc2Data);
+        $totalCc3Response = array_sum($cc3Data);
+        // Calculate percentages
+        $totalResponses = $totalCc1Response + $totalCc2Response + $totalCc3Response;
+
+        $cc1Percentages = $this->calculatePercentages($cc1Data, $totalResponses);
+        $cc2Percentages = $this->calculatePercentages($cc2Data, $totalResponses);
+        $cc3Percentages = $this->calculatePercentages($cc3Data, $totalResponses);
+        // dd($cc1Percentages);
+
+        return [
+            'cc1Data' => $cc1Data,
+            'cc1Percentage' => $cc1Percentages,
+
+            'cc2Data' => $cc2Data,
+            'cc2Percentage' => $cc2Percentages,
+
+            'cc3Data' => $cc3Data,
+            'cc3Percentage' => $cc3Percentages,
+        ];
+    }
+
+    // Helper function to calculate percentages
+    private function calculatePercentages($data, $totalResponses)
+    {
+        $percentages = [];
+        foreach ($data as $option => $count) {
+            $percentages[$option] = round(($count * 100) / $totalResponses);
+        }
+        return $percentages;
+    }
+    // public function getAllTheCcResult($request)
+    // {
+
+    //     // $dateFrom = $request->input('date_From');
+    //     // $dateTo = $request->input('date_To');
+
+    //     // //total responses
+
+    //     // $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+    //     // $CcOptions = Cc_Options::all();
+
+    //     // $OptionData = [];
+
+    //     // foreach ($CcOptions as $CcOption) {
+    //     //     if ($CcOption->option_text != null) {
+    //     //         $OptionData[$CcOption->option_text] = 0;
+    //     //     }
+    //     // }
+
+    //     // foreach ($surveyData as $survey) {
+    //     //     foreach ($CcOptions as $CcOption) {
+    //     //         if ($survey->cc1 == $CcOption->id) {
+    //     //             $OptionData[$CcOption->option_text]++;
+    //     //         }
+    //     //         if ($survey->cc2 == $CcOption->id) {
+    //     //             $OptionData[$CcOption->option_text]++;
+    //     //         }
+    //     //         if ($survey->cc3 == $CcOption->id) {
+    //     //             $OptionData[$CcOption->option_text]++;
+    //     //         }
+    //     //     }
+    //     // }
+
+
+    //     // dd($OptionData);
+    // }
+
+    public function getTheSqdQuestion()
+    {
+        $SQDquestions = SurveyQuestion::all();
+        // $sqdQuestion =   $SQDquestions->questions;
+        return   $SQDquestions;
+    }
+    public function getAllSQDResult($request)
+    {
+        $dateFrom = $request->input('date_From');
+        $dateTo = $request->input('date_To');
+
+        //total responses
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        $SQDquestions = SurveyQuestion::all();
+
+
+        $surveyQuestionData = [];
+
+
+        $surveyOptions = [
+            (object)['option' => '0'],
+            (object)['option' => '1'],
+            (object)['option' => '2'],
+            (object)['option' => '3'],
+            (object)['option' => '4'],
+            (object)['option' => '5']
+        ];
+
+        // Create a single array with all options
+        $allOptions = [];
+        foreach ($surveyOptions as $option) {
+            $allOptions[$option->option] = 0;
+        }
+
+        // foreach ($SQDquestions as $question) {
+        //     $surveyQuestionData[$question->questions] = [];
+        //     foreach ($surveyOptions as $option) {
+        //         $surveyQuestionData[$question->questions][$option->option] = 0;
+        //     }
+        // }
+
+        // Assign the same array of options to each question
+        foreach ($SQDquestions as $question) {
+            $surveyQuestionData[$question->questions] = $allOptions;
+        }
+
+        // $Options = [];
+
+        // foreach ($surveyOptions as $OPTION) {
+        //     $Options[$OPTION->option] = 0;
+        // }
+
+        // foreach ($surveyData as $surveyed) {
+        //     foreach ($SQDquestions as $question) {
+        //         foreach ($surveyOptions as $option) {
+        //             if ($surveyed->sqd0 == $question->id && $surveyed->option == $option->option) {
+        //                 $surveyQuestionData[$question->questions][$option->option]++;
+        //             }
+        //         }
+        //     }
+        // }
+
+
+        // foreach ($surveyData as $surveyed) {
+        //     foreach ($surveyOptions as $Soption) {
+        //         if ($surveyed->sqd0 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd1 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd2 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+
+        //         if ($surveyed->sqd3 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd4 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd5 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd6 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd7 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //         if ($surveyed->sqd8 == $Soption->option) {
+        //             $Options[$Soption->option]++;
+        //         }
+        //     }
+        // }
+
+
+
+        dd($surveyQuestionData);
     }
 }

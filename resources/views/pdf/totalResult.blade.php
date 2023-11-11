@@ -33,10 +33,43 @@
 
         #customers td {
             font-size: 12px;
+            padding: 2px;
         }
 
         h1 {
             font-size: 20px;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        #number {
+            text-align: center;
+        }
+
+        #overall {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .CsmReport {
+            margin-top: 10px;
+        }
+
+        .CSMcc {
+            margin-top: 10px;
+        }
+
+        .SQD {
+            width: 100px;
+            margin-top: 15px;
+        }
+
+        .SQD th {
+            font-size: 12px;
         }
     </style>
 </head>
@@ -49,77 +82,233 @@
 
     <table id="customers">
         <tr>
-            <th>Offices</th>
+            {{-- <th>Offices</th> --}}
             <th>Overall Services</th>
             <th>Responses</th>
             <th>Total of Transaction</th>
         </tr>
+
         @foreach ($servicesData as $serviceTitle => $count)
             <tr>
-                <td> {{ $serviceTitle->officeAcronym }}</td>
-                <td> {{ $serviceTitle->serviceTitle }}</td>
-                <td>{{ $count }}</td>
-                @foreach ($serviceDataWithCode as $serviceWithCode => $count)
-                    <td>{{ $count }}</td>
-                @endforeach
+                {{-- <td> {{ $service->serviceTitle }}</td> --}}
+                <td> {{ $serviceTitle }}</td>
+                <td id="number">{{ $count }}</td>
+                <td id="number">{{ $count }}</td>
+
+            </tr>
+        @endforeach
+        <tr>
+            <td id="result">
+                TOTAL RESULT
+            </td>
+            <td id="number">
+                {{ $totalServices }}
+            </td>
+            <td id="number">
+                {{ $totalServiceTransaction }}
+            </td>
+        </tr>
+        <tr>
+            <td id="result">
+                OVERALL RESULT
+            </td>
+            <td id="overall">
+                {{ $multiplyByHundred }}%
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+    </table>
+
+    <div class="CsmReport">
+        <table id="customers">
+            <tr>
+                <th>Scale</th>
+                <th>Average</th>
+                <th>Rating</th>
+            </tr>
+
+
+            <tr>
+                <td>
+                    1
+                </td>
+                <td>
+                    1.00-1.49
+                </td>
+                <td>
+                    Strongly Unsatisfied
+                </td>
             </tr>
             <tr>
                 <td>
-                    TOTAL RESULT
+                    2
                 </td>
                 <td>
-                    {{ $totalServices }}
+                    1.50-2.49
                 </td>
                 <td>
-                    {{ $totalServiceTransaction }}
+                    Unsatisfied
                 </td>
             </tr>
-        @endforeach
-    </table>
+            <tr>
+                <td>
+                    3
+                </td>
+                <td>
+                    2.50-3.49
+                </td>
+                <td>
+                    Neither Satisfied nor Unsatisfied
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    4
+                </td>
+                <td>
+                    3.50-4.49
+                </td>
+                <td>
+                    Satisfied
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    4
+                </td>
+                <td>
+                    4.50-5.00
+                </td>
+                <td>
+                    Very Satisfied
+                </td>
+            </tr>
+        </table>
+
+        {{-- Citizen Charter --}}
+        <table id="customers" class="CSMcc">
+            <tr>
+                <th>CSM Report</th>
+                <th>Response</th>
+                <th>Percentage</th>
+            </tr>
+
+            @foreach ($cc1Report as $ccOption => $count)
+                <tr>
+                    <td>
+                        {{ $ccOption }}
+                    </td>
+                    <td>
+                        {{ $count }}
+                    </td>
+                    <td>
+                        {{ $cc1Percentage[$ccOption] }}%
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            @foreach ($cc2Report as $ccOption => $count)
+                <tr>
+                    <td>
+                        {{ $ccOption }}
+                    </td>
+                    <td>
+                        {{ $count }}
+                    </td>
+                    <td>
+                        {{ $cc2Percentage[$ccOption] }}%
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            @foreach ($cc3Report as $ccOption => $count)
+                <tr>
+                    <td>
+                        {{ $ccOption }}
+                    </td>
+                    <td>
+                        {{ $count }}
+                    </td>
+                    <td>
+                        {{ $cc3Percentage[$ccOption] }}%
+                    </td>
+                </tr>
+            @endforeach
+
+        </table>
+
+        <table id="customers" class="SQD">
+            <tr>
+                <th>Service Quality Dimension</th>
+                <th>Not Applicable</th>
+                <th>Strongly Disagree</th>
+                <th> Disagree</th>
+                <th>Neither Agree nor Disagree</th>
+                <th>Agree</th>
+                <th>Strongly Agree</th>
+                <th>Response</th>
+                <th>Ratings</th>
+            </tr>
+
+            @foreach ($SqdQuestions as $question)
+                <tr>
+                    <td>
+                        {{ $question->questions }}
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+            @endforeach
+
+
+        </table>
+    </div>
 
 </body>
 
 </html>
-
-
-
-{{-- @include('partials.headerAdmin')
-<!-- Table of Survey Service External-->
-<div class="md:w-full bg-white p-3 mt-2 mb-3 shadow-md rounded-lg ">
-    <div class="w-full p-2">
-        <h2 class="text-gray-500 text-lg font-semibold pb-1 capitalize"> Table 1.1: Overall Services Surveyed
-            by the
-            University</h2>
-        <div class="my-1"></div> <!-- Separation space -->
-        <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 mb-6"></div>
-    </div>
-    <table class="w-full table-auto text-sm border-2 border-collapse border-black" id="serviceTable">
-        <thead>
-            <tr class="leading-normal">
-                <th scope="row"
-                    class="py-2 px-4 bg-grey-lightest font-bold uppercase text-[15px]text-black border-b border-grey-light">
-                    Overall Services
-                </th>
-                <th scope="row"
-                    class="py-2 px-4 bg-grey-lightest  font-bold uppercasetext-[15px] text-black border-b border-grey-light">
-                    Responses</th>
-                <th scope="row"
-                    class="py-2 px-4 bg-grey-lightest  font-bold uppercase text-[15px] text-black border-b border-grey-light">
-                    Total of Transaction
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($getTotalServiceAvail as $serviceTitle => $count)
-                <tr class="hover:bg-grey-lighter text-center">
-                    <td class="py-2 px-4 border-2 border-grey-light text-[10px] font-semibold">
-                        {{ $serviceTitle }}</td>
-                    <td class="py-2 px-4 border-2 border-grey-light text-[10px] font-regular">
-                        {{ $count }}</td>
-                    <td class="py-2 px-4 border-2 border-grey-light text-[10px] font-regular">{{ $count }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@include('partials.footerAdmin') --}}

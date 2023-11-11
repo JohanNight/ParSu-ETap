@@ -43,15 +43,15 @@
                 <div class="flex p-1 w-full justify-center items-center gap-10 rounded-md bg-white mt-2 mb-3 shadow-md">
 
                     <div class=" bg-white border-2 p-2" id="fltr_from_admin">
-                        <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
-                        <input type="date" name="date_from"
+                        <label for="date_From" class="text-[18px] Reg-font ml-2">From:</label>
+                        <input type="date" name="date_From"
                             class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
                     <div class=" bg-white border-2 p-2" id="fltr_to_admin">
-                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
-                        <input type="date" name="date_to"
+                        <label for="date_To" class="text-[18px] Reg-font ml-2">To:</label>
+                        <input type="date" name="date_To"
                             class="p-1 rounded-md border-2 border-black focus:outline-none">
-                        @error('date_to')
+                        @error('date_To')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
                             </p>

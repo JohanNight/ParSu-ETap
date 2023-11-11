@@ -930,20 +930,33 @@ class adminController extends Controller
     {
         //dd($request);
         $request->validate([
-            'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
+            'date_From' => 'required|date',
+            'date_To' => 'required|date|after_or_equal:date_From',
         ]);
         $sumOfAllDataController = new SumOfAllData();
         $result = $sumOfAllDataController->getAllTotalServiceResult($request);
+        $CsmReport = $sumOfAllDataController->getAllTheCcResult($request);
+        $SqdQuestions = $sumOfAllDataController->getTheSqdQuestion();
+        $SqdResult = $sumOfAllDataController->getAllSQDResult($request);
+
 
         $totalServices = $result['totalServices'];
         $totalServiceTransaction = $result['totalServiceTransaction'];
         $multiplyByHundred = $result['multiplyByHundred'];
-        $serviceDataWithCode = $result['serviceDataWithCode'];
+        // $serviceDataWithCode = $result['serviceDataWithCode'];
         $servicesData = $result['servicesData'];
 
+        $cc1Report = $CsmReport['cc1Data'];
+        $cc2Report = $CsmReport['cc2Data'];
+        $cc3Report = $CsmReport['cc3Data'];
 
-        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData', 'serviceDataWithCode', 'totalServices', ' totalServiceTransaction'));
+        $cc1Percentage = $CsmReport['cc1Percentage'];
+        $cc2Percentage = $CsmReport['cc2Percentage'];
+        $cc3Percentage = $CsmReport['cc3Percentage'];
+
+
+
+        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData',  'totalServices', 'totalServiceTransaction', 'multiplyByHundred', 'cc1Report', 'cc2Report', 'cc3Report', 'cc1Percentage', 'cc2Percentage', 'cc3Percentage', 'SqdQuestions'));
         return $pdf->stream('Result.pdf');
     }
 
