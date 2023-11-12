@@ -89,33 +89,6 @@
                                     </a></td>
                             </tr>
                         @endforeach
-
-                        <!-- Add more rows here like the one above for each pending authorization -->
-                        {{-- <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">María Gómez</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                        </tr>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Carlos López</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Laura Torres</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
-                        </tr>
-                        <tr class="hover:bg-grey-lighter">
-                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                    alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                            <td class="py-2 px-4 border-b border-grey-light">Ana Ramírez</td>
-                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                        </tr> --}}
                     </tbody>
                 </table>
                 <!-- "See more" button for the Pending Authorizations table -->
@@ -126,62 +99,6 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Fourth container -->
-            <!-- Section 4 - Table of Transactions-->
-
-            {{-- <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <div class="bg-white p-4 rounded-md mt-4">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Transactions</h2>
-                    <div class="my-1"></div> <!-- Separation space -->
-                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                    <!-- Line with gradient -->
-                    <table class="w-full table-auto text-sm">
-                        <thead>
-                            <tr class="text-sm leading-normal">
-                                <th
-                                    class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                    Name</th>
-                                <th
-                                    class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                                    Date</th>
-                                <th
-                                    class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">
-                                    Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="hover:bg-grey-lighter">
-                                <td class="py-2 px-4 border-b border-grey-light">Carlos Sánchez</td>
-                                <td class="py-2 px-4 border-b border-grey-light">27/07/2023</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-right">$1500</td>
-                            </tr>
-                            <tr class="hover:bg-grey-lighter">
-                                <td class="py-2 px-4 border-b border-grey-light">Pedro Hernández</td>
-                                <td class="py-2 px-4 border-b border-grey-light">02/08/2023</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-right">$1950</td>
-                            </tr>
-                            <tr class="hover:bg-grey-lighter">
-                                <td class="py-2 px-4 border-b border-grey-light">Sara Ramírez</td>
-                                <td class="py-2 px-4 border-b border-grey-light">03/08/2023</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-right">$1850</td>
-                            </tr>
-                            <tr class="hover:bg-grey-lighter">
-                                <td class="py-2 px-4 border-b border-grey-light">Daniel Torres</td>
-                                <td class="py-2 px-4 border-b border-grey-light">04/08/2023</td>
-                                <td class="py-2 px-4 border-b border-grey-light text-right">$2300</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- "See more" button for the Transactions table -->
-                    <div class="text-right mt-4">
-                        <button class="text-right mt-4">
-                            <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
-                                See more
-                            </button>
-                        </button>
-                    </div>
-                </div> --}}
         </div>
     </div>
 </div>

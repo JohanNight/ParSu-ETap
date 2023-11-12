@@ -23,7 +23,6 @@ class clientInfo extends Model
         'cc1',
         'cc2',
         'cc3',
-        'sqd0',
         'sqd1',
         'sqd2',
         'sqd3',
@@ -32,6 +31,7 @@ class clientInfo extends Model
         'sqd6',
         'sqd7',
         'sqd8',
+        'sqd9',
         'comment',
         'serviceCode'
     ];

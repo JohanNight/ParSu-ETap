@@ -123,3 +123,49 @@
 </div>
 
 @include('partials.footerClient')
+
+{{-- 
+            @foreach ($SqdQuestions as $question)
+                <tr>
+                    <td>
+                        {{ $question->questions }}
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+            @endforeach --}}
+{{-- @foreach ($SqdResult as $question)
+                <tr>
+                    <td>{{ $question->questions }}</td>
+                    <td>{{ $SqdResult[$question->questions][0] }}</td>
+                    <td>{{ $SqdResult[$question->questions][1] }}</td>
+                    <td>{{ $SqdResult[$question->questions][2] }}</td>
+                    <td>{{ $SqdResult[$question->questions][3] }}</td>
+                    <td>{{ $SqdResult[$question->questions][4] }}</td>
+                    <td>{{ $SqdResult[$question->questions][5] }}</td>
+                    <td>{{ $SqdResult[$question->questions]['response'] }}</td>
+                    <td>{{ $SqdResult[$question->questions]['ratings'] }}</td>
+                </tr>
+            @endforeach --}}

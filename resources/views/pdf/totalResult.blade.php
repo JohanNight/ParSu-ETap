@@ -273,35 +273,17 @@
                 <th>Ratings</th>
             </tr>
 
-            @foreach ($SqdQuestions as $question)
+            @foreach (json_decode($SqdResult->getContent(), true) as $question => $result)
                 <tr>
-                    <td>
-                        {{ $question->questions }}
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
+                    <td>{{ $question }}</td>
+                    <td>{{ $result[0] }}</td>
+                    <td>{{ $result[1] }}</td>
+                    <td>{{ $result[2] }}</td>
+                    <td>{{ $result[3] }}</td>
+                    <td>{{ $result[4] }}</td>
+                    <td>{{ $result[5] }}</td>
+                    <td>11</td>
+                    <td>11</td>
                 </tr>
             @endforeach
 

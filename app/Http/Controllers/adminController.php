@@ -944,15 +944,17 @@ class adminController extends Controller
         $sumOfAllDataController = new SumOfAllData();
         $result = $sumOfAllDataController->getAllTotalServiceResult($request);
         $CsmReport = $sumOfAllDataController->getAllTheCcResult($request);
-        $SqdQuestions = $sumOfAllDataController->getTheSqdQuestion();
+        // $SqdQuestions = $sumOfAllDataController->getTheSqdQuestion();
         $SqdResult = $sumOfAllDataController->getAllSQDResult($request);
 
-
+        //dd($SqdResult);
         $totalServices = $result['totalServices'];
         $totalServiceTransaction = $result['totalServiceTransaction'];
         $multiplyByHundred = $result['multiplyByHundred'];
         // $serviceDataWithCode = $result['serviceDataWithCode'];
         $servicesData = $result['servicesData'];
+
+
 
         $cc1Report = $CsmReport['cc1Data'];
         $cc2Report = $CsmReport['cc2Data'];
@@ -964,7 +966,7 @@ class adminController extends Controller
 
 
 
-        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData',  'totalServices', 'totalServiceTransaction', 'multiplyByHundred', 'cc1Report', 'cc2Report', 'cc3Report', 'cc1Percentage', 'cc2Percentage', 'cc3Percentage', 'SqdQuestions'));
+        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData',  'totalServices', 'totalServiceTransaction', 'multiplyByHundred', 'cc1Report', 'cc2Report', 'cc3Report', 'cc1Percentage', 'cc2Percentage', 'cc3Percentage', 'SqdResult'));
         return $pdf->stream('Result.pdf');
     }
 

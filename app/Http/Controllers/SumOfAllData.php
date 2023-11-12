@@ -10,6 +10,7 @@ use App\Models\clientInfo;
 use App\Models\offices;
 use App\Models\service1;
 use App\Models\SurveyQuestion;
+use Illuminate\Support\Facades\DB;
 
 class SumOfAllData extends Controller
 {
@@ -850,99 +851,155 @@ class SumOfAllData extends Controller
         // $sqdQuestion =   $SQDquestions->questions;
         return   $SQDquestions;
     }
+    // public function getAllSQDResult($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     //total responses
+
+    //     // $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+    //     //     ->get(); // retrieve all survey data
+    //     $SQDquestions = SurveyQuestion::all();
+    //     $Questions = [];
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $responsivenessCounts = [];
+    //     $reliabilityCounts = [];
+    //     $accessAndfacilitiesCounts = [];
+    //     $communicationCounts = [];
+    //     $costCounts = [];
+    //     $integrityCounts = [];
+    //     $assuranceCounts = [];
+    //     $outcomeCounts = [];
+    //     $overallCounts = [];
+
+    //     foreach ($SQDquestions as $question) {
+    //         $Questions[$question->questions] = 0;
+    //     }
+
+
+
+    //     foreach ($sqdValues as $value) {
+    //         $responsivenessCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd0',  $value)
+    //             ->count();
+    //     }
+
+    //     foreach ($sqdValues as $value) {
+    //         $reliabilityCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd1',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $accessAndfacilitiesCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd2',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $communicationCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd3',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $costCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd4',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $integrityCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd5',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $assuranceCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd6',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $outcomeCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd7',  $value)
+    //             ->count();
+    //     }
+    //     foreach ($sqdValues as $value) {
+    //         $overallCounts[] = DB::table('table_client_survey_information')
+    //             ->whereBetween('created_at', $dateRange)
+    //             ->where('sqd8',  $value)
+    //             ->count();
+    //     }
+    //     // ->sum(DB::raw('sqd0 * 5'));
+
+    //     $Sqd0 = [];
+
+    //     dd($integrityCounts);
+    // }
+    // public function getAllSQDResult($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     // Retrieve all survey questions
+    //     $SQDquestions = SurveyQuestion::all();
+
+    //     $Questions = [];
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $questionCounts = [];
+
+    //     foreach ($SQDquestions as $question) {
+    //         $Questions[$question->questions] = 0;
+    //     }
+
+    //     $sqdFields = ['sqd0', 'sqd1', 'sqd2', 'sqd3', 'sqd4', 'sqd5', 'sqd6', 'sqd7', 'sqd8'];
+    //     // $sqdFields =   $questionCounts;
+
+    //     foreach ($sqdFields as $field) {
+    //         $counts = [];
+    //         foreach ($sqdValues as $value) {
+    //             $counts[] = DB::table('table_client_survey_information')
+    //                 ->whereBetween('created_at', $dateRange)
+    //                 ->where($field, $value)
+    //                 ->count();
+    //         }
+    //         $questionCounts[$field] = $counts;
+    //     }
+
+    //     dd($questionCounts);
+    // }
+
     public function getAllSQDResult($request)
     {
         $dateFrom = $request->input('date_From');
         $dateTo = $request->input('date_To');
 
-        //total responses
-
-        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])->get(); // retrieve all survey data
+        // Retrieve all survey questions
         $SQDquestions = SurveyQuestion::all();
 
+        $dateRange = [$dateFrom, $dateTo];
+        $sqdValues = [0, 1, 2, 3, 4, 5];
+        $questionCounts = [];
 
-        $surveyQuestionData = [];
-
-
-        $surveyOptions = [
-            (object)['option' => '0'],
-            (object)['option' => '1'],
-            (object)['option' => '2'],
-            (object)['option' => '3'],
-            (object)['option' => '4'],
-            (object)['option' => '5']
-        ];
-
-        // Create a single array with all options
-        $allOptions = [];
-        foreach ($surveyOptions as $option) {
-            $allOptions[$option->option] = 0;
-        }
-
-        // foreach ($SQDquestions as $question) {
-        //     $surveyQuestionData[$question->questions] = [];
-        //     foreach ($surveyOptions as $option) {
-        //         $surveyQuestionData[$question->questions][$option->option] = 0;
-        //     }
-        // }
-
-        // Assign the same array of options to each question
         foreach ($SQDquestions as $question) {
-            $surveyQuestionData[$question->questions] = $allOptions;
+            $questionCounts[$question->questions] = [];
+            foreach ($sqdValues as $value) {
+                $questionCounts[$question->questions][$value] = DB::table('table_client_survey_information')
+                    ->whereBetween('created_at', $dateRange)
+                    ->where('sqd' . $question->id, $value)
+                    ->count();
+            }
         }
 
-        // $Options = [];
-
-        // foreach ($surveyOptions as $OPTION) {
-        //     $Options[$OPTION->option] = 0;
-        // }
-
-        // foreach ($surveyData as $surveyed) {
-        //     foreach ($SQDquestions as $question) {
-        //         foreach ($surveyOptions as $option) {
-        //             if ($surveyed->sqd0 == $question->id && $surveyed->option == $option->option) {
-        //                 $surveyQuestionData[$question->questions][$option->option]++;
-        //             }
-        //         }
-        //     }
-        // }
-
-
-        // foreach ($surveyData as $surveyed) {
-        //     foreach ($surveyOptions as $Soption) {
-        //         if ($surveyed->sqd0 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd1 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd2 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-
-        //         if ($surveyed->sqd3 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd4 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd5 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd6 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd7 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //         if ($surveyed->sqd8 == $Soption->option) {
-        //             $Options[$Soption->option]++;
-        //         }
-        //     }
-        // }
-
-
-
-        dd($surveyQuestionData);
+        // dd($questionCounts);
+        return response()->json($questionCounts);
     }
 }
