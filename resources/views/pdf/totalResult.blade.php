@@ -276,14 +276,14 @@
             @foreach (json_decode($SqdResult->getContent(), true) as $question => $result)
                 <tr>
                     <td>{{ $question }}</td>
-                    <td>{{ $result[0] }}</td>
-                    <td>{{ $result[1] }}</td>
-                    <td>{{ $result[2] }}</td>
-                    <td>{{ $result[3] }}</td>
-                    <td>{{ $result[4] }}</td>
-                    <td>{{ $result[5] }}</td>
-                    <td>11</td>
-                    <td>11</td>
+                    <td>{{ $result['counts'][0] }}</td>
+                    <td>{{ $result['counts'][1] }}</td>
+                    <td>{{ $result['counts'][2] }}</td>
+                    <td>{{ $result['counts'][3] }}</td>
+                    <td>{{ $result['counts'][4] }}</td>
+                    <td>{{ $result['counts'][5] }}</td>
+                    <td>{{ $result['original_sum'] }}</td>
+                    <td>{{ $result['rate'] }}</td>
                 </tr>
             @endforeach
 

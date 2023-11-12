@@ -944,7 +944,6 @@ class adminController extends Controller
         $sumOfAllDataController = new SumOfAllData();
         $result = $sumOfAllDataController->getAllTotalServiceResult($request);
         $CsmReport = $sumOfAllDataController->getAllTheCcResult($request);
-        // $SqdQuestions = $sumOfAllDataController->getTheSqdQuestion();
         $SqdResult = $sumOfAllDataController->getAllSQDResult($request);
 
         //dd($SqdResult);
