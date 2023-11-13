@@ -945,6 +945,7 @@ class adminController extends Controller
         $result = $sumOfAllDataController->getAllTotalServiceResult($request);
         $CsmReport = $sumOfAllDataController->getAllTheCcResult($request);
         $SqdResult = $sumOfAllDataController->getAllSQDResult($request);
+        $ServiceRate = $sumOfAllDataController->totalServicesRate($request);
 
         //dd($SqdResult);
         $totalServices = $result['totalServices'];

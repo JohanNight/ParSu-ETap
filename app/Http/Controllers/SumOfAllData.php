@@ -273,23 +273,6 @@ class SumOfAllData extends Controller
         return $officeCount;
     }
 
-    // public function calculatePerOfficeServiceSurveyed()
-    // {
-    //     $surveyData = clientInfo::all(); //retrieve all survey data
-    //     $serviceAvailable = service1::all();
-    //     $serviceCount = [];
-    //     foreach ($serviceAvailable as $service) {
-    //         $serviceCount[$service->service_Title] = 0;
-    //     }
-    //     foreach ($surveyData as $surveyed) {
-    //         foreach ($serviceAvailable as $service) {
-    //             if ($surveyed->service_avail == $service->service_Title) {
-    //                 $serviceCount[$service->service_Title]++;
-    //             }
-    //         }
-    //     }
-    //     return $serviceCount;
-    // }
     public function calculateExternalSerivices()
     {
         // $surveyData = clientInfo::where('external', true)->get(); //retrieve all survey data
@@ -674,6 +657,8 @@ class SumOfAllData extends Controller
         return  $internalService;
     }
 
+    // Result for PDF in Super Admin
+
     public function getAllTotalServiceResult($request)
     {
 
@@ -810,12 +795,12 @@ class SumOfAllData extends Controller
     }
 
 
-    public function getTheSqdQuestion()
-    {
-        $SQDquestions = SurveyQuestion::all();
-        // $sqdQuestion =   $SQDquestions->questions;
-        return   $SQDquestions;
-    }
+    // public function getTheSqdQuestion()
+    // {
+    //     $SQDquestions = SurveyQuestion::all();
+    //     // $sqdQuestion =   $SQDquestions->questions;
+    //     return   $SQDquestions;
+    // }
 
 
 
@@ -927,5 +912,289 @@ class SumOfAllData extends Controller
 
         //dd($questionCounts);
         return response()->json($questionCounts);
+    }
+
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $serviceCounts = [];
+
+    //     foreach ($Services as $service) {
+    //         $responsivenessSum = DB::table('table_client_survey_information')
+    //             ->where('service_avail', $service->idServiceSpecification)
+    //             ->where('sqd1', 5)
+    //             ->count();
+    //         // ->sum(DB::raw('sqd1 * 5'));
+    //     }
+    //     dd($responsivenessSum);
+    // }
+
+
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdColumns = range(1, 9); // Assuming SQD columns are named sqd1, sqd2, ..., sqd9
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $serviceRates = [];
+
+    //     foreach ($Services as $service) {
+    //         $serviceCounts[$service->serviceTitle] = ['counts' => [], 'original_sum' => 0, 'multiplied_sum' => 0];
+
+    //         // Initialize counts for each column
+    //         foreach ($sqdColumns as $column) {
+    //             $serviceCounts[$service->serviceTitle]['counts'][$column] = 0;
+    //         }
+
+    //         foreach ($sqdColumns as $column) {
+    //             foreach ($sqdValues as $value) {
+    //                 $count = DB::table('table_client_survey_information')
+    //                     ->where('service_avail', $service->idServiceSpecification)
+    //                     ->where("sqd$column", $value)
+    //                     ->whereBetween('created_at', $dateRange)
+    //                     ->count();
+
+    //                 // Accumulate counts for the current column
+    //                 $serviceCounts[$service->serviceTitle]['counts'][$column] += $count;
+
+    //                 // Accumulate original sum and multiplied sum
+    //                 $serviceCounts[$service->serviceTitle]['original_sum'] += $count;
+    //                 $serviceCounts[$service->serviceTitle]['multiplied_sum'] += $count * $value;
+    //             }
+    //         }
+
+    //         // Calculate the weighted average (rate)
+    //         $totalCount = $serviceCounts[$service->serviceTitle]['original_sum'];
+    //         $totalCountWithoutZeros = array_sum($serviceCounts[$service->serviceTitle]['counts']);
+
+    //         // Prevent division by zero
+    //         $serviceRates[$service->serviceTitle]['rate'] = $totalCountWithoutZeros > 0
+    //             ? $serviceCounts[$service->serviceTitle]['multiplied_sum'] / $totalCountWithoutZeros
+    //             : 0;
+    //     }
+
+    //     dd($serviceCounts);
+    //     return response()->json($serviceRates);
+    // }
+
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdColumns = range(1, 9); // Assuming SQD columns are named sqd1, sqd2, ..., sqd9
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $serviceRates = [];
+
+    //     foreach ($Services as $service) {
+    //         $serviceCounts[$service->serviceTitle] = ['counts' => [], 'original_sum' => 0, 'multiplied_sum' => 0];
+
+    //         // Initialize counts for each column
+    //         foreach ($sqdColumns as $column) {
+    //             $serviceCounts[$service->serviceTitle]['counts'][$column] = [
+    //                 '5' => 0,
+    //                 '4' => 0,
+    //                 '3' => 0,
+    //                 '2' => 0,
+    //                 '1' => 0,
+    //                 '0' => 0,
+    //             ];
+    //         }
+
+    //         foreach ($sqdColumns as $column) {
+    //             foreach ($sqdValues as $value) {
+    //                 $count = DB::table('table_client_survey_information')
+    //                     ->where('service_avail', $service->idServiceSpecification)
+    //                     ->where("sqd$column", $value)
+    //                     ->whereBetween('created_at', $dateRange)
+    //                     ->count();
+
+    //                 // Accumulate counts for each SQD option
+    //                 $serviceCounts[$service->serviceTitle]['counts'][$column][(string)$value] = $count;
+
+    //                 // Accumulate original sum and multiplied sum
+    //                 $serviceCounts[$service->serviceTitle]['original_sum'] += $count;
+    //                 $serviceCounts[$service->serviceTitle]['multiplied_sum'] += $count * $value;
+    //             }
+    //         }
+
+    //         // Calculate the weighted average (rate) for each SQD column
+    //         foreach ($sqdColumns as $column) {
+    //             $totalCount = $serviceCounts[$service->serviceTitle]['original_sum'];
+    //             $totalCountWithoutZeros = array_sum($serviceCounts[$service->serviceTitle]['counts'][$column]);
+
+    //             // Prevent division by zero
+    //             $serviceCounts[$service->serviceTitle]['rate'][$column] = $totalCountWithoutZeros > 0
+    //                 ? $serviceCounts[$service->serviceTitle]['multiplied_sum'] / $totalCountWithoutZeros
+    //                 : 0;
+    //         }
+    //     }
+
+    //     dd($serviceCounts);
+    //     return response()->json($serviceCounts);
+    // }
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $sqdColumns = range(1, 9); // Assuming SQD columns are named sqd1, sqd2, ..., sqd9
+    //     $serviceRates = [];
+    // }
+
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $sqdColumns = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // Assuming SQD columns are named sqd1, sqd2, ..., sqd9
+    //     $serviceCounts = [];
+
+    //     foreach ($Services as $service) {
+    //         $serviceCounts[$service->serviceTitle] = [];
+
+    //         // Count occurrences for each SQD column and each value in $sqdValues
+    //         foreach ($sqdColumns as $column) {
+    //             $columnCounts = [];
+
+    //             foreach ($sqdValues as $value) {
+    //                 $count = DB::table('table_client_survey_information')
+    //                     ->where('service_avail', $service->idServiceSpecification)
+    //                     ->where("sqd$column", $value)
+    //                     ->whereBetween('created_at', $dateRange)
+    //                     ->count();
+
+    //                 $columnCounts[$value] = $count;
+    //             }
+
+    //             $serviceCounts[$service->serviceTitle][$column] = $columnCounts;
+    //         }
+    //     }
+
+    //     dd($serviceCounts);
+    //     return response()->json($serviceCounts);
+    // }
+
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $sqdColumns = range(1, 9); // Assuming SQD columns are named sqd1, sqd2, ..., sqd9
+
+    //     foreach ($Services as $service) {
+    //         $serviceCounts[$service->serviceTitle] = [];
+
+    //         // Count occurrences for each SQD column
+    //         foreach ($sqdColumns as $column) {
+    //             $count = DB::table('table_client_survey_information')
+    //                 ->where('service_avail', $service->idServiceSpecification)
+    //                 ->where("sqd$column", $sqdValues) // Assuming you want to count occurrences where SQD column value is 4
+    //                 ->whereBetween('created_at', $dateRange)
+    //                 ->count();
+
+    //             $serviceCounts[$service->serviceTitle][$column] = $count;
+    //         }
+    //     }
+
+    //     dd($serviceCounts);
+    //     return response()->json($serviceCounts);
+    // }
+
+    // public function totalServicesRate($request)
+    // {
+    //     $dateFrom = $request->input('date_From');
+    //     $dateTo = $request->input('date_To');
+
+    //     $Services = service1::all();
+
+    //     $dateRange = [$dateFrom, $dateTo];
+    //     $sqdValues = [0, 1, 2, 3, 4, 5];
+    //     $sqdColumns = range(1, 9); // Assuming SQD columns are named sqd1, sqd2, ..., sqd9
+    //     foreach ($Services as $service) {
+    //         $serviceCounts[$service->serviceTitle] = [];
+    //         foreach ($sqdColumns as $column) {
+    //             $count = DB::table('table_client_survey_information')
+    //                 ->where('service_avail', $service->idServiceSpecification)
+    //                 ->where('sqd1', 5)
+    //                 ->whereBetween('created_at', $dateRange)
+    //                 ->count();
+    //             $serviceCounts[$service->serviceTitle][$column] = $count;
+    //         }
+    //     }
+    //     dd($serviceCounts);
+    // }
+
+    public function totalServicesRate($request)
+    {
+        $dateFrom = $request->input('date_From');
+        $dateTo = $request->input('date_To');
+
+        $Services = service1::all();
+        $surveyData = clientInfo::all();
+
+        $dateRange = [$dateFrom, $dateTo];
+        $sqdValues = [0, 1, 2, 3, 4, 5];
+        $sqdColumn = range(1, 9); // Assuming you want to count occurrences for sqd1
+        $serviceCounts = [];
+
+        // foreach ($Services as $service) {
+        //     $count = DB::table('table_client_survey_information')
+        //         ->whereBetween('created_at', $dateRange)
+        //         ->where('service_avail', $service->idServiceSpecification)
+        //         ->where('sqd1', 5)
+        //         ->count();
+
+        //     $serviceCounts[$service->serviceTitle] = $count;
+        // }  
+
+        // foreach ($Services as $service) {
+        //     $serviceCount[$service->serviceTitle] = [];
+        //     $count = DB::table('table_client_survey_information')
+        //         ->where('service_avail', $service->idServiceSpecification)
+        //         ->where('sqd1',  5)
+        //         ->whereBetween('created_at', $dateRange)
+        //         ->count();
+        //     $serviceCount[$service->serviceTitle] = $count;
+        // }
+
+        foreach ($Services as $service) {
+            $serviceCount[$service->serviceTitle] = [];
+
+
+            $count = DB::table('table_client_survey_information')
+                ->where('service_avail', $service->idServiceSpecification)
+                ->where('sqd1',  5)
+                ->whereBetween('created_at', $dateRange)
+                ->count();
+            $serviceCount[$service->serviceTitle] = $count;
+        }
+
+        dd($serviceCount);
     }
 }
