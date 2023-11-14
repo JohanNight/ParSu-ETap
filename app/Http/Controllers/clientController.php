@@ -336,6 +336,6 @@ class clientController extends Controller
             'comment' => $validateData['suggestion_for_client']
         ];
         clientInfo::create($UserData);
-        return redirect('/home')->with('message', 'Thank you for your time :) ');
+        return redirect('/home/clientButton')->with('message', 'Thank you for your time :) ');
     }
 }
