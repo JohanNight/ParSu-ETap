@@ -286,9 +286,21 @@
                     <td>{{ $result['rate'] }}</td>
                 </tr>
             @endforeach
-
-
         </table>
+        <table id="customers">
+            <tr>
+                <th>Service Quality Dimension</th>
+                <th>Ratings</th>
+            </tr>
+
+            @foreach (json_decode($ServiceRate->getContent(), true) as $serviceCounts => $result)
+                <tr>
+                    <td>{{ $serviceCounts }}</td>
+                    <td>{{ $result['serviceCountsTotalRateOfService'] }}</td>
+                </tr>
+            @endforeach
+        </table>
+
     </div>
 
 </body>

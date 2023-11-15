@@ -947,7 +947,7 @@ class adminController extends Controller
         $SqdResult = $sumOfAllDataController->getAllSQDResult($request);
         $ServiceRate = $sumOfAllDataController->totalServicesRate($request);
 
-        //dd($SqdResult);
+        //dd($ServiceRate);
         $totalServices = $result['totalServices'];
         $totalServiceTransaction = $result['totalServiceTransaction'];
         $multiplyByHundred = $result['multiplyByHundred'];
@@ -966,7 +966,7 @@ class adminController extends Controller
 
 
 
-        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData',  'totalServices', 'totalServiceTransaction', 'multiplyByHundred', 'cc1Report', 'cc2Report', 'cc3Report', 'cc1Percentage', 'cc2Percentage', 'cc3Percentage', 'SqdResult'));
+        $pdf = FacadePdf::loadView('pdf.totalResult', compact('servicesData',  'totalServices', 'totalServiceTransaction', 'multiplyByHundred', 'cc1Report', 'cc2Report', 'cc3Report', 'cc1Percentage', 'cc2Percentage', 'cc3Percentage', 'SqdResult', 'ServiceRate'));
         return $pdf->stream('Result.pdf');
     }
 
