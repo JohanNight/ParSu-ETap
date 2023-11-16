@@ -7,6 +7,7 @@
             font-family: Arial, Helvetica, sans-serif, 'poppins';
             border-collapse: collapse;
             width: 100%;
+            margin-top: 20px;
         }
 
         #customers td,
@@ -70,6 +71,10 @@
 
         .SQD th {
             font-size: 12px;
+        }
+
+        #totalResult {
+            text-align: center;
         }
     </style>
 </head>
@@ -201,10 +206,10 @@
                     <td>
                         {{ $ccOption }}
                     </td>
-                    <td>
+                    <td id="totalResult">
                         {{ $count }}
                     </td>
-                    <td>
+                    <td id="totalResult">
                         {{ $cc1Percentage[$ccOption] }}%
                     </td>
                 </tr>
@@ -225,10 +230,10 @@
                     <td>
                         {{ $ccOption }}
                     </td>
-                    <td>
+                    <td id="totalResult">
                         {{ $count }}
                     </td>
-                    <td>
+                    <td id="totalResult">
                         {{ $cc2Percentage[$ccOption] }}%
                     </td>
                 </tr>
@@ -249,10 +254,10 @@
                     <td>
                         {{ $ccOption }}
                     </td>
-                    <td>
+                    <td id="totalResult">
                         {{ $count }}
                     </td>
-                    <td>
+                    <td id="totalResult">
                         {{ $cc3Percentage[$ccOption] }}%
                     </td>
                 </tr>
@@ -276,18 +281,18 @@
             @foreach (json_decode($SqdResult->getContent(), true) as $question => $result)
                 <tr>
                     <td>{{ $question }}</td>
-                    <td>{{ $result['counts'][0] }}</td>
-                    <td>{{ $result['counts'][1] }}</td>
-                    <td>{{ $result['counts'][2] }}</td>
-                    <td>{{ $result['counts'][3] }}</td>
-                    <td>{{ $result['counts'][4] }}</td>
-                    <td>{{ $result['counts'][5] }}</td>
-                    <td>{{ $result['original_sum'] }}</td>
-                    <td>{{ $result['rate'] }}</td>
+                    <td id="totalResult">{{ $result['counts'][0] }}</td>
+                    <td id="totalResult">{{ $result['counts'][1] }}</td>
+                    <td id="totalResult">{{ $result['counts'][2] }}</td>
+                    <td id="totalResult">{{ $result['counts'][3] }}</td>
+                    <td id="totalResult">{{ $result['counts'][4] }}</td>
+                    <td id="totalResult">{{ $result['counts'][5] }}</td>
+                    <td id="totalResult">{{ $result['original_sum'] }}</td>
+                    <td id="totalResult">{{ $result['rate'] }}</td>
                 </tr>
             @endforeach
         </table>
-        <table id="customers">
+        <table id="customers" class="SQD">
             <tr>
                 <th>Service Quality Dimension</th>
                 <th>Ratings</th>
@@ -296,7 +301,7 @@
             @foreach (json_decode($ServiceRate->getContent(), true) as $serviceCounts => $result)
                 <tr>
                     <td>{{ $serviceCounts }}</td>
-                    <td>{{ $result['serviceCountsTotalRateOfService'] }}</td>
+                    <td id="totalResult">{{ $result['serviceCountsTotalRateOfService'] }}</td>
                 </tr>
             @endforeach
         </table>

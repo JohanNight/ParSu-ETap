@@ -6,7 +6,9 @@ use App\Models\Cc_Options;
 use App\Models\clientCategory;
 use App\Models\clientInfo;
 use App\Models\service1;
+use App\Models\SurveyQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SumOfDatasController extends Controller
 {
@@ -268,10 +270,10 @@ class SumOfDatasController extends Controller
 
     public function getTotalAnswerePerService($request, $userOfficeId)
     {
-        $request->validate([
-            'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
-        ]);
+        // $request->validate([
+        //     'date_from' => 'required|date',
+        //     'date_to' => 'required|date|after_or_equal:date_from',
+        // ]);
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -525,50 +527,6 @@ class SumOfDatasController extends Controller
         return $totalClients;
     }
 
-    public function getCalculateAnswerePerService($request, $userOfficeId)
-    {
-        $request->validate([
-            'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
-        ]);
-
-        $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
-
-        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
-            ->get(); // retrieve all survey data
-        $services = service1::where('idOffice', $userOfficeId)
-            ->get();
-        $serviceMade = [];
-
-        foreach ($services  as $service) {
-            $serviceMade[$service->serviceTitle] = 0;
-        }
-        foreach ($surveyData as $surveyed) {
-            foreach ($services as $serviced) {
-                if ($surveyed->service_avail == $serviced->idServiceSpecification) {
-                    $serviceMade[$serviced->serviceTitle]++;
-                }
-            }
-        }
-        return $serviceMade;
-    }
-
-    public function TotalAnswerePerService($request, $userOfficeId)
-    {
-
-        $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
-
-        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
-            ->where('idOfficeOrigin', $userOfficeId)
-            ->get()
-            ->count(); // retrieve all survey data
-
-
-        return  $surveyData;
-    }
-
     public function getTotalCcRecord($request, $userOfficeId)
     {
         $dateFrom = $request->input('date_from');
@@ -601,10 +559,53 @@ class SumOfDatasController extends Controller
         return $ccOptionCount;
     }
 
+    //PDF report
+
+    public function getCalculateAnswerePerService($request, $userOfficeId)
+    {
+
+        $dateFrom = $request->input('Assess_From_date');
+        $dateTo = $request->input('Assess_date_To');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->get(); // retrieve all survey data
+        $services = service1::where('idOffice', $userOfficeId)
+            ->get();
+        $serviceMade = [];
+
+        foreach ($services  as $service) {
+            $serviceMade[$service->serviceTitle] = 0;
+        }
+        foreach ($surveyData as $surveyed) {
+            foreach ($services as $serviced) {
+                if ($surveyed->service_avail == $serviced->idServiceSpecification) {
+                    $serviceMade[$serviced->serviceTitle]++;
+                }
+            }
+        }
+        return $serviceMade;
+    }
+
+    public function TotalAnswerePerService($request, $userOfficeId)
+    {
+
+        $dateFrom = $request->input('Assess_From_date');
+        $dateTo = $request->input('Assess_date_To');
+
+        $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
+            ->where('idOfficeOrigin', $userOfficeId)
+            ->get()
+            ->count(); // retrieve all survey data
+
+
+        return  $surveyData;
+    }
+
+
     public function getCalculatePerCcRecord($request, $userOfficeId)
     {
-        $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateFrom = $request->input('Assess_From_date');
+        $dateTo = $request->input('Assess_date_To');
 
         $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
             ->where('idOfficeOrigin', $userOfficeId)->get(); // retrieve all survey data; 
@@ -657,5 +658,46 @@ class SumOfDatasController extends Controller
             'cc3Data' => $cc3Data,
             'totalResponses' =>   $totalResponses,
         ];
+    }
+
+    public function getAllSQDResult($request, $userOfficeId)
+    {
+        $dateFrom = $request->input('Assess_From_date');
+        $dateTo = $request->input('Assess_date_To');
+
+        // Retrieve all survey questions
+        $SQDquestions = SurveyQuestion::all();
+
+        $dateRange = [$dateFrom, $dateTo];
+        $sqdValues = [0, 1, 2, 3, 4, 5];
+        $questionCounts = [];
+
+        foreach ($SQDquestions as $question) {
+            $questionCounts[$question->questions] = ['counts' => [], 'original_sum' => 0, 'multiplied_sum' => 0];
+
+            foreach ($sqdValues as $value) {
+                $count = DB::table('table_client_survey_information')
+                    ->whereBetween('created_at', $dateRange)
+                    ->where('sqd' . $question->id, $value)
+                    ->where('idOfficeOrigin', $userOfficeId)
+                    ->count();
+
+                $questionCounts[$question->questions]['counts'][$value] = $count;
+                $questionCounts[$question->questions]['original_sum'] += $count;
+                $questionCounts[$question->questions]['multiplied_sum'] += $count * $value;
+            }
+
+            // Calculate the weighted average (rate)
+            $totalCount = $questionCounts[$question->questions]['original_sum'];
+            $totalCountWithoutZeros = array_sum($questionCounts[$question->questions]['counts']);
+
+            // Prevent division by zero
+            $questionCounts[$question->questions]['rate'] = $totalCountWithoutZeros > 0
+                ? $questionCounts[$question->questions]['multiplied_sum'] / $totalCountWithoutZeros
+                : 0;
+        }
+
+        //dd($questionCounts);
+        return response()->json($questionCounts);
     }
 }

@@ -52,6 +52,10 @@
             text-align: center;
             font-weight: 600;
         }
+
+        .CSMcc {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -101,7 +105,7 @@
                     <td>
                         {{ $ccOption }}
                     </td>
-                    <td>
+                    <td id="count">
                         {{ $count }}
                     </td>
                 </tr>
@@ -119,7 +123,7 @@
                     <td>
                         {{ $ccOption }}
                     </td>
-                    <td>
+                    <td id="count">
                         {{ $count }}
                     </td>
                 </tr>
@@ -137,19 +141,47 @@
                     <td>
                         {{ $ccOption }}
                     </td>
-                    <td>
+                    <td id="count">
                         {{ $count }}
                     </td>
                 </tr>
             @endforeach
             <tr>
-                <td>
-                    Total Response
+                <td id="result">
+                    TOTAL
                 </td>
-                <td>
+                <td id="totalcount">
                     {{ $totalResponses }}
                 </td>
             </tr>
+        </table>
+
+        <table id="customers" class="CSMcc">
+            <tr>
+                <th>Service Quality Dimension</th>
+                <th>Not Applicable</th>
+                <th>Strongly Disagree</th>
+                <th> Disagree</th>
+                <th>Neither Agree nor Disagree</th>
+                <th>Agree</th>
+                <th>Strongly Agree</th>
+                <th>Response</th>
+                <th>Ratings</th>
+            </tr>
+
+            @foreach (json_decode($SqdResult->getContent(), true) as $question => $result)
+                <tr>
+                    <td>{{ $question }}</td>
+                    <td id="count">{{ $result['counts'][0] }}</td>
+                    <td id="count">{{ $result['counts'][1] }}</td>
+                    <td id="count">{{ $result['counts'][2] }}</td>
+                    <td id="count">{{ $result['counts'][3] }}</td>
+                    <td id="count">{{ $result['counts'][4] }}</td>
+                    <td id="count">{{ $result['counts'][5] }}</td>
+                    <td id="count">{{ $result['original_sum'] }}</td>
+                    <td id="count">{{ $result['rate'] }}</td>
+                </tr>
+            @endforeach
         </table>
 
     </div>

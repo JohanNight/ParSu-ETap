@@ -10,9 +10,9 @@
 
         <!--Main content area -->
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
-
+            <!--Filter-->
             <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
-                <!--Filter-->
+
                 <form action="{{ route('filterResult') }}" method="POST" class="flex gap-2">
                     @csrf
                     <div class=" bg-white border-2 p-2" id="fltr_from">
@@ -21,10 +21,10 @@
                             name="date_from"class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
                     <div class=" bg-white border-2 p-2" id="fltr_to">
-                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
+                        <label for="to_date" class="text-[18px] Reg-font ml-2">To:</label>
                         <input type="date"
-                            name="date_to"class="p-1 rounded-md border-2 border-black focus:outline-none">
-                        @error('date_to')
+                            name="to_date"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        @error('to_date')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
                             </p>
@@ -38,19 +38,22 @@
                     </div>
 
                 </form>
-                <!--Assess-->
+
+            </div>
+            <!--Assess-->
+            <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
                 <form action="{{ route('assessResult') }}" method="POST" class="flex gap-2">
                     @csrf
                     <div class=" bg-white border-2 p-2" id="fltr_from">
-                        <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
+                        <label for="Assess_From_date" class="text-[18px] Reg-font ml-2">From:</label>
                         <input type="date"
-                            name="date_from"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                            name="Assess_From_date"class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
                     <div class=" bg-white border-2 p-2" id="fltr_to">
-                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
+                        <label for="Assess_date_To" class="text-[18px] Reg-font ml-2">To:</label>
                         <input type="date"
-                            name="date_to"class="p-1 rounded-md border-2 border-black focus:outline-none">
-                        @error('date_to')
+                            name="Assess_date_To"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        @error('Assess_date_To')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
                             </p>

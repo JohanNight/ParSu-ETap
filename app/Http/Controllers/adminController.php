@@ -667,7 +667,7 @@ class adminController extends Controller
         //dd($request);
         $request->validate([
             'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
+            'to_date' => 'required|date|after_or_equal:date_from',
         ]);
         $sumOfDatasController = new SumOfDatasController(); //import a controller
         $totalDataPerServices = new TotalClientSatisfaction;
@@ -714,12 +714,13 @@ class adminController extends Controller
     public function assessmentResult(Request $request)
     {
         //dd($request);
-        $sumOfDatasController = new SumOfDatasController();
         $request->validate([
-            'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
+            'Assess_From_date' => 'required|date',
+            'Assess_date_To' => 'required|date|after_or_equal:Assess_From_date',
         ]);
 
+
+        $sumOfDatasController = new SumOfDatasController();
 
         $user = Auth::user();
         $userOffice = $user->idOfficeOrigin;
@@ -728,7 +729,8 @@ class adminController extends Controller
         $getTotalPerService = $sumOfDatasController->getCalculateAnswerePerService($request, $userOffice);
         $getTotalNumberPerService = $sumOfDatasController->TotalAnswerePerService($request, $userOffice);
         $CsmReport =  $sumOfDatasController->getCalculatePerCcRecord($request, $userOffice);
-        //dd($getTotalPerService);
+        $SqdResult =  $sumOfDatasController->getAllSQDResult($request, $userOffice);
+        // dd($getTotalPerService);
 
 
         $cc1Report = $CsmReport['cc1Data'];
@@ -737,7 +739,7 @@ class adminController extends Controller
         $totalResponses = $CsmReport['totalResponses'];
 
 
-        $pdf = FacadePdf::loadView('pdf.result', compact('getTotalPerService', 'getTotalNumberPerService', 'userOffice', 'offices', 'cc1Report', 'cc2Report', 'cc3Report', 'totalResponses'));
+        $pdf = FacadePdf::loadView('pdf.result', compact('getTotalPerService', 'getTotalNumberPerService', 'userOffice', 'offices', 'cc1Report', 'cc2Report', 'cc3Report', 'totalResponses', 'SqdResult'));
         return $pdf->stream('Result.pdf');
     }
 
