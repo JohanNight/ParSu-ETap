@@ -20,6 +20,7 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/', 'showWelcomePage')->name('welcome');
     Route::get('/home',  'showHomePage')->name('HomePage');
     Route::get('/home/citizenCharter', 'showCitizenCharter')->name('CitizenCharter');
+    Route::get('/search', 'search')->name('search');
     Route::get('/home/Document/{id}', 'citizenDocument');
     Route::get('/home/clientSurvey/{code}', 'showClientSurvey')
         ->name('ClientSurvey');

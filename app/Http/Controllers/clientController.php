@@ -58,6 +58,18 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->query('search');
+
+        // Perform your search logic here
+        $data = service1::where('serviceTitle', 'LIKE', "%$searchTerm%")
+            ->orWhere('serviceCode', 'LIKE', "%$searchTerm%")
+            ->get();
+
+        return response()->json($data);
+    }
+
     public function selectService(Request $request)
     {
         $selectedOfficeId = $request->office_id;
@@ -121,25 +133,7 @@ class clientController extends Controller
 
         return back()->with('message', 'Code not found');
     }
-    // public function checkSecurity(Request $request)
-    // {
-    //     if ($request->has('srvy_keycode') && $this->isValidCode($request->input('srvy_keycode'))) {
-    //         return redirect()->route('ClientSurvey');
-    //     }
 
-    //     return back()->with('message', 'Code not found');
-    // }
-    // public function isValidCode($code)
-    // {
-
-    //     // Check if the code exists in the database
-    //     $temporaryCode = ClientCode::where('code', $code)->first();
-    //     // Additional checks, if needed
-    //     if ($temporaryCode) {
-    //         return true;
-    //     }
-    //     return false; // Code is invalid
-    // }
     public function surveySecurity()
     {
         if (View::exists('ClientSide.clientSurveySecurity')) {
