@@ -332,4 +332,9 @@ class clientController extends Controller
         clientInfo::create($UserData);
         return redirect('/home/clientButton')->with('message', 'Thank you for your time :) ');
     }
+
+    public function example()
+    {
+        return view('example.example');
+    }
 }
