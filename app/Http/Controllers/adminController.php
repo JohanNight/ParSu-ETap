@@ -293,7 +293,7 @@ class adminController extends Controller
         ]);
 
         $setArchive = 1;
-        $newCode = $this->createServiceCode($user->idOfficeOrigin, $request->serviceType);
+        $newCode = $this->createServiceCode($user->idOfficeOrigin, $request->serviceType, $request->transaction_type);
         //dd($newCode);
 
         $service1 = new Service1;
@@ -338,7 +338,7 @@ class adminController extends Controller
         return redirect()->route('AddService')->with('message', 'Service created successfully.');
     }
 
-    public function createServiceCode($officeId, $typeService)
+    public function createServiceCode($officeId, $typeService, $transactionType)
     {
         //ACADEMIC COLLEGES
         if ($typeService == 1 && in_array($officeId, ['23', '24', '25', '26'])) {
@@ -413,6 +413,529 @@ class adminController extends Controller
             }
         } else {
             return 'UROD001';
+        }
+
+        // Assessment Office
+        if ($typeService == 1 && $officeId == 7) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ASSSESSMENT[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'ASSESSMENT001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 10);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'ASSESSMENT' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 7) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ASSESSMENT[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'ASSESSMENT001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 10);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'ASSESSMENT' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'ASSESSMENT001';
+        }
+
+        // Procurement/ Bids and Awards Comittee
+        if ($typeService == 1 && $officeId == 17) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^BAC[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'BAC001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'BAC' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 17) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^BAC[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'BAC001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'BAC' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'BAC001';
+        }
+
+        // Budget Comittee
+        if ($typeService == 1 && $officeId == 8) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^BUD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'BUD001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'BUD' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 8) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^BUD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'BUD001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'BUD' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'BUD001';
+        }
+
+        // Business Affairs Office
+        if ($typeService == 1 && $officeId == 9) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^BA0[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'BAO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'BAO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 9) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^BAO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'BAO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'BAO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'BAO001';
+        }
+
+        // Cashier Office
+        if ($typeService == 1 && $officeId == 10) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^CSH[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'CSH001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'CSH' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 10) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^CSH[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'CSH001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'CSH' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'CSH001';
+        }
+        // Information and Communication Technology Management Office
+        if ($typeService == 1 && $officeId == 14) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ICTMO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'ICTMO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 5);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'ICTMO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 14) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^ICTMO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'ICTMO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 5);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'ICTMO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'ICTMO001';
+        }
+
+        // Document Control Office
+        if ($typeService == 1 && $officeId == 11) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^DCO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'DCO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'DCO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 11) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^DCO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'DCO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'DCO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'DCO001';
+        }
+
+        // MAIN Campus Library
+        if ($typeService == 1 && $officeId == 30) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^LIB[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'LIB001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'LIB' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 30) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^LIB[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'LIB001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'LIB' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'LIB001';
+        }
+
+        // Main Campus Clinic
+        if ($typeService == 1 && $officeId == 32) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^CLI[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'CLI001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'CLI' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 32) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^CLI[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'CLI001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'CLI' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'CLI001';
+        }
+
+        // Main Campus OSAS
+        if ($typeService == 1 && $officeId == 28) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^OSAS[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'OSAS001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 4);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'OSAS' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 28) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^OSAS[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'OSAS001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 4);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'OSAS' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'OSAS001';
+        }
+
+        // Main Campus Physical Plant and Facilities
+        if ($typeService == 1 && $officeId == 15) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^PPF[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'PPF001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'PPF' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 15) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^PPF[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'PPF001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'PPF' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'PPF001';
+        }
+
+        // Procurement/ Bids and Awards Comittee
+        if ($typeService == 1 && $officeId == 17 && $transactionType == 2) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^PRO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'PRO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'PRO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 17 && $transactionType == 2) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^PRO[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'PRO001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'PRO' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'PRO001';
+        }
+
+        //Safety and Security
+        if ($typeService == 1 && $officeId == 19) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^SSS[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'SSS001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'SSS' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && $officeId == 19) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^SSS[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'SSS001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 3);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'SSS' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'SSS001';
+        }
+
+        //CAMPUSES ACADEMIC COLLEGES
+        if ($typeService == 1 && in_array($officeId, ['37', '49', '62', '74', '86', '98'])) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^CMPSACAD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            if ($latestServiceCode->isEmpty()) {
+                return 'CMPSACAD001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 8);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'CMPSACAD' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } elseif ($typeService == 2 && in_array($officeId, ['37', '49', '62', '74', '86', '98'])) {
+            $latestServiceCode = service1::where('serviceCode', 'REGEXP', '^CMPSACAD[0-9]+$')
+                ->where('idService', $typeService)
+                ->where('idOffice', $officeId)
+                ->get(); // Retrieve all service codes that match the pattern.
+            //dd($latestServiceCode);
+            if ($latestServiceCode->isEmpty()) {
+                return 'CMPSACAD001'; // No existing service codes, start with 'ACAD001'.
+            } else {
+                // Find the highest numeric part among existing service codes.
+                $maxNumericPart = $latestServiceCode->max(function ($code) {
+                    return (int)substr($code->serviceCode, 8);
+                });
+                $newNumericPart = $maxNumericPart + 1;
+                $newCode = 'CMPSACAD' . str_pad($newNumericPart, 3, '0', STR_PAD_LEFT);
+                return $newCode;
+            }
+        } else {
+            return 'CMPSACAD001';
         }
     }
 
@@ -590,34 +1113,6 @@ class adminController extends Controller
             return response()->json(['code' => $code]);
         }
     }
-
-    // public function report()
-    // {
-    //     if (View::exists('Report.serviceReport')) {
-    //         return view('Report.serviceReport');
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
-    // public function createQuestion()
-    // {
-    //     if (View::exists('AdminSide.createQuestionnaireFunction')) {
-    //         return view('AdminSide.createQuestionnaireFunction',);
-    //     } else {
-    //         return abort(404);
-    //     }
-    // }
-    // public function saveQuestion(Request $request)
-    // {
-    //     //dd($request);
-
-    //     $this->validate($request, [
-    //         'instruction' => 'required|string',
-    //         'cc_question' => 'array',
-    //         'option' => 'array',
-    //         'comment' => 'required|string',
-    //     ]);
-    // }
 
     public function report2()
     {

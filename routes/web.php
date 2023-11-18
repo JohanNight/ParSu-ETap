@@ -66,7 +66,6 @@ Route::controller(adminController::class)->group(function () {
         Route::get('/indexAdmin/draftService',  'draftPage')->name('Draft');
         Route::get('/indexAdmin/generateCode',  'codeGeneratorPage')->name('Generator');
         Route::post('/indexAdmin/generateCode', 'createCode');
-        // Route::get('/indexAdmin/report',  'reportPage');
         Route::get('/indexAdmin/Create-questionnaire', 'createQuestion')->name('CreateSurvey'); //For the CC Question
         Route::get('/indexAdmin/Create-CC-Questionnaire', 'createCcQuestion')->name('CreateCcSurvey'); //For the CC Question
         Route::post('/indexAdmin/Create-CC-Questionnaire', 'saveCcQuestion'); //For the CC Question

@@ -126,12 +126,15 @@ class clientController extends Controller
         $temporaryCode = service1::where('serviceCode', $code)->first();
         $tempCode = $temporaryCode->serviceCode;
 
-        // Additional checks, if needed
-        if ($tempCode === $code) {
-            return redirect('home/clientSurvey/' . $code);
-        }
 
-        return back()->with('message', 'Code not found');
+        // Additional checks, if needed
+        if ($tempCode == null) {
+            return back()->with('message', 'Code not found');
+        } else if ($tempCode === $code) {
+            return redirect('home/clientSurvey/' . $code);
+        } else {
+            return back()->with('message', 'Code not found');
+        }
     }
 
     public function surveySecurity()
