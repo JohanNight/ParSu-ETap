@@ -38,6 +38,9 @@ Route::controller(clientController::class)->group(function () {
 
     Route::get('/home/word', 'word');
     Route::get('/example', 'example');
+    Route::get('/exampleStep1', 'exampleStep1');
+    Route::put('/exampleStep1', 'processStep1');
+    Route::get('/exampleStep2', 'exampleStep2');
 });
 
 

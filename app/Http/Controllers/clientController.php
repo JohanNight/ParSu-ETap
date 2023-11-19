@@ -137,6 +137,22 @@ class clientController extends Controller
         }
     }
 
+    // public function checkSecurity(Request $request)
+    // {
+    //     // Validate the request data
+    //     $validatedData = $request->validate([
+    //         'srvy_keycode' => ['required', Rule::exists('service1', 'serviceCode')],
+    //     ], [
+    //         'srvy_keycode.exists' => 'Code not found',
+    //     ]);
+
+    //     // Access the validated data
+    //     $code = $validatedData['srvy_keycode'];
+
+    //     // Redirect to the appropriate route
+    //     return redirect()->route('survey', ['code' => $code]);
+    // }
+
     public function surveySecurity()
     {
         if (View::exists('ClientSide.clientSurveySecurity')) {
@@ -339,5 +355,55 @@ class clientController extends Controller
     public function example()
     {
         return view('example.example');
+    }
+    public function exampleStep1()
+    {
+        $clientTypes = clientCategory::all();
+        $officeTypes = offices::all();
+
+        $Service = service1::all();
+        return view('example.exampleStep1', compact('clientTypes', 'officeTypes', 'Service',));
+    }
+
+    public function processStep1(Request $request)
+    {
+        $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
+        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+        $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
+
+        $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
+        $service = $serviceCode->serviceCode;
+
+        $validateData = $request->validate([
+            'name_of_client' => 'required',
+            'gender_of_client' => ['required', Rule::in(['male', 'female'])],
+            'age_of_client' => 'required',
+            'client_type' => ['required', Rule::in($validateClientType)],
+            'date_of_transaction' => 'required|date',
+            'offices' => ['required', Rule::in($validateOffices)],
+            'service_availed' => ['required', Rule::in($services)],
+            'purpose' => 'required',
+            // 'ServiceCode' => '',
+            'email_of_client' => '',
+
+        ]);
+
+        $request->session()->put('step1', ['data' => $validateData, 'service' => $service]);
+
+        return redirect('/exampleStep2');
+    }
+
+    public function exampleStep2()
+    {
+        if (!$data = session('step1')) {
+            return redirect('/exampleStep1');
+        }
+        $ccInstruction = Cc_Instruction::all();
+        $ccQuestions = Cc_Questions::with('CcOption')->get();
+        $SrvyInstruction = SurveyInstruction::all();
+        $SrvyQuestion = SurveyQuestion::all();
+        $SrvyComment = SurveyComment::all();
+
+        return view('example.exampleStep2', compact('ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment'));
     }
 }
