@@ -141,7 +141,7 @@
                         </p>
                     @enderror
                 </div>
-                <div class="block ml-3  mt-2">
+                {{-- <div class="block ml-3  mt-2">
                     <label for="ServiceCode" class="text-[20px] Reg-font mr-2 text-black">Code: </label>
                     <input type="text" name="ServiceCode" id="ServiceCode"
                         class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
@@ -151,7 +151,7 @@
                             {{ $message }}
                         </p>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="block ml-3 mt-2 ">
                     <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
                     <input type="text" name="purpose" id="purpose"

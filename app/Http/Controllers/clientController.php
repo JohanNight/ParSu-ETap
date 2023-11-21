@@ -137,21 +137,7 @@ class clientController extends Controller
         }
     }
 
-    // public function checkSecurity(Request $request)
-    // {
-    //     // Validate the request data
-    //     $validatedData = $request->validate([
-    //         'srvy_keycode' => ['required', Rule::exists('service1', 'serviceCode')],
-    //     ], [
-    //         'srvy_keycode.exists' => 'Code not found',
-    //     ]);
 
-    //     // Access the validated data
-    //     $code = $validatedData['srvy_keycode'];
-
-    //     // Redirect to the appropriate route
-    //     return redirect()->route('survey', ['code' => $code]);
-    // }
 
     public function surveySecurity()
     {
@@ -205,7 +191,10 @@ class clientController extends Controller
         $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
         $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
         $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
-        $serviceCode = DB::table('table_service1_1')->pluck('serviceCode')->toArray();
+        // $serviceCode = DB::table('table_service1_1')->pluck('serviceCode')->toArray();
+
+        $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
+        $service = $serviceCode->serviceCode;
 
         $validateData = $request->validate([
             'name_of_client' => 'required',
@@ -215,7 +204,7 @@ class clientController extends Controller
             'date_of_transaction' => 'required|date',
             'offices' => ['required', Rule::in($validateOffices)],
             'service_availed' => ['required', Rule::in($services)],
-            'ServiceCode' => ['required', Rule::in($serviceCode)],
+            // 'ServiceCode' => ['required', Rule::in($serviceCode)],
             'purpose' => 'required',
             'email_of_client' => '',
 
@@ -246,7 +235,7 @@ class clientController extends Controller
             'service_avail' => $validateData['service_availed'],
             'purpose' => $validateData['purpose'],
             'emailAdd' => $validateData['email_of_client'],
-            'serviceCode' => $validateData['ServiceCode'],
+            'serviceCode' =>    $service,
             'cc1' => $validateData['question1'],
             'cc2' => $validateData['question2'],
             'cc3' => $validateData['question3'],
