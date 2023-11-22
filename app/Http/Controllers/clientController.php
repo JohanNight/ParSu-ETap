@@ -166,6 +166,9 @@ class clientController extends Controller
             return abort(404);
         }
     }
+
+
+
     //fetch the data from the database using user's query
     // public function fetchData(Request $request)
     // {
@@ -183,6 +186,9 @@ class clientController extends Controller
     //         return response()->json(['error' => 'Client not found'], 404);
     //     }
     // }
+
+
+
     //store the survey data
     public function storeSurveyData(Request $request)
     {
@@ -251,7 +257,7 @@ class clientController extends Controller
             'comment' => $validateData['suggestion_for_client']
         ];
         clientInfo::create($UserData);
-        return redirect('/home')->with('message', 'Thank you for your time :) ');
+        return redirect('/thankyou/' . $validateData['name_of_client']);
     }
 
     public function showClientSurvey2()
@@ -338,7 +344,13 @@ class clientController extends Controller
             'comment' => $validateData['suggestion_for_client']
         ];
         clientInfo::create($UserData);
-        return redirect('/home/clientButton')->with('message', 'Thank you for your time :) ');
+        return redirect('/thankyou/' . $validateData['name_of_client']);
+    }
+
+    public function thankYouPage($name)
+    {
+        $names = $name;
+        return view('ClientSide.thankYouPage', compact('names'));
     }
 
     public function example()

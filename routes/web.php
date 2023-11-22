@@ -34,6 +34,7 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home/clientSecurity', 'surveySecurity')->name('clientSecurity');
     Route::get('/home/clientButton', 'clientButtons')->name('clientButton');
     Route::post('/clientSecurity', 'checkSecurity');
+    Route::get('/thankyou/{name}', 'thankYouPage');
 
 
     Route::get('/home/word', 'word');
@@ -113,7 +114,6 @@ Route::controller(adminController::class)->group(function () {
         Route::post('/superAdmin/report', 'filterReport')->name('filterReport');
         Route::post('/superAdmin/assessment', 'assessReport')->name('assesmentReport');
         Route::post('/superAdmin/delete-service/{serviceId}', 'deleteService');
-        // Route::post('/superAdmin/report2', 'filterReport2')->name('filterReport2');
     });
 });
 
