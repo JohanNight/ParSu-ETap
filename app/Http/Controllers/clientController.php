@@ -112,9 +112,33 @@ class clientController extends Controller
             return abort(404);
         }
     }
+    // public function checkSecurity(Request $request)
+    // {
+
+    //     $validatedData = $request->validate([
+    //         'srvy_keycode' => 'required'
+    //     ]);
+
+    //     // Access the validated data
+    //     $code = $validatedData['srvy_keycode'];
+
+    //     // Check if the code exists in the database
+    //     $temporaryCode = service1::where('serviceCode', $code)->first();
+    //     $tempCode = $temporaryCode->serviceCode;
+
+
+    //     // Additional checks, if needed
+    //     if ($tempCode == null) {
+    //         return back()->with('message', 'Code not found');
+    //     } else if ($tempCode === $code) {
+    //         return redirect('home/clientSurvey/' . $code);
+    //     } else {
+    //         return back()->with('message', 'Code not found');
+    //     }
+    // }
+
     public function checkSecurity(Request $request)
     {
-
         $validatedData = $request->validate([
             'srvy_keycode' => 'required'
         ]);
@@ -124,13 +148,12 @@ class clientController extends Controller
 
         // Check if the code exists in the database
         $temporaryCode = service1::where('serviceCode', $code)->first();
-        $tempCode = $temporaryCode->serviceCode;
 
+        // Use a boolean variable to check if the code is valid
+        $isValidCode = $temporaryCode && $temporaryCode->serviceCode === $code;
 
         // Additional checks, if needed
-        if ($tempCode == null) {
-            return back()->with('message', 'Code not found');
-        } else if ($tempCode === $code) {
+        if ($isValidCode) {
             return redirect('home/clientSurvey/' . $code);
         } else {
             return back()->with('message', 'Code not found');
