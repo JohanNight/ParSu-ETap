@@ -187,7 +187,8 @@
                 @foreach ($ccQuestions as $CCquestion)
                     <div class="flex flex-col m-4">
                         <div class="w-full">
-                            <label class="text-[18px] Reg-font tracking-wide">{{ $CCquestion->description }}</label>
+                            <label
+                                class="text-[18px] Reg-font tracking-wide SemiB-font">{{ $CCquestion->description }}</label>
                         </div>
                         <div class="flex flex-col space-y-2 ml-[50px] mt-5">
                             @foreach ($CCquestion->CcOption as $index => $Option)
@@ -301,7 +302,7 @@
                                 <td class="border p-2">
                                     <label for="question-S2-Q{{ $srvyQuestion->id }}"
                                         id="question-S2-Q{{ $srvyQuestion->id }}"
-                                        class="text-[18px] Reg-font text-justify">{{ $srvyQuestion->questions }}</label>
+                                        class="text-[18px] Reg-font text-justify Med-font">{{ $srvyQuestion->questions }}</label>
                                 </td>
                                 <td class="border p-2">
                                     <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}" id=""
