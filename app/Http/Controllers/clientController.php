@@ -25,11 +25,7 @@ use App\Models\Who_avail;
 
 class clientController extends Controller
 {
-    //
-    // public function __construct()
-    // {
-    //     $this->middleware(CheckSurveyCode::class)->only('checkSecurity');
-    // }
+
     public function showWelcomePage()
     {
         if (View::exists('ClientSide.index')) {

@@ -1,26 +1,27 @@
 @include('partials.headerClient')
-<div class="bg-gray-50 h-full w-full">
-
-    <x-navBarClient />{{-- Main Header --}}
+<div class="bg-gray-50 min-h-screen w-full">
     <div>
         {{-- This is for the title and the logo --}}
-        <div class="flex flex-col items-center  bg-blue-700 bg-opacity-50 w-full ">
-            <div class="block flex justify-center items-center">
-                <div class=" relative h-22 p-[10px] mr-2">
+        <div class="flex justify-center items-center bg-blue-900  w-full">
+            <div class="flex justify-start ml-5">
+                <form action="{{ route('HomePage') }}" method="get">
+                    <button type="submit"
+                        class="bg-gray-600 px-1 rounded-lg border-2 border-black hover:bg-yellow-500  transition duration-100 active:bg-yellow-700 Bold-font text-2xl text-white w-20 h-12 shadow-md ">
+                        Back
+                    </button>
+                </form>
+            </div>
+            <div class="flex items-center mx-auto">
+                <div class="relative h-22 p-[10px] mr-2">
                     <img src="{{ asset('images/NewPSUlogo.png') }}" alt="PSU logo" class="w-20 h-20" srcset="">
                 </div>
-                <div class="ml-[20px]">
-                    <h1 class="text-2xl SemiB-font text-yellow-400">ParSU E-Tap</h1>
+                <div class="ml-[15px]">
+                    <h1 class="text-3xl SemiB-font text-yellow-400">ParSU eTAP: Satisfaction Survey</h1>
                 </div>
-            </div>
-            <div class="block">
-                <h1 class="text-[30px] Bold-font text-black tracking-wide uppercase">
-                    Help Us Serve You Better
-                </h1>
             </div>
         </div>
         {{-- Description --}}
-        <div class=" block mt-2 p-5 border-b-2 border-b-gray-700">
+        <div class=" mt-2 p-5 border-b-2 border-b-gray-700">
             <div class="mx-2 ">
                 <p class="text-center text-[18px] Reg-font text-black tracking-wide leading-2">
                     This Client Satisfaction Measurement (CSM) tracks the customer experience of government offices.
@@ -186,7 +187,7 @@
                         <div class="flex flex-col m-4">
                             <div class="w-full">
                                 <label
-                                    class="text-[18px] Reg-font tracking-wide">{{ $CCquestion->description }}</label>
+                                    class="text-[18px] Reg-font tracking-wide SemiB-font">{{ $CCquestion->description }}</label>
                             </div>
                             <div class="flex flex-col space-y-2 ml-[50px] mt-5">
                                 @foreach ($CCquestion->CcOption as $index => $Option)
@@ -301,7 +302,7 @@
                                     <td class="border p-2">
                                         <label for="question-S2-Q{{ $srvyQuestion->id }}"
                                             id="question-S2-Q{{ $srvyQuestion->id }}"
-                                            class="text-[18px] Reg-font text-justify">{{ $srvyQuestion->questions }}</label>
+                                            class="text-[18px] Reg-font text-justify Med-font">{{ $srvyQuestion->questions }}</label>
                                     </td>
                                     <td class="border p-2">
                                         <input type="radio" name="question-S2-Q{{ $srvyQuestion->id }}"
