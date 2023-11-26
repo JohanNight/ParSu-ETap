@@ -16,12 +16,12 @@
         </div>
     </div>
 </div>
-<section class="flex justify-around items-center mt-4">
-    <header class="m-5 p-2.5 flex items-center">
+<div class="flex justify-around items-center mt-2">
+    {{-- <header class="m-5 p-2.5 flex items-center">
         <h1 class="text-6xl font-bold text-blue-500">
             ParSU eTAP Admin
         </h1>
-    </header>
+    </header> --}}
     <div class="bg-gray-100 max-w-full mx-auto my-5 p-10 rounded-lg shadow-2xl border-2 ">
         <div class="bg-gray-100">
             <h3 class="font-bold text-2xl">Welcome to ParSU eTAP System</h3>
@@ -64,5 +64,5 @@
             </form>
         </div>
     </div>
-</section>
+</div>
 @include('partials.footerAdmin')

@@ -1,7 +1,7 @@
 @include('partials.headerClient')
 <div class="relative">
     <!-- background Image -->
-    <div class=" absolute w-full ">
+    <div class=" absolute w-full h-screen ">
         <img src="{{ asset('images/ImageForPSU/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-80"
             alt="">
     </div>
@@ -72,64 +72,68 @@
 
         </div>
         <!--Search Data Section-->
-        {{-- <section class="mt-10">
-        </section> --}}
-
         <div class="overflow-x-auto relative w-full mt-10 ">
             <div class="">
                 <!-- component -->
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                            <div class="overflow-hidden">
-                                <table class="min-w-full">
-                                    <thead class="bg-blue-800 text-white border-b text-left">
-                                        <tr>
-                                            <th scope="col" class="text-sm SemiB-font  px-6 py-4 ">
-                                                Code
-                                            </th>
-                                            <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
-                                                Title
-                                            </th>
-                                            <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
-                                                Offices
-                                            </th>
+                            <table class="min-w-full">
+                                <thead class="bg-blue-800 text-white border-b text-left">
+                                    <tr>
+                                        <th scope="col" class="text-sm SemiB-font  px-6 py-4 ">
+                                            Code
+                                        </th>
+                                        <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
+                                            Title
+                                        </th>
+                                        <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
+                                            Offices
+                                        </th>
 
-                                            <th scope="col" class="text-sm  SemiB-font  px-6 py-4 ">
-                                                Handle
-                                            </th>
+                                        <th scope="col" class="text-sm  SemiB-font  px-6 py-4 ">
+                                            Handle
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-left">
+                                    @foreach ($services as $service)
+                                        <tr
+                                            class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
+                                                {{ $service->serviceCode }}</td>
+                                            <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
+                                                {{ $service->serviceTitle }}
+                                            </td>
+                                            <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
+                                                @foreach ($office as $offices)
+                                                    @if ($service->idOffice == $offices->idOffices)
+                                                        {{ $offices->officeAcronym }}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <a href="/home/Document/{{ $service->idServiceSpecification }}"
+                                                    class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-green-700">
+                                                    View
+                                                </a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody class="text-left">
-                                        @foreach ($services as $service)
-                                            <tr
-                                                class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
-                                                    {{ $service->serviceCode }}</td>
-                                                <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                    {{ $service->serviceTitle }}
-                                                </td>
-                                                <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
-                                                    @foreach ($office as $offices)
-                                                        @if ($service->idOffice == $offices->idOffices)
-                                                            {{ $offices->officeAcronym }}
-                                                        @endif
-                                                    @endforeach
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="/home/Document/{{ $service->idServiceSpecification }}"
-                                                        class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-green-700">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                    <div class="flex">
+                                    @endforeach
+                                </tbody>
+                                <div class="flex justify-between">
+                                    <div>
                                         {{ $services->links() }}
                                     </div>
-                                </table>
-                            </div>
+
+
+                                    <div class=" text-[20px] Med-font">
+
+                                        Page {{ $services->currentPage() }} of {{ $services->lastPage() }}
+                                    </div>
+                                </div>
+                            </table>
+
                         </div>
                     </div>
                 </div>

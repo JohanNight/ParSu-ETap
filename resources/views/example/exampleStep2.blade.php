@@ -1,8 +1,5 @@
 @include('partials.headerClient')
 <div class="bg-gray-50 min-h-screen w-full">
-
-
-
     {{-- This is for the title and the logo --}}
     <div class="flex justify-center items-center bg-blue-900  w-full">
         <div class="flex justify-start ">
