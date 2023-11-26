@@ -424,6 +424,62 @@ class clientController extends Controller
         $SrvyQuestion = SurveyQuestion::all();
         $SrvyComment = SurveyComment::all();
 
-        return view('example.exampleStep2', compact('ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment'));
+        return view('example.exampleStep2', compact('ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment', 'data'));
+    }
+
+    public function processStep2Complete(Request $request)
+    {
+        $step1Data = $request->session()->get('step1');
+
+        if (!$step1Data) {
+            return redirect('/exampleStep1');
+        }
+        $validateData = $request->validate([
+            'question1' => 'required',
+            'question2' => 'required',
+            'question3' => 'required',
+            'question-S2-Q1' => 'required',
+            'question-S2-Q2' => 'required',
+            'question-S2-Q3' => 'required',
+            'question-S2-Q4' => 'required',
+            'question-S2-Q5' => 'required',
+            'question-S2-Q6' => 'required',
+            'question-S2-Q7' => 'required',
+            'question-S2-Q8' => 'required',
+            'question-S2-Q9' => 'required',
+            'suggestion_for_client' => ''
+
+        ]);
+
+
+        $UserData = [
+            'name' => $step1Data['data']['name_of_client'],
+            'sex' => $step1Data['data']['gender_of_client'],
+            'age' =>  $step1Data['data']['age_of_client'],
+            'idCategoryFk' =>  $step1Data['data']['client_type'],
+            'dateOfTransaction' =>  $step1Data['data']['date_of_transaction'],
+            'idOfficeOrigin' =>  $step1Data['data']['offices'],
+            'service_avail' =>  $step1Data['data']['service_availed'],
+            'purpose' =>  $step1Data['data']['purpose'],
+            'serviceCode' =>   $step1Data['service'],
+            'emailAdd' => $validateData['email_of_client'],
+            'cc1' => $validateData['question1'],
+            'cc2' => $validateData['question2'],
+            'cc3' => $validateData['question3'],
+            'sqd1' => $validateData['question-S2-Q1'],
+            'sqd2' => $validateData['question-S2-Q2'],
+            'sqd3' => $validateData['question-S2-Q3'],
+            'sqd4' => $validateData['question-S2-Q4'],
+            'sqd5' => $validateData['question-S2-Q5'],
+            'sqd6' => $validateData['question-S2-Q6'],
+            'sqd7' => $validateData['question-S2-Q7'],
+            'sqd8' => $validateData['question-S2-Q8'],
+            'sqd9' => $validateData['question-S2-Q9'],
+            'comment' => $validateData['suggestion_for_client']
+        ];
+        clientInfo::create($UserData);
+        // Clear the session data
+        $request->session()->forget('step1');
+        return redirect('/thankyou/' . $step1Data['data']['name_of_client']);
     }
 }

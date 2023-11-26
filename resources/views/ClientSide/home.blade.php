@@ -9,8 +9,7 @@
         <div class="ml-[50px] mr-[50px] mb-[50px] flex justify-between mt-2">
 
             <a href="{{ route('welcome') }}"
-                class="SemiB-font text-2xl text-white bg-gray-600 rounded-lg p-2 shadow-md hover:bg-yellow-500 active:bg-yellow-600 ">Return
-                to Opening</a>
+                class="SemiB-font text-2xl text-white bg-gray-600 rounded-lg p-2 shadow-md hover:bg-yellow-500 active:bg-yellow-600 ">Exit</a>
         </div>
 
         <div class="p-1 m-3 flex justify-center justify-around sm:gap-2  ">
@@ -21,7 +20,7 @@
                         <img src="{{ asset('images/ImageForPSU/IMG_2526.jpg') }}" alt="" class="w-full h-96">
                     </a>
                 </div>
-                <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pt-3 pointer">
+                <div class="block text-yellow-500 SemiB-font text-2xl text-center pb-2 pointer">
                     <a href="{{ route('CitizenCharter') }}" class="hover:underline"> Citizens Charter</a>
                 </div>
 
