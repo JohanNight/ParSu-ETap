@@ -21,7 +21,7 @@
     </div>
 
 
-    <form action="/exampleStep2" method="POST">
+    <form action="/home/WalkIn-clientSurvey2" method="POST">
         @csrf
         {{-- Survey Number 1 --}}
         <div class="p-3 border-b-2 border-b-gray-400">

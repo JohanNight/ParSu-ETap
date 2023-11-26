@@ -41,7 +41,7 @@
         </div>
 
         {{-- Survey Form --}}
-        <form action="/exampleStep1" method="POST">
+        <form action="/home/WalkIn-clientSurvey" method="POST">
             @csrf
             {{-- Client Info --}}
             <div class="block p-5  mt-2 border-b-2 border-b-gray-700 ">
