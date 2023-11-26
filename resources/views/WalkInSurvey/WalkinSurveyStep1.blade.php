@@ -57,34 +57,7 @@
                         </p>
                     @enderror
                 </div>
-                {{-- <div class="block ml-3  mt-2">
-                    <label for="name_of_client" class="text-[20px] Reg-font mr-2 text-black">Name: </label>
-                    <input type="text" name="name_of_client" id="name_of_client"
-                        class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
-                        value="{{ old('name_of_client', $formData['name_of_client'] ?? '') }}" autocomplete="off">
-                    @error('name_of_client')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div> --}}
-
-
                 {{-- Gender --}}
-                {{-- <div class="block ml-3 mt-2">
-                    <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
-                    <select name="gender_of_client" id="gender_of_client"
-                        class=" w-40 bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full  rounded-md shadow-md text-[16px] Reg-font">
-                        <option value=""></option>
-                        <option value="male" class="text-[16px] Reg-font">Male</option>
-                        <option value="female" class="text-[16px] Reg-font">Female</option>
-                    </select>
-                    @error('gender_of_client')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div> --}}
                 <div class="block ml-3 mt-2">
                     <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
                     <select name="gender_of_client" id="gender_of_client"
@@ -105,7 +78,6 @@
                         </p>
                     @enderror
                 </div>
-
                 {{-- Age --}}
                 <div class="block ml-3 mt-2">
                     <label for="age_of_client" class="text-[20px] Reg-font mr-2 text-black">Age: </label>
@@ -118,35 +90,7 @@
                         </p>
                     @enderror
                 </div>
-                {{-- <div class="block ml-3 mt-2">
-                    <label for="age_of_client" class="text-[20px] Reg-font mr-2 text-black">Age: </label>
-                    <input type="number" name="age_of_client" id="age_of_client"
-                        class=" px-2 py-2 text-[16px] Reg-font w-40 sm:w-full bg-gray-300 rounded-md shadow-md"autocomplete="off"
-                        value="{{ old('age_of_client', $formData['age_of_client'] ?? '') }}">
-                    @error('age_of_client')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div> --}}
-
                 {{-- Client Type --}}
-                {{-- <div class="block ml-3 mt-2">
-                    <label for="client_type" class="text-[20px] Reg-font mr-2 text-black">Client Type: </label>
-                    <select name="client_type" id="client_type"
-                        class=" w-48  sm:w-full bg-gray-300 py-2 px-2 mb-3  md:ml-0  rounded-md shadow-md text-[16px] Reg-font">
-                        <option value=""></option>
-                        @foreach ($clientTypes as $clientType)
-                            <option value="{{ $clientType->idCategory }}" class="text-[16px] Reg-font capitalize ">
-                                {{ $clientType->category }}</option>
-                        @endforeach
-                    </select>
-                    @error('client_type')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div> --}}
                 <div class="block ml-3 mt-2">
                     <label for="client_type" class="text-[20px] Reg-font mr-2 text-black">Client Type: </label>
                     <select name="client_type" id="client_type"
@@ -174,24 +118,6 @@
                         value="">
                 </div>
                 {{-- Office/Campus Visited --}}
-                {{-- <div class="block ml-3 mt-2 ">
-                    <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office/Campus Visited: </label>
-                    <select name="offices" id="offices"
-                        class=" w-40 bg-gray-300 py-2 px-2 mb-3  md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
-                        <option value=""></option>
-                        @foreach ($officeTypes as $officeType)
-                            <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize ">
-                                {{ $officeType->officeAcronym }}</option>
-                        @endforeach
-                    </select>
-                    @error('offices')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                    <button type="button" id="filterButton"
-                        class="p-0.5 Bold-font text-[11px] bg-blue-500 border-2 border-blue-600 rounded active:bg-blue-600 uppercase">Filter</button>
-                </div> --}}
                 <div class="block ml-3 mt-2">
                     <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office/Campus Visited: </label>
                     <select name="offices" id="offices"
@@ -216,23 +142,6 @@
                 </div>
 
                 {{-- Service Avail --}}
-                {{-- <div class="block ml-3 mt-2 flex flex-col">
-                    <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
-                    <select type="text" name="service_availed" id="service_availed"
-                        class=" w-96 md:w-full sm:w-full px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off">
-                        <option value=""></option>
-                        @foreach ($Service as $services)
-                            <option value="{{ $services->idServiceSpecification }}"
-                                class="text-[12px] Reg-font capitalize ">
-                                {{ $services->serviceTitle }}</option>
-                        @endforeach
-                    </select>
-                    @error('service_availed')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div> --}}
                 <div class="block ml-3 mt-2 flex flex-col">
                     <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
                     <select type="text" name="service_availed" id="service_availed"
@@ -266,17 +175,6 @@
                         </p>
                     @enderror
                 </div>
-                {{-- <div class="block ml-3 mt-2 ">
-                    <label for="purpose" class="text-[20px] Reg-font mr-2 text-black">Purpose: </label>
-                    <input type="text" name="purpose" id="purpose"
-                        class=" w-full sm:w-full px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"autocomplete="off"
-                        value="{{ old('purpose', $formData['purpose'] ?? '') }}">
-                    @error('purpose')
-                        <p class="text-red-400 text-sm p-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div> --}}
 
                 {{-- Email Address --}}
                 <div class=" ml-3 mt-2 flex flex-wrap p-2 ">
@@ -288,15 +186,6 @@
                         autocomplete="off" value="">
 
                 </div>
-                {{-- <div class=" ml-3 mt-2 flex flex-wrap p-2 ">
-                    <label for="email_of_client" class="text-lg Reg-font tracking-wide mt-2 mr-2">Email address
-                        (optional):
-                    </label>
-                    <input type="email" name="email_of_client" id="email_of_client"
-                        class="w-96 py-2.5 sm:w-full px-2 bg-gray-300 rounded text-[16px] Reg-font "
-                        autocomplete="off" value="{{ old('email', $formData['email'] ?? '') }}">
-
-                </div> --}}
             </div>
             {{-- Submit button --}}
             <div class="mt-2 p-10 flex justify-center ">

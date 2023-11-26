@@ -297,6 +297,115 @@ class clientController extends Controller
         }
     }
 
+    public function walkInSurvey()
+    {
+        $clientTypes = clientCategory::all();
+        $officeTypes = offices::all();
+
+        $Service = service1::all();
+        return view('WalkInSurvey.WalkinSurveyStep1', compact('clientTypes', 'officeTypes', 'Service',));
+    }
+
+    public function processWalkInSurvey(Request $request)
+    {
+
+        $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
+        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+        $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
+
+        $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
+        $service = $serviceCode->serviceCode;
+        // dd($service);
+
+        $validateData = $request->validate([
+            'name_of_client' => 'required',
+            'gender_of_client' => ['required', Rule::in(['male', 'female'])],
+            'age_of_client' => 'required',
+            'client_type' => ['required', Rule::in($validateClientType)],
+            'date_of_transaction' => 'required|date',
+            'offices' => ['required', Rule::in($validateOffices)],
+            'service_availed' => ['required', Rule::in($services)],
+            'purpose' => 'required',
+            // 'ServiceCode' => '',
+            'email_of_client' => '',
+
+        ]);
+
+        $request->session()->put('step1', ['data' => $validateData, 'service' => $service]);
+
+        return redirect('/home/WalkIn-clientSurvey2');
+    }
+
+    public function walkInSurvey2()
+    {
+        if (!$data = session('step1')) {
+            return redirect('/home/WalkIn-clientSurvey');
+        }
+        $ccInstruction = Cc_Instruction::all();
+        $ccQuestions = Cc_Questions::with('CcOption')->get();
+        $SrvyInstruction = SurveyInstruction::all();
+        $SrvyQuestion = SurveyQuestion::all();
+        $SrvyComment = SurveyComment::all();
+
+        return view('WalkInSurvey.WalkinSurveyStep2', compact('ccInstruction', 'ccQuestions', 'SrvyInstruction', 'SrvyQuestion', 'SrvyComment', 'data'));
+    }
+    public function processWalkInSurvey2(Request $request)
+    {
+        $step1Data = $request->session()->get('step1');
+
+
+        if (!$step1Data) {
+            return redirect('/home/WalkIn-clientSurvey');
+        }
+        $validateData = $request->validate([
+            'question1' => 'required',
+            'question2' => 'required',
+            'question3' => 'required',
+            'question-S2-Q1' => 'required',
+            'question-S2-Q2' => 'required',
+            'question-S2-Q3' => 'required',
+            'question-S2-Q4' => 'required',
+            'question-S2-Q5' => 'required',
+            'question-S2-Q6' => 'required',
+            'question-S2-Q7' => 'required',
+            'question-S2-Q8' => 'required',
+            'question-S2-Q9' => 'required',
+            'suggestion_for_client' => ''
+
+        ]);
+
+
+        $UserData = [
+            'name' => $step1Data['data']['name_of_client'],
+            'sex' => $step1Data['data']['gender_of_client'],
+            'age' =>  $step1Data['data']['age_of_client'],
+            'idCategoryFk' =>  $step1Data['data']['client_type'],
+            'dateOfTransaction' =>  $step1Data['data']['date_of_transaction'],
+            'idOfficeOrigin' =>  $step1Data['data']['offices'],
+            'service_avail' =>  $step1Data['data']['service_availed'],
+            'purpose' =>  $step1Data['data']['purpose'],
+            'serviceCode' => $step1Data['service'],
+            'emailAdd' => $step1Data['data']['email_of_client'],
+            'cc1' => $validateData['question1'],
+            'cc2' => $validateData['question2'],
+            'cc3' => $validateData['question3'],
+            'sqd1' => $validateData['question-S2-Q1'],
+            'sqd2' => $validateData['question-S2-Q2'],
+            'sqd3' => $validateData['question-S2-Q3'],
+            'sqd4' => $validateData['question-S2-Q4'],
+            'sqd5' => $validateData['question-S2-Q5'],
+            'sqd6' => $validateData['question-S2-Q6'],
+            'sqd7' => $validateData['question-S2-Q7'],
+            'sqd8' => $validateData['question-S2-Q8'],
+            'sqd9' => $validateData['question-S2-Q9'],
+            'comment' => $validateData['suggestion_for_client']
+        ];
+        clientInfo::create($UserData);
+        // Clear the session data
+        $request->session()->forget('step1');
+        return redirect('/thankyou/' . $step1Data['data']['name_of_client']);
+    }
+
     public function storeSurveyData2(Request $request)
     {
 
@@ -384,15 +493,31 @@ class clientController extends Controller
         $Service = service1::all();
         return view('example.exampleStep1', compact('clientTypes', 'officeTypes', 'Service',));
     }
+    // public function exampleStep1()
+    // {
+    //     $clientTypes = clientCategory::all();
+    //     $officeTypes = offices::all();
+
+    //     $Service = service1::all();
+
+    //     // Retrieve form data from session and pass it to the view
+    //     $formData = session('step1.data', []);
+    //     $selectedService = session('step1.service', null);
+
+    //     return view('example.exampleStep1', compact('clientTypes', 'officeTypes', 'Service', 'formData', 'selectedService'));
+    // }
+
 
     public function processStep1(Request $request)
     {
+
         $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
         $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
         $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
 
         $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
         $service = $serviceCode->serviceCode;
+        // dd($service);
 
         $validateData = $request->validate([
             'name_of_client' => 'required',
@@ -412,6 +537,32 @@ class clientController extends Controller
 
         return redirect('/exampleStep2');
     }
+    // public function processStep1(Request $request)
+    // {
+    //     $validateClientType = DB::table('tbl_css_category')->pluck('idCategory')->toArray();
+    //     $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+    //     $services = DB::table('table_service1_1')->pluck('idServiceSpecification')->toArray();
+
+    //     $serviceCode = service1::where('idServiceSpecification', $request->service_availed)->first();
+    //     $service = $serviceCode->serviceCode;
+
+    //     $validateData = $request->validate([
+    //         'name_of_client' => 'required',
+    //         'gender_of_client' => ['required', Rule::in(['male', 'female'])],
+    //         'age_of_client' => 'required',
+    //         'client_type' => ['required', Rule::in($validateClientType)],
+    //         'date_of_transaction' => 'required|date',
+    //         'offices' => ['required', Rule::in($validateOffices)],
+    //         'service_availed' => ['required', Rule::in($services)],
+    //         'purpose' => 'required',
+    //         'email_of_client' => '',
+    //     ]);
+
+    //     $request->session()->put('step1', ['data' => $validateData, 'service' => $service]);
+
+    //     return redirect('/exampleStep2');
+    // }
+
 
     public function exampleStep2()
     {
@@ -430,6 +581,7 @@ class clientController extends Controller
     public function processStep2Complete(Request $request)
     {
         $step1Data = $request->session()->get('step1');
+
 
         if (!$step1Data) {
             return redirect('/exampleStep1');
@@ -461,8 +613,8 @@ class clientController extends Controller
             'idOfficeOrigin' =>  $step1Data['data']['offices'],
             'service_avail' =>  $step1Data['data']['service_availed'],
             'purpose' =>  $step1Data['data']['purpose'],
-            'serviceCode' =>   $step1Data['service'],
-            'emailAdd' => $validateData['email_of_client'],
+            'serviceCode' => $step1Data['service'],
+            'emailAdd' => $step1Data['data']['email_of_client'],
             'cc1' => $validateData['question1'],
             'cc2' => $validateData['question2'],
             'cc3' => $validateData['question3'],

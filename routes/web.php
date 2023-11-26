@@ -24,9 +24,17 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home/Document/{id}', 'citizenDocument');
     Route::get('/home/clientSurvey/{code}', 'showClientSurvey')
         ->name('ClientSurvey');
-    Route::get('/home/WalkIn-clientSurvey', 'showClientSurvey2')
-        ->name('ClientSurvey2');
-    Route::post('/home/WalkIn-clientSurvey/StoreData2', 'storeSurveyData2');
+
+
+
+    // Route::get('/home/WalkIn-clientSurvey', 'showClientSurvey2')
+    //     ->name('ClientSurvey2');
+    // Route::post('/home/WalkIn-clientSurvey/StoreData2', 'storeSurveyData2');
+
+    Route::get('/home/WalkIn-clientSurvey', 'walkInSurvey')->name('Step1');
+    Route::post('/home/WalkIn-clientSurvey', 'processWalkInSurvey');
+    Route::get('/home/WalkIn-clientSurvey2', 'walkInSurvey2');
+    Route::post('/home/WalkIn-clientSurvey2', 'processWalkInSurvey2');
     // Route::post('/home/clientSurvey/Search', 'fetchData'); //associate to fetch the data
     Route::get('/clientSurvey/selectService', 'selectService');
     Route::post('/home/clientSurvey/StoreData', 'storeSurveyData');
@@ -39,9 +47,10 @@ Route::controller(clientController::class)->group(function () {
 
     Route::get('/home/word', 'word');
     Route::get('/example', 'example');
-    Route::get('/exampleStep1', 'exampleStep1');
-    Route::put('/exampleStep1', 'processStep1');
-    Route::get('/exampleStep2', 'exampleStep2');
+    // Route::get('/exampleStep1', 'exampleStep1')->name('Step1');
+    // Route::post('/exampleStep1', 'processStep1');
+    // Route::get('/exampleStep2', 'exampleStep2');
+    // Route::post('/exampleStep2', 'processStep2Complete');
 });
 
 
