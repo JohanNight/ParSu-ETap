@@ -12,7 +12,7 @@
                 class="SemiB-font text-2xl text-white bg-gray-600 rounded-lg p-2 shadow-md hover:bg-yellow-500 active:bg-yellow-600 ">Exit</a>
         </div>
 
-        <div class="p-1 m-3 flex justify-center justify-around sm:gap-2  ">
+        <div class="p-1 m-3 flex  justify-evenly sm:gap-2 ">
             <x-messages />
             <div class="bg-gray-600 bg-opacity-70  rounded-md w-96 h-full shadow-lg floating-container">
                 <div class="block bg-gray p-2 mt-2 w-full h-full">
@@ -43,6 +43,8 @@
 
     </div>
 </div>
+
+
 
 <script>
     const containers = document.querySelectorAll('.floating-container');
