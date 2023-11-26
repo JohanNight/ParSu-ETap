@@ -121,17 +121,47 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                <div class="flex justify-between">
+                                {{-- <div class="flex  justify-between ">
                                     <div>
                                         {{ $services->links() }}
                                     </div>
-
-
+                                
                                     <div class=" text-[20px] Med-font">
 
                                         Page {{ $services->currentPage() }} of {{ $services->lastPage() }}
                                     </div>
+                                </div> --}}
+                                <div class="flex justify-end mt-4 text-gray-700">
+                                    <span class="text-[14px] Med-font text-black">
+                                        Showing {{ $services->firstItem() }} to {{ $services->lastItem() }} of
+                                        {{ $services->total() }} results
+                                    </span>
+                                    <span class="ml-4">
+                                        @if ($services->currentPage() > 1)
+                                            <a href="{{ $services->previousPageUrl() }}"
+                                                class="text-black hover:underline ">
+                                                <span class="text-[15px] SemiB-font text-yellow-400"> Previous</span>
+
+                                            </a>
+                                        @endif
+
+                                        @for ($i = 1; $i <= $services->lastPage(); $i++)
+                                            <a href="{{ $services->url($i) }}"
+                                                class="{{ $i == $services->currentPage() ? 'Bold-font text-md text-black' : 'text-white hover:underline' }}">
+                                                {{ $i }}
+                                            </a>
+                                        @endfor
+
+                                        @if ($services->currentPage() < $services->lastPage())
+                                            <a href="{{ $services->nextPageUrl() }}"
+                                                class="text-black hover:underline">
+                                                <span class="text-[15px] SemiB-font text-yellow-400"> Next</span>
+                                            </a>
+                                        @endif
+                                    </span>
                                 </div>
+
+
                             </table>
 
                         </div>
