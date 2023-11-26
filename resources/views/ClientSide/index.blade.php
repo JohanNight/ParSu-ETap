@@ -2,7 +2,8 @@
 <div class="min-h-screen w-full relative">
     <div class="h-full w-full flex">
         <div class=" min-h-sceen w-[50%]">
-            <img src="{{ asset('images/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full " alt="">
+            <img src="{{ asset('images/ImageForPSU/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full "
+                alt="">
         </div>
         <div class="min-h-sceen w-[50%]">
             <div class="bg-indigo-900 w-full h-screen flex flex-col items-center">
@@ -19,7 +20,7 @@
                     <div class="mt-[30px] w-full p-5">
                         <div class="flex justify-center items-center w-full">
                             <a href="{{ route('HomePage') }}"
-                                class="w-full text-[30px] text-white SemiB-font bg-yellow-400 p-5 rounded-[100px] text-center active:bg-yellow-500 animate-bounce">Get
+                                class="w-full text-[30px] text-white SemiB-font bg-yellow-400 p-5 rounded-[100px] text-center active:bg-yellow-500 animate-bounce ring-4 ring-white">Get
                                 Started</a>
                         </div>
                         <div class="flex justify-end">
