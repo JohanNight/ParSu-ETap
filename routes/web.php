@@ -24,13 +24,6 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home/Document/{id}', 'citizenDocument');
     Route::get('/home/clientSurvey/{code}', 'showClientSurvey')
         ->name('ClientSurvey');
-
-
-
-    // Route::get('/home/WalkIn-clientSurvey', 'showClientSurvey2')
-    //     ->name('ClientSurvey2');
-    // Route::post('/home/WalkIn-clientSurvey/StoreData2', 'storeSurveyData2');
-
     Route::get('/home/WalkIn-clientSurvey', 'walkInSurvey')->name('Step1');
     Route::post('/home/WalkIn-clientSurvey', 'processWalkInSurvey');
     Route::get('/home/WalkIn-clientSurvey2', 'walkInSurvey2');
@@ -47,10 +40,6 @@ Route::controller(clientController::class)->group(function () {
 
     Route::get('/home/word', 'word');
     Route::get('/example', 'example');
-    // Route::get('/exampleStep1', 'exampleStep1')->name('Step1');
-    // Route::post('/exampleStep1', 'processStep1');
-    // Route::get('/exampleStep2', 'exampleStep2');
-    // Route::post('/exampleStep2', 'processStep2Complete');
 });
 
 
@@ -125,7 +114,3 @@ Route::controller(adminController::class)->group(function () {
         Route::post('/superAdmin/delete-service/{serviceId}', 'deleteService');
     });
 });
-
-
-
-Route::get('/reportService', [adminController::class, 'report']);
