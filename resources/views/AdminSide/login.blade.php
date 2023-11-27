@@ -26,11 +26,6 @@
     </div>
     <div class="relative z-10 h-full">
         <div class="flex justify-around items-center mt-2">
-            {{-- <header class="m-5 p-2.5 flex items-center">
-                <h1 class="text-6xl font-bold text-blue-500">
-                    ParSU eTAP Admin
-                </h1>
-            </header> --}}
             <div class=" max-w-full mx-auto my-5 p-10 rounded-xl shadow-2xl bg-white bg-opacity-80">
                 <div class="">
                     <h3 class="Bold-font text-2xl text-blue-800">Welcome to ParSU eTAP System</h3>

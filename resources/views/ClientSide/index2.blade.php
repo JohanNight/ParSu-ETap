@@ -19,7 +19,6 @@
 
             <ul
                 class="w-full flex justify-center items-center gap-2 lg:gap-8 px-4 py-8 text-sm lg:text-xl text-white font-semibold bg-[#1d3557]">
-                {{-- <li><a href="home.html">Home</a></li> --}}
                 <li><a href="{{ route('CitizenCharter') }}" class="hover:text-blue-400">Citizen Charter</a></li>
                 <li class="relative group">
                     <a href="#" class="group hover:text-blue-400">
@@ -51,19 +50,10 @@
                     <p class="my-6 text-[#00008b] SemiB-font">
                         Parsu eTAP:Electronic Satisfaction Survey
                     </p>
-
-                    <div class="flex gap-4 font-medium">
-                        {{-- <button class="py-1 px-6 border-2 border-[#1d3557] rounded-full">
-                            Get Started
-                        </button>
-                        <button class="py-1 px-6 text-white bg-[#1d3557] rounded-full">
-                            Log In
-                        </button> --}}
-                    </div>
                 </div>
             </div>
             <div class="w-[50%] h-full flex justify-center items-center">
-                <img class="lg:w-[23rem]" src="{{ asset('images/images/logo.png') }}" alt="" />
+                <img class="lg:w-[23rem]" src="{{ asset('images/images/logo2.png') }}" alt="" />
             </div>
         </header>
     </div>
