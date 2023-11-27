@@ -3,7 +3,7 @@
     <x-messages />
     <!-- background Image -->
     <div class=" absolute w-full ">
-        <img src="{{ asset('images/ImageForPSU/IMG_2575.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-80"
+        <img src="{{ asset('images/ImageForPSU/IMG_2539.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-80"
             alt="">
     </div>
     <!-- background Image -->
@@ -25,7 +25,7 @@
             </div>
             <div class="flex justify-center items-center mt-[40px]">
                 <div class=" mt bg-blue-800 p-2 rounded-lg w-96 flex justify-center items-center">
-                    <h1 class="text-xl SemiB-font uppercase p-2 text-yellow-400">
+                    <h1 class="text-xl SemiB-font uppercase p-2 text-white">
                         For Security Purposes
                     </h1>
                 </div>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="mt-2 flex justify-center items-center">
                         <button type="submit"
-                            class="text-lg SemiB-font px-3 py-1 bg-green-400 rounded-lg active:bg-green-500">
+                            class="text-lg SemiB-font px-3 py-1 bg-blue-800 rounded-lg active:bg-blue-900">
                             Enter
                         </button>
                     </div>

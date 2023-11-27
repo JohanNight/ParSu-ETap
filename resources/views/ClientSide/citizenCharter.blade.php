@@ -103,7 +103,7 @@
                                 <tbody class="text-left">
                                     @foreach ($services as $service)
                                         <tr
-                                            class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                            class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 bg-opacity-90">
                                             <td class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
                                                 {{ $service->serviceCode }}</td>
                                             <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
@@ -118,24 +118,24 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <a href="/home/Document/{{ $service->idServiceSpecification }}"
-                                                    class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-green-700">
+                                                    class="bg-blue-800 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-blue-900">
                                                     View
                                                 </a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                {{-- <div class="flex  justify-between ">
+                                <div class="flex  justify-between ">
                                     <div>
                                         {{ $services->links() }}
                                     </div>
-                                
+
                                     <div class=" text-[20px] Med-font">
 
                                         Page {{ $services->currentPage() }} of {{ $services->lastPage() }}
                                     </div>
-                                </div> --}}
-                                <div class="flex justify-end mt-4 text-gray-700">
+                                </div>
+                                {{-- <div class="flex justify-end mt-4 text-gray-700">
                                     <span class="text-[14px] Med-font text-black">
                                         Showing {{ $services->firstItem() }} to {{ $services->lastItem() }} of
                                         {{ $services->total() }} results
@@ -163,7 +163,7 @@
                                             </a>
                                         @endif
                                     </span>
-                                </div>
+                                </div> --}}
 
 
                             </table>

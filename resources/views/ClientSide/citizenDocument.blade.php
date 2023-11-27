@@ -3,10 +3,15 @@
     <div class=" absolute w-full ">
         <img src="{{ asset('images/Entrance.jpg') }}" class="min-h-screen bg-no-repeat w-full opacity-80" alt="">
     </div>
-    <div class=" h-full w-full absolute">
+    <div class=" h-screen w-full absolute">
         <div class="w-full bg-blue-800 h-20 p-2 flex justify-start items-center">
-            <a href="{{ route('CitizenCharter') }}"
-                class="text-lg Reg-font bg-gray-400 text-white rounded-md p-2 active:bg-gray-500">Return</a>
+            <a href="{{ route('CitizenCharter') }}" class="text-lg Reg-font   rounded-md p-2 "> <svg
+                    xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 -960 960 960"
+                    class="text-white" id="colorChangingSvg">
+                    <path
+                        d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"
+                        fill="#3490dc" />
+                </svg></a>
         </div>
         <div class="flex justify-center mt-5">
             <div class="border-2 border-white w-10/12">
@@ -160,6 +165,12 @@
 
 </div>
 
+<script>
+    var svg = document.getElementById('colorChangingSvg');
 
+    svg.addEventListener('click', function() {
+        svg.querySelector('path').setAttribute('fill', '#87CEEB');
+    });
+</script>
 
 @include('partials.footerClient')
