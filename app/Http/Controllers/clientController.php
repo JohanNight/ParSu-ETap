@@ -395,9 +395,4 @@ class clientController extends Controller
         $names = $name;
         return view('ClientSide.thankYouPage', compact('names'));
     }
-
-    // public function showIndex()
-    // {
-    //     return view('ClientSide.index2');
-    // }
 }

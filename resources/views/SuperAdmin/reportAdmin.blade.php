@@ -116,7 +116,7 @@
 
             <!--Graph 4 Total of internal services-->
             <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
-                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Number of External Services</h2>
+                <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Number of Internal Services</h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!--Line with gradient-->

@@ -58,13 +58,13 @@
                                                 <td
                                                     class="px-6 py-4 whitespace-nowrap flex justify-evenly  gap-5 items-center">
                                                     <a href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
-                                                        class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                        class="bg-blue-800 active:bg-blue-900 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         Edit
                                                     </a>
                                                     <form
                                                         action="/indexAdmin/serviceArchive/{{ $service->idServiceSpecification }}"
                                                         method="POST"
-                                                        class="bg-orange-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                        class="bg-blue-400 active:bg-blue-500 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         @csrf
                                                         @method('PUT')
                                                         Archive
@@ -75,7 +75,7 @@
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit"
-                                                            class="bg-red-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                            class="bg-red-600 active:bg-red-700 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                             Delete</button>
                                                     </form>
 

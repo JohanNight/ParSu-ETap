@@ -69,13 +69,6 @@
                                 Save
                             </button>
                         </div>
-                        <div class="mt-2 ">
-                            <button type="button"
-                                class="SemiB-font text-[20px] bg-red-500 p-2 rounded-lg w-full active:bg-red-600">
-                                Archive
-                            </button>
-                        </div>
-
                     </div>
 
                 </div>

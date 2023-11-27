@@ -53,13 +53,13 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap flex gap-5 items-center">
                                                     <a href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
-                                                        class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                        class="bg-blue-800 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         Edit
                                                     </a>
                                                     <form
                                                         action="/indexAdmin/serviceArchive/{{ $service->idServiceSpecification }}"
                                                         method="POST"
-                                                        class="bg-orange-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                                        class="bg-blue-300 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                                         @csrf
                                                         @method('PUT')
                                                         Archive

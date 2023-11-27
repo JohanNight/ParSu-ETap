@@ -644,7 +644,7 @@
                                 </td>
                                 <td class="py-2 px-4 border-b border-grey-light flex justify-between"> <a
                                         href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
-                                        class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                        class="bg-blue-800 active:bg-blue-900 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                         Edit
                                     </a>
                                     <form action="/superAdmin/delete-service/{{ $service->idServiceSpecification }}"
@@ -652,7 +652,7 @@
                                         @method('delete')
                                         @csrf
                                         <button type="submit"
-                                            class="bg-red-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                            class="bg-red-600 active:bg-red-700 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                             Delete</button>
                                     </form>
                                 </td>

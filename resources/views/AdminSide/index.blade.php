@@ -84,7 +84,7 @@
                                 </td>
                                 <td class="py-2 px-4 border-b border-grey-light Reg-font"> <a
                                         href="/indexAdmin/editService/{{ $service->idServiceSpecification }}"
-                                        class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
+                                        class="bg-blue-800 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                         Edit
                                     </a></td>
                             </tr>
