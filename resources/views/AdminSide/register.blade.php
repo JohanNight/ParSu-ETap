@@ -3,8 +3,9 @@
     <div class="min-h-screen flex items-center justify-center">
         <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
             <div class="flex justify-center mb-8">
-                <h1 class="text-4xl SemiB-font text-yellow-400 tracking-wide"> <span class="text-blue-700">ParSU</span>
-                    eTAP</h1>
+                <h1 class="text-4xl SemiB-font tracking-wide"> <span class="text-blue-700">ParSU
+                        eTAP</span>
+                </h1>
             </div>
             <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">Admin Registration</h1>
             <form action="/register/storeData" method="POST">

@@ -1,5 +1,5 @@
 @include('partials.headerAdmin')
-<div class="bg-blue-800 max-h-lg shadow-lg w-full px-2 py-2.5">
+<div class="bg-[#00008B] max-h-lg shadow-lg w-full px-2 py-2.5">
     <div class="flex flex-wrap justify-between items-center ">
         <x-logo />
         <div>
@@ -50,7 +50,7 @@
                 </div>
 
                 <button type="submit"
-                    class="w-full  mb-5 Bold-font text-[20px] border-2 p-2 bg-green-500 rounded-md">Sign
+                    class="w-full  mb-5 Bold-font text-[20px] border-2 p-2 bg-[#0047ab] active:bg-[#00008B]  rounded-md">Sign
                     In</button>
 
                 <hr class="mb-6 border-t" />

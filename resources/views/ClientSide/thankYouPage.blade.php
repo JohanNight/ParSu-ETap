@@ -10,7 +10,7 @@
                 <span class="SemiB-font text-[50px] uppercase text-blue-700">{{ $names }}</span>
             </div>
             <div class="mt-2">
-                <p class="text-center Med-font">Return to Home
+                <p class="text-center Med-font">Return to
                     <a href="{{ route('welcome') }}"
                         class="text-indigo-600 font-medium inline-flex space-x-1 items-center">
                         <span class="Reg-font">Home</span>

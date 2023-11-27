@@ -46,7 +46,7 @@
                     class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Change
                     Password</button>
 
-                <p class="text-center">Return to Login <a href="{{ route('login') }}"
+                <p class="text-center">Return to <a href="{{ route('login') }}"
                         class="text-indigo-600 font-medium inline-flex space-x-1 items-center"><span>Login now
                         </span><span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

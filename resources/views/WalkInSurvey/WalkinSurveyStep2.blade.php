@@ -204,7 +204,7 @@
         </div>
         {{-- Submit button --}}
         <div class="mt-2 p-10 flex justify-center ">
-            <button class="py-4 Med-font  text-[30px] bg-green-400 rounded active:bg-green-600 w-full" type="submit">
+            <button class="py-4 Med-font  text-[30px] bg-[#0047ab] rounded active:bg-[#00008B] w-full" type="submit">
                 Submit
             </button>
         </div>
