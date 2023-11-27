@@ -40,6 +40,8 @@ Route::controller(clientController::class)->group(function () {
 
     Route::get('/home/word', 'word');
     Route::get('/example', 'example');
+
+    Route::get('/index2', 'showIndex');
 });
 
 

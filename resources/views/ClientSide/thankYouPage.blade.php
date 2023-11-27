@@ -11,7 +11,7 @@
             </div>
             <div class="mt-2">
                 <p class="text-center Med-font">Return to Home
-                    <a href="{{ route('HomePage') }}"
+                    <a href="{{ route('welcome') }}"
                         class="text-indigo-600 font-medium inline-flex space-x-1 items-center">
                         <span class="Reg-font">Home</span>
                         <span>

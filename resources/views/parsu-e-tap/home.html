@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,700&family=Noto+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&family=Space+Mono:wght@400;700&family=Titillium+Web:wght@300;400;600;700;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            * {
+                font-family: "Poppins", sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="w-full h-full flex flex-col justify-center items-center">
+            <div
+                class="relative w-full px-4 py-8 bg-[url('./images/itbg.png')] bg-center bg-cover"
+            >
+                <div
+                    class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-[#ffffff]"
+                ></div>
+                <div class="relative lg:ml-[6rem] z-30">
+                    <h1
+                        class="text-2xl text-center lg:text-start font-bold text-[#1d3557]"
+                    >
+                        PARSU E-TAP
+                    </h1>
+                </div>
+            </div>
+
+            <ul
+                class="w-full flex justify-center items-center gap-2 lg:gap-8 px-4 py-8 text-sm lg:text-xl text-white font-semibold bg-[#1d3557]"
+            >
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#cc">CC</a></li>
+                <li><a href="#css">CSS</a></li>
+            </ul>
+        </nav>
+        <header class="w-full flex flex-col lg:flex-row items-center gap-8 p-8">
+            <div class="w-[50%] p-4 flex justify-center items-center">
+                <div>
+                    <h1
+                        class="text-[#1d3557] text-[3.5rem] text-center lg:text-start font-bold leading-[4rem]"
+                    >
+                        Partido State <br />
+                        University
+                    </h1>
+                    <p class="my-6 text-[#1d3557] font-semibold">
+                        Online Appointment Parsu E-tap
+                    </p>
+
+                    <div class="flex gap-4 font-medium">
+                        <button
+                            class="py-1 px-6 border-2 border-[#1d3557] rounded-full"
+                        >
+                            Get Started
+                        </button>
+                        <button
+                            class="py-1 px-6 text-white bg-[#1d3557] rounded-full"
+                        >
+                            Log In
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="w-[50%] h-full flex justify-center items-center">
+                <img class="lg:w-[23rem]" src="./images/logo.png" alt="" />
+            </div>
+        </header>
+    </body>
+</html>

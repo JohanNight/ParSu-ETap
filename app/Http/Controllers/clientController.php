@@ -28,8 +28,13 @@ class clientController extends Controller
 
     public function showWelcomePage()
     {
-        if (View::exists('ClientSide.index')) {
-            return view('ClientSide.index');
+        // if (View::exists('ClientSide.index')) {
+        //     return view('ClientSide.index');
+        // } else {
+        //     return abort(404);
+        // }
+        if (View::exists('ClientSide.index2')) {
+            return view('ClientSide.index2');
         } else {
             return abort(404);
         }
@@ -390,4 +395,9 @@ class clientController extends Controller
         $names = $name;
         return view('ClientSide.thankYouPage', compact('names'));
     }
+
+    // public function showIndex()
+    // {
+    //     return view('ClientSide.index2');
+    // }
 }

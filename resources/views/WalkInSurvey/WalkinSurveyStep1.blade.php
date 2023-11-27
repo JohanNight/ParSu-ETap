@@ -5,7 +5,7 @@
         {{-- This is for the title and the logo --}}
         <div class="flex justify-center items-center bg-blue-900  w-full">
             <div class="flex justify-start ml-5">
-                <form action="{{ route('HomePage') }}" method="get">
+                <form action="{{ route('welcome') }}" method="get">
                     <button type="submit"
                         class="bg-gray-600 px-1 rounded-lg border-2 border-black hover:bg-yellow-500  transition duration-100 active:bg-yellow-700 Bold-font text-2xl text-white w-20 h-12 shadow-md ">
                         Back

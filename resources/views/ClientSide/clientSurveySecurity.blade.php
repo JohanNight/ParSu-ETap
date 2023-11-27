@@ -11,7 +11,7 @@
         <x-messages />
         <div class="flex flex-col  gap-10">
             <div class="p-2 rounded-lg  flex justify-start items-center ">
-                <a href="{{ route('clientButton') }}"
+                <a href="{{ route('welcome') }}"
                     class=" border-2 border-blue-800 rounded-lg text-xl SemiB-font uppercase p-2 text-white border-2 border-black mr-[50px]">
                     Return
                 </a>
