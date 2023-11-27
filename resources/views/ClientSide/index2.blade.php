@@ -20,9 +20,9 @@
             <ul
                 class="w-full flex justify-center items-center gap-2 lg:gap-8 px-4 py-8 text-sm lg:text-xl text-white font-semibold bg-[#1d3557]">
                 {{-- <li><a href="home.html">Home</a></li> --}}
-                <li><a href="{{ route('CitizenCharter') }}">Citizen Charter</a></li>
+                <li><a href="{{ route('CitizenCharter') }}" class="hover:text-blue-400">Citizen Charter</a></li>
                 <li class="relative group">
-                    <a href="#" class="group">
+                    <a href="#" class="group hover:text-blue-400">
                         Client Satisfaction Survey
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             class="h-5 w-5 inline-block ml-1">
@@ -36,7 +36,7 @@
                         <!-- Add more options as needed -->
                     </ul>
                 </li>
-                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('login') }}"class="underline text-[13px] Med-I-font text-blue-800">Login</a></li>
             </ul>
         </nav>
 
@@ -69,6 +69,7 @@
     </div>
 
 </div>
+
 
 
 @include('partials.footerClient')

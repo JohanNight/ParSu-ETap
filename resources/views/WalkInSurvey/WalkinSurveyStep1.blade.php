@@ -7,8 +7,13 @@
             <div class="flex justify-start ml-5">
                 <form action="{{ route('welcome') }}" method="get">
                     <button type="submit"
-                        class="bg-gray-600 px-1 rounded-lg border-2 border-black hover:bg-yellow-500  transition duration-100 active:bg-yellow-700 Bold-font text-2xl text-white w-20 h-12 shadow-md ">
-                        Back
+                        class=" px-1 rounded-lg   transition duration-100  Bold-font text-2xl text-white w-20 h-12 shadow-md ">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 -960 960 960"
+                            class="text-white" id="colorChangingSvg">
+                            <path
+                                d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"
+                                fill="#3490dc" />
+                        </svg>
                     </button>
                 </form>
             </div>
@@ -244,5 +249,13 @@
     // Set the input field's value to today's date
     document.getElementById("date_of_transaction").value = today;
 </script>
+<script>
+    var svg = document.getElementById('colorChangingSvg');
+
+    svg.addEventListener('click', function() {
+        svg.querySelector('path').setAttribute('fill', '#87CEEB');
+    });
+</script>
+
 
 @include('partials.footerClient')
