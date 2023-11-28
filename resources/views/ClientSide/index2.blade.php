@@ -1,8 +1,8 @@
 @include('partials.headerClient')
-<div class="bg-white min-h-screen w-full relative">
+<div class="bg-black min-h-screen w-full relative">
     <div class=" absolute w-full h-screen">
         <div class=" min-h-sceen w-[100%]">
-            <img src="{{ asset('images/ImageForPSU/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full "
+            <img src="{{ asset('images/ImageForPSU/Entrance.jpg') }}" class="h-[100dvh] bg-no-repeat w-full opacity-70 "
                 alt="">
         </div>
     </div>
@@ -43,11 +43,11 @@
         <header class="w-full flex flex-col lg:flex-row items-center gap-8 p-8">
             <div class="w-[50%] p-4 flex justify-center items-center">
                 <div>
-                    <h1 class="text-[#000080] text-[3.5rem] text-center lg:text-start Bold-font leading-[4rem]">
+                    <h1 class="text-white text-[3.5rem] text-center lg:text-start Bold-font leading-[4rem]">
                         Partido State <br />
                         University
                     </h1>
-                    <p class="my-6 text-[#00008b] SemiB-font">
+                    <p class="my-6 text-white SemiB-font">
                         Parsu eTAP:Electronic Satisfaction Survey
                     </p>
                 </div>
