@@ -5,7 +5,7 @@
         <div class="p-10 flex flex-col items-center" id="thankYouSection">
             <div class="mb-2 flex flex-col items-center animate-[fade-in_1s_ease-in-out]">
                 <h1 class="SemiB-font text-[50px] capitalize">
-                    Thank you for your time
+                    Thank you for your time!
                 </h1>
                 <span class="SemiB-font text-[50px] uppercase text-blue-700">{{ $names }}</span>
             </div>
