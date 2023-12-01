@@ -207,7 +207,7 @@
                 service.serviceTitle,
                 service.officeAcronym,
                 '<a href="/home/Document/' + service.idServiceSpecification +
-                '" class="bg-green-600 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-green-700">View</a>'
+                '" class="bg-blue-700 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-blue-800">View</a>'
             ];
 
             cells.forEach(cellText => {

@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Who_avail;
 use App\Models\Classification;
 use App\Models\ServiceType;
+use App\Models\ServiceCode;
 use App\Models\SurveyInstruction;
 use App\Models\SurveyQuestion;
 use App\Models\SurveyComment;
@@ -1095,24 +1096,69 @@ class adminController extends Controller
             return abort(404);
         }
     }
+    // public function createCode(Request $request)
+    // {
+    //     $searchCode = $request->input('service_code');
+    //     $user = Auth::user();
+    //     $superAdmin = $user->idOfficeOrigin;
+
+    //     if ($superAdmin == 3) {
+    //         $serviceCode = service1::where('serviceCode',  $searchCode)->first();
+    //         $code = $serviceCode->serviceCode;
+    //         return response()->json(['code' => $code]);
+    //     } else {
+    //         $userOffice = $user->idOfficeOrigin;
+    //         $serviceCode = service1::where('serviceCode',  $searchCode)
+    //             ->where('idOffice', $userOffice)->first();
+    //         $code = $serviceCode->serviceCode;
+    //         return response()->json(['code' => $code]);
+    //     }
+    // }
+
     public function createCode(Request $request)
     {
         $searchCode = $request->input('service_code');
         $user = Auth::user();
         $superAdmin = $user->idOfficeOrigin;
+        $setFlag = 1;
 
         if ($superAdmin == 3) {
             $serviceCode = service1::where('serviceCode',  $searchCode)->first();
-            $code = $serviceCode->serviceCode;
+            $code = $serviceCode->serviceCode . $this->generateRandomCode();
+
+            $setCode = new ServiceCode;
+            $setCode->code =  $code;
+            $setCode->flag =  $setFlag;
+            $setCode->save();
+
             return response()->json(['code' => $code]);
         } else {
             $userOffice = $user->idOfficeOrigin;
             $serviceCode = service1::where('serviceCode',  $searchCode)
                 ->where('idOffice', $userOffice)->first();
-            $code = $serviceCode->serviceCode;
+            $code = $serviceCode->serviceCode . $this->generateRandomCode();
+
+            $setCode = new ServiceCode;
+            $setCode->code =  $code;
+            $setCode->flag =  $setFlag;
+            $setCode->save();
+
             return response()->json(['code' => $code]);
         }
     }
+
+    private function generateRandomCode($length = 3)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomCode = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomCode .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $randomCode;
+    }
+
 
     public function report2()
     {

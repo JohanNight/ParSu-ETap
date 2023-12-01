@@ -19,9 +19,10 @@
 
             <ul
                 class="w-full flex justify-center items-center gap-2 lg:gap-8 px-4 py-8 text-sm lg:text-xl text-white font-semibold bg-[#1d3557]">
-                <li><a href="{{ route('CitizenCharter') }}" class="hover:text-blue-400">Citizen Charter</a></li>
+                <li><a href="{{ route('CitizenCharter') }}" class="hover:text-blue-400 underline Bold-font">Citizen
+                        Charter</a></li>
                 <li class="relative group">
-                    <a href="#" class="group hover:text-blue-400">
+                    <a href="#" class="group hover:text-blue-400 underline Bold-font">
                         Client Satisfaction Survey
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             class="h-5 w-5 inline-block ml-1">

@@ -54,7 +54,7 @@
                 <div class="block ml-3  mt-2">
                     <label for="name_of_client" class="text-[20px] Reg-font mr-2 text-black">Name: </label>
                     <input type="text" name="name_of_client" id="name_of_client"
-                        class=" px-2 py-2 text-[16px] Reg-font w-96 sm:w-full bg-gray-300 rounded-md shadow-md"
+                        class=" px-2 py-2 text-[16px] Reg-font w-full sm:w-full bg-gray-300 rounded-md shadow-md"
                         value="" autocomplete="off">
                     @error('name_of_client')
                         <p class="text-red-400 text-sm p-1">
@@ -66,7 +66,7 @@
                 <div class="block ml-3 mt-2">
                     <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
                     <select name="gender_of_client" id="gender_of_client"
-                        class="w-40 bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
+                        class="w-full bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
                         <option value="" @if (old('gender_of_client') == '') selected @endif></option>
                         <option value="male" class="text-[16px] Reg-font"
                             @if (old('gender_of_client') == 'male') selected @endif>
@@ -87,7 +87,7 @@
                 <div class="block ml-3 mt-2">
                     <label for="age_of_client" class="text-[20px] Reg-font mr-2 text-black">Age: </label>
                     <input type="number" name="age_of_client" id="age_of_client"
-                        class=" px-2 py-2 text-[16px] Reg-font w-40 sm:w-full bg-gray-300 rounded-md shadow-md"autocomplete="off"
+                        class=" px-2 py-2 text-[16px] Reg-font w-full sm:w-full bg-gray-300 rounded-md shadow-md"autocomplete="off"
                         value="">
                     @error('age_of_client')
                         <p class="text-red-400 text-sm p-1">
@@ -99,7 +99,7 @@
                 <div class="block ml-3 mt-2">
                     <label for="client_type" class="text-[20px] Reg-font mr-2 text-black">Client Type: </label>
                     <select name="client_type" id="client_type"
-                        class="w-48 sm:w-full bg-gray-300 py-2 px-2 mb-3 md:ml-0 rounded-md shadow-md text-[16px] Reg-font">
+                        class="w-full sm:w-full bg-gray-300 py-2 px-2 mb-3 md:ml-0 rounded-md shadow-md text-[16px] Reg-font">
                         <option value="" @if (old('client_type') == '') selected @endif></option>
                         @foreach ($clientTypes as $clientType)
                             <option value="{{ $clientType->idCategory }}" class="text-[16px] Reg-font capitalize "
@@ -119,14 +119,14 @@
                 <div class="block ml-3 mt-2 ">
                     <label for="date_of_transaction" class="text-[20px] Reg-font mr-2 text-black">Date: </label>
                     <input type="date" name="date_of_transaction" id="date_of_transaction"
-                        class="px-2 py-2 Reg-font w-80 bg-gray-300 rounded-md shadow-md sm:w-full"autocomplete="off"
+                        class="px-2 py-2 Reg-font w-full bg-gray-300 rounded-md shadow-md sm:w-full"autocomplete="off"
                         value="">
                 </div>
                 {{-- Office/Campus Visited --}}
                 <div class="block ml-3 mt-2">
                     <label for="offices" class="text-[20px] Reg-font mr-2 text-black">Office/Campus Visited: </label>
                     <select name="offices" id="offices"
-                        class="w-40 bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
+                        class="w-full bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
                         <option value=""></option>
                         @foreach ($officeTypes as $officeType)
                             <option value="{{ $officeType->idOffices }}" class="text-[16px] Reg-font capitalize"
@@ -150,7 +150,7 @@
                 <div class="block ml-3 mt-2 flex flex-col">
                     <label for="service_availed" class="text-[20px] Reg-font mr-2 text-black">Service Avail: </label>
                     <select type="text" name="service_availed" id="service_availed"
-                        class="w-96 md:w-full sm:w-full px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"
+                        class="w-full md:w-full sm:w-full px-2 py-2 Reg-font bg-gray-300 rounded-md shadow-md"
                         autocomplete="off">
                         <option value=""></option>
                         @foreach ($Service as $services)
@@ -187,7 +187,7 @@
                         (optional):
                     </label>
                     <input type="email" name="email_of_client" id="email_of_client"
-                        class="w-96 py-2.5 sm:w-full px-2 bg-gray-300 rounded text-[16px] Reg-font "
+                        class="w-full py-2.5 sm:w-full px-2 bg-gray-300 rounded text-[16px] Reg-font "
                         autocomplete="off" value="">
 
                 </div>

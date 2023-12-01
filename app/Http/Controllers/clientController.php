@@ -16,6 +16,7 @@ use Illuminate\Validation\Rule;
 use App\Models\clientCode;
 use App\Models\service1;
 use App\Models\service2;
+use App\Models\ServiceCode;
 use App\Models\SurveyComment;
 use App\Models\SurveyInstruction;
 use App\Models\SurveyQuestion;
@@ -112,9 +113,9 @@ class clientController extends Controller
             return abort(404);
         }
     }
+
     // public function checkSecurity(Request $request)
     // {
-
     //     $validatedData = $request->validate([
     //         'srvy_keycode' => 'required'
     //     ]);
@@ -123,15 +124,19 @@ class clientController extends Controller
     //     $code = $validatedData['srvy_keycode'];
 
     //     // Check if the code exists in the database
-    //     $temporaryCode = service1::where('serviceCode', $code)->first();
-    //     $tempCode = $temporaryCode->serviceCode;
+    //     $temporaryCode = ServiceCode::where('code', $code)->where('flag', 1)->first();
 
+    //     // Use a boolean variable to check if the code is valid
+    //     $isValidCode = $temporaryCode && $temporaryCode->serviceCode === $code;
+    //     $setFlag = 0;
 
     //     // Additional checks, if needed
-    //     if ($tempCode == null) {
-    //         return back()->with('message', 'Code not found');
-    //     } else if ($tempCode === $code) {
-    //         return redirect('home/clientSurvey/' . $code);
+    //     if ($isValidCode) {
+    //         $servicecode = ServiceCode::findOrFail($code);
+    //         $servicecode->update([
+    //             'flag' => $setFlag;
+    //         ]);
+    //         return redirect('home/clientSurvey');
     //     } else {
     //         return back()->with('message', 'Code not found');
     //     }
@@ -147,18 +152,26 @@ class clientController extends Controller
         $code = $validatedData['srvy_keycode'];
 
         // Check if the code exists in the database
-        $temporaryCode = service1::where('serviceCode', $code)->first();
+        $temporaryCode = ServiceCode::where('code', $code)->first();
 
         // Use a boolean variable to check if the code is valid
-        $isValidCode = $temporaryCode && $temporaryCode->serviceCode === $code;
+        $isValidCode = $temporaryCode && $temporaryCode->flag == 1;
 
         // Additional checks, if needed
         if ($isValidCode) {
+            // Code exists and flag is 1, update the flag to 0
+            $temporaryCode->update(['flag' => 0]);
             return redirect('home/clientSurvey/' . $code);
+        } elseif ($temporaryCode && $temporaryCode->flag == 0) {
+            // Code exists but flag is 0, do not redirect and return a message
+            return back()->with('message', 'Code found, but already used');
         } else {
+            // Code not found
             return back()->with('message', 'Code not found');
         }
     }
+
+
 
 
 
