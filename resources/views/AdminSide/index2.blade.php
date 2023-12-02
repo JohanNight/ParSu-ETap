@@ -12,8 +12,18 @@
 
         <!--Main content area -->
         <div class="flex-1 p-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
+            <!-- Search field -->
+            {{-- <div class="relative max-w-md w-full">
+                <div class="absolute top-1 left-2 inline-flex items-center p-2">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input
+                    class="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline"
+                    type="search" placeholder="Search...">
+            </div> --}}
+
             <!-- Graphics Container -->
-            <div class="mt-8 md:flex  space-x-0 space-y-2 md:space-x-4 md:space-y-0">
+            <div class="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
                 <!-- First container -->
                 <!-- Section 1 - User Chart -->
                 <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
@@ -28,6 +38,22 @@
 
                     </div>
                 </div>
+
+                <!-- Second container -->
+                <!-- Section 2 - Trade Chart -->
+                <!-- Line with gradient -->
+                <!-- The canvas for the graph -->
+                <!-- Separation space -->
+                {{-- <canvas id="totalFeedBackChart[2]"></canvas> --}}
+                {{-- <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
+                    <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Feedback </h2>
+                    <div class="my-1"></div>
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+
+                    <div class="chart-container" style="position: relative; height:300px; width:100%">
+                        {!! $totalClientSatisfaction->container() !!}
+                    </div>
+                </div> --}}
             </div>
 
             <!-- Third container below the previous two -->
@@ -81,5 +107,6 @@
 </div>
 
 {!! $totalDataPerServices->script() !!}
+{!! $totalClientSatisfaction->script() !!}
 
 @include('partials.footerAdmin')

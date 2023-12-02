@@ -238,28 +238,35 @@
             </div>
 
             <!--Graph 3-->
-            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+            <!-- Separation space -->
+            <!--Line with gradient-->
+            <!-- The canvas for the graph -->
+            {{-- <canvas id="usersChart[2]"></canvas> --}}
+            {{-- <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
                 <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Client Satisfaction</h2>
-                <div class="my-1"></div> <!-- Separation space -->
+                <div class="my-1"></div>
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                <!--Line with gradient-->
+
                 <div class="chart-container" style="position: relative; height:300px; width:100%">
-                    <!-- The canvas for the graph -->
-                    {{-- <canvas id="usersChart[2]"></canvas> --}}
+
                     {!! $totalClientSatisfaction->container() !!}
                 </div>
-            </div>
+            </div> --}}
+
             <!--Graph 4-->
-            <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
+            <!--Line with gradient-->
+            <!-- The canvas for the graph -->
+            <!-- Separation space -->
+            {{-- <div class="flex-1 bg-white p-4 shadow-md rounded-lg md:w-full mt-3">
                 <h2 class="text-gray-500 text-lg SemiB-font pb-1 capitalize">Total Citizens Charter Result</h2>
-                <div class="my-1"></div> <!-- Separation space -->
+                <div class="my-1"></div>
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
-                <!--Line with gradient-->
+
                 <div class="chart-container" style="position: relative; height:300px; width:100%">
-                    <!-- The canvas for the graph -->
+
                     {!! $totalCcOptions->container() !!}
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
@@ -268,9 +275,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/Chart.min.js" charset="utf-8"></script>
 
 {!! $totalDataPerServices->script() !!}
-{!! $totalClientSatisfaction->script() !!}
+{{-- {!! $totalClientSatisfaction->script() !!} --}}
 {!! $totalClientUser->script() !!}
-{!! $totalCcOptions->script() !!}
+{{-- {!! $totalCcOptions->script() !!} --}}
 {{-- <script>
     ServiceBarChart();
 

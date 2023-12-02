@@ -34,8 +34,8 @@ class clientController extends Controller
         // } else {
         //     return abort(404);
         // }
-        if (View::exists('ClientSide.index2')) {
-            return view('ClientSide.index2');
+        if (View::exists('ClientSide.index3')) {
+            return view('ClientSide.index3');
         } else {
             return abort(404);
         }

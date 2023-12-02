@@ -55,24 +55,44 @@ class adminController extends Controller
         $user = Auth::user();
         $userOffice = $user->idOfficeOrigin;
 
-        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
+        // Call the calculatePerService method to get the total of surveyed per offices
         $TotalDataPerServices = $sumOfDatasController->getAnswerePerService($userOffice);
         $totalDataPerServices->labels(array_keys($TotalDataPerServices));
         $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
-
-        // Call the calculateClientSatisfaction method to get the satisfaction data
-        $TotalClientSatisfaction =  $sumOfDatasController->getSatisfaction($userOffice);
-        $totalClientSatisfaction->labels(array_keys($TotalClientSatisfaction));
-        $totalClientSatisfaction->dataset('Total Client Satisfaction', 'pie', array_values($TotalClientSatisfaction))
-            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
 
         $services = service1::where('idOffice', $userOffice)
             ->where('archive', 1)
             ->paginate('5');
 
         if (View::exists('AdminSide.index')) {
-            return view('AdminSide.index', compact('totalDataPerServices', 'totalClientSatisfaction', 'services'));
+            return view('AdminSide.index', compact('totalDataPerServices', 'services'));
+        } else {
+            return abort(404);
+        }
+    }
+    public function index2()
+    {
+        $totalDataPerServices = new TotalClientSatisfaction;
+        $sumOfDatasController = new SumOfDatasController(); //import a controller
+
+        $user = Auth::user();
+        $userOffice = $user->idOfficeOrigin;
+
+        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
+        $TotalDataPerServices = $sumOfDatasController->getAnswerePerService($userOffice);
+        $totalDataPerServices->labels(array_keys($TotalDataPerServices));
+        $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
+            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+
+
+
+        $services = service1::where('idOffice', $userOffice)
+            ->where('archive', 1)
+            ->paginate('5');
+
+        if (View::exists('AdminSide.index')) {
+            return view('AdminSide.index', compact('totalDataPerServices', 'services'));
         } else {
             return abort(404);
         }
@@ -1163,9 +1183,9 @@ class adminController extends Controller
     public function report2()
     {
         $totalDataPerServices = new TotalClientSatisfaction;
-        $totalClientSatisfaction = new TotalClientSatisfaction;
+        // $totalClientSatisfaction = new TotalClientSatisfaction;
         $totalClientUser = new TotalClientSatisfaction;
-        $totalCcOptions = new TotalClientSatisfaction;
+        // $totalCcOptions = new TotalClientSatisfaction;
         $sumOfDatasController = new SumOfDatasController(); //import a controller
 
         $user = Auth::user();
@@ -1177,11 +1197,7 @@ class adminController extends Controller
         $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-        // Call the calculateClientSatisfaction method to get the satisfaction data
-        $TotalClientSatisfaction =  $sumOfDatasController->getSatisfaction($userOffice);
-        $totalClientSatisfaction->labels(array_keys($TotalClientSatisfaction));
-        $totalClientSatisfaction->dataset('Total Client Satisfaction', 'pie', array_values($TotalClientSatisfaction))
-            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
+
 
         // Call the calculateClientCategory method to get the total of client category
         $TotalClientUser = $sumOfDatasController->getClientCategory($userOffice);
@@ -1189,16 +1205,11 @@ class adminController extends Controller
         $totalClientUser->dataset('Number Of Clients By Category', 'bar', array_values($TotalClientUser))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-        // Call the calculateClientSatisfaction method to get the satisfaction data
-        $TotalCcOptions =  $sumOfDatasController->getCcRecord($userOffice);
-        $totalCcOptions->labels(array_keys($TotalCcOptions));
-        $totalCcOptions->dataset('Total Client Satisfaction', 'bar', array_values($TotalCcOptions))
-            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
 
         $totalClient = $sumOfDatasController->getTotalClient($userOffice);
 
         if (View::exists('AdminSide.reportFunction2')) {
-            return view('AdminSide.reportFunction2', compact('totalDataPerServices', 'totalClientSatisfaction', 'totalClientUser', 'totalClient', 'totalCcOptions'));
+            return view('AdminSide.reportFunction2', compact('totalDataPerServices',  'totalClientUser', 'totalClient',));
         } else {
             return abort(404);
         }
@@ -1746,10 +1757,11 @@ class adminController extends Controller
 
     public function editPageSrvyInstruction($id)
     {
+
         $SrvyInstruction = SurveyInstruction::find($id);
 
-        if (View::exists('SetSurvey.editingCssInstructionAndSrvy')) {
-            return view('SetSurvey.editingCssInstructionAndSrvy', compact('SrvyInstruction'));
+        if (View::exists('SetSurvey.editingCssInstruction')) {
+            return view('SetSurvey.editingCssInstruction', compact('SrvyInstruction'));
         } else {
             return abort(404);
         }

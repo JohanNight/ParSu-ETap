@@ -68,11 +68,12 @@
                         policy on anti-red tape and ease of doing business in the country.</p>
                 </div>
             </div> --}}
-            <div class="w-full bg-white p-2">
-                <h1 class="Bold-font text-black text-center uppercase mb-2 text-sm lg:text-xl xl:text-2xl">The Anti-Red
+            <div class="w-full md:w-1/2 p-2">
+                <h1 class="Bold-font text-white text-center uppercase mb-2 text-sm lg:text-xl xl:text-2xl">The
+                    Anti-Red
                     Tape Authority
                 </h1>
-                <p class="text-sm lg:text-base xl:text-lg Med-font text-justify tracking-wide">
+                <p class="text-sm lg:text-base xl:text-lg Med-font text-justify tracking-wide text-white">
                     Section 17
                     of Republic Act No. 11032
                     provides for the

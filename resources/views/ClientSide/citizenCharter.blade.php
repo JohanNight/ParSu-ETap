@@ -85,9 +85,9 @@
                             <table class="min-w-full">
                                 <thead class="bg-blue-800 text-white border-b text-left">
                                     <tr>
-                                        <th scope="col" class="text-sm SemiB-font  px-6 py-4 ">
+                                        {{-- <th scope="col" class="text-sm SemiB-font  px-6 py-4 ">
                                             Code
-                                        </th>
+                                        </th> --}}
                                         <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
                                             Title
                                         </th>
@@ -104,8 +104,9 @@
                                     @foreach ($services as $service)
                                         <tr
                                             class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 bg-opacity-90">
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
-                                                {{ $service->serviceCode }}</td>
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
+                                                {{ $service->serviceCode }}
+                                            </td> --}}
                                             <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
                                                 {{ $service->serviceTitle }}
                                             </td>
@@ -203,7 +204,7 @@
             row.className = "bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100";
 
             var cells = [
-                service.serviceCode,
+                // service.serviceCode,
                 service.serviceTitle,
                 service.officeAcronym,
                 '<a href="/home/Document/' + service.idServiceSpecification +
