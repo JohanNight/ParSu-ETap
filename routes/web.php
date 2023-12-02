@@ -36,6 +36,8 @@ Route::controller(clientController::class)->group(function () {
     Route::get('/home/clientButton', 'clientButtons')->name('clientButton');
     Route::post('/clientSecurity', 'checkSecurity');
     Route::get('/thankyou/{name}', 'thankYouPage');
+
+    Route::get('/example', 'exampleWelcomePage');
 });
 
 

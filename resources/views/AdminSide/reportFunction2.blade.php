@@ -10,7 +10,7 @@
 
         <!--Main content area -->
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
-            <!--Filter-->
+            <!--Filter--> <!--Assess-->
             <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
 
                 <form action="{{ route('filterResult') }}" method="POST" class="flex gap-2">
@@ -39,20 +39,17 @@
 
                 </form>
 
-            </div>
-            <!--Assess-->
-            <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
                 <form action="{{ route('assessResult') }}" method="POST" class="flex gap-2">
                     @csrf
-                    <div class=" bg-white border-2 p-2" id="fltr_from">
+                    <div class=" bg-white border-2 p-2">
                         <label for="Assess_From_date" class="text-[18px] Reg-font ml-2">From:</label>
-                        <input type="date"
-                            name="Assess_From_date"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        <input type="date" name="Assess_From_date" id="assess_from"
+                            class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
-                    <div class=" bg-white border-2 p-2" id="fltr_to">
+                    <div class=" bg-white border-2 p-2">
                         <label for="Assess_date_To" class="text-[18px] Reg-font ml-2">To:</label>
-                        <input type="date"
-                            name="Assess_date_To"class="p-1 rounded-md border-2 border-black focus:outline-none">
+                        <input type="date" name="Assess_date_To" id="assess_to"
+                            class="p-1 rounded-md border-2 border-black focus:outline-none">
                         @error('Assess_date_To')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}
@@ -61,12 +58,13 @@
                     </div>
                     <div class="flex justify-center items-center">
                         <button type="submit" id="assess_report"
-                            class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-black">
+                            class="text-[18px] Reg-font bg-blue-700 active:bg-blue-800 rounded-md px-3 py-1 text-black">
                             Assess
                         </button>
                     </div>
 
                 </form>
+
             </div>
             <!--Conatainer Card 1-->
             <div class="p-1 flex  justify-evenly gap-4 bg-white shadow-md rounded-lg w-full">
@@ -316,5 +314,21 @@
         new Chart(ctx, config);
     }
 </script> --}}
+
+<script>
+    // date_autofill.js
+    // Get the current date in the format "YYYY-MM-DD"
+    var dateFrom = new Date().toISOString().split('T')[0];
+
+    // Set the input field's value to today's date
+    document.getElementById("assess_from").value = dateFrom;
+
+    // Get the current date in the format "YYYY-MM-DD"
+    var dateTo = new Date().toISOString().split('T')[0];
+
+    // Set the input field's value to today's date
+    document.getElementById("assess_to").value = dateTo;
+</script>
+
 
 @include('partials.footerAdmin')

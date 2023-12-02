@@ -64,7 +64,7 @@
                 </div>
                 {{-- Gender --}}
                 <div class="block ml-3 mt-2">
-                    <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Gender: </label>
+                    <label for="gender_of_client" class="text-[20px] Reg-font mr-2 text-black">Sex: </label>
                     <select name="gender_of_client" id="gender_of_client"
                         class="w-full bg-gray-300 py-2 px-2 mb-3 md:ml-0 sm:w-full rounded-md shadow-md text-[16px] Reg-font">
                         <option value="" @if (old('gender_of_client') == '') selected @endif></option>

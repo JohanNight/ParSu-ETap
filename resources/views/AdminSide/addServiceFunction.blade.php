@@ -59,7 +59,8 @@
                         <div class="p-2 w-96">
                             <label for="office_service" class="text-md Reg-font">Office or Division:</label>
                             <select name="office_service" id="office_service"
-                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize">
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize"
+                                readonly>
                                 <option value=""></option>
                                 @foreach ($officeTypes as $officeType)
                                     <option value="{{ $officeType->idOffices }}"

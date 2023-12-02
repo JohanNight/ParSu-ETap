@@ -40,14 +40,23 @@ class clientController extends Controller
             return abort(404);
         }
     }
-    public function showHomePage()
+    public function exampleWelcomePage()
     {
-        if (View::exists('ClientSide.home')) {
-            return view('ClientSide.home');
+
+        if (View::exists('ClientSide.index3')) {
+            return view('ClientSide.index3');
         } else {
             return abort(404);
         }
     }
+    // public function showHomePage()
+    // {
+    //     if (View::exists('ClientSide.home')) {
+    //         return view('ClientSide.home');
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
     public function showCitizenCharter()
     {
         if (View::exists('ClientSide.citizenCharter')) {
