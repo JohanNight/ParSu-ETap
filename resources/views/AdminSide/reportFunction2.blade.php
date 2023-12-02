@@ -10,9 +10,9 @@
 
         <!--Main content area -->
         <div class="flex-1  py-2 px-4 w-full md:w-1/2 bg-gray-200 min-h-screen">
-            <!--Filter--> <!--Assess-->
-            <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
 
+            <div class=" flex justify-center items-center gap-10 p-2 w-full  rounded-md bg-white mt-2 mb-3 shadow-md">
+                <!--Filter-->
                 <form action="{{ route('filterResult') }}" method="POST" class="flex gap-2">
                     @csrf
                     <div class=" bg-white border-2 p-2" id="fltr_from">
@@ -38,7 +38,7 @@
                     </div>
 
                 </form>
-
+                <!--Assess-->
                 <form action="{{ route('assessResult') }}" method="POST" class="flex gap-2">
                     @csrf
                     <div class=" bg-white border-2 p-2">

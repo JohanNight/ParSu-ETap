@@ -270,23 +270,22 @@ class SumOfDatasController extends Controller
 
     public function getTotalAnswerePerService($request, $userOfficeId)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
+
 
         $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateTo = $request->input('to_date');
+        $dateRange = [$dateFrom, $dateTo];
 
-        $surveyData = clientInfo::all(); // retrieve all survey data
-        $services = service1::where('idOffice', $userOfficeId)
-            ->whereBetween('created_at', [$dateFrom, $dateTo])
-            ->get();
+        $surveyData = clientInfo::whereBetween('created_at', $dateRange)
+            ->where('idOfficeOrigin', $userOfficeId)
+            ->get(); // retrieve all survey data
+        $services = service1::where('idOffice', $userOfficeId)->get();
         $serviceMade = [];
 
         foreach ($services  as $service) {
             $serviceMade[$service->serviceCode] = 0;
         }
+
         foreach ($surveyData as $surveyed) {
             foreach ($services as $serviced) {
                 if ($surveyed->service_avail == $serviced->idServiceSpecification) {
@@ -294,18 +293,15 @@ class SumOfDatasController extends Controller
                 }
             }
         }
+        // dd($services);
         return $serviceMade;
     }
 
     public function getTotalSatisfaction($request, $userOfficeId)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
 
         $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateTo = $request->input('to_date');
 
         $surveyData = clientInfo::where('idOfficeOrigin', $userOfficeId)
             ->whereBetween('created_at', [$dateFrom, $dateTo])
@@ -495,11 +491,12 @@ class SumOfDatasController extends Controller
     public function getTotalClientCategory($request, $userOfficeId)
     {
         $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateTo = $request->input('to_date');
 
         $surveyData = clientInfo::where('idOfficeOrigin', $userOfficeId)
             ->whereBetween('created_at', [$dateFrom, $dateTo])
             ->get();
+
         $clientCategory = clientCategory::all();
         $categoryCounts = [];
         foreach ($clientCategory as $Category) {
@@ -519,7 +516,7 @@ class SumOfDatasController extends Controller
     public function getOverAllClient($request, $userOfficeId)
     {
         $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateTo = $request->input('to_date');
 
         $totalClients = clientInfo::where('idOfficeOrigin', $userOfficeId)
             ->whereBetween('created_at', [$dateFrom, $dateTo])
@@ -530,7 +527,7 @@ class SumOfDatasController extends Controller
     public function getTotalCcRecord($request, $userOfficeId)
     {
         $dateFrom = $request->input('date_from');
-        $dateTo = $request->input('date_to');
+        $dateTo = $request->input('to_date');
 
         $surveyData = clientInfo::whereBetween('created_at', [$dateFrom, $dateTo])
             ->where('idOfficeOrigin', $userOfficeId)->get(); // retrieve all survey data; 

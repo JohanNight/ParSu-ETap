@@ -1223,9 +1223,7 @@ class adminController extends Controller
         ]);
         $sumOfDatasController = new SumOfDatasController(); //import a controller
         $totalDataPerServices = new TotalClientSatisfaction;
-        $totalClientSatisfaction = new TotalClientSatisfaction;
         $totalClientUser = new TotalClientSatisfaction;
-        $totalCcOptions = new TotalClientSatisfaction;
 
         $user = Auth::user();
         $userOffice = $user->idOfficeOrigin;
@@ -1236,29 +1234,17 @@ class adminController extends Controller
         $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($GetTotalAnswerePerService))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-        // Call the calculateClientSatisfaction method to get the satisfaction data
-        $GetTotalClientSatisfaction =  $sumOfDatasController->getTotalSatisfaction($request, $userOffice);
-        $totalClientSatisfaction->labels(array_keys($GetTotalClientSatisfaction));
-        $totalClientSatisfaction->dataset('Total Client Satisfaction', 'pie', array_values($GetTotalClientSatisfaction))
-            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
-
         // Call the calculateClientCategory method to get the total of client category
         $GetTotalClientUser = $sumOfDatasController->getTotalClientCategory($request, $userOffice);
         $totalClientUser->labels(array_keys($GetTotalClientUser));
         $totalClientUser->dataset('Number Of Clients By Category', 'bar', array_values($GetTotalClientUser))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
-        // Call the calculateClientSatisfaction method to get the satisfaction data
-        $GetTotalCcOptions =  $sumOfDatasController->getTotalCcRecord($request, $userOffice);
-        $totalCcOptions->labels(array_keys($GetTotalCcOptions));
-        $totalCcOptions->dataset('Total Client Satisfaction', 'bar', array_values($GetTotalCcOptions))
-            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00', '#ED1C24', '#020100']);
-
         $totalClient = $sumOfDatasController->getOverAllClient($request, $userOffice);
 
 
         if (View::exists('AdminSide.reportFunction2')) {
-            return view('AdminSide.reportFunction2', compact('totalDataPerServices', 'totalClientSatisfaction', 'totalClientUser', 'totalClient', 'totalCcOptions'));
+            return view('AdminSide.reportFunction2', compact('totalDataPerServices', 'totalClientUser', 'totalClient'));
         } else {
             return abort(404);
         }
