@@ -8,8 +8,8 @@
     </div>
     <div class="absolute max-h-screen w-full">
         <nav class="w-full h-full flex flex-col justify-center items-center">
-            <div class="relative w-full flex justify-evenly items-center px-4 py-8 bg-[#1d3557] bg-center bg-cover">
-                <div class="relative lg:ml-[6rem] z-30 w-full">
+            <div class="relative w-full flex justify-between items-center px-4 py-8 bg-[#1d3557] bg-center bg-cover">
+                <div class="relative lg:ml-[1rem] z-30 w-full ">
                     <h1 class="text-4xl text-center lg:text-start Bold-font text-white">
                         ParSU eTap
                     </h1>
@@ -50,24 +50,10 @@
                         University
                     </h1>
                     <p class="my-6 text-white SemiB-font">
-                        Parsu eTAP:Electronic Satisfaction Survey
+                        ParSU eTAP:Electronic Satisfaction Survey
                     </p>
                 </div>
             </div>
-            {{-- <div class="w-[50%] h-full flex justify-center items-center">
-                <div class="w-full bg-white p-2">
-                    <h1 class="Bold-font text-black text-center uppercase mb-2 text-[20px]">The Anti-Red Tape Authority
-                    </h1>
-                    <p class="text-[15px] Med-font text-justify tracking-wide">
-                        Section 17
-                        of Republic Act No. 11032
-                        provides for the
-                        creation of the Anti-Red Tape Authority or
-                        ARTA, the government agency mandated to administer and implement the said law and its
-                        Implementing Rules and Regulations, and to monitor and ensure compliance with the national
-                        policy on anti-red tape and ease of doing business in the country.</p>
-                </div>
-            </div> --}}
             <div class="w-full md:w-1/2 p-2">
                 <h1 class="Bold-font text-white text-center uppercase mb-2 text-sm lg:text-xl xl:text-2xl">The
                     Anti-Red
