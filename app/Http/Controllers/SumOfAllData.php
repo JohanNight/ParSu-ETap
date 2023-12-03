@@ -275,7 +275,6 @@ class SumOfAllData extends Controller
 
     public function calculateExternalSerivices()
     {
-        // $surveyData = clientInfo::where('external', true)->get(); //retrieve all survey data
         $surveyData = clientInfo::all();
         $Service = service1::where('idService', '1')->get();
         $externalService = [];
@@ -293,15 +292,15 @@ class SumOfAllData extends Controller
         }
         return  $externalService;
     }
-    public function calculateInternalSerivices()
+    public function calculateInternalServices()
     {
-        // $surveyData = clientInfo::where('external', true)->get(); //retrieve all survey data
+        $serviceId = 2;
         $surveyData = clientInfo::all();
-        $Service = service1::where('idService', '2')->get();
+        $Service = service1::where('idService', $serviceId)->get();
         $internalService = [];
 
-        foreach ($Service as $service) {
-            $internalService[$service->serviceCode] = 0;
+        foreach ($Service as $services) {
+            $internalService[$services->serviceCode] = 0;
         }
 
         foreach ($surveyData as $surveyed) {
@@ -311,16 +310,11 @@ class SumOfAllData extends Controller
                 }
             }
         }
-        return   $internalService;
+        return  $internalService;
     }
 
     public function getCalculatePerOfficeSurveyed($request)
     {
-        // dd($request);
-        $request->validate([
-            'date_from' => 'required|date',
-            'date_to' => 'required|date|after_or_equal:date_from',
-        ]);
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -335,7 +329,7 @@ class SumOfAllData extends Controller
         //$office = $officeCount;
         foreach ($surveyData as $surveyed) {
             foreach ($officeAvailable as $offices) {
-                if ($surveyed->idOfficeOrigin == $offices->officeAcronym) {
+                if ($surveyed->idOfficeOrigin == $offices->idOffices) {
                     $officeCount[$offices->officeAcronym]++;
                 }
             }
@@ -347,10 +341,7 @@ class SumOfAllData extends Controller
 
     public function getCalculateClientCategory($request)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
+
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -385,10 +376,7 @@ class SumOfAllData extends Controller
 
     public function getCalculateClientSatisfaction($request)
     {
-        // $request->validate([
-        //     'date_from' => 'required|date',
-        //     'date_to' => 'required|date|after_or_equal:date_from',
-        // ]);
+
 
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');
@@ -772,56 +760,6 @@ class SumOfAllData extends Controller
         }
         return $percentages;
     }
-
-
-    // public function getTheSqdQuestion()
-    // {
-    //     $SQDquestions = SurveyQuestion::all();
-    //     // $sqdQuestion =   $SQDquestions->questions;
-    //     return   $SQDquestions;
-    // }
-
-
-
-    // public function getAllSQDResult($request)
-    // {
-    //     $dateFrom = $request->input('date_From');
-    //     $dateTo = $request->input('date_To');
-
-    //     // Retrieve all survey questions
-    //     $SQDquestions = SurveyQuestion::all();
-
-    //     $dateRange = [$dateFrom, $dateTo];
-    //     $sqdValues = [0, 1, 2, 3, 4, 5];
-    //     $questionCounts = [];
-
-    //     foreach ($SQDquestions as $question) {
-    //         $questionCounts[$question->questions] = ['counts' => [], 'sum' => 0];
-
-    //         foreach ($sqdValues as $value) {
-    //             $count = DB::table('table_client_survey_information')
-    //                 ->whereBetween('created_at', $dateRange)
-    //                 ->where('sqd' . $question->id, $value)
-    //                 ->count();
-
-    //             $questionCounts[$question->questions]['counts'][$value] = $count;
-
-    //             $questionCounts[$question->questions]['sum'] += $count * $value;
-    //         }
-
-    //         // Calculate the weighted average (rate)
-    //         $totalCount = $questionCounts[$question->questions]['sum'];
-    //         $totalCountWithoutZeros = array_sum($questionCounts[$question->questions]['counts']);
-
-    //         // Prevent division by zero
-    //         $questionCounts[$question->questions]['rate'] = $totalCountWithoutZeros > 0
-    //             ? $totalCount / $totalCountWithoutZeros
-    //             : 0;
-    //     }
-
-    //     //dd($questionCounts);
-    //     return response()->json($questionCounts);
-    // }
 
     public function getAllSQDResult($request)
     {

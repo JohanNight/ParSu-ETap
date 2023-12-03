@@ -1401,7 +1401,7 @@ class adminController extends Controller
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
         // Call the calculateInternalSerivices method to get the total of client category
-        $TotalInternalService = $sumOfAllDataController->calculateInternalSerivices();
+        $TotalInternalService = $sumOfAllDataController->calculateInternalServices();
         $totalInternalService->labels(array_keys($TotalInternalService));
         $totalInternalService->dataset('Internal Services', 'bar', array_values($TotalInternalService))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
