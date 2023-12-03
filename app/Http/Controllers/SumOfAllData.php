@@ -312,6 +312,21 @@ class SumOfAllData extends Controller
         }
         return  $internalService;
     }
+    // public function calculateInternalServices()
+    // {
+    //     $serviceId = 2;
+
+    //     $internalService = DB::table('table_client_survey_information')
+    //         ->join('table_service1_1', 'table_client_survey_information.service_avail', '=', 'table_service1_1.idServiceSpecification')
+    //         ->where('table_service1_1.idService', $serviceId)
+    //         ->groupBy('table_service1_1.serviceCode')
+    //         ->select('table_service1_1.serviceCode', DB::raw('COUNT(*) as count'))
+    //         ->pluck('count', 'serviceCode')
+    //         ->toArray();
+
+    //     return $internalService;
+    // }
+
 
     public function getCalculatePerOfficeSurveyed($request)
     {
@@ -589,7 +604,7 @@ class SumOfAllData extends Controller
         return $officeCount;
     }
 
-    public function getCalculateExternalSerivices($request)
+    public function getCalculateExternalServices($request)
     {
 
         $dateFrom = $request->input('date_from');
@@ -612,7 +627,7 @@ class SumOfAllData extends Controller
         }
         return  $externalService;
     }
-    public function getCalculateInternalSerivices($request)
+    public function getCalculateInternalServices($request)
     {
         $dateFrom = $request->input('date_from');
         $dateTo = $request->input('date_to');

@@ -1450,13 +1450,13 @@ class adminController extends Controller
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
         // Call the calculateExternalSerivices method to get the total of client category
-        $TotalExternalService = $sumOfAllDataController->getCalculateExternalSerivices($request);
+        $TotalExternalService = $sumOfAllDataController->getCalculateExternalServices($request);
         $totalExternalService->labels(array_keys($TotalExternalService));
         $totalExternalService->dataset('External Services', 'bar', array_values($TotalExternalService))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
         // Call the calculateExternalSerivices method to get the total of client category
-        $TotalInternalService = $sumOfAllDataController->getCalculateInternalSerivices($request);
+        $TotalInternalService = $sumOfAllDataController->getCalculateInternalServices($request);
         $totalInternalService->labels(array_keys($TotalExternalService));
         $totalInternalService->dataset('Internal Services', 'bar', array_values($TotalExternalService))
             ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);

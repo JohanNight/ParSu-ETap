@@ -56,7 +56,7 @@
                                 </p>
                             @enderror
                         </div>
-                        <div class="p-2 w-96">
+                        {{-- <div class="p-2 w-96">
                             <label for="office_service" class="text-md Reg-font">Office or Division:</label>
                             <select name="office_service" id="office_service"
                                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize"
@@ -74,7 +74,28 @@
                                     {{ $message }}
                                 </p>
                             @enderror
+                        </div> --}}
+                        <div class="p-2 w-96">
+                            <label for="office_service" class="text-md Reg-font">Office or Division:</label>
+                            <select name="office_service" id="office_service"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-[16px] Reg-font capitalize"
+                                @if ($user->idOfficeOrigin) disabled @endif>
+                                <option value=""></option>
+                                @foreach ($officeTypes as $officeType)
+                                    <option value="{{ $officeType->idOffices }}"
+                                        class="text-[16px] Reg-font capitalize "
+                                        @if ($user->idOfficeOrigin == $officeType->idOffices) selected @endif>
+                                        {{ $officeType->officeAcronym }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('office_service')
+                                <p class="text-red-400 text-sm p-1">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
+
                         <div class="p-2 w-96">
                             <label for="classification_service" class="text-md Reg-font">Classification:</label>
                             <select name="classification_service" id="classification_service"
