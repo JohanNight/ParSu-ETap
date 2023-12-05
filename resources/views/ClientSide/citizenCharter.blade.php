@@ -85,9 +85,6 @@
                             <table class="min-w-full">
                                 <thead class="bg-blue-800 text-white border-b text-left">
                                     <tr>
-                                        {{-- <th scope="col" class="text-sm SemiB-font  px-6 py-4 ">
-                                            Code
-                                        </th> --}}
                                         <th scope="col" class="text-sm  SemiB-font px-6 py-4 ">
                                             Title
                                         </th>
@@ -104,9 +101,6 @@
                                     @foreach ($services as $service)
                                         <tr
                                             class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 bg-opacity-90">
-                                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm Med-font text-gray-900">
-                                                {{ $service->serviceCode }}
-                                            </td> --}}
                                             <td class="text-sm text-gray-900 Reg-font px-6 py-4 whitespace-nowrap">
                                                 {{ $service->serviceTitle }}
                                             </td>
@@ -204,9 +198,9 @@
             row.className = "bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100";
 
             var cells = [
-                // service.serviceCode,
+
                 service.serviceTitle,
-                service.officeAcronym,
+                service.idOffice,
                 '<a href="/home/Document/' + service.idServiceSpecification +
                 '" class="bg-blue-700 text-white text-sm px-3 py-1 rounded-2xl Reg-I-font active:bg-blue-800">View</a>'
             ];
@@ -221,7 +215,16 @@
             tbody.appendChild(row);
         });
     }
+
+    // function getOfficeAcronym(idOffice) {
+    //     // Find the matching office acronym from the officeData
+    //     var matchingOffice = officeData.find(office => office.idOffices === idOffice);
+
+    //     // Return the office acronym if found, otherwise return an empty string
+    //     return matchingOffice ? matchingOffice.officeAcronym : '';
+    // }
 </script>
+
 
 <script>
     var svg = document.getElementById('colorChangingSvg');
