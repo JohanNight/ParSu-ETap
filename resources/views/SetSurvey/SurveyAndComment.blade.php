@@ -1,7 +1,7 @@
 @include('partials.headerClient')
 <div class="bg-gray-50 min-h-screen">
     <div class="p-2 w-full flex">
-        <a href="{{ route('index') }}" class="bg-blue-700 px-2 py-1 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white">
+        <a href="{{ route('Admin') }}" class="bg-blue-700 px-2 py-1 rounded-md ml-5 mb-5 Reg-font text-[18px] text-white">
             Return
         </a>
     </div>
