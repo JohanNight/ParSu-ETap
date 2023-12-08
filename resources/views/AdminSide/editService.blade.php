@@ -240,10 +240,10 @@
                     <div class="p-2">
                         <div class="mt-2 mb-3">
                             <p class="text-sm Reg-font text-justify">
-                                Note: Checklist of Requirements and Where to Secure input Fields are correspond to each
-                                input fields, if the Checklist of Requirements input field number 1 doesn't need an
-                                information on Where to Secure just Add in the input Field number 1 of Where to Secure
-                                is
+                                Note: Client Steps, Agency Action, Fess to be Paid, Processing Time, and Person
+                                Responsible Input Fields are correspond to each other, if one of the input field doesn't
+                                need an
+                                information just add
                                 <span class="text-blue-400">N/A</span>
                             </p>
                         </div>
