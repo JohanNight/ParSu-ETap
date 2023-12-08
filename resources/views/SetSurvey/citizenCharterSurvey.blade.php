@@ -12,7 +12,7 @@
             @csrf
             <div class="flex justify-center items-center mb-1 w-full bg-blue-800 h-16">
                 <h1 class="text-2xl SemiB-font text-yellow-400 ">
-                    Edit Survey Question
+                    Add Survey Question
                 </h1>
             </div>
             <div class="p-2 border-2 border-black w-full">

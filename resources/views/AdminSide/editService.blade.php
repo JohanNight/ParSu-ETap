@@ -21,7 +21,8 @@
                         <label for="code_Title" class="text-md Reg-font">Code:</label>
                         <input name="code_Title"
                             class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none Reg-font "
-                            spellcheck="false" type="text" autocomplete="off" value="{{ $service1->serviceCode }}">
+                            spellcheck="false" type="text" autocomplete="off" value="{{ $service1->serviceCode }}"
+                            readonly>
                         @error('code_Title')
                             <p class="text-red-400 text-sm p-1">
                                 {{ $message }}

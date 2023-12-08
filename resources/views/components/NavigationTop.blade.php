@@ -5,7 +5,7 @@
     <div class="bg-blue-700 text-white shadow w-full p-2 flex items-center justify-between ">
         <div class="flex items-center">
             <div class="flex items-center"> <!-- Shown on all devices -->
-                <h2 class="Bold-font text-xl text-yellow-400">ParSU E-Tap</h2>
+                <h2 class="Bold-font text-xl text-yellow-400">ParSU eTAP</h2>
             </div>
             <div class="md:hidden flex items-center sm:ml-[20px]"> <!-- Shows only on small devices -->
                 <button id="menuBtn">
