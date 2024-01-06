@@ -216,9 +216,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Section 3 - Table of Pending Authorizations -->
+            <!-- Section 3 - Table of New Services -->
             <div class="mt-8 bg-white p-4 shadow rounded-lg">
-                <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">New Services</h2>
+                <h2 class="text-gray-500 text-xl SemiB-font pb-4 capitalize">Client's Survey Answer</h2>
                 <div class="my-1"></div> <!-- Separation space -->
                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
                 <!-- Line with gradient -->

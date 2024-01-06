@@ -1326,6 +1326,16 @@ class adminController extends Controller
         }
     }
 
+    public function viewSurvey()
+    {
+        $clientInfo = clientInfo::orderBy('created_at', 'desc')->paginate(10);
+        if (View::exists('SuperAdmin.surveyComment')) {
+            return view('SuperAdmin.surveyComment', compact('clientInfo'));
+        } else {
+            return abort(404);
+        }
+    }
+
     public function storageOfAllService()
     {
         if (View::exists('SuperAdmin.storageOfAllService')) {

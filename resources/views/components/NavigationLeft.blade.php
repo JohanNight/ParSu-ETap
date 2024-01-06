@@ -172,6 +172,8 @@
                     </div>
                 </a>
             @endif
+
+
             <!-- Report page for Sub-Admin-->
             @unless ($user->idOfficeOrigin === 3)
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "
@@ -186,6 +188,20 @@
                     </div>
                 </a>
             @endunless
+
+            @if ($user->idOfficeOrigin === 3)
+                <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white "
+                    href="{{ route('viewSurveyAnswer') }}">
+                    {{-- Report Route --}}
+                    <div class=" mr-0 flex gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
+                            <path
+                                d="M280-280h80v-200h-80v200Zm320 0h80v-400h-80v400Zm-160 0h80v-120h-80v120Zm0-200h80v-80h-80v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z" />
+                        </svg>
+                        <span class="Reg-font text-[15px]">View Survey Report</span>
+                    </div>
+                </a>
+            @endif
         </nav>
 
         <!-- Logout Item-->

@@ -33,6 +33,7 @@ class clientInfo extends Model
         'sqd8',
         'sqd9',
         'comment',
-        'serviceCode'
+        'serviceCode',
+        'created_at'
     ];
 }
