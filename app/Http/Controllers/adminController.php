@@ -71,32 +71,32 @@ class adminController extends Controller
             return abort(404);
         }
     }
-    public function index2()
-    {
-        $totalDataPerServices = new TotalClientSatisfaction;
-        $sumOfDatasController = new SumOfDatasController(); //import a controller
+    // public function index2()
+    // {
+    //     $totalDataPerServices = new TotalClientSatisfaction;
+    //     $sumOfDatasController = new SumOfDatasController(); //import a controller
 
-        $user = Auth::user();
-        $userOffice = $user->idOfficeOrigin;
+    //     $user = Auth::user();
+    //     $userOffice = $user->idOfficeOrigin;
 
-        // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
-        $TotalDataPerServices = $sumOfDatasController->getAnswerePerService($userOffice);
-        $totalDataPerServices->labels(array_keys($TotalDataPerServices));
-        $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
-            ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
+    //     // Call the calculatePerOfficeSurveyed method to get the total of surveyed per offices
+    //     $TotalDataPerServices = $sumOfDatasController->getAnswerePerService($userOffice);
+    //     $totalDataPerServices->labels(array_keys($TotalDataPerServices));
+    //     $totalDataPerServices->dataset('Number Of Services Surveyed', 'bar', array_values($TotalDataPerServices))
+    //         ->backgroundColor(['#FEC500', '#F2A359', '#8B8B8D', '#FC2F00']);
 
 
 
-        $services = service1::where('idOffice', $userOffice)
-            ->where('archive', 1)
-            ->paginate('5');
+    //     $services = service1::where('idOffice', $userOffice)
+    //         ->where('archive', 1)
+    //         ->paginate('5');
 
-        if (View::exists('AdminSide.index')) {
-            return view('AdminSide.index', compact('totalDataPerServices', 'services'));
-        } else {
-            return abort(404);
-        }
-    }
+    //     if (View::exists('AdminSide.index')) {
+    //         return view('AdminSide.index', compact('totalDataPerServices', 'services'));
+    //     } else {
+    //         return abort(404);
+    //     }
+    // }
     public function login()
     {
         if (View::exists('AdminSide.login')) {
