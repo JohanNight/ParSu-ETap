@@ -10,6 +10,7 @@ class clientInfo extends Model
     //for storing the client information
     use HasFactory;
     protected $table = 'table_client_survey_information';
+    protected $primaryKey = 'idClientInformation';
     protected $fillable = [
         'name',
         'sex',

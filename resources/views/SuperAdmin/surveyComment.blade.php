@@ -1,4 +1,3 @@
-{{-- @dd($totalUsers->container()); --}}
 @include('partials.headerAdmin')
 <!-- component -->
 <div class="flex flex-col min-h-screen bg-gray-100">
@@ -14,49 +13,34 @@
 
             <div
                 class="flex flex-col sm:flex-row p-1 w-full justify-center items-center gap-2 rounded-md bg-white mt-2 mb-3 shadow-md">
-                <!-- Filter Form -->
-                <form action="/superAdmin/report" method="POST"
+                <!-- Search Date Form -->
+                <form action="#" method="POST"
                     class="flex flex-col sm:flex-row justify-center items-center gap-1 w-full">
                     @csrf
                     <div class="bg-white border-2 p-2">
-                        <label for="date_from" class="text-[18px] Reg-font ml-2">From:</label>
-                        <input type="date" name="date_from" id="date_from"
+                        <label for="FLTR_DATE" class="text-[18px] Reg-font ml-2">Search:</label>
+                        <input type="date" name="FLTR_DATE" id="FLTR_DATE"
                             class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
-                    <div class="bg-white border-2 p-2">
-                        <label for="date_to" class="text-[18px] Reg-font ml-2">To:</label>
-                        <input type="date" name="date_to" id="date_to"
-                            class="p-1 rounded-md border-2 border-black focus:outline-none">
-                        @error('date_to')
-                            <p class="text-red-400 text-sm p-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <button type="submit" id="fltr_date_admin"
+                    <button type="submit" id="FLTR_DATE_btn"
                         class="text-[18px] Reg-font bg-green-300 active:bg-green-400 rounded-md px-3 py-1">
-                        Filter
+                        search
                     </button>
                 </form>
 
-                <!-- Assess Form -->
-                <form action="{{ route('assesmentReport') }}" method="POST"
+                <!-- Search Name Form -->
+                <form action="#" method="POST"
                     class="flex flex-col sm:flex-row justify-center items-center gap-1 w-full">
                     @csrf
                     <div class="bg-white border-2 p-2">
-                        <label for="date_From" class="text-[18px] Reg-font ml-2">From:</label>
-                        <input type="date" name="date_From" id="date_From"
+                        <label for="search_name" class="text-[18px] Reg-font ml-2">Search:</label>
+                        <input type="search" name="search_name" id="search_name"
                             class="p-1 rounded-md border-2 border-black focus:outline-none">
                     </div>
-                    <div class="bg-white border-2 p-2">
-                        <label for="date_To" class="text-[18px] Reg-font ml-2">To:</label>
-                        <input type="date" name="date_To" id="date_To"
-                            class="p-1 rounded-md border-2 border-black focus:outline-none">
-                        @error('date_To')
-                            <p class="text-red-400 text-sm p-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <button type="submit" id="assess_report_admin"
+
+                    <button type="submit" id="search_name_btn"
                         class="text-[18px] Reg-font bg-blue-400 active:bg-blue-500 rounded-md px-3 py-1 text-white">
-                        Assess
+                        search
                     </button>
                 </form>
             </div>
@@ -91,15 +75,19 @@
                                     {{ $client->created_at }}
                                 </td>
                                 <td class="py-2 px-4 border-b border-grey-light">
-                                    {{ $client->comment }}
+                                    @if ($client->comment != null)
+                                        {{ $client->comment }}
+                                    @endif
                                 </td>
-                                <td class="py-2 px-4 border-b border-grey-light flex justify-between"> <a href="#"
+                                <td class="py-2 px-4 border-b border-grey-light flex justify-between"> <a
+                                        href="/superAdmin/viewSurvey/{{ $client->idClientInformation }}"
                                         class="bg-blue-800 active:bg-blue-900 text-white text-sm px-3 py-1 rounded-2xl Reg-font">
                                         View
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
+
                         <!-- Add more rows here like the one above for each pending authorization -->
                 </table>
                 <div class="flex  justify-between ">

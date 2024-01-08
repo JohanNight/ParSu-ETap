@@ -1336,6 +1336,22 @@ class adminController extends Controller
         }
     }
 
+    public function viewSurveyAnswer($answerID)
+    {
+        //dd($answerID);
+        $clientInfo = clientInfo::findOrFail($answerID);
+
+        $clientTypes = clientCategory::all();
+        $officeTypes = offices::all();
+        $SrvyComment = SurveyComment::all();
+        $Service = service1::all();
+        if (View::exists('SuperAdmin.surveyCommentPage')) {
+            return view('SuperAdmin.surveyCommentPage', compact('clientInfo', 'clientTypes', 'officeTypes', 'SrvyComment', 'Service'));
+        } else {
+            return abort(404);
+        }
+    }
+
     public function storageOfAllService()
     {
         if (View::exists('SuperAdmin.storageOfAllService')) {
