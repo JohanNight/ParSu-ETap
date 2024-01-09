@@ -1352,6 +1352,27 @@ class adminController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $searchTerm = $request->query('search');
+
+        // Perform your search logic here
+        $data = clientInfo::where('name', 'LIKE', "%$searchTerm%")
+            ->get();
+
+        return response()->json($data);
+    }
+    public function searchDate(Request $request)
+    {
+        $searchTerm = $request->query('searchDate');
+
+        // Perform your search logic here
+        $data = clientInfo::where('created_at', 'LIKE', "%$searchTerm%")
+            ->get();
+
+        return response()->json($data);
+    }
+
     public function storageOfAllService()
     {
         if (View::exists('SuperAdmin.storageOfAllService')) {

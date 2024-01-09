@@ -104,8 +104,10 @@ Route::controller(adminController::class)->group(function () {
         Route::post('/indexAdmin/assessReport', 'assessmentResult')->name('assessResult'); //For the sub-Admin
 
 
-        Route::get('/superAdmin', 'indexAdmin')->name('Admin');
+        Route::get('/superAdmin', 'indexAdmin')->name('Admin'); //Login for super admin
         Route::get('/superAdmin/viewSurvey', 'viewSurvey')->name('viewSurveyAnswer');
+        Route::get('/searchClient', 'search')->name('search'); //search for the client name
+        Route::get('/searchClientDate', 'searchDate'); //search for the client name via date
         Route::get('/superAdmin/viewSurvey/{id}', 'viewSurveyAnswer');
         Route::get('/superAdmin/Storage', 'storageOfAllService')->name('storageOfAllService');
         Route::get('/superAdmin/report', 'reportAdmin')->name('reportAdmin');
