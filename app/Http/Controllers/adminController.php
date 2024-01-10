@@ -141,6 +141,29 @@ class adminController extends Controller
         }
     }
 
+    public function storeUserData(Request $request)
+    {
+        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
+        $validated = $request->validate(
+            [
+                'name' => ['required', 'min:4'],
+                'email' => ['required', 'email', Rule::unique('users', 'email')],
+                'offices' => ['required', Rule::in($validateOffices)],
+                'password' => 'required|confirmed|min:6'
+            ]
+        );
+
+        $Admindata = [
+            'name' => $validated['name'],
+            'idOfficeOrigin' => $validated['offices'],
+            'email' => $validated['email'],
+            'password' => $validated['password'] = Hash::make($validated['password']),
+        ];
+        $user = User::create($Admindata);
+        Auth::login($user);
+        return redirect('/login');
+    }
+
     public function forgotPasswordPage()
     {
         if (View::exists('auth.passwordsReset')) {
@@ -209,27 +232,6 @@ class adminController extends Controller
         }
     }
 
-    public function storeUserData(Request $request)
-    {
-        $validateOffices = DB::table('tbloffices')->pluck('idOffices')->toArray();
-        $validated = $request->validate(
-            [
-                'name' => ['required', 'min:4'],
-                'email' => ['required', 'email', Rule::unique('users', 'email')],
-                'offices' => ['required', Rule::in($validateOffices)],
-                'password' => 'required|confirmed|min:6'
-            ]
-        );
-
-        $Admindata = [
-            'name' => $validated['name'],
-            'idOfficeOrigin' => $validated['offices'],
-            'email' => $validated['email'],
-            'password' => $validated['password'] = Hash::make($validated['password']),
-        ];
-        $user = User::create($Admindata);
-        Auth::login($user);
-    }
 
     public function showAccountPage()
     {
