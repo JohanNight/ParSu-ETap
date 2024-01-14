@@ -249,10 +249,10 @@
 <script>
     // date_autofill.js
     // Get the current date in the format "YYYY-MM-DD"
-    var dateFrom = new Date().toISOString().split('T')[0];
+    // var dateFrom = new Date().toISOString().split('T')[0];
 
     // Set the input field's value to today's date
-    document.getElementById("date_From").value = dateFrom;
+    // document.getElementById("date_From").value = dateFrom;
 
     // Get the current date in the format "YYYY-MM-DD"
     var dateTo = new Date().toISOString().split('T')[0];
